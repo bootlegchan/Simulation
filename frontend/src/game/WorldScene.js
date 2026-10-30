@@ -190,11 +190,24 @@ export default class WorldScene extends Phaser.Scene {
   }
 
   positionFor(npc, index) {
+    // The Python runner projects each room to stable 3D coordinates.
+    // Keep that projection authoritative so residents share locations in the
+    // visual world instead of being scattered by a frontend-only hash.
+    const hasProjection = Number.isFinite(Number(npc.x_3d)) && Number.isFinite(Number(npc.y_3d));
+    if (hasProjection) {
+      return {
+        x: Phaser.Math.Clamp(105 + Number(npc.x_3d) * 11.2, 55, WORLD.width - 55),
+        y: Phaser.Math.Clamp(430 + Number(npc.y_3d) * 0.62 + (index % 3) * 5, 430, 585)
+      };
+    }
+
     const location = hashText(npc.location_id || npc.id);
     const xBase = 130 + (location % 2250);
     const yBase = 475 + ((location >>> 9) % 70);
-    const crowdOffset = (index % 7) * 15;
-    return { x: Phaser.Math.Clamp(xBase + crowdOffset, 40, WORLD.width - 40), y: Phaser.Math.Clamp(yBase + (index % 3) * 8, 430, 590) };
+    return {
+      x: Phaser.Math.Clamp(xBase + (index % 7) * 15, 40, WORLD.width - 40),
+      y: Phaser.Math.Clamp(yBase + (index % 3) * 8, 430, 590)
+    };
   }
 
   setWorld(npcs) {
@@ -216,25 +229,62 @@ export default class WorldScene extends Phaser.Scene {
         sprite = this.makeVillager(npc, position.x, position.y, index);
         this.sprites.set(npc.id, sprite);
       } else {
-        sprite.setData("npcId", npc.id);
-        sprite.setData("npc", npc);
+        const previousLocation = sprite.getData("lastLocation");
+        const locationChanged = previousLocation && previousLocation !== npc.location_id;
         const distance = Phaser.Math.Distance.Between(sprite.x, sprite.y, position.x, position.y);
-        if (distance > 100) {
-          this.tweens.add({ targets: sprite, x: position.x, y: position.y, duration: 850, ease: "Sine.easeInOut" });
+        if (locationChanged && distance > 8) {
+          if (sprite.getData("moveTween")) sprite.getData("moveTween").stop();
+          const duration = Phaser.Math.Clamp(distance * 5, 500, 2600);
+          const tween = this.tweens.add({
+            targets: sprite,
+            x: position.x,
+            y: position.y,
+            duration,
+            ease: "Sine.easeInOut",
+            onComplete: () => sprite.setData("moveTween", null)
+          });
+          sprite.setData("moveTween", tween);
+        } else if (distance > 140) {
+          sprite.setPosition(position.x, position.y);
         }
       }
+
+      sprite.setData("npcId", npc.id);
       sprite.setData("npc", npc);
+      sprite.setData("lastLocation", npc.location_id);
       const label = sprite.getByName("name");
       if (label) label.setText(String(npc.name || "Neighbour").split(" ")[0]);
+
+      const speech = sprite.getByName("speech");
+      if (npc.speech_bubble) {
+        if (speech) speech.setText(String(npc.speech_bubble).slice(0, 42));
+        else {
+          const bubble = this.add.text(0, -68, String(npc.speech_bubble).slice(0, 42), {
+            name: "speech",
+            fontFamily: "Nunito, Trebuchet MS, sans-serif",
+            fontSize: "10px",
+            color: "#52634d",
+            backgroundColor: "#fffdf2",
+            padding: { x: 7, y: 5 },
+            wordWrap: { width: 150 }
+          }).setOrigin(0.5);
+          bubble.setName("speech");
+          sprite.add(bubble);
+        }
+      } else if (speech) {
+        speech.destroy();
+      }
     });
     this.refreshSelection();
   }
 
   makeVillager(npc, x, y, index) {
     const sprite = this.add.container(x, y);
+    const body = this.add.container(0, 0);
     const g = this.add.graphics();
     const coats = [0xd98c69, 0x7898bd, 0xd4ae62, 0x8baf87, 0xb58db9, 0xe0b6a0, 0x6f9c9a];
     const coat = coats[index % coats.length];
+
     g.fillStyle(0x000000, 0.15).fillEllipse(0, 25, 29, 9);
     g.fillStyle(coat).fillRoundedRect(-11, -1, 22, 26, 8);
     g.fillStyle(0xf1c9a4).fillCircle(0, -13, 11);
@@ -244,18 +294,37 @@ export default class WorldScene extends Phaser.Scene {
     g.lineStyle(1.5, 0x9b5f52).beginPath().arc(0, -9, 3.5, 0.2, 2.5, false).strokePath();
     g.fillStyle(0x76513d).fillRoundedRect(-9, 20, 7, 8, 2);
     g.fillRoundedRect(2, 20, 7, 8, 2);
-    sprite.add(g);
+    body.add(g);
+    sprite.add(body);
+
     const name = this.add.text(0, -43, String(npc.name || "Neighbour").split(" ")[0], {
-      name: "name", fontFamily: "Nunito, Trebuchet MS, sans-serif",
-      fontSize: "12px", fontStyle: "bold", color: "#405b48",
-      backgroundColor: "#fff8e8", padding: { x: 6, y: 4 }
+      fontFamily: "Nunito, Trebuchet MS, sans-serif",
+      fontSize: "12px",
+      fontStyle: "bold",
+      color: "#405b48",
+      backgroundColor: "#fff8e8",
+      padding: { x: 6, y: 4 }
     }).setOrigin(0.5);
     name.setName("name");
     sprite.add(name);
-    sprite.setSize(38, 68).setInteractive(new Phaser.Geom.Rectangle(-19, -39, 38, 70), Phaser.Geom.Rectangle.Contains);
+
+    sprite.setSize(38, 68).setInteractive(
+      new Phaser.Geom.Rectangle(-19, -39, 38, 70),
+      Phaser.Geom.Rectangle.Contains
+    );
     sprite.setData("npcId", npc.id);
     sprite.setData("npc", npc);
-    this.tweens.add({ targets: sprite, y: y - 3, duration: 900 + (index % 5) * 120, yoyo: true, repeat: -1, ease: "Sine.easeInOut" });
+    sprite.setData("lastLocation", npc.location_id);
+
+    // Bob only the body, leaving the world-position container free to walk.
+    this.tweens.add({
+      targets: body,
+      y: -2,
+      duration: 850 + (index % 5) * 120,
+      yoyo: true,
+      repeat: -1,
+      ease: "Sine.easeInOut"
+    });
     return sprite;
   }
 
