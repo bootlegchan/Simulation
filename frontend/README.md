@@ -2,14 +2,14 @@
 
 A 2D storybook village client for the Python simulation engine.
 
-## Technology choice
+## Technology
 
-- **Phaser 3** renders the interactive 2D village scene and clickable villagers.
-- **React** renders the responsive menus, resident inspector, simulation controls and data panels.
-- **Vite** provides the development server and production build.
-- The existing **FastAPI** service remains authoritative for simulation state and mutations.
+- Phaser 3 renders the 2D village, camera, scenery, characters and pointer interactions.
+- React renders responsive menus, resident/building inspectors, stories and simulation controls.
+- Vite serves the development app and produces the production bundle.
+- FastAPI remains authoritative for simulation state and mutations.
 
-This hybrid keeps the visual world performant while making information-heavy panels straightforward to extend. The frontend does not duplicate simulation rules.
+The frontend deliberately does not reimplement simulation rules.
 
 ## Run locally
 
@@ -28,22 +28,32 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:5173.
+Open http://localhost:5173. The Vite server proxies `/api` to `http://127.0.0.1:8000`.
 
-The Vite development server proxies `/api` requests to `http://127.0.0.1:8000`. For another API host, set `VITE_API_URL` before building.
+Set `VITE_API_URL` if the API is hosted elsewhere.
 
-## Current integration
+## API integration
 
-- Initial state: `GET /api/v1/simulation/status`
-- Residents and objects: `GET /api/v1/npcs`, `GET /api/v1/objects`
-- Event feed: `GET /api/v1/events/history`
-- Runner controls: `POST /api/v1/simulation/control`
-- Resident actions: `POST /api/v1/mutate/npc/{npc_id}/action`
-- Live channel: `WS /api/v1/ws/bridge`
+- `GET /api/v1/simulation/status`
+- `GET /api/v1/npcs`
+- `GET /api/v1/objects`
+- `GET /api/v1/events/history`
+- `POST /api/v1/simulation/control`
+- `POST /api/v1/mutate/npc/{npc_id}/action`
+- `WS /api/v1/ws/bridge`
 
-The art is currently drawn with Phaser vector primitives, so the client runs without external image assets. It is an original cosy village presentation inspired by the warmth and readability of life-simulation games, not a reproduction of Animal Crossing artwork or characters.
+WebSocket snapshots and subsequent tick batches are both consumed. The client reconnects with bounded exponential backoff.
 
-## Build
+## Interaction
+
+- Drag the world or use the mouse wheel / arrow keys to scroll the village.
+- Click a resident to inspect needs, mood, wealth and location.
+- Click a landmark building to open its information panel.
+- Use the simulation controls to start, resume, pause and step the backend.
+
+The art is rendered with Phaser vector primitives and does not require third-party image assets. It is original cosy-life-simulation art direction, not a reproduction of Animal Crossing characters or assets.
+
+## Production build
 
 ```bash
 npm run build
