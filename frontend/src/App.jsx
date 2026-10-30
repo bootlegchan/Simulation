@@ -68,7 +68,7 @@ export default function App(){
     const ws=new WebSocket(wsUrl);socket.current=ws;
     ws.onopen=()=>{setConnected(true);setNotice("Live connection established");};
     ws.onmessage=e=>{
-      try{const msg=JSON.parse(e.data);if(msg.type==="SNAPSHOT"||msg.type==="TICK")applyBatch(msg.data);}
+      try{const msg=JSON.parse(e.data);if(msg.type==="SNAPSHOT"||msg.type==="TICK")applyBatch(msg.data);else if(msg.npcs&&msg.world_state)applyBatch(msg);}
       catch(err){console.warn("Ignored malformed simulation update",err);}
     };
     ws.onclose=()=>setConnected(false);
@@ -113,7 +113,7 @@ export default function App(){
 
     {tab==="village"&&<section className="world-card">
       <div className="world-toolbar"><div><span className="live-pill"><i></i> {state.is_running?"LIVING WORLD":"WORLD AT REST"}</span><span className="day-label">DAY {Math.max(1,Math.floor((state.current_tick||0)/240)+1)} · TICK {state.current_tick||0}</span></div>
-        <div className="world-controls"><button disabled={busy} onClick={()=>control(state.is_running?"pause":"start")}>{state.is_running?"Ⅱ Pause":"▶ Start"}</button><button disabled={busy} onClick={()=>control("step")}>+ 1 moment</button><button className="icon-control" onClick={refresh}>↻</button></div>
+        <div className="world-controls"><button disabled={busy} onClick={()=>control(state.is_running?"pause":"resume")}>{state.is_running?"Ⅱ Pause":"▶ Start"}</button><button disabled={busy} onClick={()=>control("step")}>+ 1 moment</button><button className="icon-control" onClick={refresh}>↻</button></div>
       </div>
       <div className="world-canvas"><div className="canvas-host" ref={host}></div><div className="scene-caption"><span>⌖</span> OAKWOOD VILLAGE <b>·</b> THE MARKET LANE</div><div className="scene-hint">Tap a villager to say hello</div></div>
       <div className="world-footer"><div><b>{state.active_npc_count||npcs.length}</b><span> neighbours</span></div><div><b>{Object.keys(world.objects||{}).length}</b><span> little things</span></div><div><b>{Number(state.total_wealth_gold||0).toFixed(0)} ◈</b><span> village wealth</span></div><p>{notice}</p></div>
