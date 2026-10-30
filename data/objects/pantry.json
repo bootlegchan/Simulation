@@ -1,0 +1,12 @@
+{
+  "id": "object_pantry",
+  "name": "Oak Pantry",
+  "location_id": "room_farmhouse_living",
+  "capabilities": [
+    "store_food",
+    "retrieve_food"
+  ],
+  "durability": 100.0,
+  "is_locked": false,
+  "owner_id": "npc_aldous"
+}

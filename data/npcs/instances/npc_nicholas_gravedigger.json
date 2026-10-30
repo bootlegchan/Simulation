@@ -1,0 +1,51 @@
+{
+  "id": "npc_nicholas_gravedigger",
+  "name": "Nicholas Gravedigger",
+  "occupation": "Cemetery Keeper",
+  "home_location_id": "room_cemetery_lodge",
+  "work_location_id": "room_graveyard",
+  "wealth": 40.0,
+  "faction_id": "faction_town_council",
+  "civic_role": "Gravedigger",
+  "education": "Basic Literacy",
+  "access_permissions": [
+    "cemetery_key"
+  ],
+  "appearance": {
+    "outfit": "Dirt-Covered Heavy Overcoat",
+    "grooming": "Silent",
+    "build": "Stooped",
+    "style": "Outcast Worker"
+  },
+  "cognition": {
+    "decision_quality": "Rational",
+    "laziness": 0.1
+  },
+  "vices": {
+    "alcohol_dependence": 30.0,
+    "gambling_drive": 0.0,
+    "crime_propensity": 10.0,
+    "vice_indulgence": 20.0
+  },
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.85,
+      "honor": 0.8,
+      "ambition": 0.2,
+      "tradition": 0.9
+    },
+    "reputation_facets": {
+      "trustworthiness": 80.0,
+      "temperament": 70.0,
+      "discretion": 95.0
+    },
+    "communication_style": "Grim & Melancholy",
+    "sentimental_attachments": [
+      "Iron Cemetery Shovel"
+    ],
+    "vulnerabilities": [
+      "Social Isolation"
+    ],
+    "background": "Maintains St. Jude's graveyard and digs plots for the deceased."
+  }
+}

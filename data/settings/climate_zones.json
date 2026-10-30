@@ -1,0 +1,30 @@
+{
+  "climate_system": {
+    "seasonal_base_temperatures_celsius": {
+      "WINTER": -5.0,
+      "SPRING": 14.0,
+      "SUMMER": 28.0,
+      "AUTUMN": 10.0
+    },
+    "diurnal_variation_celsius": {
+      "DAWN": -4.0,
+      "DAY": 5.0,
+      "DUSK": -1.0,
+      "NIGHT": -6.0
+    },
+    "indoor_insulation_bonus_celsius": 12.0,
+    "hearth_heating_delta_celsius": 22.0,
+    "physiological_thresholds": {
+      "hypothermia_risk_celsius": 4.0,
+      "freezing_damage_celsius": -2.0,
+      "comfort_min_celsius": 16.0,
+      "comfort_max_celsius": 24.0,
+      "heat_exhaustion_celsius": 32.0
+    },
+    "exposure_penalties": {
+      "hypothermia_energy_drain_per_tick": 0.5,
+      "hypothermia_stress_surge": 20.0,
+      "heat_thirst_hunger_surge": 15.0
+    }
+  }
+}

@@ -1,0 +1,344 @@
+{
+  "raw_wheat": {
+    "id": "raw_wheat",
+    "name": "Raw Wheat Sheaf",
+    "category": "RAW_MATERIAL",
+    "base_value": 3.0,
+    "is_perishable": true,
+    "spoil_rate": 0.05,
+    "stack_limit": 50
+  },
+  "flour": {
+    "id": "flour",
+    "name": "Bag of Fine Flour",
+    "category": "PROCESSED",
+    "base_value": 7.0,
+    "is_perishable": true,
+    "spoil_rate": 0.02,
+    "stack_limit": 20
+  },
+  "food_bread": {
+    "id": "food_bread",
+    "name": "Fresh Hearth Bread",
+    "category": "FOOD",
+    "base_value": 12.0,
+    "is_perishable": true,
+    "spoil_rate": 0.1,
+    "stack_limit": 10
+  },
+  "timber": {
+    "id": "timber",
+    "name": "Oak Timber Log",
+    "category": "RAW_MATERIAL",
+    "base_value": 10.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 10
+  },
+  "planks": {
+    "id": "planks",
+    "name": "Cut Wooden Planks",
+    "category": "PROCESSED",
+    "base_value": 20.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 20
+  },
+  "iron_ore": {
+    "id": "iron_ore",
+    "name": "Iron Ore Chunk",
+    "category": "RAW_MATERIAL",
+    "base_value": 15.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 20
+  },
+  "iron_ingot": {
+    "id": "iron_ingot",
+    "name": "Refined Iron Ingot",
+    "category": "PROCESSED",
+    "base_value": 35.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 20
+  },
+  "iron_sword": {
+    "id": "iron_sword",
+    "name": "Forged Iron Longsword",
+    "category": "WEAPON",
+    "base_value": 120.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 1
+  },
+  "herbs": {
+    "id": "herbs",
+    "name": "Wild Healing Herbs",
+    "category": "RAW_MATERIAL",
+    "base_value": 8.0,
+    "is_perishable": true,
+    "spoil_rate": 0.08,
+    "stack_limit": 30
+  },
+  "health_elixir": {
+    "id": "health_elixir",
+    "name": "Concentrated Herbal Elixir",
+    "category": "MEDICINE",
+    "base_value": 45.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 5
+  },
+  "fine_ale": {
+    "id": "fine_ale",
+    "name": "Oak-Aged Dark Ale",
+    "category": "BEVERAGE",
+    "base_value": 15.0,
+    "is_perishable": true,
+    "spoil_rate": 0.01,
+    "stack_limit": 12
+  },
+  "gift_courtship_bouquet": {
+    "id": "gift_courtship_bouquet",
+    "name": "Pressed Wildflower & Lavender Bouquet",
+    "category": "GIFT",
+    "base_value": 18.0,
+    "is_perishable": true,
+    "spoil_rate": 0.04,
+    "stack_limit": 5
+  },
+  "item_soothing_balm": {
+    "id": "item_soothing_balm",
+    "name": "Chamomile & Lavender Soothing Balm",
+    "category": "MEDICINE",
+    "base_value": 28.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 10
+  },
+  "item_scented_oils": {
+    "id": "item_scented_oils",
+    "name": "Rose & Jasmine Scented Massage Oil",
+    "category": "LUXURY",
+    "base_value": 40.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 10
+  },
+  "gift_carved_wooden_pendant": {
+    "id": "gift_carved_wooden_pendant",
+    "name": "Hand-Carved Heartwood Pendant",
+    "category": "GIFT",
+    "base_value": 30.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 5
+  },
+  "heirloom_engraved_signet_ring": {
+    "id": "heirloom_engraved_signet_ring",
+    "name": "Ancestral Engraved Gold Signet Ring",
+    "category": "HEIRLOOM",
+    "base_value": 250.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 1
+  },
+  "heirloom_silver_locket": {
+    "id": "heirloom_silver_locket",
+    "name": "Keepsake Silver Locket",
+    "category": "HEIRLOOM",
+    "base_value": 180.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 1
+  },
+  "item_personal_diary": {
+    "id": "item_personal_diary",
+    "name": "Bound Leather Personal Diary",
+    "category": "DOCUMENT",
+    "base_value": 25.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 1
+  },
+  "item_handwoven_blanket": {
+    "id": "item_handwoven_blanket",
+    "name": "Thick Woolen Hearth Blanket",
+    "category": "DOMESTIC",
+    "base_value": 35.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 5
+  },
+  "food_spiced_cider": {
+    "id": "food_spiced_cider",
+    "name": "Warm Spiced Mulled Cider",
+    "category": "FOOD",
+    "base_value": 16.0,
+    "is_perishable": true,
+    "spoil_rate": 0.05,
+    "stack_limit": 12
+  },
+  "food_roast_pig": {
+    "id": "food_roast_pig",
+    "name": "Crispy Spiced Feast Roast",
+    "category": "FOOD",
+    "base_value": 60.0,
+    "is_perishable": true,
+    "spoil_rate": 0.15,
+    "stack_limit": 4
+  },
+  "tool_lockpick_set": {
+    "id": "tool_lockpick_set",
+    "name": "Hardened Spring-Steel Lockpick Set",
+    "category": "TOOL_ILLICIT",
+    "base_value": 75.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 5
+  },
+  "letter_blackmail_hook": {
+    "id": "letter_blackmail_hook",
+    "name": "Sealed Incriminating Blackmail Ledger",
+    "category": "DOCUMENT_ILLICIT",
+    "base_value": 150.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 3
+  },
+  "letter_clandestine_missive": {
+    "id": "letter_clandestine_missive",
+    "name": "Folded Coded Clandestine Note",
+    "category": "DOCUMENT_ILLICIT",
+    "base_value": 45.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 5
+  },
+  "contraband_moonshine": {
+    "id": "contraband_moonshine",
+    "name": "Jug of High-Proof Cellar Moonshine",
+    "category": "CONTRABAND",
+    "base_value": 55.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 10
+  },
+  "item_poison_vial": {
+    "id": "item_poison_vial",
+    "name": "Vial of Concentrated Nightshade",
+    "category": "CONTRABAND",
+    "base_value": 90.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 5
+  },
+  "item_stolen_coin_pouch": {
+    "id": "item_stolen_coin_pouch",
+    "name": "Cut Velvet Pouch of Marked Coins",
+    "category": "ILLICIT_LOOT",
+    "base_value": 45.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 10
+  },
+  "contraband_lotus_resin": {
+    "id": "contraband_lotus_resin",
+    "name": "Refined Black Lotus Resin",
+    "category": "CONTRABAND",
+    "base_value": 85.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 10
+  },
+  "item_loaded_dice": {
+    "id": "item_loaded_dice",
+    "name": "Lead-Weighted Gambling Dice",
+    "category": "TOOL_ILLICIT",
+    "base_value": 60.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 5
+  },
+  "item_occult_tome": {
+    "id": "item_occult_tome",
+    "name": "Bound Tome of the Veiled Moon",
+    "category": "OCCULT_RELIC",
+    "base_value": 220.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 1
+  },
+  "contract_indenture_bond": {
+    "id": "contract_indenture_bond",
+    "name": "Sealed Debt Indenture Bond",
+    "category": "LEGAL_CONTRACT",
+    "base_value": 100.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 5
+  },
+  "item_forged_council_seal": {
+    "id": "item_forged_council_seal",
+    "name": "Counterfeit Brass Council Seal",
+    "category": "TOOL_ILLICIT",
+    "base_value": 130.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 1
+  },
+  "item_promissory_note": {
+    "id": "item_promissory_note",
+    "name": "Signed Parchment Promissory Note",
+    "category": "CREDIT_INSTRUMENT",
+    "base_value": 50.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 10
+  },
+  "item_tally_stick_iou": {
+    "id": "item_tally_stick_iou",
+    "name": "Notched Hazel Tally Stick IOU",
+    "category": "CREDIT_INSTRUMENT",
+    "base_value": 25.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 10
+  },
+  "item_guild_seal": {
+    "id": "item_guild_seal",
+    "name": "Cast Brass Guildmaster Seal",
+    "category": "GUILD_STANDARD",
+    "base_value": 75.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 1
+  },
+  "item_purification_alum": {
+    "id": "item_purification_alum",
+    "name": "Jar of Mineral Purification Alum",
+    "category": "MEDICINE",
+    "base_value": 30.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 10
+  },
+  "contract_marriage_dowry": {
+    "id": "contract_marriage_dowry",
+    "name": "Sealed Inter-Clan Marriage Dowry Contract",
+    "category": "LEGAL_CONTRACT",
+    "base_value": 150.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 1
+  },
+  "item_astrological_chart": {
+    "id": "item_astrological_chart",
+    "name": "Hand-Drawn Celestial Omen Ephemeris",
+    "category": "DOCUMENT",
+    "base_value": 40.0,
+    "is_perishable": false,
+    "spoil_rate": 0.0,
+    "stack_limit": 5
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "object_alarm_bell",
+  "name": "Civic Alarm Bell Tower",
+  "location_id": "room_watchtower_lookout",
+  "capabilities": [
+    "sound_alarm",
+    "civic_warning",
+    "fire_watch"
+  ],
+  "durability": 100.0,
+  "is_locked": false,
+  "owner_id": "npc_devon"
+}

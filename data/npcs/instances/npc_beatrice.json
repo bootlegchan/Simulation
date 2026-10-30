@@ -1,0 +1,54 @@
+{
+  "id": "npc_beatrice",
+  "name": "Beatrice Vance",
+  "occupation": "General Merchant",
+  "home_location_id": "room_vance_bedroom",
+  "work_location_id": "room_vance_shop_floor",
+  "wealth": 150.0,
+  "faction_id": "faction_merchant_alliance",
+  "civic_role": "Trade Council Secretary",
+  "education": "Educated Scholar",
+  "access_permissions": [
+    "vance_manor_key",
+    "library_membership"
+  ],
+  "appearance": {
+    "outfit": "Fine Embroidered Silk Gown",
+    "grooming": "Impeccable",
+    "build": "Slender",
+    "style": "High Town Merchant"
+  },
+  "cognition": {
+    "decision_quality": "Rational",
+    "laziness": 0.1
+  },
+  "vices": {
+    "alcohol_dependence": 5.0,
+    "gambling_drive": 15.0,
+    "crime_propensity": 0.0,
+    "vice_indulgence": 10.0
+  },
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.5,
+      "honor": 0.65,
+      "ambition": 0.9,
+      "tradition": 0.35
+    },
+    "reputation_facets": {
+      "trustworthiness": 70.0,
+      "temperament": 80.0,
+      "discretion": 85.0
+    },
+    "communication_style": "Eloquent & Diplomatic",
+    "sentimental_attachments": [
+      "General Store Ledger",
+      "Brass Merchant Scales"
+    ],
+    "vulnerabilities": [
+      "Greed",
+      "Fear of Bankruptcy"
+    ],
+    "background": "Ambitious merchant proprietor expanding trade networks."
+  }
+}

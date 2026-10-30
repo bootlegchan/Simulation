@@ -1,0 +1,53 @@
+{
+  "id": "npc_lucinda",
+  "name": "Lucinda Nightshade",
+  "occupation": "Vice Den Operator",
+  "home_location_id": "room_vice_suite",
+  "work_location_id": "room_vice_parlour",
+  "wealth": 220.0,
+  "faction_id": "faction_merchant_alliance",
+  "civic_role": "Underworld Proprietor",
+  "education": "Educated Scholar",
+  "access_permissions": [
+    "vice_den_key",
+    "vice_vault_key"
+  ],
+  "appearance": {
+    "outfit": "Crimson Silk Corset & Velvet Robe",
+    "grooming": "Heavy Perfume & Makeup",
+    "build": "Voluptuous",
+    "style": "Seductive Nightwear"
+  },
+  "cognition": {
+    "decision_quality": "Short-sighted",
+    "laziness": 0.2
+  },
+  "vices": {
+    "alcohol_dependence": 35.0,
+    "gambling_drive": 50.0,
+    "crime_propensity": 45.0,
+    "vice_indulgence": 75.0
+  },
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.3,
+      "honor": 0.25,
+      "ambition": 0.85,
+      "tradition": 0.1
+    },
+    "reputation_facets": {
+      "trustworthiness": 35.0,
+      "temperament": 65.0,
+      "discretion": 90.0
+    },
+    "communication_style": "Seductive & Manipulative",
+    "sentimental_attachments": [
+      "Jeweled Velvet Pouch"
+    ],
+    "vulnerabilities": [
+      "Cocaine/Opium Addiction",
+      "Fear of Raid"
+    ],
+    "background": "Operates the secret vice den and gambling hall behind the tavern."
+  }
+}

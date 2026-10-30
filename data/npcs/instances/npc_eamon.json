@@ -1,0 +1,53 @@
+{
+  "id": "npc_eamon",
+  "name": "Eamon Forge",
+  "occupation": "Master Blacksmith",
+  "home_location_id": "room_forge_bedroom",
+  "work_location_id": "room_forge_yard",
+  "wealth": 120.0,
+  "faction_id": "faction_merchant_alliance",
+  "civic_role": "Guild Master",
+  "education": "Basic Literacy",
+  "access_permissions": [
+    "smithy_key"
+  ],
+  "appearance": {
+    "outfit": "Heavy Leather Apron & Sooted Shirt",
+    "grooming": "Rough Beard",
+    "build": "Powerfully Built",
+    "style": "Artisan Smith"
+  },
+  "cognition": {
+    "decision_quality": "Rational",
+    "laziness": 0.1
+  },
+  "vices": {
+    "alcohol_dependence": 30.0,
+    "gambling_drive": 10.0,
+    "crime_propensity": 0.0,
+    "vice_indulgence": 20.0
+  },
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.8,
+      "honor": 0.85,
+      "ambition": 0.5,
+      "tradition": 0.7
+    },
+    "reputation_facets": {
+      "trustworthiness": 80.0,
+      "temperament": 40.0,
+      "discretion": 50.0
+    },
+    "communication_style": "Blunt & Honest",
+    "sentimental_attachments": [
+      "Granite Forge Anvil",
+      "Master Craftsman Stamp"
+    ],
+    "vulnerabilities": [
+      "Impulsivity",
+      "Craft Pride"
+    ],
+    "background": "Master blacksmith forging tools and weapons for Oakwood."
+  }
+}

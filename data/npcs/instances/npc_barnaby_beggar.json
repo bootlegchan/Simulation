@@ -1,0 +1,50 @@
+{
+  "id": "npc_barnaby_beggar",
+  "name": "Barnaby Outcast",
+  "occupation": "Town Drunkard / Outcast",
+  "home_location_id": "room_tenement_attic",
+  "work_location_id": "room_village_square",
+  "wealth": 5.0,
+  "faction_id": "faction_farmers_guild",
+  "civic_role": "Outcast",
+  "education": "Illiterate",
+  "access_permissions": [],
+  "appearance": {
+    "outfit": "Tattered Ragged Rags & Unshaved Face",
+    "grooming": "Unkempt & Dirt-Covered",
+    "build": "Gaunt",
+    "style": "Beggar"
+  },
+  "cognition": {
+    "decision_quality": "Deluded",
+    "laziness": 0.6
+  },
+  "vices": {
+    "alcohol_dependence": 90.0,
+    "gambling_drive": 30.0,
+    "crime_propensity": 40.0,
+    "vice_indulgence": 85.0
+  },
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.3,
+      "honor": 0.2,
+      "ambition": 0.1,
+      "tradition": 0.15
+    },
+    "reputation_facets": {
+      "trustworthiness": 20.0,
+      "temperament": 30.0,
+      "discretion": 20.0
+    },
+    "communication_style": "Muttering & Desperate",
+    "sentimental_attachments": [
+      "Empty Ale Mug"
+    ],
+    "vulnerabilities": [
+      "Severe Alcohol Addiction",
+      "Poverty"
+    ],
+    "background": "Former laborer who fell into addiction and homelessness."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "object_armoury_rack",
+  "name": "Iron Weapon & Armor Rack",
+  "location_id": "room_armoury",
+  "capabilities": [
+    "equip_weapons",
+    "store_armour"
+  ],
+  "durability": 100.0,
+  "is_locked": true,
+  "owner_id": "npc_roderick"
+}

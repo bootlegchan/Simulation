@@ -1,0 +1,13 @@
+{
+  "id": "obj_gambling_table",
+  "name": "Dice & Card Gambling Table",
+  "capabilities": [
+    "gamble",
+    "vice",
+    "socialize"
+  ],
+  "location_id": "room_vice_parlour",
+  "owner_id": "npc_lucinda",
+  "contained_item_ids": [],
+  "is_pantry": false
+}

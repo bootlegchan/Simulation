@@ -1,0 +1,12 @@
+{
+  "id": "object_vice_gambling_pit",
+  "name": "Underground Dice & Card Pit",
+  "location_id": "room_black_market_cellar",
+  "capabilities": [
+    "illicit_gambling",
+    "underworld_betting"
+  ],
+  "durability": 100.0,
+  "is_locked": false,
+  "owner_id": "npc_tobias"
+}

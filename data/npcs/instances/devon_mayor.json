@@ -1,0 +1,52 @@
+{
+  "id": "npc_devon",
+  "name": "Devon Blackwood",
+  "location_id": "room_mayors_office",
+  "occupation": "Town Mayor",
+  "home_location_id": "room_mayors_office",
+  "work_location_id": "room_council_chamber",
+  "needs": {
+    "hunger": 15.0,
+    "energy": 85.0,
+    "social": 60.0
+  },
+  "decay_rates": {
+    "hunger": 0.3,
+    "energy": -0.2,
+    "social": -0.1
+  },
+  "attributes": {
+    "strength": 10.0,
+    "intelligence": 16.0
+  },
+  "personality": {
+    "openness": 0.6,
+    "conscientiousness": 0.9
+  },
+  "wealth": 500.0,
+  "faction_id": "faction_council",
+  "civic_role": "mayor",
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.6,
+      "honor": 0.7,
+      "ambition": 0.85,
+      "tradition": 0.75
+    },
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "temperament": 75.0,
+      "discretion": 60.0
+    },
+    "communication_style": "Authoritative & Formal",
+    "sentimental_attachments": [
+      "Municipal Seal of Oakwood",
+      "Manor Study Library"
+    ],
+    "vulnerabilities": [
+      "Pride",
+      "Fear of Political Scandal"
+    ],
+    "background": "Former Guildmaster turned Town Mayor who prioritizes order, civic expansion, and aristocratic prestige."
+  }
+}

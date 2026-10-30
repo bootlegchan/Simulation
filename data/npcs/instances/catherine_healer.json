@@ -1,0 +1,52 @@
+{
+  "id": "npc_catherine",
+  "name": "Sister Catherine",
+  "location_id": "room_herbalist_shop",
+  "occupation": "Apothecary & Healer",
+  "home_location_id": "room_healing_ward",
+  "work_location_id": "room_herbalist_shop",
+  "needs": {
+    "hunger": 15.0,
+    "energy": 90.0,
+    "social": 60.0
+  },
+  "decay_rates": {
+    "hunger": 0.4,
+    "energy": -0.25,
+    "social": -0.2
+  },
+  "attributes": {
+    "strength": 8.0,
+    "intelligence": 17.0
+  },
+  "personality": {
+    "openness": 0.7,
+    "conscientiousness": 0.9
+  },
+  "wealth": 140.0,
+  "faction_id": "faction_council",
+  "civic_role": null,
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.9,
+      "honor": 0.95,
+      "ambition": 0.25,
+      "tradition": 0.9
+    },
+    "reputation_facets": {
+      "trustworthiness": 95.0,
+      "temperament": 90.0,
+      "discretion": 95.0
+    },
+    "communication_style": "Gentle & Pious",
+    "sentimental_attachments": [
+      "Apothecary Herb Mortar",
+      "Chapel Devotional Rosary"
+    ],
+    "vulnerabilities": [
+      "Overworking",
+      "Self-Sacrifice"
+    ],
+    "background": "Devout chapel healer and apothecary who cures illness and offers spiritual refuge to outcasts."
+  }
+}

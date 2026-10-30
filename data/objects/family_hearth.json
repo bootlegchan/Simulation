@@ -1,0 +1,14 @@
+{
+  "id": "object_family_hearth",
+  "name": "Carved Stone Family Hearth",
+  "location_id": "room_farmhouse_kitchen",
+  "capabilities": [
+    "warm_hearth",
+    "family_gathering",
+    "cook_meal",
+    "domestic_comfort"
+  ],
+  "durability": 200.0,
+  "is_locked": false,
+  "owner_id": "npc_aldous"
+}

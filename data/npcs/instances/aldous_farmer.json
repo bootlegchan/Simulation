@@ -1,0 +1,52 @@
+{
+  "id": "npc_aldous",
+  "name": "Aldous Miller",
+  "location_id": "room_farmhouse_bedroom",
+  "occupation": "Farmer",
+  "home_location_id": "room_farmhouse_bedroom",
+  "work_location_id": "room_farmhouse_living",
+  "needs": {
+    "hunger": 20.0,
+    "energy": 90.0,
+    "social": 50.0
+  },
+  "decay_rates": {
+    "hunger": 0.5,
+    "energy": -0.3,
+    "social": -0.2
+  },
+  "attributes": {
+    "strength": 14.0,
+    "intelligence": 9.0
+  },
+  "personality": {
+    "openness": 0.4,
+    "conscientiousness": 0.8
+  },
+  "wealth": 50.0,
+  "faction_id": "faction_farmers",
+  "civic_role": null,
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.85,
+      "honor": 0.9,
+      "ambition": 0.4,
+      "tradition": 0.8
+    },
+    "reputation_facets": {
+      "trustworthiness": 85.0,
+      "temperament": 60.0,
+      "discretion": 75.0
+    },
+    "communication_style": "Direct & Plainspoken",
+    "sentimental_attachments": [
+      "Ancestral Wheat Fields",
+      "Father's Hand Sickle"
+    ],
+    "vulnerabilities": [
+      "Stubbornness",
+      "Jealousy Sensitivity"
+    ],
+    "background": "Third-generation Oakwood farmer dedicated to community food security and traditional grain cultivation."
+  }
+}

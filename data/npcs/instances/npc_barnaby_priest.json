@@ -1,0 +1,53 @@
+{
+  "id": "npc_barnaby_priest",
+  "name": "Father Barnaby",
+  "occupation": "Chapel Priest",
+  "home_location_id": "room_rectory_bedroom",
+  "work_location_id": "room_chapel_sanctuary",
+  "wealth": 40.0,
+  "faction_id": "faction_town_council",
+  "civic_role": "Spiritual Leader",
+  "education": "Educated Scholar",
+  "access_permissions": [
+    "chapel_key",
+    "rectory_key",
+    "library_membership"
+  ],
+  "appearance": {
+    "outfit": "Black Clerical Cassock & Wooden Cross",
+    "grooming": "Tonsured Hair",
+    "build": "Lean",
+    "style": "Clerical"
+  },
+  "cognition": {
+    "decision_quality": "Rational",
+    "laziness": 0.1
+  },
+  "vices": {
+    "alcohol_dependence": 10.0,
+    "gambling_drive": 0.0,
+    "crime_propensity": 0.0,
+    "vice_indulgence": 5.0
+  },
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.9,
+      "honor": 0.95,
+      "ambition": 0.2,
+      "tradition": 0.95
+    },
+    "reputation_facets": {
+      "trustworthiness": 90.0,
+      "temperament": 85.0,
+      "discretion": 95.0
+    },
+    "communication_style": "Solemn & Comforting",
+    "sentimental_attachments": [
+      "Holy Scriptures Manuscript"
+    ],
+    "vulnerabilities": [
+      "Dogmatic Rigidity"
+    ],
+    "background": "Spiritual shepherd providing counsel and confession."
+  }
+}

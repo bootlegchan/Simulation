@@ -1,0 +1,54 @@
+{
+  "id": "npc_silas",
+  "name": "Silas Tavernier",
+  "occupation": "Tavern Keeper & Bard",
+  "home_location_id": "room_tavern_loft",
+  "work_location_id": "room_tavern_common",
+  "wealth": 90.0,
+  "faction_id": "faction_merchant_alliance",
+  "civic_role": "Tavern Proprietor",
+  "education": "Educated Scholar",
+  "access_permissions": [
+    "tavern_key",
+    "cellar_key"
+  ],
+  "appearance": {
+    "outfit": "Patterned Vest & Ruffled Shirt",
+    "grooming": "Stylish Hair",
+    "build": "Lean",
+    "style": "Bardic Performer"
+  },
+  "cognition": {
+    "decision_quality": "Short-sighted",
+    "laziness": 0.25
+  },
+  "vices": {
+    "alcohol_dependence": 40.0,
+    "gambling_drive": 35.0,
+    "crime_propensity": 15.0,
+    "vice_indulgence": 50.0
+  },
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.4,
+      "honor": 0.45,
+      "ambition": 0.8,
+      "tradition": 0.2
+    },
+    "reputation_facets": {
+      "trustworthiness": 50.0,
+      "temperament": 75.0,
+      "discretion": 30.0
+    },
+    "communication_style": "Charming & Secretive",
+    "sentimental_attachments": [
+      "Carved Oak Lute",
+      "Songbook of Ballads"
+    ],
+    "vulnerabilities": [
+      "Gossip Tendency",
+      "Romantic Passion"
+    ],
+    "background": "Tavern keeper and entertainer with ears in every corner."
+  }
+}

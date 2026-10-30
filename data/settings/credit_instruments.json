@@ -1,0 +1,27 @@
+{
+  "credit_system": {
+    "instruments": {
+      "promissory_note": {
+        "id": "promissory_note",
+        "name": "Signed Parchment Promissory Note",
+        "interest_rate_per_month": 0.05,
+        "negotiable_on_market": true
+      },
+      "tally_stick_iou": {
+        "id": "tally_stick_iou",
+        "name": "Notched Hazel Tally Stick IOU",
+        "interest_rate_per_month": 0.03,
+        "negotiable_on_market": true
+      }
+    },
+    "credit_limits_by_social_class": {
+      "PATRICIAN": 600.0,
+      "BURGHER": 300.0,
+      "COMMONER": 100.0,
+      "INDENTURED": 25.0,
+      "OUTCAST": 0.0
+    },
+    "secondary_debt_discount_factor": 0.80,
+    "default_stigma_penalty": 35.0
+  }
+}

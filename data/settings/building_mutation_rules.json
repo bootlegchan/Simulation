@@ -1,0 +1,147 @@
+{
+  "mutation_rules": {
+    "FAILING_TAVERN_TO_GAMBLING_SPEAKEASY": {
+      "id": "FAILING_TAVERN_TO_GAMBLING_SPEAKEASY",
+      "target_building_types": ["tavern"],
+      "trigger_conditions": {
+        "owner_max_wealth": 15.0,
+        "max_structural_integrity": 60.0
+      },
+      "new_building_name": "Shadowed Speakeasy & Vice Cellar",
+      "new_category": "UNDERWORLD",
+      "room_archetype_overrides": {
+        "room_tavern_cellar": "CELLAR_VAULT",
+        "room_tavern_common": "TAVERN_COMMON"
+      },
+      "objects_to_install": [
+        {
+          "object_id": "object_vice_gambling_pit",
+          "target_room_suffix": "cellar"
+        },
+        {
+          "object_id": "object_moonshine_still",
+          "target_room_suffix": "kitchen"
+        }
+      ],
+      "objects_to_remove": ["object_tavern_stage"],
+      "social_impact": {
+        "owner_crime_propensity_increase": 25.0,
+        "district_land_value_penalty": -15.0
+      }
+    },
+    "FAILING_APOTHECARY_TO_CONTRABAND_LAB": {
+      "id": "FAILING_APOTHECARY_TO_CONTRABAND_LAB",
+      "target_building_types": ["apothecary"],
+      "trigger_conditions": {
+        "owner_max_wealth": 20.0,
+        "max_structural_integrity": 50.0
+      },
+      "new_building_name": "Clandestine Chemical & Toxin Laboratory",
+      "new_category": "UNDERWORLD",
+      "room_archetype_overrides": {
+        "room_apothecary_lab": "CELLAR_VAULT"
+      },
+      "objects_to_install": [
+        {
+          "object_id": "object_hidden_cache",
+          "target_room_suffix": "lab"
+        }
+      ],
+      "objects_to_remove": [],
+      "social_impact": {
+        "owner_crime_propensity_increase": 30.0,
+        "district_land_value_penalty": -20.0
+      }
+    },
+    "FAILING_WORKSHOP_TO_FENCE_BROKER": {
+      "id": "FAILING_WORKSHOP_TO_FENCE_BROKER",
+      "target_building_types": ["tailor_shop", "cobbler_shop", "carpenter_shop"],
+      "trigger_conditions": {
+        "owner_max_wealth": 15.0,
+        "max_structural_integrity": 55.0
+      },
+      "new_building_name": "Pawn Counter & Contraband Fencing Shop",
+      "new_category": "UNDERWORLD",
+      "room_archetype_overrides": {},
+      "objects_to_install": [
+        {
+          "object_id": "object_fence_broker_counter",
+          "target_room_suffix": "shop"
+        }
+      ],
+      "objects_to_remove": [],
+      "social_impact": {
+        "owner_crime_propensity_increase": 20.0,
+        "district_land_value_penalty": -10.0
+      }
+    },
+    "POVERTY_HOME_TO_TENEMENT_SQUATTER": {
+      "id": "POVERTY_HOME_TO_TENEMENT_SQUATTER",
+      "target_building_types": ["farmhouse", "cottage", "tenements"],
+      "trigger_conditions": {
+        "owner_max_wealth": 10.0,
+        "max_structural_integrity": 40.0
+      },
+      "new_building_name": "Dilapidated Squatter Haven & Slum",
+      "new_category": "UNDERWORLD",
+      "room_archetype_overrides": {},
+      "objects_to_install": [
+        {
+          "object_id": "object_hidden_cache",
+          "target_room_suffix": "bedroom"
+        }
+      ],
+      "objects_to_remove": ["object_canopy_bed", "object_writing_desk"],
+      "social_impact": {
+        "stigma_added": 25.0,
+        "district_land_value_penalty": -15.0
+      }
+    },
+    "CONDEMNED_RUIN_TO_OCCULT_SANCTUM": {
+      "id": "CONDEMNED_RUIN_TO_OCCULT_SANCTUM",
+      "target_building_types": ["any"],
+      "trigger_conditions": {
+        "structural_integrity_threshold": 15.0,
+        "is_abandoned": true
+      },
+      "new_building_name": "Subterranean Occult Sanctum & Crypt",
+      "new_category": "UNDERWORLD",
+      "room_archetype_overrides": {},
+      "objects_to_install": [
+        {
+          "object_id": "object_occult_altar",
+          "target_room_suffix": "first"
+        }
+      ],
+      "objects_to_remove": [],
+      "social_impact": {
+        "settlement_hysteria_risk": 30.0
+      }
+    },
+    "PROSPERITY_GENTRIFICATION": {
+      "id": "PROSPERITY_GENTRIFICATION",
+      "target_building_types": ["farmhouse", "cottage", "vance_manor"],
+      "trigger_conditions": {
+        "owner_min_wealth": 180.0,
+        "min_structural_integrity": 85.0
+      },
+      "new_building_name": "Gentrified Gilded Manor & Private Salon",
+      "new_category": "RESIDENTIAL",
+      "room_archetype_overrides": {},
+      "objects_to_install": [
+        {
+          "object_id": "object_canopy_bed",
+          "target_room_suffix": "bedroom"
+        },
+        {
+          "object_id": "object_writing_desk",
+          "target_room_suffix": "living"
+        }
+      ],
+      "objects_to_remove": [],
+      "social_impact": {
+        "district_land_value_bonus": 25.0
+      }
+    }
+  }
+}

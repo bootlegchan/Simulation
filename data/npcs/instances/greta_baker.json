@@ -1,0 +1,52 @@
+{
+  "id": "npc_greta",
+  "name": "Greta Grain",
+  "location_id": "room_mill_house",
+  "occupation": "Miller & Baker",
+  "home_location_id": "room_bakery_kitchen",
+  "work_location_id": "room_mill_house",
+  "needs": {
+    "hunger": 15.0,
+    "energy": 90.0,
+    "social": 55.0
+  },
+  "decay_rates": {
+    "hunger": 0.5,
+    "energy": -0.3,
+    "social": -0.2
+  },
+  "attributes": {
+    "strength": 12.0,
+    "intelligence": 13.0
+  },
+  "personality": {
+    "openness": 0.6,
+    "conscientiousness": 0.8
+  },
+  "wealth": 120.0,
+  "faction_id": "faction_farmers",
+  "civic_role": null,
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.75,
+      "honor": 0.8,
+      "ambition": 0.5,
+      "tradition": 0.75
+    },
+    "reputation_facets": {
+      "trustworthiness": 85.0,
+      "temperament": 85.0,
+      "discretion": 70.0
+    },
+    "communication_style": "Warm & Welcoming",
+    "sentimental_attachments": [
+      "Family Oven Paddle",
+      "Bakery Hearth"
+    ],
+    "vulnerabilities": [
+      "Softheartedness",
+      "Stress under Famine"
+    ],
+    "background": "Town miller and baker loved for providing daily hearth bread to laborers and families alike."
+  }
+}

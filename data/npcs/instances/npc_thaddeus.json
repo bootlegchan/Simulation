@@ -1,0 +1,53 @@
+{
+  "id": "npc_thaddeus",
+  "name": "Thaddeus Bookbinder",
+  "occupation": "Library Curator & Scholar",
+  "home_location_id": "room_library_study",
+  "work_location_id": "room_library_hall",
+  "wealth": 110.0,
+  "faction_id": "faction_town_council",
+  "civic_role": "Chief Archivist",
+  "education": "Educated Scholar",
+  "access_permissions": [
+    "library_master_key",
+    "library_membership"
+  ],
+  "appearance": {
+    "outfit": "Scholarly Robe with Ink-Stained Sleeves",
+    "grooming": "Spectacles & Grey Hair",
+    "build": "Slight",
+    "style": "Academic Scholar"
+  },
+  "cognition": {
+    "decision_quality": "Rational",
+    "laziness": 0.2
+  },
+  "vices": {
+    "alcohol_dependence": 10.0,
+    "gambling_drive": 0.0,
+    "crime_propensity": 0.0,
+    "vice_indulgence": 5.0
+  },
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.8,
+      "honor": 0.9,
+      "ambition": 0.6,
+      "tradition": 0.85
+    },
+    "reputation_facets": {
+      "trustworthiness": 90.0,
+      "temperament": 80.0,
+      "discretion": 95.0
+    },
+    "communication_style": "Pedantic & Thoughtful",
+    "sentimental_attachments": [
+      "First Edition Town Chronicle",
+      "Brass Reading Lamp"
+    ],
+    "vulnerabilities": [
+      "Rigid Perfectionism"
+    ],
+    "background": "Scholarly guardian of the Oakwood Municipal Library."
+  }
+}

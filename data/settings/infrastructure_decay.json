@@ -1,0 +1,41 @@
+{
+  "infrastructure_decay": {
+    "water_sources": {
+      "town_well": {
+        "id": "town_well",
+        "name": "Central Village Stone Well",
+        "base_purity": 100.0,
+        "daily_silt_accumulation": 4.0,
+        "cleaning_labor_ticks": 60,
+        "cleaning_restoration": 50.0
+      },
+      "water_trough": {
+        "id": "water_trough",
+        "name": "Public Water Trough",
+        "base_purity": 90.0,
+        "daily_silt_accumulation": 8.0,
+        "cleaning_labor_ticks": 30,
+        "cleaning_restoration": 40.0
+      },
+      "drainage_culvert": {
+        "id": "drainage_culvert",
+        "name": "Street Stone Drainage Culvert",
+        "base_purity": 70.0,
+        "daily_silt_accumulation": 10.0,
+        "cleaning_labor_ticks": 45,
+        "cleaning_restoration": 60.0
+      }
+    },
+    "purity_thresholds": {
+      "PRISTINE": 80.0,
+      "TOLERABLE": 50.0,
+      "CONTAMINATED": 25.0,
+      "STAGNANT_MUCK": 0.0
+    },
+    "epidemic_penalties": {
+      "contamination_infection_risk": 0.35,
+      "sickness_energy_penalty": 30.0,
+      "sickness_productivity_debuff": 0.5
+    }
+  }
+}

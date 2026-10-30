@@ -1,0 +1,54 @@
+{
+  "id": "npc_catherine",
+  "name": "Sister Catherine",
+  "occupation": "Apothecary & Healer",
+  "home_location_id": "room_apothecary_bedroom",
+  "work_location_id": "room_apothecary_lab",
+  "wealth": 60.0,
+  "faction_id": "faction_town_council",
+  "civic_role": "Town Healer",
+  "education": "Educated Scholar",
+  "access_permissions": [
+    "apothecary_key",
+    "library_membership"
+  ],
+  "appearance": {
+    "outfit": "Simple Woolen Robe & Devotional Rosary",
+    "grooming": "Serene",
+    "build": "Fragile",
+    "style": "Religious Healer"
+  },
+  "cognition": {
+    "decision_quality": "Rational",
+    "laziness": 0.05
+  },
+  "vices": {
+    "alcohol_dependence": 0.0,
+    "gambling_drive": 0.0,
+    "crime_propensity": 0.0,
+    "vice_indulgence": 0.0
+  },
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.9,
+      "honor": 0.95,
+      "ambition": 0.2,
+      "tradition": 0.9
+    },
+    "reputation_facets": {
+      "trustworthiness": 95.0,
+      "temperament": 90.0,
+      "discretion": 90.0
+    },
+    "communication_style": "Gentle & Pious",
+    "sentimental_attachments": [
+      "Herb Mortar",
+      "Devotional Rosary"
+    ],
+    "vulnerabilities": [
+      "Self-Sacrifice",
+      "Overworking"
+    ],
+    "background": "Compassionate apothecary healing sick and wounded folk."
+  }
+}

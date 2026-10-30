@@ -1,0 +1,53 @@
+{
+  "id": "npc_henry",
+  "name": "Henry Ironclad",
+  "occupation": "Head Town Guard",
+  "home_location_id": "room_guard_barracks",
+  "work_location_id": "room_guardhouse_office",
+  "wealth": 85.0,
+  "faction_id": "faction_town_guard",
+  "civic_role": "Guard Captain",
+  "education": "Basic Literacy",
+  "access_permissions": [
+    "guardhouse_key",
+    "armoury_key",
+    "jail_key"
+  ],
+  "appearance": {
+    "outfit": "Chainmail Hauberk & Leather Surcoat",
+    "grooming": "Clean-Shaven",
+    "build": "Muscular Heavy",
+    "style": "Guard Captain"
+  },
+  "cognition": {
+    "decision_quality": "Rational",
+    "laziness": 0.05
+  },
+  "vices": {
+    "alcohol_dependence": 30.0,
+    "gambling_drive": 10.0,
+    "crime_propensity": 0.0,
+    "vice_indulgence": 20.0
+  },
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.9,
+      "honor": 0.85,
+      "ambition": 0.5,
+      "tradition": 0.8
+    },
+    "reputation_facets": {
+      "trustworthiness": 85.0,
+      "temperament": 60.0,
+      "discretion": 55.0
+    },
+    "communication_style": "Loud & Commandive",
+    "sentimental_attachments": [
+      "Officer's Iron Helmet"
+    ],
+    "vulnerabilities": [
+      "Brawler Temperament"
+    ],
+    "background": "Second-in-command to Sheriff Roderick leading daily town patrols."
+  }
+}

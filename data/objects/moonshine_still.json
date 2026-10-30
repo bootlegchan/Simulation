@@ -1,0 +1,13 @@
+{
+  "id": "object_moonshine_still",
+  "name": "Copper Cellar Distillation Still",
+  "location_id": "room_black_market_cellar",
+  "capabilities": [
+    "distill_spirits",
+    "brew_moonshine",
+    "illicit_crafting"
+  ],
+  "durability": 110.0,
+  "is_locked": false,
+  "owner_id": "npc_tobias"
+}

@@ -1,0 +1,38 @@
+{
+  "superstition_omens": {
+    "omen_types": {
+      "BLOOD_MOON": {
+        "id": "BLOOD_MOON",
+        "name": "Blood-Red Lunar Eclipse",
+        "hysteria_multiplier": 1.6,
+        "panic_duration_ticks": 2880,
+        "primary_scapegoat_target": "cult_members"
+      },
+      "UNSEASONAL_FROST": {
+        "id": "UNSEASONAL_FROST",
+        "name": "Sudden Harvest-Blighting Frost",
+        "hysteria_multiplier": 1.4,
+        "panic_duration_ticks": 4320,
+        "primary_scapegoat_target": "outcasts"
+      },
+      "LIVESTOCK_MURRAIN": {
+        "id": "LIVESTOCK_MURRAIN",
+        "name": "Mysterious Cattle Murrain",
+        "hysteria_multiplier": 1.3,
+        "panic_duration_ticks": 2880,
+        "primary_scapegoat_target": "strangers"
+      },
+      "CHIMNEY_BLAZE": {
+        "id": "CHIMNEY_BLAZE",
+        "name": "Spontaneous Rooftop Ember Storm",
+        "hysteria_multiplier": 1.5,
+        "panic_duration_ticks": 1440,
+        "primary_scapegoat_target": "pariahs"
+      }
+    },
+    "paranoia_amplifiers": {
+      "high_neuroticism_weight": 0.5,
+      "low_education_multiplier": 1.4
+    }
+  }
+}

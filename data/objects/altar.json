@@ -1,0 +1,12 @@
+{
+  "id": "object_altar",
+  "name": "Stone Chapel Altar",
+  "location_id": "room_chapel_sanctuary",
+  "capabilities": [
+    "pray",
+    "penance"
+  ],
+  "durability": 100.0,
+  "is_locked": false,
+  "owner_id": null
+}

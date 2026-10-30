@@ -1,0 +1,14 @@
+{
+  "id": "object_guild_assembly_table",
+  "name": "Carved Master Guild Assembly Table",
+  "location_id": "room_village_square",
+  "capabilities": [
+    "guild_meeting",
+    "enforce_price_floor",
+    "assembly_table",
+    "civic"
+  ],
+  "durability": 100.0,
+  "is_locked": false,
+  "owner_id": "npc_torvald_guildmaster"
+}

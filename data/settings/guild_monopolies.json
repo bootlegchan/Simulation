@@ -1,0 +1,39 @@
+{
+  "guild_monopolies": {
+    "guilds": {
+      "BLACKSMITH_GUILD": {
+        "id": "BLACKSMITH_GUILD",
+        "name": "Oakwood Blacksmith & Forgers Guild",
+        "leader_id": "npc_eamon",
+        "member_ids": ["npc_eamon", "npc_felix_apprentice"],
+        "price_floors": {
+          "iron_ingot": 35.0,
+          "iron_sword": 120.0
+        },
+        "undercut_fine": 50.0
+      },
+      "MILLERS_COLLECTIVE": {
+        "id": "MILLERS_COLLECTIVE",
+        "name": "United Millers & Bakers Union",
+        "leader_id": "npc_greta",
+        "member_ids": ["npc_greta", "npc_aldous"],
+        "price_floors": {
+          "flour": 7.0,
+          "food_bread": 12.0
+        },
+        "undercut_fine": 25.0
+      },
+      "WEAVERS_GUILD": {
+        "id": "WEAVERS_GUILD",
+        "name": "Weavers & Drapers Guild",
+        "leader_id": "npc_eliza",
+        "member_ids": ["npc_eliza", "npc_jonathan"],
+        "price_floors": {
+          "item_handwoven_blanket": 35.0
+        },
+        "undercut_fine": 30.0
+      }
+    },
+    "scavenger_black_market_discount": 0.30
+  }
+}

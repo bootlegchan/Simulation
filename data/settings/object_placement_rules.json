@@ -1,0 +1,220 @@
+{
+  "room_archetypes": {
+    "KITCHEN": {
+      "required_slots": ["primary_hearth"],
+      "optional_slots": ["pantry_storage", "prep_counter"]
+    },
+    "BEDROOM": {
+      "required_slots": ["sleeping_berth"],
+      "optional_slots": ["cedar_storage", "privacy_nook", "desk_alcove"]
+    },
+    "LIVING_ROOM": {
+      "required_slots": ["primary_hearth"],
+      "optional_slots": ["social_seating", "cedar_storage"]
+    },
+    "STUDY": {
+      "required_slots": ["desk_alcove"],
+      "optional_slots": ["bookshelf_archive", "cedar_storage"]
+    },
+    "WORKSHOP": {
+      "required_slots": ["work_station"],
+      "optional_slots": ["tool_rack", "raw_material_chest"]
+    },
+    "FORGE_YARD": {
+      "required_slots": ["forge_hearth", "work_station"],
+      "optional_slots": ["tool_rack"]
+    },
+    "TAVERN_COMMON": {
+      "required_slots": ["service_bar"],
+      "optional_slots": ["entertainment_stage", "gambling_table"]
+    },
+    "CHAPEL_SANCTUARY": {
+      "required_slots": ["central_altar"],
+      "optional_slots": ["sacred_shrine"]
+    },
+    "CELLAR_VAULT": {
+      "required_slots": ["vault_chest"],
+      "optional_slots": ["hidden_cache", "still_brewing"]
+    },
+    "MARKET_PLAZA": {
+      "required_slots": ["public_notice_board"],
+      "optional_slots": ["market_stall"]
+    },
+    "CLINIC_WARD": {
+      "required_slots": ["triage_berth"],
+      "optional_slots": ["alchemy_station"]
+    },
+    "WATCHTOWER": {
+      "required_slots": ["alarm_station"],
+      "optional_slots": ["tool_rack"]
+    },
+    "FIRE_DEPOT": {
+      "required_slots": ["water_reservoir"],
+      "optional_slots": ["alarm_station"]
+    },
+    "CHECKPOINT": {
+      "required_slots": ["lantern_post"],
+      "optional_slots": ["tool_rack"]
+    },
+    "BANKING_HALL": {
+      "required_slots": ["exchange_counter"],
+      "optional_slots": ["desk_alcove", "vault_chest"]
+    },
+    "GUILD_HALL": {
+      "required_slots": ["assembly_table"],
+      "optional_slots": ["cedar_storage", "desk_alcove"]
+    },
+    "BATHHOUSE": {
+      "required_slots": ["water_reservoir"],
+      "optional_slots": ["social_seating", "soothing_bench"]
+    },
+    "WELL_HOUSE": {
+      "required_slots": ["well_anchor"],
+      "optional_slots": ["water_reservoir"]
+    },
+    "OBSERVATORY": {
+      "required_slots": ["divination_lens"],
+      "optional_slots": ["desk_alcove", "bookshelf_archive"]
+    }
+  },
+  "anchor_rules": {
+    "object_family_hearth": {
+      "slot": "primary_hearth",
+      "valid_archetypes": ["KITCHEN", "LIVING_ROOM"],
+      "priority": 10,
+      "default_stocked_items": ["food_bread", "food_spiced_cider"]
+    },
+    "object_canopy_bed": {
+      "slot": "sleeping_berth",
+      "valid_archetypes": ["BEDROOM"],
+      "priority": 10,
+      "default_stocked_items": ["item_handwoven_blanket"]
+    },
+    "object_cedar_chest": {
+      "slot": "cedar_storage",
+      "valid_archetypes": ["BEDROOM", "STUDY", "LIVING_ROOM", "GUILD_HALL"],
+      "priority": 8,
+      "default_stocked_items": ["item_personal_diary"]
+    },
+    "object_writing_desk": {
+      "slot": "desk_alcove",
+      "valid_archetypes": ["STUDY", "BEDROOM", "BANKING_HALL", "GUILD_HALL", "OBSERVATORY"],
+      "priority": 9,
+      "default_stocked_items": ["item_personal_diary"]
+    },
+    "object_workbench": {
+      "slot": "work_station",
+      "valid_archetypes": ["WORKSHOP", "FORGE_YARD"],
+      "priority": 10,
+      "default_stocked_items": ["planks"]
+    },
+    "object_forge": {
+      "slot": "forge_hearth",
+      "valid_archetypes": ["FORGE_YARD"],
+      "priority": 10,
+      "default_stocked_items": ["iron_ore", "iron_ingot"]
+    },
+    "object_armoury_rack": {
+      "slot": "tool_rack",
+      "valid_archetypes": ["FORGE_YARD", "WORKSHOP", "WATCHTOWER", "CHECKPOINT"],
+      "priority": 7,
+      "default_stocked_items": ["iron_sword"]
+    },
+    "object_tavern_bar": {
+      "slot": "service_bar",
+      "valid_archetypes": ["TAVERN_COMMON"],
+      "priority": 10,
+      "default_stocked_items": ["fine_ale", "food_spiced_cider"]
+    },
+    "object_tavern_stage": {
+      "slot": "entertainment_stage",
+      "valid_archetypes": ["TAVERN_COMMON"],
+      "priority": 8,
+      "default_stocked_items": []
+    },
+    "object_altar": {
+      "slot": "central_altar",
+      "valid_archetypes": ["CHAPEL_SANCTUARY"],
+      "priority": 10,
+      "default_stocked_items": []
+    },
+    "object_village_notice_board": {
+      "slot": "public_notice_board",
+      "valid_archetypes": ["MARKET_PLAZA"],
+      "priority": 10,
+      "default_stocked_items": []
+    },
+    "object_hidden_cache": {
+      "slot": "hidden_cache",
+      "valid_archetypes": ["CELLAR_VAULT", "BEDROOM"],
+      "priority": 6,
+      "default_stocked_items": ["tool_lockpick_set", "contraband_moonshine"]
+    },
+    "object_pantry": {
+      "slot": "pantry_storage",
+      "valid_archetypes": ["KITCHEN"],
+      "priority": 9,
+      "default_stocked_items": ["raw_wheat", "flour", "food_bread"]
+    },
+    "object_sickbed": {
+      "slot": "triage_berth",
+      "valid_archetypes": ["CLINIC_WARD"],
+      "priority": 10,
+      "default_stocked_items": ["item_soothing_balm"]
+    },
+    "object_apothecary_table": {
+      "slot": "alchemy_station",
+      "valid_archetypes": ["CLINIC_WARD", "WORKSHOP"],
+      "priority": 8,
+      "default_stocked_items": ["health_elixir"]
+    },
+    "object_alarm_bell": {
+      "slot": "alarm_station",
+      "valid_archetypes": ["WATCHTOWER", "FIRE_DEPOT", "MARKET_PLAZA"],
+      "priority": 10,
+      "default_stocked_items": []
+    },
+    "object_water_trough": {
+      "slot": "water_reservoir",
+      "valid_archetypes": ["FIRE_DEPOT", "FORGE_YARD", "BATHHOUSE", "WELL_HOUSE"],
+      "priority": 10,
+      "default_stocked_items": []
+    },
+    "object_street_lantern": {
+      "slot": "lantern_post",
+      "valid_archetypes": ["CHECKPOINT", "MARKET_PLAZA"],
+      "priority": 9,
+      "default_stocked_items": []
+    },
+    "object_tally_exchange_counter": {
+      "slot": "exchange_counter",
+      "valid_archetypes": ["BANKING_HALL"],
+      "priority": 10,
+      "default_stocked_items": ["item_promissory_note", "item_tally_stick_iou"]
+    },
+    "object_guild_assembly_table": {
+      "slot": "assembly_table",
+      "valid_archetypes": ["GUILD_HALL"],
+      "priority": 10,
+      "default_stocked_items": ["item_guild_seal"]
+    },
+    "object_town_well": {
+      "slot": "well_anchor",
+      "valid_archetypes": ["WELL_HOUSE", "MARKET_PLAZA"],
+      "priority": 10,
+      "default_stocked_items": ["item_purification_alum"]
+    },
+    "object_divination_lens": {
+      "slot": "divination_lens",
+      "valid_archetypes": ["OBSERVATORY"],
+      "priority": 10,
+      "default_stocked_items": ["item_astrological_chart"]
+    },
+    "object_dowry_chest": {
+      "slot": "dowry_chest",
+      "valid_archetypes": ["BEDROOM", "STUDY", "BANKING_HALL"],
+      "priority": 7,
+      "default_stocked_items": ["contract_marriage_dowry"]
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "id": "npc_roderick",
+  "name": "Roderick Steel",
+  "occupation": "Town Sheriff",
+  "home_location_id": "room_sheriff_bedroom",
+  "work_location_id": "room_guard_barracks",
+  "wealth": 100.0,
+  "faction_id": "faction_town_guard",
+  "civic_role": "Town Sheriff",
+  "education": "Basic Literacy",
+  "access_permissions": [
+    "guardhouse_key",
+    "armoury_key",
+    "jail_key"
+  ],
+  "appearance": {
+    "outfit": "Polished Steel Cuirass & Heavy Cloak",
+    "grooming": "Scarred Face",
+    "build": "Tall & Broad",
+    "style": "Military Guard"
+  },
+  "cognition": {
+    "decision_quality": "Rational",
+    "laziness": 0.05
+  },
+  "vices": {
+    "alcohol_dependence": 25.0,
+    "gambling_drive": 0.0,
+    "crime_propensity": 0.0,
+    "vice_indulgence": 15.0
+  },
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.95,
+      "honor": 0.9,
+      "ambition": 0.3,
+      "tradition": 0.85
+    },
+    "reputation_facets": {
+      "trustworthiness": 90.0,
+      "temperament": 45.0,
+      "discretion": 60.0
+    },
+    "communication_style": "Stern & Concise",
+    "sentimental_attachments": [
+      "Guardhouse Badge",
+      "Forged Greatsword"
+    ],
+    "vulnerabilities": [
+      "Rigidity",
+      "Short Temper"
+    ],
+    "background": "Veteran guard commander maintaining law and order."
+  }
+}

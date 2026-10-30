@@ -1,0 +1,56 @@
+{
+  "civic_crisis_policies": {
+    "CRISIS_MEDICAL_DEFICIT": {
+      "crisis_id": "CRISIS_MEDICAL_DEFICIT",
+      "description": "Settlement lacks any active medical apothecary or healing infirmary.",
+      "trigger_evaluator": "MEDICAL_BUILDING_COUNT_ZERO",
+      "required_blueprint": "blueprint_emergency_clinic",
+      "target_district": "DISTRICT_COMMERCIAL_ARTISAN",
+      "min_treasury_gold": 40.0,
+      "council_order_title": "CIVIC MANDATE: Emergency Healing Clinic Commissioned",
+      "council_order_body": "By municipal council decree, an emergency healing clinic has been funded to triage injured and sick citizens.",
+      "social_relief": {
+        "settlement_stress_relief": 20.0
+      }
+    },
+    "CRISIS_FIRE_HAZARD": {
+      "crisis_id": "CRISIS_FIRE_HAZARD",
+      "description": "Recent building destruction by fire or arson threatens settlement safety.",
+      "trigger_evaluator": "RECENT_FIRE_OR_ARSON_EVENT",
+      "required_blueprint": "blueprint_watchtower_brigade",
+      "target_district": "DISTRICT_CIVIC_MARKET",
+      "min_treasury_gold": 50.0,
+      "council_order_title": "MUNICIPAL PROTECTION: Fire Watchtower & Brigade Station Erected",
+      "council_order_body": "In response to catastrophic fire, the town council has established an alarm tower and firefighting water depot.",
+      "social_relief": {
+        "settlement_hysteria_reduction": 35.0
+      }
+    },
+    "CRISIS_CRIME_EPIDEMIC": {
+      "crisis_id": "CRISIS_CRIME_EPIDEMIC",
+      "description": "Criminal activity or underworld dens have surged beyond acceptable tolerance.",
+      "trigger_evaluator": "HIGH_CRIME_DENSITY_SURGE",
+      "required_blueprint": "blueprint_garrison_checkpoint",
+      "target_district": "DISTRICT_UNDERWORLD_SLUMS",
+      "min_treasury_gold": 50.0,
+      "council_order_title": "LAW ENFORCEMENT ORDER: Garrison Security Checkpoint Deployed",
+      "council_order_body": "Town guards have fortified district thoroughfares with street lighting and armed checkpoints to suppress illicit operations.",
+      "social_relief": {
+        "settlement_crime_deterrence": 40.0
+      }
+    },
+    "CRISIS_HOUSING_SHORTAGE": {
+      "crisis_id": "CRISIS_HOUSING_SHORTAGE",
+      "description": "Homeless and displaced population exceeds civic tolerance.",
+      "trigger_evaluator": "DISPLACED_NPC_THRESHOLD_EXCEEDED",
+      "required_blueprint": "blueprint_tenement_lodging",
+      "target_district": "DISTRICT_RESIDENTIAL",
+      "min_treasury_gold": 60.0,
+      "council_order_title": "HOUSING RELIEF: Municipal Worker Tenements Constructed",
+      "council_order_body": "The town council has allocated treasury funds to construct subsidized worker tenement lodgings.",
+      "social_relief": {
+        "settlement_displaced_sheltered": true
+      }
+    }
+  }
+}

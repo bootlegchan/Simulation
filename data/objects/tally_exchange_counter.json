@@ -1,0 +1,14 @@
+{
+  "id": "object_tally_exchange_counter",
+  "name": "Oak Notary Credit & Exchange Counter",
+  "location_id": "room_village_square",
+  "capabilities": [
+    "issue_credit",
+    "discount_iou",
+    "exchange_counter",
+    "trade"
+  ],
+  "durability": 100.0,
+  "is_locked": false,
+  "owner_id": "npc_valeria_notary"
+}

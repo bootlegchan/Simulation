@@ -1,0 +1,27 @@
+{
+  "habituation_system": {
+    "tracked_habits": [
+      "daily_worship",
+      "tavern_drinking",
+      "morning_stroll",
+      "gambling_vice",
+      "crafting_labor",
+      "lotus_consumption"
+    ],
+    "growth_rate_per_execution": 5.0,
+    "decay_rate_per_day": 2.0,
+    "habit_thresholds": {
+      "CASUAL": 20.0,
+      "ESTABLISHED_ROUTINE": 50.0,
+      "COMPULSIVE_ADDICTION": 75.0
+    },
+    "utility_modifiers": {
+      "routine_action_effort_discount": 0.35,
+      "addiction_priority_boost": 40.0
+    },
+    "withdrawal_effects": {
+      "missed_routine_stress_increase": 18.0,
+      "missed_addiction_irritability_increase": 35.0
+    }
+  }
+}

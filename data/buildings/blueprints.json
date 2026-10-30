@@ -1,0 +1,313 @@
+{
+  "blueprints": {
+    "blueprint_residential_cottage": {
+      "template_id": "cottage",
+      "name": "Oak Timber Cottage",
+      "category": "RESIDENTIAL",
+      "target_district": "DISTRICT_RESIDENTIAL",
+      "base_construction_cost": 85.0,
+      "base_value": 120.0,
+      "room_templates": [
+        {
+          "id_suffix": "living",
+          "name": "Cottage Hearth Room",
+          "archetype": "LIVING_ROOM",
+          "is_entrance": true,
+          "internal_connections": ["bedroom"]
+        },
+        {
+          "id_suffix": "bedroom",
+          "name": "Cottage Sleeping Chamber",
+          "archetype": "BEDROOM",
+          "is_entrance": false,
+          "internal_connections": ["living"]
+        }
+      ]
+    },
+    "blueprint_artisan_workshop": {
+      "template_id": "artisan_shop",
+      "name": "Craftsman Workshop & Storefront",
+      "category": "COMMERCIAL",
+      "target_district": "DISTRICT_COMMERCIAL_ARTISAN",
+      "base_construction_cost": 110.0,
+      "base_value": 160.0,
+      "room_templates": [
+        {
+          "id_suffix": "storefront",
+          "name": "Craft Storefront",
+          "archetype": "WORKSHOP",
+          "is_entrance": true,
+          "internal_connections": ["work_den"]
+        },
+        {
+          "id_suffix": "work_den",
+          "name": "Artisan Back Workshop",
+          "archetype": "WORKSHOP",
+          "is_entrance": false,
+          "internal_connections": ["storefront"]
+        }
+      ]
+    },
+    "blueprint_tenement_lodging": {
+      "template_id": "tenement",
+      "name": "Workers Guild Tenement",
+      "category": "RESIDENTIAL",
+      "target_district": "DISTRICT_RESIDENTIAL",
+      "base_construction_cost": 150.0,
+      "base_value": 220.0,
+      "room_templates": [
+        {
+          "id_suffix": "hallway",
+          "name": "Tenement Entrance Hall",
+          "archetype": "LIVING_ROOM",
+          "is_entrance": true,
+          "internal_connections": ["suite_a", "suite_b"]
+        },
+        {
+          "id_suffix": "suite_a",
+          "name": "Lower Chamber Suite",
+          "archetype": "BEDROOM",
+          "is_entrance": false,
+          "internal_connections": ["hallway"]
+        },
+        {
+          "id_suffix": "suite_b",
+          "name": "Upper Loft Suite",
+          "archetype": "BEDROOM",
+          "is_entrance": false,
+          "internal_connections": ["hallway"]
+        }
+      ]
+    },
+    "blueprint_merchant_villa": {
+      "template_id": "merchant_villa",
+      "name": "Prominent Merchant Villa",
+      "category": "RESIDENTIAL",
+      "target_district": "DISTRICT_CIVIC_MARKET",
+      "base_construction_cost": 260.0,
+      "base_value": 380.0,
+      "room_templates": [
+        {
+          "id_suffix": "foyer",
+          "name": "Villa Marble Foyer",
+          "archetype": "LIVING_ROOM",
+          "is_entrance": true,
+          "internal_connections": ["parlor", "master_bed", "study"]
+        },
+        {
+          "id_suffix": "parlor",
+          "name": "Reception Parlor",
+          "archetype": "LIVING_ROOM",
+          "is_entrance": false,
+          "internal_connections": ["foyer"]
+        },
+        {
+          "id_suffix": "master_bed",
+          "name": "Grand Master Bedroom",
+          "archetype": "BEDROOM",
+          "is_entrance": false,
+          "internal_connections": ["foyer"]
+        },
+        {
+          "id_suffix": "study",
+          "name": "Private Counting Study",
+          "archetype": "STUDY",
+          "is_entrance": false,
+          "internal_connections": ["foyer"]
+        }
+      ]
+    },
+    "blueprint_underworld_hideaway": {
+      "template_id": "hideaway",
+      "name": "Secluded Cellar Speakeasy",
+      "category": "UNDERWORLD",
+      "target_district": "DISTRICT_UNDERWORLD_SLUMS",
+      "base_construction_cost": 70.0,
+      "base_value": 90.0,
+      "room_templates": [
+        {
+          "id_suffix": "cellar",
+          "name": "Low-Ceiling Drinking Den",
+          "archetype": "TAVERN_COMMON",
+          "is_entrance": true,
+          "internal_connections": ["vault"]
+        },
+        {
+          "id_suffix": "vault",
+          "name": "Concealed Stash Vault",
+          "archetype": "CELLAR_VAULT",
+          "is_entrance": false,
+          "internal_connections": ["cellar"]
+        }
+      ]
+    },
+    "blueprint_emergency_clinic": {
+      "template_id": "emergency_clinic",
+      "name": "Town Emergency Healing Clinic",
+      "category": "MEDICAL",
+      "target_district": "DISTRICT_COMMERCIAL_ARTISAN",
+      "base_construction_cost": 95.0,
+      "base_value": 140.0,
+      "room_templates": [
+        {
+          "id_suffix": "triage",
+          "name": "Clinic Triage Station",
+          "archetype": "CLINIC_WARD",
+          "is_entrance": true,
+          "internal_connections": ["ward"]
+        },
+        {
+          "id_suffix": "ward",
+          "name": "Healing Infirmary Ward",
+          "archetype": "CLINIC_WARD",
+          "is_entrance": false,
+          "internal_connections": ["triage"]
+        }
+      ]
+    },
+    "blueprint_watchtower_brigade": {
+      "template_id": "watchtower_brigade",
+      "name": "Civic Watchtower & Fire Brigade Depot",
+      "category": "CIVIC",
+      "target_district": "DISTRICT_CIVIC_MARKET",
+      "base_construction_cost": 120.0,
+      "base_value": 180.0,
+      "room_templates": [
+        {
+          "id_suffix": "lookout",
+          "name": "Lookout Alarm Tower",
+          "archetype": "WATCHTOWER",
+          "is_entrance": true,
+          "internal_connections": ["depot"]
+        },
+        {
+          "id_suffix": "depot",
+          "name": "Firefighting Equipment Depot",
+          "archetype": "FIRE_DEPOT",
+          "is_entrance": false,
+          "internal_connections": ["lookout"]
+        }
+      ]
+    },
+    "blueprint_garrison_checkpoint": {
+      "template_id": "garrison_checkpoint",
+      "name": "Garrison Security Checkpoint",
+      "category": "CIVIC",
+      "target_district": "DISTRICT_UNDERWORLD_SLUMS",
+      "base_construction_cost": 100.0,
+      "base_value": 150.0,
+      "room_templates": [
+        {
+          "id_suffix": "gate",
+          "name": "District Gate Checkpoint",
+          "archetype": "CHECKPOINT",
+          "is_entrance": true,
+          "internal_connections": ["post"]
+        },
+        {
+          "id_suffix": "post",
+          "name": "Guard Patrol Post",
+          "archetype": "WATCHTOWER",
+          "is_entrance": false,
+          "internal_connections": ["gate"]
+        }
+      ]
+    },
+    "blueprint_credit_exchange": {
+      "template_id": "credit_exchange",
+      "name": "Municipal Notary & Tally Credit Exchange",
+      "category": "COMMERCIAL",
+      "target_district": "DISTRICT_CIVIC_MARKET",
+      "base_construction_cost": 140.0,
+      "base_value": 210.0,
+      "room_templates": [
+        {
+          "id_suffix": "banking_hall",
+          "name": "Credit Exchange Hall",
+          "archetype": "BANKING_HALL",
+          "is_entrance": true,
+          "internal_connections": ["strongroom"]
+        },
+        {
+          "id_suffix": "strongroom",
+          "name": "Notary Deed Strongroom",
+          "archetype": "CELLAR_VAULT",
+          "is_entrance": false,
+          "internal_connections": ["banking_hall"]
+        }
+      ]
+    },
+    "blueprint_guildhall": {
+      "template_id": "guildhall",
+      "name": "Master Craftsmen Guildhall",
+      "category": "CIVIC",
+      "target_district": "DISTRICT_COMMERCIAL_ARTISAN",
+      "base_construction_cost": 180.0,
+      "base_value": 270.0,
+      "room_templates": [
+        {
+          "id_suffix": "assembly",
+          "name": "Guildmaster Assembly Chamber",
+          "archetype": "GUILD_HALL",
+          "is_entrance": true,
+          "internal_connections": ["archives"]
+        },
+        {
+          "id_suffix": "archives",
+          "name": "Charter & Standard Vault",
+          "archetype": "STUDY",
+          "is_entrance": false,
+          "internal_connections": ["assembly"]
+        }
+      ]
+    },
+    "blueprint_sanitation_bathhouse": {
+      "template_id": "bathhouse",
+      "name": "Public Steam Bathhouse & Well",
+      "category": "COMMERCIAL",
+      "target_district": "DISTRICT_RESIDENTIAL",
+      "base_construction_cost": 130.0,
+      "base_value": 190.0,
+      "room_templates": [
+        {
+          "id_suffix": "baths",
+          "name": "Steam Bath Chamber",
+          "archetype": "BATHHOUSE",
+          "is_entrance": true,
+          "internal_connections": ["wellhouse"]
+        },
+        {
+          "id_suffix": "wellhouse",
+          "name": "Covered Wellhouse",
+          "archetype": "WELL_HOUSE",
+          "is_entrance": false,
+          "internal_connections": ["baths"]
+        }
+      ]
+    },
+    "blueprint_diviners_sanctum": {
+      "template_id": "diviners_sanctum",
+      "name": "Astrological Observatory & Diviners Sanctum",
+      "category": "SACRED",
+      "target_district": "DISTRICT_SACRED",
+      "base_construction_cost": 115.0,
+      "base_value": 175.0,
+      "room_templates": [
+        {
+          "id_suffix": "parlor",
+          "name": "Astrological Consultation Parlor",
+          "archetype": "STUDY",
+          "is_entrance": true,
+          "internal_connections": ["observatory"]
+        },
+        {
+          "id_suffix": "observatory",
+          "name": "Celestial Omen Observatory",
+          "archetype": "OBSERVATORY",
+          "is_entrance": false,
+          "internal_connections": ["parlor"]
+        }
+      ]
+    }
+  }
+}

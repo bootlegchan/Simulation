@@ -1,0 +1,13 @@
+{
+  "id": "object_divination_lens",
+  "name": "Brass Astrological Astrolabe & Scrying Lens",
+  "location_id": "room_village_square",
+  "capabilities": [
+    "scry_omens",
+    "divine_superstitions",
+    "divination_lens"
+  ],
+  "durability": 100.0,
+  "is_locked": false,
+  "owner_id": "npc_sibyl_diviner"
+}

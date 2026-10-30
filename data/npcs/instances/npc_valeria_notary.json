@@ -1,0 +1,69 @@
+{
+  "id": "npc_valeria_notary",
+  "name": "Valeria Vance-Crane",
+  "location_id": "room_village_square",
+  "occupation": "Credit Notary & Moneylender",
+  "home_location_id": "room_vance_bedroom",
+  "work_location_id": "room_village_square",
+  "needs": {
+    "hunger": 15.0,
+    "energy": 90.0,
+    "social": 60.0
+  },
+  "decay_rates": {
+    "hunger": 0.45,
+    "energy": -0.25,
+    "social": -0.2
+  },
+  "attributes": {
+    "strength": 8.0,
+    "intelligence": 16.0,
+    "stamina": 9.0
+  },
+  "personality": {
+    "openness": 0.6,
+    "conscientiousness": 0.85,
+    "extraversion": 0.65,
+    "agreeableness": 0.4,
+    "neuroticism": 0.35
+  },
+  "inventory": [],
+  "wealth": 380.0,
+  "faction_id": "faction_merchants",
+  "civic_role": "Notary Public",
+  "social_profile": {
+    "moral_values": {"loyalty": 0.6, "honor": 0.7, "ambition": 0.85},
+    "reputation_facets": {"trustworthiness": 80.0, "temperament": 55.0, "discretion": 85.0},
+    "communication_style": "Eloquent & Calculating",
+    "social_class": "BURGHER"
+  },
+  "appearance": {
+    "outfit": "Embroidered Wool Gown with Inkstained Sleeves",
+    "grooming": "Immaculate",
+    "build": "Slender",
+    "style": "Merchant Patrician"
+  },
+  "education": "University Jurist",
+  "cognition": {
+    "decision_quality": "Rational",
+    "laziness": 0.05
+  },
+  "vices": {
+    "alcohol_dependence": 0.0,
+    "gambling_drive": 0.0,
+    "crime_propensity": 0.05,
+    "vice_indulgence": 0.0
+  },
+  "feelings": {
+    "contentment": 60.0,
+    "tenderness": 15.0,
+    "passion": 10.0,
+    "loneliness": 10.0,
+    "stress": 15.0,
+    "jealousy": 0.0,
+    "guilt": 0.0,
+    "grief": 0.0,
+    "pride": 50.0,
+    "resentment": 0.0
+  }
+}

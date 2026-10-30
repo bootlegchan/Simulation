@@ -1,0 +1,12 @@
+{
+  "id": "object_workbench",
+  "name": "Artisan Workbench",
+  "location_id": "room_forge_main",
+  "capabilities": [
+    "craft",
+    "repair"
+  ],
+  "durability": 100.0,
+  "is_locked": false,
+  "owner_id": "npc_eamon"
+}

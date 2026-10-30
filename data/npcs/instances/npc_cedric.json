@@ -1,0 +1,52 @@
+{
+  "id": "npc_cedric",
+  "name": "Cedric Clerk",
+  "occupation": "Town Hall Record Keeper",
+  "home_location_id": "room_clerk_quarters",
+  "work_location_id": "room_clerk_archive",
+  "wealth": 90.0,
+  "faction_id": "faction_town_council",
+  "civic_role": "Town Scribe",
+  "education": "Educated Scholar",
+  "access_permissions": [
+    "town_hall_archive_key",
+    "library_membership"
+  ],
+  "appearance": {
+    "outfit": "Formal Black Tunic & Feather Quill",
+    "grooming": "Neatly Combed",
+    "build": "Thin",
+    "style": "Bureaucratic"
+  },
+  "cognition": {
+    "decision_quality": "Rational",
+    "laziness": 0.15
+  },
+  "vices": {
+    "alcohol_dependence": 15.0,
+    "gambling_drive": 5.0,
+    "crime_propensity": 0.0,
+    "vice_indulgence": 10.0
+  },
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.8,
+      "honor": 0.8,
+      "ambition": 0.6,
+      "tradition": 0.8
+    },
+    "reputation_facets": {
+      "trustworthiness": 85.0,
+      "temperament": 75.0,
+      "discretion": 85.0
+    },
+    "communication_style": "Nervous & Precise",
+    "sentimental_attachments": [
+      "Silver Inkwell"
+    ],
+    "vulnerabilities": [
+      "Fear of Mayor Devon's Displeasure"
+    ],
+    "background": "Records municipal taxes, birth records, and council decrees."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "object_apothecary_table",
+  "name": "Alchemical Mortar & Table",
+  "location_id": "room_healing_ward",
+  "capabilities": [
+    "brew_medicine",
+    "heal"
+  ],
+  "durability": 100.0,
+  "is_locked": false,
+  "owner_id": "npc_catherine"
+}

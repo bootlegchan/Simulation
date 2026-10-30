@@ -1,0 +1,14 @@
+{
+  "id": "object_canopy_bed",
+  "name": "Velvet-Draped Master Canopy Bed",
+  "location_id": "room_vance_bedroom",
+  "capabilities": [
+    "sleep",
+    "private_intimacy",
+    "secluded_rest",
+    "comfort_partner"
+  ],
+  "durability": 150.0,
+  "is_locked": false,
+  "owner_id": "npc_beatrice"
+}

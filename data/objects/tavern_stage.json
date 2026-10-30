@@ -1,0 +1,13 @@
+{
+  "id": "object_tavern_stage",
+  "name": "Timber Tavern Bard Stage",
+  "location_id": "room_tavern_common",
+  "capabilities": [
+    "bard_performance",
+    "public_address",
+    "tavern_entertainment"
+  ],
+  "durability": 120.0,
+  "is_locked": false,
+  "owner_id": "npc_silas"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "object_writing_desk",
+  "name": "Mahogany Study Writing Desk",
+  "location_id": "room_mayor_office",
+  "capabilities": [
+    "write_diary",
+    "compose_letter",
+    "inspect_documents",
+    "store_private_papers"
+  ],
+  "durability": 120.0,
+  "is_locked": false,
+  "owner_id": "npc_devon"
+}

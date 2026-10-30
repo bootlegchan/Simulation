@@ -1,0 +1,52 @@
+{
+  "id": "npc_eamon",
+  "name": "Eamon Forge",
+  "location_id": "room_forge_main",
+  "occupation": "Master Blacksmith",
+  "home_location_id": "room_forge_main",
+  "work_location_id": "room_forge_main",
+  "needs": {
+    "hunger": 30.0,
+    "energy": 80.0,
+    "social": 40.0
+  },
+  "decay_rates": {
+    "hunger": 0.7,
+    "energy": -0.5,
+    "social": -0.2
+  },
+  "attributes": {
+    "strength": 18.0,
+    "intelligence": 12.0
+  },
+  "personality": {
+    "openness": 0.5,
+    "conscientiousness": 0.75
+  },
+  "wealth": 180.0,
+  "faction_id": "faction_merchants",
+  "civic_role": null,
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.8,
+      "honor": 0.85,
+      "ambition": 0.6,
+      "tradition": 0.7
+    },
+    "reputation_facets": {
+      "trustworthiness": 80.0,
+      "temperament": 45.0,
+      "discretion": 65.0
+    },
+    "communication_style": "Blunt & Honest",
+    "sentimental_attachments": [
+      "Forge Anvil",
+      "Master Craftsman Stamp"
+    ],
+    "vulnerabilities": [
+      "Impulsivity",
+      "Pride in Craft"
+    ],
+    "background": "Master Blacksmith known for crafting iron tools and weapons; deeply loyal to working-class artisans."
+  }
+}

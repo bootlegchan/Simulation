@@ -1,0 +1,55 @@
+{
+  "id": "npc_devon",
+  "name": "Devon Blackwood",
+  "occupation": "Town Mayor",
+  "home_location_id": "room_blackwood_master_suite",
+  "work_location_id": "room_mayor_office",
+  "wealth": 300.0,
+  "faction_id": "faction_town_council",
+  "civic_role": "Town Mayor",
+  "education": "Educated Scholar",
+  "access_permissions": [
+    "blackwood_manor_key",
+    "town_hall_vault_key",
+    "library_membership"
+  ],
+  "appearance": {
+    "outfit": "Tailored Velvet Coat & Silver Chain",
+    "grooming": "Polished",
+    "build": "Stocky",
+    "style": "Civic Magistrate"
+  },
+  "cognition": {
+    "decision_quality": "Rational",
+    "laziness": 0.2
+  },
+  "vices": {
+    "alcohol_dependence": 20.0,
+    "gambling_drive": 10.0,
+    "crime_propensity": 5.0,
+    "vice_indulgence": 20.0
+  },
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.6,
+      "honor": 0.7,
+      "ambition": 0.85,
+      "tradition": 0.75
+    },
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "temperament": 70.0,
+      "discretion": 80.0
+    },
+    "communication_style": "Authoritative & Formal",
+    "sentimental_attachments": [
+      "Municipal Seal",
+      "Manor Library Collection"
+    ],
+    "vulnerabilities": [
+      "Pride",
+      "Fear of Public Scandal"
+    ],
+    "background": "Long-serving chief magistrate of Oakwood Settlement."
+  }
+}

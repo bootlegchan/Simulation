@@ -1,0 +1,51 @@
+{
+  "id": "npc_clara_vance",
+  "name": "Clara Vance",
+  "occupation": "Master Weaver",
+  "home_location_id": "room_vance_bedroom_b",
+  "work_location_id": "room_weaver_shop",
+  "wealth": 80.0,
+  "faction_id": "faction_merchant_alliance",
+  "civic_role": "Artisan Guild Member",
+  "education": "Educated Scholar",
+  "access_permissions": [
+    "vance_manor_key"
+  ],
+  "appearance": {
+    "outfit": "Fine Woven Linen Dress",
+    "grooming": "Braided Hair",
+    "build": "Slender",
+    "style": "High Town Artisan"
+  },
+  "cognition": {
+    "decision_quality": "Rational",
+    "laziness": 0.1
+  },
+  "vices": {
+    "alcohol_dependence": 5.0,
+    "gambling_drive": 0.0,
+    "crime_propensity": 0.0,
+    "vice_indulgence": 5.0
+  },
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.8,
+      "honor": 0.8,
+      "ambition": 0.7,
+      "tradition": 0.5
+    },
+    "reputation_facets": {
+      "trustworthiness": 80.0,
+      "temperament": 80.0,
+      "discretion": 75.0
+    },
+    "communication_style": "Soft-Spoken & Wise",
+    "sentimental_attachments": [
+      "Mother's Spinning Wheel"
+    ],
+    "vulnerabilities": [
+      "Family Loyalty"
+    ],
+    "background": "Cousin of Beatrice specializing in high-grade silk and wool weaving."
+  }
+}

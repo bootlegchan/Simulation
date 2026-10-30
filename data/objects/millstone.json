@@ -1,0 +1,11 @@
+{
+  "id": "object_millstone",
+  "name": "Heavy Granite Millstone",
+  "location_id": "room_mill_house",
+  "capabilities": [
+    "mill_grain"
+  ],
+  "durability": 100.0,
+  "is_locked": false,
+  "owner_id": "npc_greta"
+}

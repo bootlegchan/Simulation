@@ -1,0 +1,14 @@
+{
+  "id": "object_town_well",
+  "name": "Central Masonry Village Well",
+  "location_id": "room_village_square",
+  "capabilities": [
+    "water_source",
+    "purify_water",
+    "clean_well",
+    "well_anchor"
+  ],
+  "durability": 100.0,
+  "is_locked": false,
+  "owner_id": null
+}

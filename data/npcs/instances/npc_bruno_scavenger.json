@@ -1,0 +1,69 @@
+{
+  "id": "npc_bruno_scavenger",
+  "name": "Bruno the Scavenger",
+  "location_id": "room_quarry_mine",
+  "occupation": "Non-Guild Scavenger & Scraps Dealer",
+  "home_location_id": "room_tenement_attic",
+  "work_location_id": "room_quarry_mine",
+  "needs": {
+    "hunger": 35.0,
+    "energy": 75.0,
+    "social": 30.0
+  },
+  "decay_rates": {
+    "hunger": 0.6,
+    "energy": -0.4,
+    "social": -0.15
+  },
+  "attributes": {
+    "strength": 14.0,
+    "intelligence": 9.0,
+    "stamina": 14.0
+  },
+  "personality": {
+    "openness": 0.45,
+    "conscientiousness": 0.4,
+    "extraversion": 0.35,
+    "agreeableness": 0.3,
+    "neuroticism": 0.65
+  },
+  "inventory": [],
+  "wealth": 18.0,
+  "faction_id": "faction_laborers",
+  "civic_role": "Scavenger",
+  "social_profile": {
+    "moral_values": {"loyalty": 0.4, "honor": 0.3, "ambition": 0.6},
+    "reputation_facets": {"trustworthiness": 40.0, "temperament": 45.0, "discretion": 70.0},
+    "communication_style": "Cynical & Defensive",
+    "social_class": "COMMONER"
+  },
+  "appearance": {
+    "outfit": "Patched Wool Smock and Burlap Leggings",
+    "grooming": "Scruffy",
+    "build": "Wiry",
+    "style": "Peasant Ragged"
+  },
+  "education": "Illiterate",
+  "cognition": {
+    "decision_quality": "Impulsive",
+    "laziness": 0.15
+  },
+  "vices": {
+    "alcohol_dependence": 25.0,
+    "gambling_drive": 30.0,
+    "crime_propensity": 45.0,
+    "vice_indulgence": 20.0
+  },
+  "feelings": {
+    "contentment": 30.0,
+    "tenderness": 10.0,
+    "passion": 10.0,
+    "loneliness": 40.0,
+    "stress": 45.0,
+    "jealousy": 25.0,
+    "guilt": 10.0,
+    "grief": 15.0,
+    "pride": 20.0,
+    "resentment": 40.0
+  }
+}

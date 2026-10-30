@@ -1,0 +1,52 @@
+{
+  "id": "npc_beatrice",
+  "name": "Beatrice Vance",
+  "location_id": "room_shop_floor",
+  "occupation": "General Merchant",
+  "home_location_id": "room_shop_floor",
+  "work_location_id": "room_shop_floor",
+  "needs": {
+    "hunger": 10.0,
+    "energy": 95.0,
+    "social": 70.0
+  },
+  "decay_rates": {
+    "hunger": 0.4,
+    "energy": -0.2,
+    "social": -0.1
+  },
+  "attributes": {
+    "strength": 8.0,
+    "intelligence": 15.0
+  },
+  "personality": {
+    "openness": 0.8,
+    "conscientiousness": 0.7
+  },
+  "wealth": 250.0,
+  "faction_id": "faction_merchants",
+  "civic_role": null,
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.5,
+      "honor": 0.65,
+      "ambition": 0.9,
+      "tradition": 0.35
+    },
+    "reputation_facets": {
+      "trustworthiness": 70.0,
+      "temperament": 80.0,
+      "discretion": 85.0
+    },
+    "communication_style": "Eloquent & Diplomatic",
+    "sentimental_attachments": [
+      "General Store Ledger",
+      "Brass Merchant Scales"
+    ],
+    "vulnerabilities": [
+      "Greed",
+      "Fear of Bankruptcy"
+    ],
+    "background": "Savvy trade entrepreneur who expanded Vance General Merchandise into the settlement's premier commercial hub."
+  }
+}

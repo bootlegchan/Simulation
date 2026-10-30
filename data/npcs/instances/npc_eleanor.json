@@ -1,0 +1,52 @@
+{
+  "id": "npc_eleanor",
+  "name": "Eleanor Herbalist",
+  "occupation": "Alchemist Apprentice",
+  "home_location_id": "room_apothecary_bedroom",
+  "work_location_id": "room_apothecary_lab",
+  "wealth": 45.0,
+  "faction_id": "faction_town_council",
+  "civic_role": "Healer Apprentice",
+  "education": "Educated Scholar",
+  "access_permissions": [
+    "apothecary_key",
+    "library_membership"
+  ],
+  "appearance": {
+    "outfit": "Simple Linen Robe & Herb Satchel",
+    "grooming": "Clean & Tidy",
+    "build": "Petite",
+    "style": "Scholar Apprentice"
+  },
+  "cognition": {
+    "decision_quality": "Rational",
+    "laziness": 0.05
+  },
+  "vices": {
+    "alcohol_dependence": 0.0,
+    "gambling_drive": 0.0,
+    "crime_propensity": 0.0,
+    "vice_indulgence": 0.0
+  },
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.85,
+      "honor": 0.9,
+      "ambition": 0.7,
+      "tradition": 0.6
+    },
+    "reputation_facets": {
+      "trustworthiness": 90.0,
+      "temperament": 85.0,
+      "discretion": 80.0
+    },
+    "communication_style": "Enthusiastic & Curious",
+    "sentimental_attachments": [
+      "Botanical Field Guide"
+    ],
+    "vulnerabilities": [
+      "Overconfidence"
+    ],
+    "background": "Apprentice to Sister Catherine studying herbal alchemy."
+  }
+}

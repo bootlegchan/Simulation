@@ -1,0 +1,52 @@
+{
+  "id": "npc_marcus_vance",
+  "name": "Marcus Vance",
+  "occupation": "Apprentice Merchant",
+  "home_location_id": "room_vance_bedroom_b",
+  "work_location_id": "room_vance_shop_floor",
+  "wealth": 60.0,
+  "faction_id": "faction_merchant_alliance",
+  "civic_role": "Merchant Apprentice",
+  "education": "Educated Scholar",
+  "access_permissions": [
+    "vance_manor_key",
+    "library_membership"
+  ],
+  "appearance": {
+    "outfit": "Clean Merchant Tunic & Cap",
+    "grooming": "Youthful",
+    "build": "Average",
+    "style": "Young Merchant"
+  },
+  "cognition": {
+    "decision_quality": "Rational",
+    "laziness": 0.15
+  },
+  "vices": {
+    "alcohol_dependence": 15.0,
+    "gambling_drive": 20.0,
+    "crime_propensity": 0.0,
+    "vice_indulgence": 15.0
+  },
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.7,
+      "honor": 0.7,
+      "ambition": 0.85,
+      "tradition": 0.4
+    },
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "temperament": 70.0,
+      "discretion": 65.0
+    },
+    "communication_style": "Eager & Polite",
+    "sentimental_attachments": [
+      "First Trade Coin"
+    ],
+    "vulnerabilities": [
+      "Inexperience"
+    ],
+    "background": "Younger brother of Beatrice Vance learning trade operations."
+  }
+}

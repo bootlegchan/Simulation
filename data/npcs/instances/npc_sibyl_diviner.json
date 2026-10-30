@@ -1,0 +1,69 @@
+{
+  "id": "npc_sibyl_diviner",
+  "name": "Sibyl the Astrologer",
+  "location_id": "room_chapel_sanctuary",
+  "occupation": "Astrologer & Diviner",
+  "home_location_id": "room_tenement_attic",
+  "work_location_id": "room_chapel_sanctuary",
+  "needs": {
+    "hunger": 20.0,
+    "energy": 90.0,
+    "social": 40.0
+  },
+  "decay_rates": {
+    "hunger": 0.45,
+    "energy": -0.25,
+    "social": -0.25
+  },
+  "attributes": {
+    "strength": 7.0,
+    "intelligence": 15.0,
+    "stamina": 8.0
+  },
+  "personality": {
+    "openness": 0.9,
+    "conscientiousness": 0.45,
+    "extraversion": 0.35,
+    "agreeableness": 0.55,
+    "neuroticism": 0.75
+  },
+  "inventory": [],
+  "wealth": 45.0,
+  "faction_id": null,
+  "civic_role": "Diviner",
+  "social_profile": {
+    "moral_values": {"loyalty": 0.5, "honor": 0.6, "ambition": 0.55},
+    "reputation_facets": {"trustworthiness": 60.0, "temperament": 65.0, "discretion": 75.0},
+    "communication_style": "Cryptic & Poetic",
+    "social_class": "COMMONER"
+  },
+  "appearance": {
+    "outfit": "Midnight Indigo Shawl with Silver Star Embroidery",
+    "grooming": "Wild & Mysterious",
+    "build": "Gaunt",
+    "style": "Occult Eclectic"
+  },
+  "education": "Hermetic Literacy",
+  "cognition": {
+    "decision_quality": "Short-sighted",
+    "laziness": 0.2
+  },
+  "vices": {
+    "alcohol_dependence": 0.0,
+    "gambling_drive": 0.0,
+    "crime_propensity": 0.1,
+    "vice_indulgence": 0.0
+  },
+  "feelings": {
+    "contentment": 40.0,
+    "tenderness": 25.0,
+    "passion": 30.0,
+    "loneliness": 35.0,
+    "stress": 30.0,
+    "jealousy": 0.0,
+    "guilt": 0.0,
+    "grief": 0.0,
+    "pride": 35.0,
+    "resentment": 0.0
+  }
+}

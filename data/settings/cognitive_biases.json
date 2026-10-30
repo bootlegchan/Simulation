@@ -1,0 +1,19 @@
+{
+  "cognitive_biases": {
+    "memory_staleness": {
+      "mental_map_decay_half_life_ticks": 4320,
+      "price_belief_decay_half_life_ticks": 2880,
+      "confidence_decay_rate_per_day": 0.15
+    },
+    "trait_modifiers": {
+      "optimism_bias_openness_weight": 0.3,
+      "pessimism_bias_neuroticism_weight": 0.4,
+      "stubbornness_conscientiousness_weight": 0.35
+    },
+    "expectation_mismatch": {
+      "wasted_trip_stress_surge": 15.0,
+      "disappointment_resentment_surge": 12.0,
+      "replan_urgency_boost": 25.0
+    }
+  }
+}

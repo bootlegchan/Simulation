@@ -1,0 +1,54 @@
+{
+  "id": "npc_greta",
+  "name": "Greta Grain",
+  "occupation": "Miller & Baker",
+  "home_location_id": "room_mill_bedroom",
+  "work_location_id": "room_bakery_hearth",
+  "wealth": 80.0,
+  "faction_id": "faction_farmers_guild",
+  "civic_role": "Bakery Proprietor",
+  "education": "Basic Literacy",
+  "access_permissions": [
+    "bakery_key",
+    "mill_key"
+  ],
+  "appearance": {
+    "outfit": "Flour-Dusted Apron & Cotton Headcovering",
+    "grooming": "Kind Eyes",
+    "build": "Plump",
+    "style": "Homely Baker"
+  },
+  "cognition": {
+    "decision_quality": "Rational",
+    "laziness": 0.1
+  },
+  "vices": {
+    "alcohol_dependence": 5.0,
+    "gambling_drive": 0.0,
+    "crime_propensity": 0.0,
+    "vice_indulgence": 5.0
+  },
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.75,
+      "honor": 0.8,
+      "ambition": 0.45,
+      "tradition": 0.75
+    },
+    "reputation_facets": {
+      "trustworthiness": 85.0,
+      "temperament": 85.0,
+      "discretion": 65.0
+    },
+    "communication_style": "Warm & Welcoming",
+    "sentimental_attachments": [
+      "Family Oven Paddle",
+      "Bakery Hearth"
+    ],
+    "vulnerabilities": [
+      "Softheartedness",
+      "Famine Stress"
+    ],
+    "background": "Beloved town baker supplying hearth bread to citizens."
+  }
+}

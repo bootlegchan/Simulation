@@ -1,0 +1,12 @@
+{
+  "id": "object_street_lantern",
+  "name": "Reinforced Brass Street Lantern",
+  "location_id": "room_checkpoint_gate",
+  "capabilities": [
+    "illuminate_street",
+    "deter_crime"
+  ],
+  "durability": 100.0,
+  "is_locked": false,
+  "owner_id": "npc_devon"
+}

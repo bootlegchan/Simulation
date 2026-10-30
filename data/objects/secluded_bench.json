@@ -1,0 +1,13 @@
+{
+  "id": "object_secluded_bench",
+  "name": "Secluded Iron Garden Bench",
+  "location_id": "room_village_square",
+  "capabilities": [
+    "private_conversation",
+    "courtship_embrace",
+    "secluded_rest"
+  ],
+  "durability": 140.0,
+  "is_locked": false,
+  "owner_id": "npc_devon"
+}

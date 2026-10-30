@@ -1,0 +1,12 @@
+{
+  "id": "object_tavern_bar",
+  "name": "Polished Oak Tavern Bar",
+  "location_id": "room_tavern_common",
+  "capabilities": [
+    "serve_drinks",
+    "socialize"
+  ],
+  "durability": 100.0,
+  "is_locked": false,
+  "owner_id": "npc_silas"
+}

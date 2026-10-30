@@ -1,0 +1,76 @@
+{
+  "subsystems": {
+    "biosphere_and_climate": {
+      "name": "Biosphere & Climate Subsystem",
+      "module": "src.subsystems.biosphere",
+      "class": "BiosphereSubsystem",
+      "stage": "PRE_TICK",
+      "frequency": 60,
+      "priority": 10,
+      "enabled": true
+    },
+    "infrastructure_and_sanitation": {
+      "name": "Infrastructure & Sanitation Subsystem",
+      "module": "src.subsystems.infrastructure",
+      "class": "InfrastructureSubsystem",
+      "stage": "PRE_TICK",
+      "frequency": 1440,
+      "priority": 20,
+      "enabled": true
+    },
+    "superstitions_and_omens": {
+      "name": "Superstitions & Celestial Omens Subsystem",
+      "module": "src.subsystems.superstitions",
+      "class": "SuperstitionsSubsystem",
+      "stage": "PRE_TICK",
+      "frequency": 1440,
+      "priority": 30,
+      "enabled": true
+    },
+    "cognitive_agents": {
+      "name": "Cognitive Agents & Autonomy Subsystem",
+      "module": "src.subsystems.cognitive",
+      "class": "CognitiveAgentSubsystem",
+      "stage": "COGNITIVE_DECISION",
+      "frequency": 1,
+      "priority": 10,
+      "enabled": true
+    },
+    "economy_and_finance": {
+      "name": "Economy & Financial Metabolism Subsystem",
+      "module": "src.subsystems.economy",
+      "class": "EconomySubsystem",
+      "stage": "POST_TICK_MAINTENANCE",
+      "frequency": 1,
+      "priority": 10,
+      "enabled": true
+    },
+    "guild_cartels": {
+      "name": "Guild Cartels & Trade Regulation Subsystem",
+      "module": "src.subsystems.guilds",
+      "class": "GuildCartelSubsystem",
+      "stage": "POST_TICK_MAINTENANCE",
+      "frequency": 1440,
+      "priority": 20,
+      "enabled": true
+    },
+    "urban_lifecycle": {
+      "name": "Urban Lifecycle & Adaptive Repurposing Subsystem",
+      "module": "src.subsystems.urban",
+      "class": "UrbanLifecycleSubsystem",
+      "stage": "POST_TICK_MAINTENANCE",
+      "frequency": 1440,
+      "priority": 30,
+      "enabled": true
+    },
+    "lineage_alliances": {
+      "name": "Lineage Alliances & Dowry Subsystem",
+      "module": "src.subsystems.lineage",
+      "class": "LineageAllianceSubsystem",
+      "stage": "POST_TICK_MAINTENANCE",
+      "frequency": 1440,
+      "priority": 40,
+      "enabled": true
+    }
+  }
+}

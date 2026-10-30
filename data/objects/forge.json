@@ -1,0 +1,12 @@
+{
+  "id": "object_forge",
+  "name": "Ironmonger Blast Forge",
+  "location_id": "room_forge_main",
+  "capabilities": [
+    "smelt",
+    "forge"
+  ],
+  "durability": 100.0,
+  "is_locked": false,
+  "owner_id": "npc_eamon"
+}

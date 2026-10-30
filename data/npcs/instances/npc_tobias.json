@@ -1,0 +1,54 @@
+{
+  "id": "npc_tobias",
+  "name": "Tobias Smuggler",
+  "occupation": "Black Market Operative",
+  "home_location_id": "room_hideout_bunk",
+  "work_location_id": "room_black_market_cellar",
+  "wealth": 140.0,
+  "faction_id": "faction_merchant_alliance",
+  "civic_role": "Contraband Trader",
+  "education": "Basic Literacy",
+  "access_permissions": [
+    "hideout_key",
+    "black_market_pass"
+  ],
+  "appearance": {
+    "outfit": "Dark Hooded Cloak & Daggers",
+    "grooming": "Unshaven Jaw",
+    "build": "Agile",
+    "style": "Rogue / Thief"
+  },
+  "cognition": {
+    "decision_quality": "Impulsive",
+    "laziness": 0.1
+  },
+  "vices": {
+    "alcohol_dependence": 45.0,
+    "gambling_drive": 40.0,
+    "crime_propensity": 80.0,
+    "vice_indulgence": 60.0
+  },
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.25,
+      "honor": 0.2,
+      "ambition": 0.8,
+      "tradition": 0.05
+    },
+    "reputation_facets": {
+      "trustworthiness": 25.0,
+      "temperament": 40.0,
+      "discretion": 80.0
+    },
+    "communication_style": "Low-Toned & Cynical",
+    "sentimental_attachments": [
+      "Lockpicking Kit",
+      "Stolen Gold Ring"
+    ],
+    "vulnerabilities": [
+      "Greed",
+      "Paranoia of Sheriff Roderick"
+    ],
+    "background": "Illicit trader dealing in untaxed spirits, stolen goods, and bribes."
+  }
+}

@@ -1,0 +1,728 @@
+{
+  "id": "settlement_oakwood",
+  "name": "Oakwood Town",
+  "buildings": {
+    "bldg_town_square": {
+      "id": "bldg_town_square",
+      "name": "Town Square & Market Plaza",
+      "settlement_id": "settlement_oakwood",
+      "rooms": {
+        "room_village_square": {
+          "id": "room_village_square",
+          "name": "Market Plaza",
+          "building_id": "bldg_town_square",
+          "connected_room_ids": [
+            "room_town_hall_lobby",
+            "room_guardhouse_lobby",
+            "room_library_hall",
+            "room_tavern_common",
+            "room_vance_shop_floor",
+            "room_apothecary_shop",
+            "room_chapel_sanctuary",
+            "room_farmhouse_kitchen",
+            "room_tailor_shop",
+            "room_carpenter_shop",
+            "room_cobbler_shop",
+            "room_tenement_hallway"
+          ],
+          "occupant_ids": [],
+          "contained_object_ids": [
+            "obj_market_stall",
+            "obj_town_notice_board"
+          ]
+        }
+      }
+    },
+    "bldg_town_hall": {
+      "id": "bldg_town_hall",
+      "name": "Oakwood Town Hall & Archives",
+      "settlement_id": "settlement_oakwood",
+      "rooms": {
+        "room_town_hall_lobby": {
+          "id": "room_town_hall_lobby",
+          "name": "Town Hall Foyer",
+          "building_id": "bldg_town_hall",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_mayor_office",
+            "room_council_chamber",
+            "room_clerk_archive"
+          ],
+          "occupant_ids": [],
+          "contained_object_ids": []
+        },
+        "room_mayor_office": {
+          "id": "room_mayor_office",
+          "name": "Mayor Office",
+          "building_id": "bldg_town_hall",
+          "connected_room_ids": [
+            "room_town_hall_lobby"
+          ],
+          "occupant_ids": [
+            "npc_devon"
+          ],
+          "contained_object_ids": [
+            "obj_municipal_desk"
+          ]
+        },
+        "room_council_chamber": {
+          "id": "room_council_chamber",
+          "name": "Council Chamber",
+          "building_id": "bldg_town_hall",
+          "connected_room_ids": [
+            "room_town_hall_lobby"
+          ],
+          "occupant_ids": [],
+          "contained_object_ids": [
+            "obj_council_table"
+          ]
+        },
+        "room_clerk_archive": {
+          "id": "room_clerk_archive",
+          "name": "Municipal Archives",
+          "building_id": "bldg_town_hall",
+          "connected_room_ids": [
+            "room_town_hall_lobby"
+          ],
+          "occupant_ids": [
+            "npc_cedric"
+          ],
+          "contained_object_ids": [
+            "obj_archive_bookshelf",
+            "obj_municipal_chest"
+          ]
+        }
+      }
+    },
+    "bldg_library": {
+      "id": "bldg_library",
+      "name": "Oakwood Municipal Library",
+      "settlement_id": "settlement_oakwood",
+      "rooms": {
+        "room_library_hall": {
+          "id": "room_library_hall",
+          "name": "Library Reading Hall",
+          "building_id": "bldg_library",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_library_study"
+          ],
+          "occupant_ids": [
+            "npc_thaddeus",
+            "npc_julian_scribe"
+          ],
+          "contained_object_ids": [
+            "obj_library_bookshelf",
+            "obj_borrowing_desk"
+          ]
+        },
+        "room_library_study": {
+          "id": "room_library_study",
+          "name": "Rare Manuscript Study",
+          "building_id": "bldg_library",
+          "connected_room_ids": [
+            "room_library_hall"
+          ],
+          "occupant_ids": [],
+          "contained_object_ids": [
+            "obj_bookshelf_grand"
+          ]
+        }
+      }
+    },
+    "bldg_guardhouse": {
+      "id": "bldg_guardhouse",
+      "name": "Guard Garrison & Jail",
+      "settlement_id": "settlement_oakwood",
+      "rooms": {
+        "room_guardhouse_lobby": {
+          "id": "room_guardhouse_lobby",
+          "name": "Garrison Hall",
+          "building_id": "bldg_guardhouse",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_guard_barracks",
+            "room_armoury",
+            "room_dungeon_jail"
+          ],
+          "occupant_ids": [
+            "npc_roderick",
+            "npc_henry"
+          ],
+          "contained_object_ids": []
+        },
+        "room_guard_barracks": {
+          "id": "room_guard_barracks",
+          "name": "Guard Barracks",
+          "building_id": "bldg_guardhouse",
+          "connected_room_ids": [
+            "room_guardhouse_lobby"
+          ],
+          "occupant_ids": [
+            "npc_oswald_guard"
+          ],
+          "contained_object_ids": [
+            "obj_bunk_beds"
+          ]
+        },
+        "room_armoury": {
+          "id": "room_armoury",
+          "name": "Town Armoury",
+          "building_id": "bldg_guardhouse",
+          "connected_room_ids": [
+            "room_guardhouse_lobby"
+          ],
+          "occupant_ids": [],
+          "contained_object_ids": [
+            "obj_armoury_rack"
+          ]
+        },
+        "room_dungeon_jail": {
+          "id": "room_dungeon_jail",
+          "name": "Town Dungeon & Cells",
+          "building_id": "bldg_guardhouse",
+          "connected_room_ids": [
+            "room_guardhouse_lobby"
+          ],
+          "occupant_ids": [],
+          "contained_object_ids": [
+            "obj_iron_jail_cell"
+          ]
+        }
+      }
+    },
+    "bldg_tavern": {
+      "id": "bldg_tavern",
+      "name": "The Rusty Anchor Tavern",
+      "settlement_id": "settlement_oakwood",
+      "rooms": {
+        "room_tavern_common": {
+          "id": "room_tavern_common",
+          "name": "Tavern Common Room",
+          "building_id": "bldg_tavern",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_tavern_kitchen",
+            "room_tavern_lodging",
+            "room_tavern_cellar"
+          ],
+          "occupant_ids": [
+            "npc_silas",
+            "npc_rebecca_cook"
+          ],
+          "contained_object_ids": [
+            "obj_tavern_bar",
+            "obj_bard_stage"
+          ]
+        },
+        "room_tavern_kitchen": {
+          "id": "room_tavern_kitchen",
+          "name": "Tavern Kitchen",
+          "building_id": "bldg_tavern",
+          "connected_room_ids": [
+            "room_tavern_common"
+          ],
+          "occupant_ids": [],
+          "contained_object_ids": [
+            "obj_kitchen_hearth"
+          ]
+        },
+        "room_tavern_lodging": {
+          "id": "room_tavern_lodging",
+          "name": "Upper Lodging Rooms",
+          "building_id": "bldg_tavern",
+          "connected_room_ids": [
+            "room_tavern_common"
+          ],
+          "occupant_ids": [
+            "npc_barnaby_beggar"
+          ],
+          "contained_object_ids": [
+            "obj_bed_feather_tavern"
+          ]
+        },
+        "room_tavern_cellar": {
+          "id": "room_tavern_cellar",
+          "name": "Tavern Storage Cellar",
+          "building_id": "bldg_tavern",
+          "connected_room_ids": [
+            "room_tavern_common",
+            "room_vice_parlour"
+          ],
+          "occupant_ids": [],
+          "contained_object_ids": [
+            "obj_ale_barrels"
+          ]
+        }
+      }
+    },
+    "bldg_vice_den": {
+      "id": "bldg_vice_den",
+      "name": "Underworld Vice Den & Gambling Hall",
+      "settlement_id": "settlement_oakwood",
+      "rooms": {
+        "room_vice_parlour": {
+          "id": "room_vice_parlour",
+          "name": "Gambling & Speakeasy Parlour",
+          "building_id": "bldg_vice_den",
+          "connected_room_ids": [
+            "room_tavern_cellar",
+            "room_vice_suite",
+            "room_black_market_cellar"
+          ],
+          "occupant_ids": [
+            "npc_lucinda"
+          ],
+          "contained_object_ids": [
+            "obj_gambling_table",
+            "obj_vice_bar"
+          ]
+        },
+        "room_vice_suite": {
+          "id": "room_vice_suite",
+          "name": "Private Velvet Suite",
+          "building_id": "bldg_vice_den",
+          "connected_room_ids": [
+            "room_vice_parlour"
+          ],
+          "occupant_ids": [],
+          "contained_object_ids": [
+            "obj_velvet_couch"
+          ]
+        }
+      }
+    },
+    "bldg_outlaw_hideout": {
+      "id": "bldg_outlaw_hideout",
+      "name": "Outlaw Secret Hideout",
+      "settlement_id": "settlement_oakwood",
+      "rooms": {
+        "room_black_market_cellar": {
+          "id": "room_black_market_cellar",
+          "name": "Black Market Vault",
+          "building_id": "bldg_outlaw_hideout",
+          "connected_room_ids": [
+            "room_vice_parlour"
+          ],
+          "occupant_ids": [
+            "npc_tobias"
+          ],
+          "contained_object_ids": [
+            "obj_contraband_chest"
+          ]
+        }
+      }
+    },
+    "bldg_vance_manor": {
+      "id": "bldg_vance_manor",
+      "name": "Vance Merchant Estate & General Store",
+      "settlement_id": "settlement_oakwood",
+      "rooms": {
+        "room_vance_shop_floor": {
+          "id": "room_vance_shop_floor",
+          "name": "General Merchandise Shop",
+          "building_id": "bldg_vance_manor",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_vance_bedroom",
+            "room_vance_bedroom_b"
+          ],
+          "occupant_ids": [
+            "npc_beatrice",
+            "npc_marcus_vance"
+          ],
+          "contained_object_ids": [
+            "obj_merchant_counter"
+          ]
+        },
+        "room_vance_bedroom": {
+          "id": "room_vance_bedroom",
+          "name": "Master Suite",
+          "building_id": "bldg_vance_manor",
+          "connected_room_ids": [
+            "room_vance_shop_floor"
+          ],
+          "occupant_ids": [],
+          "contained_object_ids": [
+            "obj_bed_feather"
+          ]
+        },
+        "room_vance_bedroom_b": {
+          "id": "room_vance_bedroom_b",
+          "name": "Family Bedroom",
+          "building_id": "bldg_vance_manor",
+          "connected_room_ids": [
+            "room_vance_shop_floor"
+          ],
+          "occupant_ids": [
+            "npc_clara_vance"
+          ],
+          "contained_object_ids": [
+            "obj_bed_wood"
+          ]
+        }
+      }
+    },
+    "bldg_apothecary": {
+      "id": "bldg_apothecary",
+      "name": "Apothecary Shop & Healing Infirmary",
+      "settlement_id": "settlement_oakwood",
+      "rooms": {
+        "room_apothecary_shop": {
+          "id": "room_apothecary_shop",
+          "name": "Herbal Shopfront",
+          "building_id": "bldg_apothecary",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_apothecary_lab",
+            "room_infirmary_ward"
+          ],
+          "occupant_ids": [
+            "npc_catherine",
+            "npc_eleanor"
+          ],
+          "contained_object_ids": [
+            "obj_herbal_shelf"
+          ]
+        },
+        "room_apothecary_lab": {
+          "id": "room_apothecary_lab",
+          "name": "Alchemical Lab",
+          "building_id": "bldg_apothecary",
+          "connected_room_ids": [
+            "room_apothecary_shop"
+          ],
+          "occupant_ids": [],
+          "contained_object_ids": [
+            "obj_apothecary_table"
+          ]
+        },
+        "room_infirmary_ward": {
+          "id": "room_infirmary_ward",
+          "name": "Healing Infirmary Ward",
+          "building_id": "bldg_apothecary",
+          "connected_room_ids": [
+            "room_apothecary_shop"
+          ],
+          "occupant_ids": [],
+          "contained_object_ids": [
+            "obj_sickbed"
+          ]
+        }
+      }
+    },
+    "bldg_chapel": {
+      "id": "bldg_chapel",
+      "name": "St. Jude's Chapel & Rectory",
+      "settlement_id": "settlement_oakwood",
+      "rooms": {
+        "room_chapel_sanctuary": {
+          "id": "room_chapel_sanctuary",
+          "name": "Chapel Nave & Sanctuary",
+          "building_id": "bldg_chapel",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_rectory_bedroom",
+            "room_graveyard"
+          ],
+          "occupant_ids": [
+            "npc_barnaby_priest"
+          ],
+          "contained_object_ids": [
+            "obj_altar",
+            "obj_shrine"
+          ]
+        },
+        "room_rectory_bedroom": {
+          "id": "room_rectory_bedroom",
+          "name": "Priest Rectory",
+          "building_id": "bldg_chapel",
+          "connected_room_ids": [
+            "room_chapel_sanctuary"
+          ],
+          "occupant_ids": [],
+          "contained_object_ids": [
+            "obj_bed_wood"
+          ]
+        }
+      }
+    },
+    "bldg_cemetery": {
+      "id": "bldg_cemetery",
+      "name": "St. Jude's Cemetery & Lodge",
+      "settlement_id": "settlement_oakwood",
+      "rooms": {
+        "room_graveyard": {
+          "id": "room_graveyard",
+          "name": "Cemetery Grounds",
+          "building_id": "bldg_cemetery",
+          "connected_room_ids": [
+            "room_chapel_sanctuary",
+            "room_cemetery_lodge"
+          ],
+          "occupant_ids": [
+            "npc_nicholas_gravedigger"
+          ],
+          "contained_object_ids": [
+            "obj_tombstones"
+          ]
+        },
+        "room_cemetery_lodge": {
+          "id": "room_cemetery_lodge",
+          "name": "Gravedigger Lodge",
+          "building_id": "bldg_cemetery",
+          "connected_room_ids": [
+            "room_graveyard"
+          ],
+          "occupant_ids": [],
+          "contained_object_ids": [
+            "obj_bed_straw"
+          ]
+        }
+      }
+    },
+    "bldg_smithy": {
+      "id": "bldg_smithy",
+      "name": "Oakwood Blacksmith Smithy",
+      "settlement_id": "settlement_oakwood",
+      "rooms": {
+        "room_forge_yard": {
+          "id": "room_forge_yard",
+          "name": "Forge Yard",
+          "building_id": "bldg_smithy",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_forge_bedroom"
+          ],
+          "occupant_ids": [
+            "npc_eamon",
+            "npc_felix_apprentice"
+          ],
+          "contained_object_ids": [
+            "obj_forge",
+            "obj_workbench"
+          ]
+        }
+      }
+    },
+    "bldg_bakery": {
+      "id": "bldg_bakery",
+      "name": "Oakwood Water Mill & Bakery",
+      "settlement_id": "settlement_oakwood",
+      "rooms": {
+        "room_bakery_hearth": {
+          "id": "room_bakery_hearth",
+          "name": "Bakery Hearth",
+          "building_id": "bldg_bakery",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_mill_room"
+          ],
+          "occupant_ids": [
+            "npc_greta"
+          ],
+          "contained_object_ids": [
+            "obj_bakery_oven"
+          ]
+        },
+        "room_mill_room": {
+          "id": "room_mill_room",
+          "name": "Water Millstone Room",
+          "building_id": "bldg_bakery",
+          "connected_room_ids": [
+            "room_bakery_hearth"
+          ],
+          "occupant_ids": [],
+          "contained_object_ids": [
+            "obj_millstone"
+          ]
+        }
+      }
+    },
+    "bldg_tailor_shop": {
+      "id": "bldg_tailor_shop",
+      "name": "Jonathan Stitch Tailor Shop",
+      "settlement_id": "settlement_oakwood",
+      "rooms": {
+        "room_tailor_shop": {
+          "id": "room_tailor_shop",
+          "name": "Tailor Shopfront",
+          "building_id": "bldg_tailor_shop",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_tailor_quarters"
+          ],
+          "occupant_ids": [
+            "npc_jonathan"
+          ],
+          "contained_object_ids": [
+            "obj_spinning_wheel",
+            "obj_fitting_dummy"
+          ]
+        }
+      }
+    },
+    "bldg_carpenter_shop": {
+      "id": "bldg_carpenter_shop",
+      "name": "Samuel Oakwood Carpenter Shop",
+      "settlement_id": "settlement_oakwood",
+      "rooms": {
+        "room_carpenter_shop": {
+          "id": "room_carpenter_shop",
+          "name": "Carpenter Workshop",
+          "building_id": "bldg_carpenter_shop",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_carpenter_bedroom"
+          ],
+          "occupant_ids": [
+            "npc_samuel"
+          ],
+          "contained_object_ids": [
+            "obj_carpenter_bench"
+          ]
+        }
+      }
+    },
+    "bldg_cobbler_shop": {
+      "id": "bldg_cobbler_shop",
+      "name": "Martha Cobble Shoemaker Shop",
+      "settlement_id": "settlement_oakwood",
+      "rooms": {
+        "room_cobbler_shop": {
+          "id": "room_cobbler_shop",
+          "name": "Cobbler Workshop",
+          "building_id": "bldg_cobbler_shop",
+          "connected_room_ids": [
+            "room_village_square"
+          ],
+          "occupant_ids": [
+            "npc_martha"
+          ],
+          "contained_object_ids": [
+            "obj_cobbler_bench"
+          ]
+        }
+      }
+    },
+    "bldg_weaver_shop": {
+      "id": "bldg_weaver_shop",
+      "name": "Eliza Weaver Textile Workshop",
+      "settlement_id": "settlement_oakwood",
+      "rooms": {
+        "room_weaver_shop": {
+          "id": "room_weaver_shop",
+          "name": "Weaver Hand Loom Room",
+          "building_id": "bldg_weaver_shop",
+          "connected_room_ids": [
+            "room_village_square"
+          ],
+          "occupant_ids": [
+            "npc_eliza"
+          ],
+          "contained_object_ids": [
+            "obj_loom"
+          ]
+        }
+      }
+    },
+    "bldg_quarry_mine": {
+      "id": "bldg_quarry_mine",
+      "name": "Oakwood Stone Quarry & Mine",
+      "settlement_id": "settlement_oakwood",
+      "rooms": {
+        "room_quarry_mine": {
+          "id": "room_quarry_mine",
+          "name": "Quarry Mine Face",
+          "building_id": "bldg_quarry_mine",
+          "connected_room_ids": [
+            "room_village_square"
+          ],
+          "occupant_ids": [
+            "npc_gideon",
+            "npc_hugo_stone"
+          ],
+          "contained_object_ids": [
+            "obj_mining_cart"
+          ]
+        }
+      }
+    },
+    "bldg_farmhouse": {
+      "id": "bldg_farmhouse",
+      "name": "Miller Grain Farmstead",
+      "settlement_id": "settlement_oakwood",
+      "rooms": {
+        "room_farmhouse_kitchen": {
+          "id": "room_farmhouse_kitchen",
+          "name": "Farmhouse Kitchen",
+          "building_id": "bldg_farmhouse",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_farmhouse_bedroom",
+            "room_farm_fields"
+          ],
+          "occupant_ids": [],
+          "contained_object_ids": [
+            "obj_pantry",
+            "obj_hearth"
+          ]
+        },
+        "room_farmhouse_bedroom": {
+          "id": "room_farmhouse_bedroom",
+          "name": "Farmhouse Bedroom",
+          "building_id": "bldg_farmhouse",
+          "connected_room_ids": [
+            "room_farmhouse_kitchen"
+          ],
+          "occupant_ids": [
+            "npc_aldous"
+          ],
+          "contained_object_ids": [
+            "obj_bed_straw"
+          ]
+        },
+        "room_farm_fields": {
+          "id": "room_farm_fields",
+          "name": "Wheat Fields",
+          "building_id": "bldg_farmhouse",
+          "connected_room_ids": [
+            "room_farmhouse_kitchen"
+          ],
+          "occupant_ids": [],
+          "contained_object_ids": []
+        }
+      }
+    },
+    "bldg_tenements": {
+      "id": "bldg_tenements",
+      "name": "Oakwood Tenement Lodgings",
+      "settlement_id": "settlement_oakwood",
+      "rooms": {
+        "room_tenement_hallway": {
+          "id": "room_tenement_hallway",
+          "name": "Tenement Hallway",
+          "building_id": "bldg_tenements",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_tenement_attic"
+          ],
+          "occupant_ids": [],
+          "contained_object_ids": []
+        },
+        "room_tenement_attic": {
+          "id": "room_tenement_attic",
+          "name": "Attic Rooms",
+          "building_id": "bldg_tenements",
+          "connected_room_ids": [
+            "room_tenement_hallway"
+          ],
+          "occupant_ids": [],
+          "contained_object_ids": [
+            "obj_bunk_beds"
+          ]
+        }
+      }
+    }
+  }
+}

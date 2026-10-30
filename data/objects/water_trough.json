@@ -1,0 +1,12 @@
+{
+  "id": "object_water_trough",
+  "name": "Firefighting Water Reservoir Trough",
+  "location_id": "room_fire_brigade_depot",
+  "capabilities": [
+    "firefighting_reservoir",
+    "water_source"
+  ],
+  "durability": 100.0,
+  "is_locked": false,
+  "owner_id": null
+}

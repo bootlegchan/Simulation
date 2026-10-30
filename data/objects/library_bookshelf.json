@@ -1,0 +1,17 @@
+{
+  "id": "obj_library_bookshelf",
+  "name": "Oakwood Municipal Book Stacks",
+  "capabilities": [
+    "requires_membership",
+    "borrowable",
+    "study",
+    "read"
+  ],
+  "location_id": "room_library_hall",
+  "owner_id": "npc_thaddeus",
+  "contained_item_ids": [
+    "item_book_history",
+    "item_book_herbs"
+  ],
+  "is_pantry": false
+}

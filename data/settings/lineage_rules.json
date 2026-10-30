@@ -1,0 +1,23 @@
+{
+  "lineage_and_dowry": {
+    "dowry_asset_types": [
+      "GOLD_DOWRY",
+      "WORKSHOP_EQUIPMENT",
+      "HEIRLOOM_JEWELRY",
+      "LAND_RIGHTS"
+    ],
+    "marriage_prestige_thresholds": {
+      "PATRICIAN_ALLIANCE": 80.0,
+      "BURGHER_ALLIANCE": 50.0,
+      "COMMONER_UNION": 20.0
+    },
+    "alliance_benefits": {
+      "inter_family_trust_boost": 40.0,
+      "shared_trade_discount": 0.15
+    },
+    "breach_penalties": {
+      "feud_animosity_surge": 70.0,
+      "asset_restitution_ratio": 1.25
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "id": "npc_aldous",
+  "name": "Aldous Miller",
+  "occupation": "Farmer",
+  "home_location_id": "room_farmhouse_bedroom",
+  "work_location_id": "room_farm_fields",
+  "wealth": 50.0,
+  "faction_id": "faction_farmers_guild",
+  "civic_role": "Guild Elder",
+  "education": "Basic Literacy",
+  "access_permissions": [
+    "farmhouse_key"
+  ],
+  "appearance": {
+    "outfit": "Homespun Linen Tunic & Leather Boots",
+    "grooming": "Neat Beard",
+    "build": "Muscular",
+    "style": "Rural Traditional"
+  },
+  "cognition": {
+    "decision_quality": "Rational",
+    "laziness": 0.15
+  },
+  "vices": {
+    "alcohol_dependence": 10.0,
+    "gambling_drive": 0.0,
+    "crime_propensity": 0.0,
+    "vice_indulgence": 5.0
+  },
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.85,
+      "honor": 0.9,
+      "ambition": 0.4,
+      "tradition": 0.8
+    },
+    "reputation_facets": {
+      "trustworthiness": 85.0,
+      "temperament": 60.0,
+      "discretion": 70.0
+    },
+    "communication_style": "Direct & Plainspoken",
+    "sentimental_attachments": [
+      "Ancestral Wheat Fields",
+      "Father's Hand Sickle"
+    ],
+    "vulnerabilities": [
+      "Stubbornness",
+      "Jealousy Sensitivity"
+    ],
+    "background": "Third-generation grain farmer in Oakwood."
+  }
+}

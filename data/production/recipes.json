@@ -1,0 +1,198 @@
+{
+  "recipe_grind_flour": {
+    "id": "recipe_grind_flour",
+    "name": "Grind Wheat to Flour",
+    "inputs": {
+      "raw_wheat": 2
+    },
+    "outputs": {
+      "flour": 1
+    },
+    "required_capability": "mill_grain",
+    "work_ticks": 3
+  },
+  "recipe_bake_bread": {
+    "id": "recipe_bake_bread",
+    "name": "Bake Hearth Bread",
+    "inputs": {
+      "flour": 1
+    },
+    "outputs": {
+      "food_bread": 2
+    },
+    "required_capability": "bake_bread",
+    "work_ticks": 5
+  },
+  "recipe_smelt_iron": {
+    "id": "recipe_smelt_iron",
+    "name": "Smelt Iron Ore to Ingot",
+    "inputs": {
+      "iron_ore": 2
+    },
+    "outputs": {
+      "iron_ingot": 1
+    },
+    "required_capability": "smelt",
+    "work_ticks": 8
+  },
+  "recipe_forge_sword": {
+    "id": "recipe_forge_sword",
+    "name": "Forge Iron Longsword",
+    "inputs": {
+      "iron_ingot": 2,
+      "planks": 1
+    },
+    "outputs": {
+      "iron_sword": 1
+    },
+    "required_capability": "forge",
+    "work_ticks": 12
+  },
+  "recipe_brew_elixir": {
+    "id": "recipe_brew_elixir",
+    "name": "Brew Herbal Health Elixir",
+    "inputs": {
+      "herbs": 3
+    },
+    "outputs": {
+      "health_elixir": 1
+    },
+    "required_capability": "brew_medicine",
+    "work_ticks": 6
+  },
+  "recipe_distill_moonshine": {
+    "id": "recipe_distill_moonshine",
+    "name": "Distill Illicit Cellar Moonshine",
+    "inputs": {
+      "raw_wheat": 2,
+      "fine_ale": 1
+    },
+    "outputs": {
+      "contraband_moonshine": 1
+    },
+    "required_capability": "distill_spirits",
+    "work_ticks": 7
+  },
+  "recipe_brew_spiced_cider": {
+    "id": "recipe_brew_spiced_cider",
+    "name": "Mulled Hearth Spiced Cider",
+    "inputs": {
+      "fine_ale": 1,
+      "raw_wheat": 1
+    },
+    "outputs": {
+      "food_spiced_cider": 2
+    },
+    "required_capability": "cook_meal",
+    "work_ticks": 4
+  },
+  "recipe_craft_soothing_balm": {
+    "id": "recipe_craft_soothing_balm",
+    "name": "Compound Chamomile Soothing Balm",
+    "inputs": {
+      "herbs": 2
+    },
+    "outputs": {
+      "item_soothing_balm": 1
+    },
+    "required_capability": "brew_medicine",
+    "work_ticks": 4
+  },
+  "recipe_craft_lockpicks": {
+    "id": "recipe_craft_lockpicks",
+    "name": "Forge Spring-Steel Lockpick Set",
+    "inputs": {
+      "iron_ingot": 1
+    },
+    "outputs": {
+      "tool_lockpick_set": 1
+    },
+    "required_capability": "forge",
+    "work_ticks": 5
+  },
+  "recipe_craft_bouquet": {
+    "id": "recipe_craft_bouquet",
+    "name": "Press Wildflower Courtship Bouquet",
+    "inputs": {
+      "herbs": 2
+    },
+    "outputs": {
+      "gift_courtship_bouquet": 1
+    },
+    "required_capability": "craft",
+    "work_ticks": 3
+  },
+  "recipe_craft_signet_ring": {
+    "id": "recipe_craft_signet_ring",
+    "name": "Cast Ancestral Gold Signet Ring",
+    "inputs": {
+      "iron_ingot": 1
+    },
+    "outputs": {
+      "heirloom_engraved_signet_ring": 1
+    },
+    "required_capability": "forge",
+    "work_ticks": 10
+  },
+  "recipe_carve_tally_stick": {
+    "id": "recipe_carve_tally_stick",
+    "name": "Notch Hazel Tally Stick IOU",
+    "inputs": {
+      "planks": 1
+    },
+    "outputs": {
+      "item_tally_stick_iou": 2
+    },
+    "required_capability": "craft",
+    "work_ticks": 3
+  },
+  "recipe_compound_purification_alum": {
+    "id": "recipe_compound_purification_alum",
+    "name": "Compound Mineral Purification Alum",
+    "inputs": {
+      "herbs": 1,
+      "raw_wheat": 1
+    },
+    "outputs": {
+      "item_purification_alum": 1
+    },
+    "required_capability": "brew_medicine",
+    "work_ticks": 4
+  },
+  "recipe_inscribe_promissory_note": {
+    "id": "recipe_inscribe_promissory_note",
+    "name": "Inscribe Parchment Promissory Note",
+    "inputs": {
+      "item_personal_diary": 1
+    },
+    "outputs": {
+      "item_promissory_note": 2
+    },
+    "required_capability": "write_diary",
+    "work_ticks": 3
+  },
+  "recipe_draft_dowry_contract": {
+    "id": "recipe_draft_dowry_contract",
+    "name": "Draft Formal Marriage Dowry Contract",
+    "inputs": {
+      "item_personal_diary": 1
+    },
+    "outputs": {
+      "contract_marriage_dowry": 1
+    },
+    "required_capability": "write_diary",
+    "work_ticks": 5
+  },
+  "recipe_chart_celestial_omens": {
+    "id": "recipe_chart_celestial_omens",
+    "name": "Chart Ephemeris of Celestial Omens",
+    "inputs": {
+      "item_personal_diary": 1
+    },
+    "outputs": {
+      "item_astrological_chart": 1
+    },
+    "required_capability": "scry_omens",
+    "work_ticks": 6
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "id": "npc_torvald_guildmaster",
+  "name": "Torvald Iron-Jaw",
+  "location_id": "room_forge_yard",
+  "occupation": "Master Smith & Guild Chairman",
+  "home_location_id": "room_forge_bedroom",
+  "work_location_id": "room_forge_yard",
+  "needs": {
+    "hunger": 25.0,
+    "energy": 85.0,
+    "social": 45.0
+  },
+  "decay_rates": {
+    "hunger": 0.55,
+    "energy": -0.35,
+    "social": -0.15
+  },
+  "attributes": {
+    "strength": 17.0,
+    "intelligence": 12.0,
+    "stamina": 16.0
+  },
+  "personality": {
+    "openness": 0.35,
+    "conscientiousness": 0.8,
+    "extraversion": 0.55,
+    "agreeableness": 0.35,
+    "neuroticism": 0.4
+  },
+  "inventory": [],
+  "wealth": 240.0,
+  "faction_id": "faction_artisans",
+  "civic_role": "Guild Chairman",
+  "social_profile": {
+    "moral_values": {"loyalty": 0.85, "honor": 0.8, "ambition": 0.7},
+    "reputation_facets": {"trustworthiness": 85.0, "temperament": 40.0, "discretion": 60.0},
+    "communication_style": "Gruff & Authoritative",
+    "social_class": "BURGHER"
+  },
+  "appearance": {
+    "outfit": "Heavy Leather Smith Apron over Boiled Wool Tunic",
+    "grooming": "Braided Beard",
+    "build": "Massive & Muscular",
+    "style": "Guildmaster"
+  },
+  "education": "Master Craftsman",
+  "cognition": {
+    "decision_quality": "Rational",
+    "laziness": 0.1
+  },
+  "vices": {
+    "alcohol_dependence": 20.0,
+    "gambling_drive": 5.0,
+    "crime_propensity": 0.0,
+    "vice_indulgence": 15.0
+  },
+  "feelings": {
+    "contentment": 55.0,
+    "tenderness": 15.0,
+    "passion": 15.0,
+    "loneliness": 10.0,
+    "stress": 20.0,
+    "jealousy": 0.0,
+    "guilt": 0.0,
+    "grief": 0.0,
+    "pride": 60.0,
+    "resentment": 0.0
+  }
+}

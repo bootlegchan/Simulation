@@ -1,0 +1,90 @@
+{
+  "urban_planning": {
+    "districts": {
+      "DISTRICT_CIVIC_MARKET": {
+        "id": "DISTRICT_CIVIC_MARKET",
+        "name": "Civic Center & Market Plaza",
+        "allowed_categories": ["CIVIC"],
+        "primary_road_prefix": "street_market",
+        "base_land_value": 100.0,
+        "noise_tolerance": "HIGH",
+        "max_buildings_per_road": 6
+      },
+      "DISTRICT_COMMERCIAL_ARTISAN": {
+        "id": "DISTRICT_COMMERCIAL_ARTISAN",
+        "name": "Artisan Quarter & Trade Rows",
+        "allowed_categories": ["COMMERCIAL", "MEDICAL"],
+        "primary_road_prefix": "row_craftsmen",
+        "base_land_value": 80.0,
+        "noise_tolerance": "MEDIUM",
+        "max_buildings_per_road": 5
+      },
+      "DISTRICT_RESIDENTIAL": {
+        "id": "DISTRICT_RESIDENTIAL",
+        "name": "Residential Neighborhood & Cottages",
+        "allowed_categories": ["RESIDENTIAL"],
+        "primary_road_prefix": "lane_residential",
+        "base_land_value": 70.0,
+        "noise_tolerance": "LOW",
+        "max_buildings_per_road": 4
+      },
+      "DISTRICT_SACRED": {
+        "id": "DISTRICT_SACRED",
+        "name": "Sacred Sanctuary & Cloister",
+        "allowed_categories": ["SACRED"],
+        "primary_road_prefix": "path_sanctuary",
+        "base_land_value": 85.0,
+        "noise_tolerance": "LOW",
+        "max_buildings_per_road": 3
+      },
+      "DISTRICT_INDUSTRIAL_OUTSKIRTS": {
+        "id": "DISTRICT_INDUSTRIAL_OUTSKIRTS",
+        "name": "Industrial Works & Peripheral Forges",
+        "allowed_categories": ["INDUSTRIAL"],
+        "primary_road_prefix": "track_industrial",
+        "base_land_value": 40.0,
+        "noise_tolerance": "HIGH",
+        "max_buildings_per_road": 4
+      },
+      "DISTRICT_UNDERWORLD_SLUMS": {
+        "id": "DISTRICT_UNDERWORLD_SLUMS",
+        "name": "Shadowed Alleys & Backwater Dens",
+        "allowed_categories": ["UNDERWORLD"],
+        "primary_road_prefix": "alley_shadows",
+        "base_land_value": 25.0,
+        "noise_tolerance": "HIGH",
+        "max_buildings_per_road": 3
+      }
+    },
+    "road_network": {
+      "hierarchy": ["MAIN_STREET", "AVENUE", "LANE", "ALLEY", "TRACK"],
+      "traversal_costs": {
+        "MAIN_STREET": 1.0,
+        "AVENUE": 1.1,
+        "LANE": 1.25,
+        "ALLEY": 1.45,
+        "TRACK": 1.6
+      }
+    },
+    "building_lifecycle": {
+      "degradation_rate_per_day": 2.5,
+      "base_maintenance_cost_per_room": 2.0,
+      "repair_boost_per_cycle": 15.0,
+      "condition_thresholds": {
+        "PRISTINE": 85.0,
+        "MAINTAINED": 50.0,
+        "DILAPIDATED": 25.0,
+        "CONDEMNED": 1.0,
+        "RUINS": 0.0
+      },
+      "economic_triggers": {
+        "redevelopment_land_pressure_threshold": 75.0,
+        "abandonment_poverty_threshold": 60.0
+      }
+    },
+    "expansion_triggers": {
+      "housing_density_critical_ratio": 1.8,
+      "commercial_saturation_threshold": 0.85
+    }
+  }
+}

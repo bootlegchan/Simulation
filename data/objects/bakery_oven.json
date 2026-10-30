@@ -1,0 +1,11 @@
+{
+  "id": "object_bakery_oven",
+  "name": "Stone Brick Baking Oven",
+  "location_id": "room_bakery_kitchen",
+  "capabilities": [
+    "bake_bread"
+  ],
+  "durability": 100.0,
+  "is_locked": false,
+  "owner_id": "npc_greta"
+}

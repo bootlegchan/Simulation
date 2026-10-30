@@ -1,0 +1,51 @@
+{
+  "id": "npc_rebecca_cook",
+  "name": "Rebecca Cook",
+  "occupation": "Tavern Cook",
+  "home_location_id": "room_tavern_quarters",
+  "work_location_id": "room_tavern_kitchen",
+  "wealth": 55.0,
+  "faction_id": "faction_merchant_alliance",
+  "civic_role": "Tavern Staff",
+  "education": "Basic Literacy",
+  "access_permissions": [
+    "tavern_key"
+  ],
+  "appearance": {
+    "outfit": "Stained Cooking Apron & Cap",
+    "grooming": "Cheery",
+    "build": "Robust",
+    "style": "Cook"
+  },
+  "cognition": {
+    "decision_quality": "Rational",
+    "laziness": 0.1
+  },
+  "vices": {
+    "alcohol_dependence": 15.0,
+    "gambling_drive": 5.0,
+    "crime_propensity": 0.0,
+    "vice_indulgence": 10.0
+  },
+  "social_profile": {
+    "moral_values": {
+      "loyalty": 0.75,
+      "honor": 0.75,
+      "ambition": 0.35,
+      "tradition": 0.7
+    },
+    "reputation_facets": {
+      "trustworthiness": 80.0,
+      "temperament": 80.0,
+      "discretion": 60.0
+    },
+    "communication_style": "Bustling & Gossipy",
+    "sentimental_attachments": [
+      "Cast Iron Stew Pot"
+    ],
+    "vulnerabilities": [
+      "Gossip"
+    ],
+    "background": "Prepares hearty stews and roasts for tavern patrons."
+  }
+}

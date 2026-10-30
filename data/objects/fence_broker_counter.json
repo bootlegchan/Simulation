@@ -1,0 +1,12 @@
+{
+  "id": "object_fence_broker_counter",
+  "name": "Shadow Broker Counter",
+  "location_id": "room_black_market_cellar",
+  "capabilities": [
+    "fence_stolen_goods",
+    "launder_currency"
+  ],
+  "durability": 100.0,
+  "is_locked": false,
+  "owner_id": "npc_tobias"
+}

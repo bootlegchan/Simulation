@@ -1,0 +1,13 @@
+{
+  "id": "object_sickbed",
+  "name": "Infirmary Triage Sickbed",
+  "location_id": "room_clinic_ward",
+  "capabilities": [
+    "rest",
+    "heal",
+    "triage"
+  ],
+  "durability": 100.0,
+  "is_locked": false,
+  "owner_id": null
+}

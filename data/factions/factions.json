@@ -1,0 +1,27 @@
+[
+  {
+    "id": "faction_farmers",
+    "name": "Farmers Guild",
+    "member_ids": [
+      "npc_aldous"
+    ],
+    "leader_id": "npc_aldous"
+  },
+  {
+    "id": "faction_merchants",
+    "name": "Merchant Alliance",
+    "member_ids": [
+      "npc_beatrice"
+    ],
+    "leader_id": "npc_beatrice"
+  },
+  {
+    "id": "faction_civic",
+    "name": "Oakwood Town Council",
+    "member_ids": [
+      "npc_devon",
+      "npc_clara"
+    ],
+    "leader_id": "npc_devon"
+  }
+]
