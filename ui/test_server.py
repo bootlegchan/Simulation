@@ -6,8 +6,9 @@ from enum import Enum
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import Mock
+import time
 
-from ui.server import ApiError, OakwoodHandler, to_json_value
+from ui.server import ApiError, OakwoodHandler, SimulationTicker, to_json_value
 
 
 class SampleState(Enum):
@@ -45,6 +46,32 @@ class AdapterSerializationTests(unittest.TestCase):
         with self.assertRaises(ApiError):
             OakwoodHandler._int_arg(101, "ticks", 1, 1, 100)
         self.assertEqual(OakwoodHandler._int_arg(5, "ticks", 1, 1, 100), 5)
+
+
+class SimulationTickerTests(unittest.TestCase):
+    def test_ticker_advances_only_while_engine_is_running(self):
+        class FakeEngine:
+            def __init__(self):
+                self.lifecycle_state = SimpleNamespace(name="PAUSED")
+                self.ticks = 0
+
+            def tick(self, count):
+                self.ticks += count
+
+        engine = FakeEngine()
+        lock = __import__("threading").RLock()
+        ticker = SimulationTicker(engine, lock, ticks_per_second=60)
+        ticker.start()
+        time.sleep(0.05)
+        self.assertEqual(engine.ticks, 0)
+        engine.lifecycle_state = SimpleNamespace(name="RUNNING")
+        time.sleep(0.08)
+        engine.lifecycle_state = SimpleNamespace(name="PAUSED")
+        ticker.stop()
+        self.assertGreater(engine.ticks, 0)
+        stopped_ticks = engine.ticks
+        time.sleep(0.03)
+        self.assertEqual(engine.ticks, stopped_ticks)
 
 
 class AdapterDispatchTests(unittest.TestCase):
