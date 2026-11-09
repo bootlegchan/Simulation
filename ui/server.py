@@ -12,6 +12,7 @@ import json
 import math
 import sys
 import threading
+from dataclasses import fields, is_dataclass
 from datetime import date, datetime
 from enum import Enum
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -51,8 +52,8 @@ def to_json_value(value: Any, depth: int = 0) -> Any:
         return [to_json_value(v, depth + 1) for v in value]
     if hasattr(value, "to_dict") and callable(value.to_dict):
         return to_json_value(value.to_dict(), depth + 1)
-    if hasattr(value, "__dict__"):
-        return to_json_value(vars(value), depth + 1)
+    if is_dataclass(value) and not isinstance(value, type):
+        return {field.name: to_json_value(getattr(value, field.name), depth + 1) for field in fields(value)}
     return str(value)
 
 
