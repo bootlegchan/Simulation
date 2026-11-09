@@ -1,0 +1,130 @@
+{
+  "npc_captain_morgren": {
+    "id": "npc_captain_morgren",
+    "name": "Captain Morgren",
+    "occupation": "Fortress Commander",
+    "home_location_id": "room_captain_quarters",
+    "work_location_id": "room_harbor_quay",
+    "location_id": "room_harbor_quay",
+    "wealth": 75.0,
+    "personality": {
+      "openness": 0.4,
+      "conscientiousness": 0.8,
+      "extraversion": 0.6,
+      "agreeableness": 0.4,
+      "neuroticism": 0.3
+    }
+  },
+  "npc_dagny_smelter": {
+    "id": "npc_dagny_smelter",
+    "name": "Dagny Smelter",
+    "occupation": "Master Smelter",
+    "home_location_id": "room_blast_furnace",
+    "work_location_id": "room_blast_furnace",
+    "location_id": "room_blast_furnace",
+    "wealth": 60.0,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.7,
+      "extraversion": 0.4,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    }
+  },
+  "npc_lyra_alchemist": {
+    "id": "npc_lyra_alchemist",
+    "name": "Lyra Alchemist",
+    "occupation": "Apothecary",
+    "home_location_id": "room_harbor_quay",
+    "work_location_id": "room_harbor_quay",
+    "location_id": "room_harbor_quay",
+    "wealth": 55.0,
+    "personality": {
+      "openness": 0.8,
+      "conscientiousness": 0.6,
+      "extraversion": 0.4,
+      "agreeableness": 0.6,
+      "neuroticism": 0.4
+    }
+  },
+  "npc_iron_1": {
+    "id": "npc_iron_1",
+    "name": "Ironreach Guard 1",
+    "occupation": "Guard",
+    "home_location_id": "room_harbor_quay",
+    "work_location_id": "room_harbor_quay",
+    "location_id": "room_harbor_quay",
+    "wealth": 40.0,
+    "personality": {
+      "openness": 0.4,
+      "conscientiousness": 0.6,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    }
+  },
+  "npc_iron_2": {
+    "id": "npc_iron_2",
+    "name": "Ironreach Guard 2",
+    "occupation": "Guard",
+    "home_location_id": "room_harbor_quay",
+    "work_location_id": "room_harbor_quay",
+    "location_id": "room_harbor_quay",
+    "wealth": 40.0,
+    "personality": {
+      "openness": 0.4,
+      "conscientiousness": 0.6,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    }
+  },
+  "npc_iron_3": {
+    "id": "npc_iron_3",
+    "name": "Ironreach Guard 3",
+    "occupation": "Guard",
+    "home_location_id": "room_harbor_quay",
+    "work_location_id": "room_harbor_quay",
+    "location_id": "room_harbor_quay",
+    "wealth": 40.0,
+    "personality": {
+      "openness": 0.4,
+      "conscientiousness": 0.6,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    }
+  },
+  "npc_iron_4": {
+    "id": "npc_iron_4",
+    "name": "Ironreach Guard 4",
+    "occupation": "Guard",
+    "home_location_id": "room_harbor_quay",
+    "work_location_id": "room_harbor_quay",
+    "location_id": "room_harbor_quay",
+    "wealth": 40.0,
+    "personality": {
+      "openness": 0.4,
+      "conscientiousness": 0.6,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    }
+  },
+  "npc_iron_5": {
+    "id": "npc_iron_5",
+    "name": "Ironreach Guard 5",
+    "occupation": "Guard",
+    "home_location_id": "room_harbor_quay",
+    "work_location_id": "room_harbor_quay",
+    "location_id": "room_harbor_quay",
+    "wealth": 40.0,
+    "personality": {
+      "openness": 0.4,
+      "conscientiousness": 0.6,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    }
+  }
+}

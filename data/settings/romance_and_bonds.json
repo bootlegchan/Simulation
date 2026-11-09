@@ -1,0 +1,167 @@
+{
+  "actions": {
+    "private_intimacy": {
+      "passion_gain": 35.0,
+      "tenderness_gain": 30.0,
+      "stress_relief": -25.0,
+      "loneliness_relief": -30.0,
+      "social_gain": 35.0,
+      "rejection_grief": 12.0,
+      "min_partner_energy": 20.0,
+      "max_partner_stress": 75.0,
+      "min_affection_threshold": 35.0
+    },
+    "court_with_gift": {
+      "suitor_tenderness_gain": 20.0,
+      "target_tenderness_gain": 25.0,
+      "rejection_grief": 8.0,
+      "min_target_trust": 25.0
+    },
+    "comfort_partner": {
+      "stress_relief": -25.0,
+      "grief_relief": -30.0
+    },
+    "public_affection": {
+      "pride_gain": 15.0,
+      "scandal_rumor_prob": 0.4
+    }
+  },
+  "privacy_and_space": {
+    "private_room_keywords": [
+      "bedroom",
+      "quarters",
+      "loft",
+      "cellar",
+      "chambers",
+      "cottage",
+      "secluded"
+    ],
+    "public_tryst_scandal_intensity": 0.9,
+    "infidelity_scandal_intensity": 1.0,
+    "infidelity_grudge_potency": 65.0
+  },
+  "elastic_privacy_and_exhibitionism": {
+    "private_room_keywords": [
+      "bedroom",
+      "quarters",
+      "loft",
+      "cellar",
+      "chambers",
+      "cottage",
+      "secluded"
+    ],
+    "base_public_inhibition": 25.0,
+    "witness_inhibition_weight": 6.0,
+    "overwhelming_passion_threshold": 70.0,
+    "alcohol_inhibition_reduction": 0.5,
+    "exhibitionism_affinity_weight": 1.5,
+    "thrill_seeking_affinity_weight": 1.0,
+    "openness_bonus_weight": 15.0,
+    "exhibitionist_thrill": {
+      "passion_bonus": 18.0,
+      "pride_bonus": 22.0,
+      "stress_relief_bonus": -12.0
+    },
+    "voyeur_dynamics": {
+      "voyeurism_threshold": 20.0,
+      "titillation_gain": 25.0,
+      "contentment_gain": 15.0,
+      "scandal_suppression_factor": 0.5
+    },
+    "prudish_dynamics": {
+      "indignation_gain": 25.0,
+      "stress_gain": 15.0,
+      "scandal_intensity_multiplier": 1.25
+    }
+  },
+  "relationship_chemistry": {
+    "physical_attraction_weight": 0.35,
+    "romantic_affection_weight": 0.35,
+    "trust_weight": 0.3,
+    "stamina_factor_min": 0.2,
+    "stress_inhibition_factor": 0.5,
+    "chemistry_consent_threshold": 30.0
+  },
+  "stage_definitions": {
+    "STRANGER": {
+      "tier": 0,
+      "min_affection": 0.0,
+      "min_trust": 0.0
+    },
+    "ACQUAINTANCE": {
+      "tier": 1,
+      "min_affection": 5.0,
+      "min_trust": 20.0
+    },
+    "FRIEND": {
+      "tier": 2,
+      "min_affection": 15.0,
+      "min_trust": 40.0
+    },
+    "CLOSE_FRIEND": {
+      "tier": 3,
+      "min_affection": 25.0,
+      "min_trust": 60.0
+    },
+    "CRUSH": {
+      "tier": 4,
+      "min_affection": 40.0,
+      "min_trust": 30.0
+    },
+    "COURTING": {
+      "tier": 5,
+      "min_affection": 50.0,
+      "min_trust": 55.0
+    },
+    "LOVERS": {
+      "tier": 6,
+      "min_affection": 65.0,
+      "min_trust": 65.0
+    },
+    "BETROTHED": {
+      "tier": 7,
+      "min_affection": 75.0,
+      "min_trust": 75.0
+    },
+    "SPOUSES": {
+      "tier": 8,
+      "min_affection": 80.0,
+      "min_trust": 80.0
+    },
+    "RIVALS": {
+      "tier": -1,
+      "min_affection": -30.0,
+      "min_trust": -30.0
+    },
+    "ESTRANGED": {
+      "tier": -2,
+      "min_affection": -50.0,
+      "min_trust": -50.0
+    }
+  },
+  "short_term_room_rental": {
+    "enabled": true,
+    "rental_fee_gold": 0.5,
+    "allowed_rental_keywords": [
+      "tavern",
+      "inn",
+      "hostel",
+      "lodging"
+    ]
+  },
+  "secluded_unowned_spaces": {
+    "enabled": true,
+    "secluded_room_keywords": [
+      "loft",
+      "hayloft",
+      "cellar",
+      "meadow",
+      "orchard",
+      "woods",
+      "brook",
+      "garden"
+    ],
+    "clandestine_thrill_passion": 8.0,
+    "clandestine_vigilance": 5.0
+  }
+}

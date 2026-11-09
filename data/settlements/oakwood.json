@@ -1,0 +1,434 @@
+{
+  "id": "settlement_oakwood",
+  "name": "Oakwood Village",
+  "buildings": {
+    "bldg_town_hall": {
+      "id": "bldg_town_hall",
+      "name": "Town Hall",
+      "category": "CIVIC",
+      "rooms": {
+        "room_village_square": {
+          "id": "room_village_square",
+          "name": "Village Square",
+          "connected_room_ids": [
+            "room_tavern",
+            "room_bakery",
+            "room_farmhouse",
+            "room_chapel",
+            "room_town_hall",
+            "room_shop",
+            "room_blacksmith",
+            "room_windmill",
+            "room_carpenter",
+            "room_guardhouse",
+            "room_cottage_north",
+            "room_cottage_south",
+            "room_lodgings_east",
+            "room_lodgings_west"
+          ],
+          "archetype": "MARKET_PLAZA",
+          "contained_object_ids": [
+            "obj_notice_board_square",
+            "obj_bocce_lawn"
+          ]
+        },
+        "room_town_hall": {
+          "id": "room_town_hall",
+          "name": "Mayor's Office",
+          "connected_room_ids": [
+            "room_village_square"
+          ]
+        }
+      },
+      "owner_id": "npc_devon"
+    },
+    "bldg_tavern": {
+      "id": "bldg_tavern",
+      "name": "The Boar & Flagon Tavern",
+      "category": "COMMERCIAL",
+      "rooms": {
+        "room_tavern": {
+          "id": "room_tavern",
+          "name": "Tavern Common Room",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_tavern_bedroom"
+          ],
+          "contained_object_ids": [
+            "obj_tavern_hearth",
+            "obj_gaming_table"
+          ]
+        },
+        "room_tavern_bedroom": {
+          "id": "room_tavern_bedroom",
+          "name": "Tavern Loft Quarters",
+          "connected_room_ids": [
+            "room_tavern"
+          ],
+          "contained_object_ids": [
+            "obj_bed_tavern"
+          ]
+        }
+      },
+      "owner_id": "npc_silas"
+    },
+    "bldg_bakery": {
+      "id": "bldg_bakery",
+      "name": "Greta's Hearth Bakery",
+      "category": "COMMERCIAL",
+      "rooms": {
+        "room_bakery": {
+          "id": "room_bakery",
+          "name": "Bakery Hearth & Oven Floor",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_bakery_bedroom"
+          ],
+          "contained_object_ids": [
+            "obj_hearth_oven"
+          ]
+        },
+        "room_bakery_bedroom": {
+          "id": "room_bakery_bedroom",
+          "name": "Baker's Quarters",
+          "connected_room_ids": [
+            "room_bakery"
+          ],
+          "contained_object_ids": [
+            "obj_bed_bakery",
+            "obj_pantry_bakery"
+          ]
+        }
+      },
+      "owner_id": "npc_greta"
+    },
+    "bldg_farmhouse": {
+      "id": "bldg_farmhouse",
+      "name": "Miller Homestead",
+      "category": "RESIDENTIAL",
+      "rooms": {
+        "room_farmhouse": {
+          "id": "room_farmhouse",
+          "name": "Farmhouse Kitchen & Hearth",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_farmhouse_bedroom",
+            "room_farmhouse_loft"
+          ],
+          "contained_object_ids": [
+            "obj_hearth_farmhouse",
+            "obj_table_farmhouse"
+          ]
+        },
+        "room_farmhouse_bedroom": {
+          "id": "room_farmhouse_bedroom",
+          "name": "Farmer's Quarters",
+          "connected_room_ids": [
+            "room_farmhouse"
+          ],
+          "contained_object_ids": [
+            "obj_bed_farmhouse",
+            "obj_pantry_farmhouse"
+          ]
+        },
+        "room_farmhouse_loft": {
+          "id": "room_farmhouse_loft",
+          "name": "Farmhouse Loft Quarters",
+          "connected_room_ids": [
+            "room_farmhouse"
+          ],
+          "contained_object_ids": [
+            "obj_bunks_farmhouse_loft"
+          ]
+        }
+      },
+      "owner_id": "npc_aldous"
+    },
+    "bldg_chapel": {
+      "id": "bldg_chapel",
+      "name": "St. Jude's Chapel",
+      "category": "SACRED",
+      "rooms": {
+        "room_chapel": {
+          "id": "room_chapel",
+          "name": "Sanctuary Nave",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_rectory_bedroom"
+          ],
+          "contained_object_ids": [
+            "obj_chapel_altar"
+          ]
+        },
+        "room_rectory_bedroom": {
+          "id": "room_rectory_bedroom",
+          "name": "Priest Rectory",
+          "connected_room_ids": [
+            "room_chapel"
+          ],
+          "contained_object_ids": [
+            "obj_bed_rectory"
+          ]
+        }
+      },
+      "owner_id": "npc_barnaby_priest"
+    },
+    "bldg_shop": {
+      "id": "bldg_shop",
+      "name": "Vance General Emporium",
+      "category": "COMMERCIAL",
+      "rooms": {
+        "room_shop": {
+          "id": "room_shop",
+          "name": "Vance Shop Floor",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_vance_bedroom"
+          ]
+        },
+        "room_vance_bedroom": {
+          "id": "room_vance_bedroom",
+          "name": "Vance Family Bedroom",
+          "connected_room_ids": [
+            "room_shop"
+          ],
+          "contained_object_ids": [
+            "obj_bed_vance",
+            "obj_pantry_vance"
+          ]
+        }
+      },
+      "owner_id": "npc_beatrice"
+    },
+    "bldg_blacksmith": {
+      "id": "bldg_blacksmith",
+      "name": "Iron-Arm Forge & Armory",
+      "category": "COMMERCIAL",
+      "rooms": {
+        "room_blacksmith": {
+          "id": "room_blacksmith",
+          "name": "Blacksmith Hearth & Anvil",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_smith_bedroom"
+          ],
+          "contained_object_ids": [
+            "obj_blacksmith_forge",
+            "obj_blacksmith_anvil"
+          ]
+        },
+        "room_smith_bedroom": {
+          "id": "room_smith_bedroom",
+          "name": "Smith's Bedchamber",
+          "connected_room_ids": [
+            "room_blacksmith"
+          ],
+          "contained_object_ids": [
+            "obj_bed_smith"
+          ]
+        }
+      },
+      "owner_id": "npc_citizen_12"
+    },
+    "bldg_windmill": {
+      "id": "bldg_windmill",
+      "name": "Oakwood Windmill & Millstones",
+      "category": "COMMERCIAL",
+      "rooms": {
+        "room_windmill": {
+          "id": "room_windmill",
+          "name": "Windmill Grinding Floor",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_mill_bedroom"
+          ],
+          "contained_object_ids": [
+            "obj_windmill_grindstone"
+          ]
+        },
+        "room_mill_bedroom": {
+          "id": "room_mill_bedroom",
+          "name": "Miller's Bedchamber",
+          "connected_room_ids": [
+            "room_windmill"
+          ],
+          "contained_object_ids": [
+            "obj_bed_mill"
+          ]
+        }
+      },
+      "owner_id": "npc_citizen_10"
+    },
+    "bldg_carpenter": {
+      "id": "bldg_carpenter",
+      "name": "Sawmill & Carpenter's Shop",
+      "category": "COMMERCIAL",
+      "rooms": {
+        "room_carpenter": {
+          "id": "room_carpenter",
+          "name": "Carpentry Benches & Timber Yard",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_carpenter_bedroom"
+          ],
+          "contained_object_ids": [
+            "obj_sawmill_bench"
+          ]
+        },
+        "room_carpenter_bedroom": {
+          "id": "room_carpenter_bedroom",
+          "name": "Carpenter's Loft Quarters",
+          "connected_room_ids": [
+            "room_carpenter"
+          ],
+          "contained_object_ids": [
+            "obj_bed_carpenter"
+          ]
+        }
+      },
+      "owner_id": "npc_citizen_14"
+    },
+    "bldg_guardhouse": {
+      "id": "bldg_guardhouse",
+      "name": "Town Watch Guardhouse",
+      "category": "CIVIC",
+      "rooms": {
+        "room_guardhouse": {
+          "id": "room_guardhouse",
+          "name": "Watch Armory & Muster Room",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_barracks_bedroom"
+          ]
+        },
+        "room_barracks_bedroom": {
+          "id": "room_barracks_bedroom",
+          "name": "Watch Barracks Quarters",
+          "connected_room_ids": [
+            "room_guardhouse"
+          ],
+          "contained_object_ids": [
+            "obj_bunks_guard"
+          ]
+        }
+      },
+      "owner_id": "npc_citizen_16"
+    },
+    "bldg_cottages_north": {
+      "id": "bldg_cottages_north",
+      "name": "North Meadow Cottages",
+      "category": "RESIDENTIAL",
+      "rooms": {
+        "room_cottage_north": {
+          "id": "room_cottage_north",
+          "name": "North Meadow Hearth Kitchen",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_cottage_bedroom_north"
+          ],
+          "contained_object_ids": [
+            "obj_hearth_cottage_north"
+          ]
+        },
+        "room_cottage_bedroom_north": {
+          "id": "room_cottage_bedroom_north",
+          "name": "North Meadow Bedchamber",
+          "connected_room_ids": [
+            "room_cottage_north"
+          ],
+          "contained_object_ids": [
+            "obj_bunks_cottage_north",
+            "obj_pantry_cottage_north"
+          ]
+        }
+      }
+    },
+    "bldg_cottages_south": {
+      "id": "bldg_cottages_south",
+      "name": "South Brook Cottages",
+      "category": "RESIDENTIAL",
+      "rooms": {
+        "room_cottage_south": {
+          "id": "room_cottage_south",
+          "name": "South Brook Hearth Kitchen",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_cottage_bedroom_south"
+          ],
+          "contained_object_ids": [
+            "obj_hearth_cottage_south"
+          ]
+        },
+        "room_cottage_bedroom_south": {
+          "id": "room_cottage_bedroom_south",
+          "name": "South Brook Bedchamber",
+          "connected_room_ids": [
+            "room_cottage_south"
+          ],
+          "contained_object_ids": [
+            "obj_bunks_cottage_south",
+            "obj_pantry_cottage_south"
+          ]
+        }
+      }
+    },
+    "bldg_lodgings_east": {
+      "id": "bldg_lodgings_east",
+      "name": "East Commons Lodgings",
+      "category": "RESIDENTIAL",
+      "rooms": {
+        "room_lodgings_east": {
+          "id": "room_lodgings_east",
+          "name": "East Commons Hearth & Kitchen",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_lodgings_bedroom_east"
+          ],
+          "contained_object_ids": [
+            "obj_hearth_lodgings_east"
+          ]
+        },
+        "room_lodgings_bedroom_east": {
+          "id": "room_lodgings_bedroom_east",
+          "name": "East Commons Bedchamber",
+          "connected_room_ids": [
+            "room_lodgings_east"
+          ],
+          "contained_object_ids": [
+            "obj_bunks_lodgings_east",
+            "obj_pantry_lodgings_east"
+          ]
+        }
+      }
+    },
+    "bldg_lodgings_west": {
+      "id": "bldg_lodgings_west",
+      "name": "West Commons Lodgings",
+      "category": "RESIDENTIAL",
+      "rooms": {
+        "room_lodgings_west": {
+          "id": "room_lodgings_west",
+          "name": "West Commons Hearth & Kitchen",
+          "connected_room_ids": [
+            "room_village_square",
+            "room_lodgings_bedroom_west"
+          ],
+          "contained_object_ids": [
+            "obj_hearth_lodgings_west"
+          ]
+        },
+        "room_lodgings_bedroom_west": {
+          "id": "room_lodgings_bedroom_west",
+          "name": "West Commons Bedchamber",
+          "connected_room_ids": [
+            "room_lodgings_west"
+          ],
+          "contained_object_ids": [
+            "obj_bunks_lodgings_west",
+            "obj_pantry_lodgings_west"
+          ]
+        }
+      }
+    }
+  }
+}

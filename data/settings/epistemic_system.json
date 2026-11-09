@@ -1,0 +1,113 @@
+{
+  "epistemic_system": {
+    "memory_dynamics": {
+      "working_memory_capacity": 7,
+      "dormant_activation_threshold": 0.15,
+      "recall_cue_sensitivity": 0.65,
+      "emotional_anchor_permanence_threshold": 1.8,
+      "forgetting_half_life_ticks": 4320,
+      "repetition_reinforcement_boost": 0.25
+    },
+    "visibility_classifications": {
+      "INTERNAL_MIND": {
+        "is_transmittable": false,
+        "requires_deliberate_confide": true,
+        "description": "Inner subjective thoughts, unvoiced doubts, private memories known solely to the self."
+      },
+      "SECRET": {
+        "is_transmittable": true,
+        "transmission_requires_trust": 75.0,
+        "leak_risk_factor": 0.35,
+        "leak_penalty_multiplier": 2.0,
+        "description": "Clandestine knowledge protected by oaths, guilt, or criminal liability. High risk if leaked."
+      },
+      "CONFIDENTIAL": {
+        "is_transmittable": true,
+        "authorized_roles_only": true,
+        "transmission_requires_trust": 50.0,
+        "description": "Restricted institutional intelligence: council ledgers, guild recipes, watch patrol routes."
+      },
+      "PRIVATE_DYADIC": {
+        "is_transmittable": true,
+        "transmission_requires_trust": 35.0,
+        "description": "Shared bilateral interpersonal knowledge: courtship vows, family matters, private gifts."
+      },
+      "PUBLIC_SETTLEMENT": {
+        "is_transmittable": true,
+        "transmission_requires_trust": 0.0,
+        "radiates_ambient": true,
+        "description": "General open knowledge: civic decrees, plaza notice board banns, market commodity prices."
+      }
+    },
+    "epistemic_types": {
+      "FACT": {
+        "base_credibility": 1.0,
+        "distortion_rate_per_hop": 0.01,
+        "description": "Directly observed physical reality or mathematically verified ledger accounting."
+      },
+      "PRESUMPTION": {
+        "base_credibility": 0.75,
+        "distortion_rate_per_hop": 0.05,
+        "description": "High-confidence deductive inference derived from circumstantial or physical evidence."
+      },
+      "ASSUMPTION": {
+        "base_credibility": 0.50,
+        "distortion_rate_per_hop": 0.08,
+        "description": "Heuristic cultural default or unverified prior expectation."
+      },
+      "GUESS": {
+        "base_credibility": 0.30,
+        "distortion_rate_per_hop": 0.14,
+        "description": "Speculative hearsay, tavern gossip, or unconfirmed conjecture."
+      },
+      "INTERNAL_THOUGHT": {
+        "base_credibility": 0.65,
+        "distortion_rate_per_hop": 0.0,
+        "description": "Dynamic introspective monologue, suspicion, or philosophical pondering."
+      },
+      "TUTORIAL_EXPLANATION": {
+        "base_credibility": 1.0,
+        "distortion_rate_per_hop": 0.0,
+        "immune_to_decay": true,
+        "description": "Pedagogical instruction: craft manuals, agricultural methods, legal procedures."
+      }
+    },
+    "inscribed_carriers": {
+      "book": {
+        "read_ticks": 120,
+        "learning_boost": 1.5,
+        "durability_decay_per_reading": 1.0
+      },
+      "ledger": {
+        "read_ticks": 60,
+        "learning_boost": 1.2,
+        "exposes_confidential_records": true,
+        "durability_decay_per_reading": 0.5
+      },
+      "letter": {
+        "read_ticks": 15,
+        "learning_boost": 1.0,
+        "destroy_on_read": false,
+        "durability_decay_per_reading": 0.2
+      },
+      "note": {
+        "read_ticks": 10,
+        "learning_boost": 0.9,
+        "destroy_on_read": false,
+        "durability_decay_per_reading": 0.1
+      },
+      "clue_item": {
+        "read_ticks": 20,
+        "learning_boost": 1.1,
+        "generates_inference": true,
+        "durability_decay_per_reading": 0.0
+      }
+    },
+    "relationship_priority_weights": {
+      "spousal_affection_weight": 0.40,
+      "trust_weight": 0.30,
+      "club_kinship_weight": 0.15,
+      "aspirational_utility_weight": 0.15
+    }
+  }
+}

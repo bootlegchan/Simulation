@@ -1,0 +1,77 @@
+{
+  "channels": {
+    "CIVIC_NOTICES": {
+      "channel_name": "Civic Notice Boards & Municipal Bulletins",
+      "is_public": true,
+      "base_credibility": 0.95,
+      "default_decay_ticks": 7200,
+      "allowed_room_archetypes": ["MARKET_PLAZA", "TOWN_SQUARE", "CIRCULATION", "CIVIC"],
+      "allowed_room_keywords": ["square", "hall", "plaza", "market", "board"]
+    },
+    "GOSSIP_AND_RUMORS": {
+      "channel_name": "Interpersonal Word-of-Mouth Gossip",
+      "is_public": true,
+      "base_credibility": 0.70,
+      "default_decay_ticks": 4320,
+      "diffusion_probability": 0.65,
+      "distortion_rate_per_hop": 0.05,
+      "extraversion_multiplier": 1.4,
+      "trust_affinity_weight": 0.40
+    },
+    "CRIME_AND_JUSTICE": {
+      "channel_name": "Watch Incident Reports & Formal Warrants",
+      "is_public": false,
+      "base_credibility": 0.90,
+      "default_decay_ticks": 5760,
+      "vigilance_boost_per_report": 15.0,
+      "investigation_duration_ticks": 1440,
+      "target_roles": ["guard", "sheriff", "constable", "captain", "marshal", "watchman"]
+    },
+    "SHADOW_INTELLIGENCE": {
+      "channel_name": "Underworld Shadow Whispers & Mark Appraisals",
+      "is_public": false,
+      "base_credibility": 0.80,
+      "default_decay_ticks": 2880,
+      "crime_propensity_access_threshold": 20.0,
+      "wealthy_mark_threshold_gold": 50.0,
+      "blindspot_watch_distance_min": 2,
+      "allowed_room_keywords": ["underworld", "vice", "tavern", "alley", "cellar", "shadow"]
+    },
+    "VOCATIONAL_KNOWLEDGE": {
+      "channel_name": "Workshop Instruction & Craft Mentorship",
+      "is_public": true,
+      "base_credibility": 0.98,
+      "default_decay_ticks": 14400,
+      "skill_transfer_rate": 0.50,
+      "master_skill_minimum": 50.0,
+      "apprentice_skill_gain_max": 2.5
+    }
+  },
+  "general_diffusion": {
+    "max_active_items_per_channel": 100,
+    "hourly_diffusion_tick_interval": 60,
+    "max_mental_known_items_per_npc": 30
+  },
+  "memory_dynamics": {
+    "salience_decay_lambda": 0.0003,
+    "eviction_salience_threshold": 0.10,
+    "max_mental_known_items_per_npc": 30,
+    "recall_salience_boost": 0.35,
+    "repetition_reinforcement_cap": 1.0
+  },
+  "ambient_waves": {
+    "enabled": true,
+    "default_wave_duration_ticks": 60,
+    "acoustic_portal_attenuation": 0.50,
+    "min_perceptible_intensity": 0.15,
+    "base_acoustic_spread_intensity": 0.80,
+    "base_visual_spread_intensity": 0.95
+  },
+  "cognitive_receptivity": {
+    "exhaustion_energy_threshold": 20.0,
+    "high_stress_threshold": 70.0,
+    "resentment_gossip_bias": 0.25,
+    "honor_civic_bias": 0.20,
+    "min_bandwidth_ratio_for_idle_gossip": 0.30
+  }
+}

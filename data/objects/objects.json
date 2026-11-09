@@ -1,0 +1,401 @@
+{
+  "obj_bed_farmhouse": {
+    "id": "obj_bed_farmhouse",
+    "name": "Oak Double Feather Bed",
+    "capabilities": [
+      "sleep_comfort",
+      "private_rest",
+      "intimate_sanctuary"
+    ],
+    "location_id": "room_farmhouse_bedroom",
+    "durability": 100.0
+  },
+  "obj_pantry_farmhouse": {
+    "id": "obj_pantry_farmhouse",
+    "name": "Homestead Larder & Pantry Chest",
+    "capabilities": [
+      "pantry_storage",
+      "domestic_food_stores",
+      "family_gathering"
+    ],
+    "location_id": "room_farmhouse_bedroom",
+    "durability": 100.0
+  },
+  "obj_hearth_farmhouse": {
+    "id": "obj_hearth_farmhouse",
+    "name": "Stone Kitchen Hearth & Oven",
+    "capabilities": [
+      "hearth_warmth",
+      "domestic_dining",
+      "family_gathering"
+    ],
+    "location_id": "room_farmhouse",
+    "durability": 100.0
+  },
+  "obj_table_farmhouse": {
+    "id": "obj_table_farmhouse",
+    "name": "Rustic Pine Dining Table",
+    "capabilities": [
+      "domestic_dining",
+      "leisure_seating",
+      "private_reflection"
+    ],
+    "location_id": "room_farmhouse",
+    "durability": 100.0
+  },
+  "obj_bed_bakery": {
+    "id": "obj_bed_bakery",
+    "name": "Baker's Quarters Bed",
+    "capabilities": [
+      "sleep_comfort",
+      "private_rest",
+      "intimate_sanctuary"
+    ],
+    "location_id": "room_bakery_bedroom",
+    "durability": 100.0
+  },
+  "obj_pantry_bakery": {
+    "id": "obj_pantry_bakery",
+    "name": "Bakery Pantry Cupboard",
+    "capabilities": [
+      "pantry_storage",
+      "domestic_food_stores"
+    ],
+    "location_id": "room_bakery_bedroom",
+    "durability": 100.0
+  },
+  "obj_hearth_oven": {
+    "id": "obj_hearth_oven",
+    "name": "Brick Masonry Hearth Oven",
+    "capabilities": [
+      "oven",
+      "hearth",
+      "bakery",
+      "hearth_warmth"
+    ],
+    "location_id": "room_bakery",
+    "durability": 100.0
+  },
+  "obj_bed_tavern": {
+    "id": "obj_bed_tavern",
+    "name": "Innkeeper's Loft Bed",
+    "capabilities": [
+      "sleep_comfort",
+      "private_rest",
+      "intimate_sanctuary"
+    ],
+    "location_id": "room_tavern_bedroom",
+    "durability": 100.0
+  },
+  "obj_tavern_hearth": {
+    "id": "obj_tavern_hearth",
+    "name": "Roaring Taproom Hearth",
+    "capabilities": [
+      "hearth_warmth",
+      "family_gathering",
+      "domestic_dining"
+    ],
+    "location_id": "room_tavern",
+    "durability": 100.0
+  },
+  "obj_gaming_table": {
+    "id": "obj_gaming_table",
+    "name": "Tavern Dice & Card Table",
+    "capabilities": [
+      "dice_hazard",
+      "recreation_gaming",
+      "leisure_seating"
+    ],
+    "location_id": "room_tavern",
+    "durability": 100.0
+  },
+  "obj_bed_rectory": {
+    "id": "obj_bed_rectory",
+    "name": "Simple Monastic Cot",
+    "capabilities": [
+      "sleep_comfort",
+      "private_rest",
+      "private_reflection"
+    ],
+    "location_id": "room_rectory_bedroom",
+    "durability": 100.0
+  },
+  "obj_chapel_altar": {
+    "id": "obj_chapel_altar",
+    "name": "Altar of the Sacred Hearth",
+    "capabilities": [
+      "sanctuary",
+      "spiritual_confession",
+      "prayer"
+    ],
+    "location_id": "room_chapel",
+    "durability": 100.0
+  },
+  "obj_bed_vance": {
+    "id": "obj_bed_vance",
+    "name": "Canopy Merchant Bed",
+    "capabilities": [
+      "sleep_comfort",
+      "private_rest",
+      "intimate_sanctuary"
+    ],
+    "location_id": "room_vance_bedroom",
+    "durability": 100.0
+  },
+  "obj_pantry_vance": {
+    "id": "obj_pantry_vance",
+    "name": "Vance Household Pantry Stores",
+    "capabilities": [
+      "pantry_storage",
+      "domestic_food_stores"
+    ],
+    "location_id": "room_vance_bedroom",
+    "durability": 100.0
+  },
+  "obj_bed_smith": {
+    "id": "obj_bed_smith",
+    "name": "Smith's Quarters Bed",
+    "capabilities": [
+      "sleep_comfort",
+      "private_rest"
+    ],
+    "location_id": "room_smith_bedroom",
+    "durability": 100.0
+  },
+  "obj_blacksmith_forge": {
+    "id": "obj_blacksmith_forge",
+    "name": "Iron Smelting Furnace & Forge",
+    "capabilities": [
+      "furnace",
+      "forge",
+      "blacksmith",
+      "hearth_warmth"
+    ],
+    "location_id": "room_blacksmith",
+    "durability": 100.0
+  },
+  "obj_blacksmith_anvil": {
+    "id": "obj_blacksmith_anvil",
+    "name": "Hardened Steel Anvil",
+    "capabilities": [
+      "anvil",
+      "forge",
+      "blacksmith"
+    ],
+    "location_id": "room_blacksmith",
+    "durability": 100.0
+  },
+  "obj_bed_mill": {
+    "id": "obj_bed_mill",
+    "name": "Miller's Loft Bed",
+    "capabilities": [
+      "sleep_comfort",
+      "private_rest"
+    ],
+    "location_id": "room_mill_bedroom",
+    "durability": 100.0
+  },
+  "obj_windmill_grindstone": {
+    "id": "obj_windmill_grindstone",
+    "name": "Heavy Rotary Millstones",
+    "capabilities": [
+      "mill",
+      "grindstone"
+    ],
+    "location_id": "room_windmill",
+    "durability": 100.0
+  },
+  "obj_bed_carpenter": {
+    "id": "obj_bed_carpenter",
+    "name": "Carpenter's Loft Bed",
+    "capabilities": [
+      "sleep_comfort",
+      "private_rest"
+    ],
+    "location_id": "room_carpenter_bedroom",
+    "durability": 100.0
+  },
+  "obj_sawmill_bench": {
+    "id": "obj_sawmill_bench",
+    "name": "Heavy Timber Workbench & Saw",
+    "capabilities": [
+      "sawmill",
+      "workbench",
+      "carpenter"
+    ],
+    "location_id": "room_carpenter",
+    "durability": 100.0
+  },
+  "obj_bunks_guard": {
+    "id": "obj_bunks_guard",
+    "name": "Watch Barracks Double Bunks",
+    "capabilities": [
+      "sleep_comfort",
+      "group_quarters",
+      "private_rest"
+    ],
+    "location_id": "room_barracks_bedroom",
+    "durability": 100.0
+  },
+  "obj_bunks_cottage_north": {
+    "id": "obj_bunks_cottage_north",
+    "name": "Meadow Cottage Bunk Beds",
+    "capabilities": [
+      "sleep_comfort",
+      "group_quarters",
+      "private_rest",
+      "intimate_sanctuary"
+    ],
+    "location_id": "room_cottage_bedroom_north",
+    "durability": 100.0
+  },
+  "obj_pantry_cottage_north": {
+    "id": "obj_pantry_cottage_north",
+    "name": "North Meadow Cottage Pantry",
+    "capabilities": [
+      "pantry_storage",
+      "domestic_food_stores"
+    ],
+    "location_id": "room_cottage_bedroom_north",
+    "durability": 100.0
+  },
+  "obj_hearth_cottage_north": {
+    "id": "obj_hearth_cottage_north",
+    "name": "North Meadow Cottage Hearth",
+    "capabilities": [
+      "hearth_warmth",
+      "domestic_dining",
+      "family_gathering"
+    ],
+    "location_id": "room_cottage_north",
+    "durability": 100.0
+  },
+  "obj_bunks_cottage_south": {
+    "id": "obj_bunks_cottage_south",
+    "name": "Brook Cottage Bunk Beds",
+    "capabilities": [
+      "sleep_comfort",
+      "group_quarters",
+      "private_rest",
+      "intimate_sanctuary"
+    ],
+    "location_id": "room_cottage_bedroom_south",
+    "durability": 100.0
+  },
+  "obj_pantry_cottage_south": {
+    "id": "obj_pantry_cottage_south",
+    "name": "South Brook Cottage Pantry",
+    "capabilities": [
+      "pantry_storage",
+      "domestic_food_stores"
+    ],
+    "location_id": "room_cottage_bedroom_south",
+    "durability": 100.0
+  },
+  "obj_hearth_cottage_south": {
+    "id": "obj_hearth_cottage_south",
+    "name": "South Brook Cottage Hearth",
+    "capabilities": [
+      "hearth_warmth",
+      "domestic_dining",
+      "family_gathering"
+    ],
+    "location_id": "room_cottage_south",
+    "durability": 100.0
+  },
+  "obj_notice_board_square": {
+    "id": "obj_notice_board_square",
+    "name": "Oakwood Village Notice Board",
+    "capabilities": [
+      "civic_notices",
+      "public_bulletin"
+    ],
+    "location_id": "room_village_square",
+    "durability": 100.0
+  },
+  "obj_bocce_lawn": {
+    "id": "obj_bocce_lawn",
+    "name": "Plaza Lawn Bowls Court",
+    "capabilities": [
+      "bocce_ball",
+      "recreation_gaming"
+    ],
+    "location_id": "room_village_square",
+    "durability": 100.0
+  },
+  "obj_bunks_farmhouse_loft": {
+    "id": "obj_bunks_farmhouse_loft",
+    "name": "Farmhand Bunk Beds",
+    "capabilities": [
+      "sleep_comfort",
+      "group_quarters",
+      "private_rest"
+    ],
+    "location_id": "room_farmhouse_loft",
+    "durability": 100.0
+  },
+  "obj_hearth_lodgings_east": {
+    "id": "obj_hearth_lodgings_east",
+    "name": "East Commons Stone Hearth",
+    "capabilities": [
+      "hearth_warmth",
+      "domestic_dining",
+      "family_gathering"
+    ],
+    "location_id": "room_lodgings_east",
+    "durability": 100.0
+  },
+  "obj_bunks_lodgings_east": {
+    "id": "obj_bunks_lodgings_east",
+    "name": "East Commons Bunk Beds",
+    "capabilities": [
+      "sleep_comfort",
+      "group_quarters",
+      "private_rest"
+    ],
+    "location_id": "room_lodgings_bedroom_east",
+    "durability": 100.0
+  },
+  "obj_pantry_lodgings_east": {
+    "id": "obj_pantry_lodgings_east",
+    "name": "East Commons Pantry Cupboard",
+    "capabilities": [
+      "pantry_storage",
+      "domestic_food_stores"
+    ],
+    "location_id": "room_lodgings_bedroom_east",
+    "durability": 100.0
+  },
+  "obj_hearth_lodgings_west": {
+    "id": "obj_hearth_lodgings_west",
+    "name": "West Commons Stone Hearth",
+    "capabilities": [
+      "hearth_warmth",
+      "domestic_dining",
+      "family_gathering"
+    ],
+    "location_id": "room_lodgings_west",
+    "durability": 100.0
+  },
+  "obj_bunks_lodgings_west": {
+    "id": "obj_bunks_lodgings_west",
+    "name": "West Commons Bunk Beds",
+    "capabilities": [
+      "sleep_comfort",
+      "group_quarters",
+      "private_rest"
+    ],
+    "location_id": "room_lodgings_bedroom_west",
+    "durability": 100.0
+  },
+  "obj_pantry_lodgings_west": {
+    "id": "obj_pantry_lodgings_west",
+    "name": "West Commons Pantry Cupboard",
+    "capabilities": [
+      "pantry_storage",
+      "domestic_food_stores"
+    ],
+    "location_id": "room_lodgings_bedroom_west",
+    "durability": 100.0
+  }
+}

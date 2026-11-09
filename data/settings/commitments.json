@@ -1,0 +1,24 @@
+{
+  "commitments": {
+    "ROMANTIC_DATE": {
+      "commitment_type": "ROMANTIC_DATE",
+      "name": "Evening Tavern Date",
+      "base_duration_ticks": 60
+    },
+    "COMMUNAL_MEAL": {
+      "commitment_type": "COMMUNAL_MEAL",
+      "name": "Family Hearth Dinner",
+      "base_duration_ticks": 60
+    },
+    "CONVERSATIONAL_CHAT": {
+      "commitment_type": "CONVERSATIONAL_CHAT",
+      "name": "Street Corner Gossip",
+      "base_duration_ticks": 30
+    },
+    "RECREATIONAL_CONTEST": {
+      "commitment_type": "RECREATIONAL_CONTEST",
+      "name": "Village Bocce Match",
+      "base_duration_ticks": 60
+    }
+  }
+}

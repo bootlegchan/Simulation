@@ -1,0 +1,50 @@
+{
+  "decrees": {
+    "NOCTURNAL_CURFEW": {
+      "decree_id": "NOCTURNAL_CURFEW",
+      "name": "Municipal Nocturnal Street Curfew",
+      "description": "Citizens must remain within indoor domestic quarters between 22:00 and 05:00 unless holding watchman or emergency labor vouchers.",
+      "duration_ticks": 10080,
+      "minimum_council_vote": 0.50,
+      "effects": {
+        "watch_vigilance_bonus": 20.0,
+        "crime_suppression_ratio": 0.35,
+        "loitering_fine_gold": 2.0
+      }
+    },
+    "BREAD_PRICE_CEILING": {
+      "decree_id": "BREAD_PRICE_CEILING",
+      "name": "Hearth Bread Price Ceiling & Anti-Usury Cap",
+      "description": "Caps the retail market price of bread loaves at 1.0g to safeguard indigent citizens against commercial gouging.",
+      "duration_ticks": 7200,
+      "minimum_council_vote": 0.50,
+      "effects": {
+        "max_bread_price_cap": 1.0,
+        "baker_profit_margin_penalty": 0.15,
+        "agrarian_grievance_delta": 15.0
+      }
+    },
+    "SUMPTUARY_SPENDING_CAP": {
+      "decree_id": "SUMPTUARY_SPENDING_CAP",
+      "name": "Sumptuary Wealth & Ostentation Cap",
+      "description": "Levies surcharges on luxury purchases and restrains ostentatious displays of hoarded wealth.",
+      "duration_ticks": 7200,
+      "minimum_council_vote": 0.60,
+      "effects": {
+        "luxury_surcharge_ratio": 0.20,
+        "merchant_grievance_delta": 15.0
+      }
+    },
+    "INFRASTRUCTURE_REPAIR_MANDATE": {
+      "decree_id": "INFRASTRUCTURE_REPAIR_MANDATE",
+      "name": "Emergency Public Works & Infrastructure Repair Mandate",
+      "description": "Allocates municipal treasury funds to sponsor emergency timber bracing, masonry repairs, and road clearing.",
+      "duration_ticks": 4320,
+      "minimum_council_vote": 0.40,
+      "effects": {
+        "treasury_allocation_gold": 40.0,
+        "repair_job_bounty_gold": 10.0
+      }
+    }
+  }
+}

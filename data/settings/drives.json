@@ -1,0 +1,35 @@
+{
+  "decision_temperature": 12.0,
+  "drives": {
+    "satisfy_hunger": {
+      "linear_weight": 0.40,
+      "scale_divisor": 28.0,
+      "power_exponent": 2.2,
+      "power_multiplier": 9.0
+    },
+    "rest": {
+      "linear_weight": 0.25,
+      "scale_divisor": 22.0,
+      "power_exponent": 2.3,
+      "power_multiplier": 6.0
+    },
+    "work_production": {
+      "conscientiousness_weight": 26.0,
+      "ambition_weight": 16.0,
+      "base_potential": 12.0,
+      "min_stamina_factor": 0.15
+    },
+    "socialize": {
+      "extraversion_weight": 22.0,
+      "social_deficit_weight": 0.35,
+      "energy_threshold": 15.0,
+      "energy_range": 85.0,
+      "min_social_stamina": 0.15
+    },
+    "communal_dining": {
+      "base_potential": 14.0,
+      "social_deficit_weight": 0.20,
+      "hunger_weight": 0.20
+    }
+  }
+}

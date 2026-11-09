@@ -1,0 +1,83 @@
+{
+  "means_end_volition": {
+    "volition_tiers": {
+      "CONVENTIONAL": {
+        "name": "Conventional & Approved",
+        "description": "Standard, socially sanctioned, lawful pathway with zero moral resistance.",
+        "base_moral_cost": 0.0,
+        "base_risk": 0.0
+      },
+      "COMPENSATORY": {
+        "name": "Compensatory & Resourceful",
+        "description": "Adaptive, pragmatic compromise requiring extra effort, fees, or informal cooperation.",
+        "base_moral_cost": 5.0,
+        "base_risk": 0.05
+      },
+      "TRANSGRESSIVE": {
+        "name": "Transgressive & Desperate",
+        "description": "Unsanctioned, risky, norm-violating action only considered when need urgency overcomes moral resistance.",
+        "base_moral_cost": 35.0,
+        "base_risk": 0.30
+      }
+    },
+    "moral_friction_weights": {
+      "honor_weight": 40.0,
+      "conscientiousness_weight": 25.0,
+      "piety_weight": 20.0,
+      "crime_propensity_reduction_weight": 35.0,
+      "urgency_power_exponent": 2.0
+    },
+    "sustenance_problem_solving": {
+      "emergency_hunger_threshold": 65.0,
+      "starvation_threshold": 80.0,
+      "borrowing": {
+        "min_relationship_trust": 40.0,
+        "min_relationship_affection": 25.0,
+        "trust_consumption_on_loan": 2.0,
+        "food_shared_hunger_relief": 35.0
+      },
+      "foraging": {
+        "foraging_rooms": ["room_cottage_north", "room_cottage_south", "room_village_square"],
+        "hunger_relief": 25.0,
+        "energy_drain": 8.0
+      },
+      "shoplifting": {
+        "target_rooms": ["room_bakery", "room_shop", "room_windmill"],
+        "base_detection_chance": 0.25,
+        "subterfuge_scaling": 0.005,
+        "hunger_relief": 40.0,
+        "guilt_spike": 30.0,
+        "stress_spike": 22.0,
+        "moral_erosion_gain": 2.5
+      }
+    },
+    "courtship_problem_solving": {
+      "seclusion_rooms": {
+        "RENTAL": ["room_tavern_bedroom"],
+        "SECLUDED": ["room_farmhouse_loft", "room_cottage_bedroom_north", "room_cottage_bedroom_south"],
+        "TRESPASSING": ["room_blacksmith", "room_carpenter", "room_windmill", "room_bakery", "room_shop"]
+      },
+      "rental_fee_gold": 0.50,
+      "trespass_detection_chance": 0.20,
+      "trespass_guilt_spike": 20.0,
+      "trespass_stress_spike": 15.0,
+      "trespass_scandal_intensity": 0.75,
+      "clandestine_passion_bonus": 10.0,
+      "clandestine_vigilance_bonus": 8.0
+    },
+    "vocational_aspirations": {
+      "enable_skill_bridging": true,
+      "min_ambition_for_career_aspiration": 40.0,
+      "study_skill_gain_per_hour": 0.75,
+      "observation_skill_gain_per_hour": 1.25,
+      "practice_skill_gain_per_hour": 0.90,
+      "energy_drain_study": 10.0
+    },
+    "guilt_aftermath": {
+      "confession_absolution_guilt_reduction": -35.0,
+      "confession_stress_reduction": -25.0,
+      "restitution_wealth_ratio": 1.25,
+      "restitution_pride_bonus": 15.0
+    }
+  }
+}

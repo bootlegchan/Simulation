@@ -1,0 +1,44 @@
+{
+  "multi_attribute_weights": {
+    "default": {
+      "distance": 25.0,
+      "affordability_wealthy": 10.0,
+      "affordability_modest": 20.0,
+      "affordability_poor": 45.0,
+      "taste": 25.0,
+      "quality": 20.0,
+      "relationship": 15.0
+    },
+    "emergency": {
+      "distance": 40.0,
+      "affordability": 30.0,
+      "taste": 15.0,
+      "quality": 10.0,
+      "relationship": 10.0
+    }
+  },
+  "scoring_modifiers": {
+    "granary_civic_shame": -30.0,
+    "unaffordable_penalty": -9999.0,
+    "palate_exact_multiplier": 1.0,
+    "palate_related_multiplier": 0.7,
+    "palate_mismatch_multiplier": 0.3,
+    "distance_hop_decay": 0.45,
+    "cost_ratio_multiplier": 0.8
+  },
+  "default_commodity_prices": {
+    "food_bread": 1.2,
+    "flour": 0.6,
+    "raw_wheat": 0.3
+  },
+  "vendor_economics": {
+    "vendor_net_margin_ratio": 0.5,
+    "vendor_wholesale_cost_ratio": 0.45,
+    "market_tax_ratio": 0.05
+  },
+  "communal_dining": {
+    "tavern_meal_price_gold": 1.2,
+    "hunger_relief": 35.0,
+    "social_relief": 20.0
+  }
+}

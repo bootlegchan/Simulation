@@ -1,0 +1,46 @@
+{
+  "aid_lodges": {
+    "aid_yeoman_league": {
+      "lodge_id": "aid_yeoman_league",
+      "name": "Agrarian Mutual Sickness & Grain Chest",
+      "eligible_occupations": ["farmer", "miller", "peasant", "laborer", "woodcutter"],
+      "daily_dues_gold": 0.12,
+      "min_wealth_for_dues_gold": 12.0,
+      "emergency_poverty_threshold_gold": 8.0,
+      "emergency_relief_payout_gold": 6.0,
+      "bereavement_benefit_gold": 15.0,
+      "min_treasury_reserve_gold": 20.0,
+      "initial_treasury_balance": 65.0
+    },
+    "aid_craftsmen_benevolence": {
+      "lodge_id": "aid_craftsmen_benevolence",
+      "name": "Artisans Benevolent Relief Fund",
+      "eligible_occupations": ["carpenter", "smith", "blacksmith", "baker", "innkeeper", "merchant", "apiarist"],
+      "daily_dues_gold": 0.15,
+      "min_wealth_for_dues_gold": 15.0,
+      "emergency_poverty_threshold_gold": 10.0,
+      "emergency_relief_payout_gold": 8.0,
+      "bereavement_benefit_gold": 20.0,
+      "min_treasury_reserve_gold": 30.0,
+      "initial_treasury_balance": 80.0
+    },
+    "aid_sacred_hearth_alms": {
+      "lodge_id": "aid_sacred_hearth_alms",
+      "name": "Parish Charitable Alms Box",
+      "eligible_occupations": ["priest", "clerk", "notary", "commoner", "farmer", "baker", "weaver", "mason", "laborer", "woodcutter", "healer", "brewer", "miller", "apprentice"],
+      "daily_dues_gold": 0.12,
+      "min_wealth_for_dues_gold": 10.0,
+      "emergency_poverty_threshold_gold": 6.0,
+      "emergency_relief_payout_gold": 5.0,
+      "bereavement_benefit_gold": 12.0,
+      "min_treasury_reserve_gold": 15.0,
+      "initial_treasury_balance": 50.0
+    }
+  },
+  "fraternal_aid_mechanics": {
+    "dues_collection_interval_ticks": 1440,
+    "relief_cooldown_ticks": 4320,
+    "relief_contentment_boost": 18.0,
+    "relief_stress_reduction": -20.0
+  }
+}

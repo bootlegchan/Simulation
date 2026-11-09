@@ -1,0 +1,79 @@
+{
+  "factions": {
+    "faction_agrarian_yeomanry": {
+      "faction_id": "faction_agrarian_yeomanry",
+      "name": "The Agrarian Yeomanry",
+      "agenda": "AGRARIAN_PROTECTIONISM",
+      "leader_role": "farmer",
+      "eligible_occupations": [
+        "farmer",
+        "miller",
+        "peasant",
+        "laborer",
+        "woodcutter"
+      ],
+      "favored_decrees": [
+        "GRAIN_PRICE_FLOOR",
+        "INFRASTRUCTURE_REPAIR_MANDATE"
+      ],
+      "opposed_decrees": [
+        "BREAD_PRICE_CEILING",
+        "NOCTURNAL_CURFEW",
+        "SUMPTUARY_SPENDING_CAP"
+      ],
+      "strike_threshold": 45.0,
+      "base_influence": 35.0
+    },
+    "faction_craftsmen_guild": {
+      "faction_id": "faction_craftsmen_guild",
+      "name": "Guild of Artisans & Merchants",
+      "agenda": "COMMERCIAL_EXPANSION",
+      "leader_role": "blacksmith",
+      "eligible_occupations": [
+        "carpenter",
+        "smith",
+        "blacksmith",
+        "baker",
+        "innkeeper",
+        "merchant",
+        "apiarist"
+      ],
+      "favored_decrees": [
+        "INFRASTRUCTURE_REPAIR_MANDATE",
+        "COMMERCIAL_FREE_TRADE"
+      ],
+      "opposed_decrees": [
+        "SUMPTUARY_SPENDING_CAP",
+        "BREAD_PRICE_CEILING"
+      ],
+      "strike_threshold": 50.0,
+      "base_influence": 40.0
+    },
+    "faction_sacred_hearth": {
+      "faction_id": "faction_sacred_hearth",
+      "name": "Concord of the Sacred Hearth",
+      "agenda": "MORAL_ORTHODOXY_AND_RELIEF",
+      "leader_role": "priest",
+      "eligible_occupations": [
+        "priest",
+        "clerk",
+        "notary",
+        "commoner"
+      ],
+      "favored_decrees": [
+        "NOCTURNAL_CURFEW",
+        "SUMPTUARY_SPENDING_CAP",
+        "INFRASTRUCTURE_REPAIR_MANDATE"
+      ],
+      "opposed_decrees": [],
+      "strike_threshold": 55.0,
+      "base_influence": 30.0
+    }
+  },
+  "political_dynamics": {
+    "daily_grievance_decay": 0.5,
+    "strike_resolution_buffer": 10.0,
+    "council_assembly_interval_ticks": 4320,
+    "emergency_council_grievance_threshold": 40.0
+  }
+}

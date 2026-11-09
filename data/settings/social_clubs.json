@@ -1,0 +1,109 @@
+{
+  "social_clubs": {
+    "club_craftsmen_society": {
+      "club_id": "club_craftsmen_society",
+      "name": "Honorable Society of Master Craftsmen",
+      "description": "A fraternal sodality of skilled artisans devoted to trade excellence, workstation safety, and mutual fellowship.",
+      "membership_policy": "GATED",
+      "is_secret": false,
+      "secrecy_oath": false,
+      "guest_policy": "INVITE_ONLY",
+      "required_trial_sessions": 2,
+      "meeting_room_keywords": ["tavern", "workshop", "hall", "blacksmith", "bakery", "mill"],
+      "preferred_meeting_start_hour": 18.0,
+      "preferred_meeting_end_hour": 22.0,
+      "eligible_occupations": ["carpenter", "smith", "blacksmith", "baker", "miller", "apiarist", "mason", "weaver", "woodcutter"],
+      "min_extraversion": 0.0,
+      "peer_bonding_multiplier": 1.50,
+      "morale_contentment_boost": 12.0,
+      "stress_relief_bonus": -10.0,
+      "reputation_focus": "craftsmanship",
+      "state_requirements": {
+        "min_energy": 20.0,
+        "max_stress": 75.0,
+        "min_taste_alignment": 10.0
+      }
+    },
+    "club_boar_dice_circle": {
+      "club_id": "club_boar_dice_circle",
+      "name": "The Boar & Flagon Gaming Circle",
+      "description": "An open fellowship of sociable tavern patrons and gamblers who relish friendly competition, bocce, and dice wagers.",
+      "membership_policy": "OPEN",
+      "is_secret": false,
+      "secrecy_oath": false,
+      "guest_policy": "ALLOWED",
+      "required_trial_sessions": 1,
+      "meeting_room_keywords": ["tavern", "village_square", "common_room"],
+      "preferred_meeting_start_hour": 18.5,
+      "preferred_meeting_end_hour": 23.5,
+      "eligible_occupations": [],
+      "min_extraversion": 0.35,
+      "peer_bonding_multiplier": 1.35,
+      "morale_contentment_boost": 15.0,
+      "stress_relief_bonus": -12.0,
+      "reputation_focus": "recreation",
+      "state_requirements": {
+        "min_energy": 15.0,
+        "max_stress": 85.0,
+        "min_taste_alignment": 0.0
+      }
+    },
+    "club_sacred_hearth_altar": {
+      "club_id": "club_sacred_hearth_altar",
+      "name": "Confraternity of the Holy Hearth",
+      "description": "A devotional fellowship gathering for prayer, moral guidance, and mutual spiritual counsel.",
+      "membership_policy": "GATED",
+      "is_secret": false,
+      "secrecy_oath": false,
+      "guest_policy": "ALLOWED",
+      "required_trial_sessions": 2,
+      "meeting_room_keywords": ["chapel", "sanctuary", "rectory"],
+      "preferred_meeting_start_hour": 17.0,
+      "preferred_meeting_end_hour": 20.5,
+      "eligible_occupations": ["priest", "clerk", "notary", "commoner", "healer", "midwife"],
+      "min_extraversion": 0.0,
+      "peer_bonding_multiplier": 1.40,
+      "morale_contentment_boost": 10.0,
+      "stress_relief_bonus": -15.0,
+      "reputation_focus": "piety",
+      "state_requirements": {
+        "min_energy": 15.0,
+        "max_stress": 90.0,
+        "max_alcohol": 15.0,
+        "min_taste_alignment": 15.0
+      }
+    },
+    "club_shadow_cabal": {
+      "club_id": "club_shadow_cabal",
+      "name": "The Obsidian Veil",
+      "description": "A clandestine underworld syndicate meeting in shadows and cellars. Bound by a strict blood oath of silence.",
+      "membership_policy": "SECRET",
+      "is_secret": true,
+      "secrecy_oath": true,
+      "guest_policy": "INVITE_ONLY",
+      "required_trial_sessions": 3,
+      "meeting_room_keywords": ["cellar", "underworld", "vault", "alley", "shadow"],
+      "preferred_meeting_start_hour": 22.0,
+      "preferred_meeting_end_hour": 3.0,
+      "eligible_occupations": ["scavenger", "smuggler", "outlaw", "thief", "fence", "rogue"],
+      "min_extraversion": 0.0,
+      "peer_bonding_multiplier": 1.75,
+      "morale_contentment_boost": 18.0,
+      "stress_relief_bonus": -15.0,
+      "reputation_focus": "subterfuge",
+      "state_requirements": {
+        "min_energy": 20.0,
+        "max_stress": 75.0,
+        "min_crime_propensity": 25.0,
+        "min_taste_alignment": 20.0
+      }
+    }
+  },
+  "club_dynamics": {
+    "weekly_gathering_interval_ticks": 10080,
+    "min_active_members_for_conclave": 2,
+    "transgression_standing_penalty": 20.0,
+    "guest_bonding_ratio": 0.75,
+    "secrecy_leak_penalty_grudge": 50.0
+  }
+}

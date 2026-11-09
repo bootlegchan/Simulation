@@ -1,0 +1,14 @@
+{
+  "beeswax_candle": {
+    "id": "beeswax_candle",
+    "name": "Hand-Dipped Beeswax Candle",
+    "base_value": 8.0,
+    "category": "PROCESSED"
+  },
+  "honeycomb": {
+    "id": "honeycomb",
+    "name": "Raw Wild Honeycomb",
+    "base_value": 5.0,
+    "category": "RAW_MATERIAL"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "simulation": {
+    "start_time_iso": "2026-01-01T06:00:00Z",
+    "ticks_per_minute": 1,
+    "seed": 42
+  }
+}
