@@ -32,6 +32,31 @@ MAX_BODY_BYTES = 16 * 1024
 MAX_TICKS = 100_000
 
 
+class SimulationTicker:
+    """Runs one engine tick at a configurable cadence while lifecycle is RUNNING."""
+
+    def __init__(self, engine: SimulationEngine, state_lock: threading.RLock, ticks_per_second: int = 1):
+        self.engine = engine
+        self.state_lock = state_lock
+        self.interval = 1.0 / ticks_per_second
+        self._stop = threading.Event()
+        self._thread = threading.Thread(target=self._run, name="oakwood-simulation-ticker", daemon=True)
+
+    def start(self):
+        self._thread.start()
+
+    def stop(self):
+        self._stop.set()
+        self._thread.join(timeout=3)
+
+    def _run(self):
+        while not self._stop.wait(self.interval):
+            with self.state_lock:
+                lifecycle = getattr(getattr(self.engine, "lifecycle_state", None), "name", "")
+                if lifecycle == "RUNNING":
+                    self.engine.tick(1)
+
+
 def to_json_value(value: Any, depth: int = 0) -> Any:
     """Convert facade DTOs to JSON-safe values without exposing Python objects."""
     if depth > 32:
@@ -73,6 +98,7 @@ class OakwoodHandler(SimpleHTTPRequestHandler):
     api: LocalVisualAPI
     engine: SimulationEngine
     state_lock: threading.RLock
+    ticker: SimulationTicker
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(UI_DIR), **kwargs)
@@ -233,11 +259,19 @@ class OakwoodHandler(SimpleHTTPRequestHandler):
             return api.resume()
         if path == "/simulation/step":
             ticks = self._int_arg(body.get("ticks"), "ticks", 1, 1, MAX_TICKS)
-            return api.step(ticks)
+            was_running = getattr(getattr(self.engine, "lifecycle_state", None), "name", "") == "RUNNING"
+            result = api.step(ticks)
+            if not was_running:
+                result = api.pause()
+            return result
         if path == "/simulation/fast-forward":
             ticks = self._int_arg(body.get("ticks"), "ticks", 60, 1, MAX_TICKS)
             max_leap = self._int_arg(body.get("max_leap"), "max_leap", 60, 1, 1000)
-            return api.fast_forward(ticks, max_leap)
+            was_running = getattr(getattr(self.engine, "lifecycle_state", None), "name", "") == "RUNNING"
+            result = api.fast_forward(ticks, max_leap)
+            if not was_running:
+                result = api.pause()
+            return result
         if path == "/simulation/reset":
             seed = body.get("seed", 42)
             if seed is not None and (isinstance(seed, bool) or not isinstance(seed, int)):
@@ -295,15 +329,20 @@ def main():
     parser.add_argument("--port", type=int, default=4173)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--scenario", default="oakwood_baseline.json")
+    parser.add_argument("--ticks-per-second", type=int, default=1, help="Continuous simulation speed while running (1-60).")
     args = parser.parse_args()
+    if not 1 <= args.ticks_per_second <= 60:
+        parser.error("--ticks-per-second must be between 1 and 60.")
     if args.host not in ("127.0.0.1", "localhost", "::1"):
         parser.error("The adapter is loopback-only. Use 127.0.0.1, localhost or ::1.")
 
     engine = SimulationEngine(get_default_data_dir())
     engine.initialize(seed=args.seed, scenario_filename=args.scenario)
     api = engine.get_visual_api()
+    state_lock = threading.RLock()
+    ticker = SimulationTicker(engine, state_lock, args.ticks_per_second)
     handler = type("ConfiguredOakwoodHandler", (OakwoodHandler,), {
-        "api": api, "engine": engine, "state_lock": threading.RLock()
+        "api": api, "engine": engine, "state_lock": state_lock, "ticker": ticker
     })
     server = ThreadingHTTPServer((args.host, args.port), handler)
     print(f"Oakwood Simulation Studio: http://{args.host}:{args.port}")
