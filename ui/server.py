@@ -137,6 +137,7 @@ class OakwoodHandler(SimpleHTTPRequestHandler):
             result = api.get_simulation_status()
             result["population"] = sum(1 for n in self.engine.npcs.values() if getattr(n, "is_alive", True))
             result["total_population"] = len(self.engine.npcs)
+            result["data_quality"] = {"weather_available": self.engine.context.get_service("micro_climate_engine") is not None}
             return result
         if path == "/scenarios":
             return api.list_scenarios()
@@ -197,7 +198,9 @@ class OakwoodHandler(SimpleHTTPRequestHandler):
         if path == "/justice/overview":
             return api.get_justice_overview()
         if path == "/climate/status":
-            return api.get_climate_status()
+            result = api.get_climate_status()
+            result["data_quality"] = {"weather_available": self.engine.context.get_service("micro_climate_engine") is not None}
+            return result
         if path == "/content/packs":
             return api.get_content_packs()
         if path.startswith("/content/settings/"):
