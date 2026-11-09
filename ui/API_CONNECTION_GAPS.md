@@ -2,7 +2,7 @@
 
 **Repository inspected:** `bootlegchan/Simulation`, branch `main`, commit `76d66dd4e02bb9994edef0aa81deaee34b86c22b` (9 November 2026).
 
-**Scope:** UI integration only. This document does not authorise or include backend changes. Route names are proposed browser-facing routes, not routes currently served by the repository.
+**Scope:** UI integration. The UI branch now includes `ui/server.py`, a loopback-only standard-library HTTP adapter around the existing `SimulationEngine` and `LocalVisualAPI`. It adds transport only; it does not change simulation rules or engine services.
 
 ## 1. Current state
 
@@ -15,7 +15,7 @@ The repository contains:
 - Standalone telemetry and deep-report classes.
 - Test coverage in `tests/unit/test_92_data_layer_connector_telemetry_and_explainability.py` for the connector, event bus, world inspection, citizen dossier, controls and content inspection.
 
-There is **no HTTP server, REST router, WebSocket server or Server-Sent Events endpoint** in the inspected repository. The browser cannot call the Python facade directly. A separate adapter/transport is the first integration dependency.
+The simulation repository still has no HTTP server in its engine layer. The UI branch supplies the missing transport in `ui/server.py`; run the complete application with `python ui/server.py` from the repository root. There is no WebSocket/SSE endpoint.
 
 ## 2. Existing facade methods
 
@@ -37,7 +37,7 @@ There is **no HTTP server, REST router, WebSocket server or Server-Sent Events e
 
 ## 3. Required browser-facing transport
 
-Create a separate adapter around `SimulationEngine.get_visual_api()`. The adapter should:
+`ui/server.py` implements a separate adapter around `SimulationEngine.get_visual_api()`. It:
 
 1. Bind to `127.0.0.1` by default; do not expose the simulation to a network by default.
 2. Provide `GET /api/v1/health` and `GET /api/v1/capabilities`.
@@ -117,7 +117,7 @@ Suggested initial route mapping:
 - The integrity auditor and report modules must be validated against actual simulation runs before their output is described as authoritative.
 - Do not display missing values as zero. Use an em dash and an explicit unavailable label.
 
-## 6. Validation status
+## 6. Adapter implementation status\n\n- Implemented in `ui/server.py` using only Python standard-library HTTP server components.\n- Serves the UI and API from one origin, avoiding CORS configuration.\n- Defaults to loopback binding and rejects non-loopback bind addresses.\n- Exposes health/capabilities, status, world, citizen dossiers, economy connector queries, society, justice, climate, content, events and diagnostics.\n- Exposes explicit POST routes for pause/resume/step/fast-forward/reset with bounded JSON input.\n- Serializes enums, paths, dates, dataclasses/DTO-like objects, and non-finite floats safely.\n- Does not expose arbitrary Python execution, generic object mutation, unsafe checkpoint restore or content mounting.\n\n## 7. Validation status
 
 The source and test files were reviewed on the current `main` branch. A full test run was **not executed in this environment** because the GitHub repository could not be cloned into the execution container (network DNS resolution failed). The repository's documented command is:
 
@@ -127,7 +127,7 @@ python3 run_tests.py --all
 
 The dedicated test `tests/unit/test_92_data_layer_connector_telemetry_and_explainability.py` verifies the in-process facade and connector behaviours described above. It does not verify an HTTP adapter, browser transport or UI integration.
 
-## 7. Explicit exclusions
+## 8. Explicit exclusions
 
 - No 2D/3D world renderer, map, scene, character art, animation or scenery.
 - No changes to simulation rules, NPC logic, economy systems, world data or backend code.
