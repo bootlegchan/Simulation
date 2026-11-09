@@ -154,7 +154,7 @@ func _on_interact() -> void:
     match str(_selected.get("interaction","inspect")):
         "noticeboard":
             lines.append("PUBLIC NOTICES")
-            var notices: Array = active_room.get("noticeboard_atoms",[])
+            var notices: Array = active_room.get("notice_board_atoms",[])
             if notices.is_empty():
                 lines.append("The board is currently empty.")
             else:
@@ -169,7 +169,7 @@ func _on_interact() -> void:
             lines.append("Total currency: %s gold" % economy.get("total_currency_gold","—"))
             lines.append("Households: %s" % economy.get("households_count","—"))
         "shop":
-            lines.append("SHOP STOCK · READ ONLY")
+            lines.append("MARKET COMMODITY DATA · READ ONLY")
             var stocks: Dictionary = economy.get("commodity_stocks",{})
             var prices: Dictionary = economy.get("commodity_prices",{})
             var count := 0
@@ -178,6 +178,7 @@ func _on_interact() -> void:
                 count += 1
                 if count >= 9:
                     break
+            lines.append("These are economy-wide values, not shop-specific inventory.")
             lines.append("Purchases are not enabled by the current backend command API.")
         _:
             lines.append("IN-WORLD OBJECT")
