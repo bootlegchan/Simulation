@@ -4,11 +4,13 @@ This is the first implementation slice of the illustrated, diegetic 2.5D fronten
 
 ## Run
 
-From the repository root, start the backend bridge:
+1. Install the Python dependencies from the repository root (`python3 -m pip install -r requirements.txt`).
+2. Open `frontend/project.godot` with Godot 4.4.1.
+3. Run the project. Godot first checks for an existing local bridge; if none is running, it starts `frontend_bridge/server.py` automatically and connects to the live simulation.
 
-    python -m frontend_bridge.server --port 8765 --seed 42 --ticks-per-second 1
+For troubleshooting, the bridge can still be started manually from the repository root:
 
-Then open frontend/project.godot with Godot 4.4.1 and run the main scene.
+    python3 -m frontend_bridge.server --port 8765 --seed 42 --ticks-per-second 1
 
 The bridge binds to loopback only. It exposes read-only world snapshots and explicit pause/resume/step/fast-forward controls. It does not expose arbitrary Python calls, NPC manipulation, purchases, production commands or simulation rule changes.
 

@@ -12,7 +12,7 @@
 <path d="M0 495 C420 450 700 475 1020 495 S1570 440 1900 495 S2500 450 2840 495 S3300 455 3600 480 V720 H0Z" fill="#78906a"/>
 <!-- distant woodland -->
 <g fill="#57745d" opacity=".72">
- <circle cx="90" cy="370" r="74"/><circle cx="170" cy="355" r="92"/><circle cx="300" cy="378" r="72/>
+ <circle cx="90" cy="370" r="74"/><circle cx="170" cy="355" r="92"/><circle cx="300" cy="378" r="72"/>
  <circle cx="900" cy="372" r="88"/><circle cx="1010" cy="350" r="110"/><circle cx="1140" cy="382" r="80"/>
  <circle cx="1650" cy="366" r="88"/><circle cx="1760" cy="344" r="105"/><circle cx="1880" cy="382" r="82"/>
  <circle cx="2500" cy="366" r="90"/><circle cx="2610" cy="350" r="105"/><circle cx="2730" cy="380" r="76"/>

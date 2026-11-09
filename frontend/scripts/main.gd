@@ -165,6 +165,7 @@ func _build_view_state() -> Dictionary:
         "status": _snapshot.get("status", {}),
         "climate": _snapshot.get("climate", {}),
         "economy": _snapshot.get("economy", {}),
+        "population": _snapshot.get("population", {}),
         "observer_x": _observer_x,
         "selected": _selected,
         "inspection": _inspection,
