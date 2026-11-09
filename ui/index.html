@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f4f5f2"><title>Oakwood · Simulation Control</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">O</div><div><strong>Oakwood</strong><span>SIMULATION STUDIO</span></div></div>
+    <div class="workspace-label">WORKSPACE</div>
+    <nav id="primary-nav" aria-label="Primary navigation">
+      <button class="nav-item active" data-page="overview"><span class="nav-icon">⌂</span>Overview</button>
+      <button class="nav-item" data-page="population"><span class="nav-icon">◎</span>Population <span class="nav-count">45</span></button>
+      <button class="nav-item" data-page="settlements"><span class="nav-icon">▦</span>Settlements</button>
+      <button class="nav-item" data-page="economy"><span class="nav-icon">↗</span>Economy</button>
+      <button class="nav-item" data-page="society"><span class="nav-icon">◉</span>Society</button>
+      <button class="nav-item" data-page="systems"><span class="nav-icon">⌘</span>Systems</button>
+      <button class="nav-item" data-page="content"><span class="nav-icon">▤</span>Content packs</button>
+      <button class="nav-item" data-page="diagnostics"><span class="nav-icon">⌁</span>Diagnostics</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="connection-card"><span class="connection-dot"></span><div><b>Local workspace</b><small id="connection-label">Preview data · not connected</small></div></div>
+      <div class="user-row"><div class="avatar">ZM</div><div><b>Administrator</b><small>Simulation operator</small></div><span class="more">···</span></div>
+    </div>
+  </aside>
+  <main class="main-area">
+    <header class="topbar">
+      <div class="breadcrumbs"><span>Workspace</span><i>/</i><b id="crumb-current">Overview</b></div>
+      <div class="top-actions"><span class="environment"><span class="tiny-dot"></span>LOCAL ENVIRONMENT</span><button class="icon-button" title="Notifications">♧</button><button class="help-button">Help & docs ↗</button></div>
+    </header>
+    <section class="page-wrap">
+      <div class="page-heading"><div><div class="eyebrow" id="page-eyebrow">SIMULATION WORKSPACE</div><h1 id="page-title">Good afternoon.</h1><p id="page-subtitle">A clear view of your simulation, its people and the systems shaping their lives.</p></div><div class="heading-actions"><button class="button secondary" id="refresh-btn">↻ <span>Refresh</span></button><button class="button primary" id="run-toggle">▶ <span>Run simulation</span></button></div></div>
+      <div id="page-content"></div>
+      <footer><span>OAKWOOD SIMULATION STUDIO</span><span>UI preview · Backend integration pending</span></footer>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="./app.js"></script>
+</body></html>
