@@ -348,11 +348,13 @@ def main():
     print(f"Oakwood Simulation Studio: http://{args.host}:{args.port}")
     print(f"Python API: http://{args.host}:{args.port}/api/v1")
     print("Simulation initialized from the selected scenario. Press Ctrl+C to stop.")
+    ticker.start()
     try:
         server.serve_forever()
     except KeyboardInterrupt:
         print("\nStopping Oakwood local server…")
     finally:
+        ticker.stop()
         server.server_close()
 
 
