@@ -87,6 +87,7 @@ func _draw_outdoor(width: float) -> void:
     var sun_y := 115.0+absf(12.0-float(hour))*8.0
     var sun_colour := Color("#f4d79b") if hour >= 6 and hour < 19 else Color("#d9d9ce")
     draw_circle(Vector2(sun_x,sun_y),34.0,sun_colour)
+    draw_set_transform(Vector2(_camera.position.x * 0.82 if _camera else 0.0,0))
     var ridge := PackedVector2Array([
         Vector2(0,390),Vector2(260,270),Vector2(520,350),Vector2(830,245),
         Vector2(1120,340),Vector2(1450,260),Vector2(1790,350),Vector2(2130,250),
@@ -96,6 +97,7 @@ func _draw_outdoor(width: float) -> void:
     draw_colored_polygon(ridge,Color("#82927d"))
     for tree_x in range(120,int(width),310):
         _draw_tree(float(tree_x),425.0,0.82)
+    draw_set_transform(Vector2.ZERO)
     _draw_building(430.0,310.0,300.0,280.0,"TOWN HALL",Color("#d8c8a8"))
     _draw_building(1190.0,340.0,280.0,250.0,"GENERAL STORE",Color("#d6b98e"))
     _draw_building(2080.0,330.0,280.0,260.0,"BAKERY",Color("#d9c4a1"))
@@ -168,7 +170,7 @@ func _draw_objects(room_manifest: Dictionary) -> void:
             if str(item.get("id","")) == object_id:
                 actual = item
                 break
-        if actual.is_empty() and object_id not in ["obj_town_hall_ledger","obj_shop_counter"]:
+        if actual.is_empty() and not bool(definition.get("presentation_only",false)):
             continue
         var x := float(definition.get("x",600.0))
         var y := 500.0
