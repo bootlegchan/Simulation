@@ -81,6 +81,15 @@ func _request(path: String, kind: String) -> void:
     if error != OK:
         _last_error = "The local simulation request could not be started."
 
+func _post(path: String, kind: String) -> void:
+    if _http.get_http_client_status() != HTTPClient.STATUS_DISCONNECTED:
+        return
+    _request_kind = kind
+    var headers := PackedStringArray(["Content-Type: application/json"])
+    var error := _http.request(API_BASE + path,headers,HTTPClient.METHOD_POST,"{}")
+    if error != OK:
+        _last_error = "The simulation command could not be started."
+
 func _on_request_completed(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
     if result != HTTPRequest.RESULT_SUCCESS or response_code < 200 or response_code >= 300:
         _connected = false
@@ -91,7 +100,9 @@ func _on_request_completed(result: int, response_code: int, _headers: PackedStri
     if not payload is Dictionary:
         _last_error = "The simulation returned an invalid response."
         return
-    if _request_kind == "snapshot":
+    if _request_kind == "control":
+        _refresh_snapshot()
+    elif _request_kind == "snapshot":
         _snapshot = payload
         _connected = true
         _last_error = ""
@@ -144,6 +155,11 @@ func _on_interact() -> void:
         return
     if kind == "npc":
         _request("/citizens/" + entity_id.uri_encode() + "/profile","profile")
+        return
+
+    if str(_selected.get("interaction","")) == "clock":
+        var lifecycle := str(_snapshot.get("status",{}).get("lifecycle_state",""))
+        _post("/simulation/resume" if lifecycle != "RUNNING" else "/simulation/pause","control")
         return
 
     var active_room: Dictionary = _snapshot.get("active_room",{})
