@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6f4">
+  <meta name="description" content="Oakwood simulation operations and inspection interface">
+  <title>Oakwood — Simulation Studio</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Oakwood Simulation Studio home">
+        <span class="brand-symbol">O</span>
+        <span class="brand-copy"><strong>Oakwood</strong><small>SIMULATION STUDIO</small></span>
+      </a>
+      <div class="nav-label">WORKSPACE</div>
+      <nav id="primary-nav" aria-label="Primary navigation">
+        <button class="nav-item active" data-page="overview"><span class="nav-glyph">◫</span>Overview</button>
+        <button class="nav-item" data-page="citizens"><span class="nav-glyph">◎</span>Citizens</button>
+        <button class="nav-item" data-page="world"><span class="nav-glyph">▦</span>World structure</button>
+        <button class="nav-item" data-page="economy"><span class="nav-glyph">↗</span>Economy</button>
+        <button class="nav-item" data-page="society"><span class="nav-glyph">◉</span>Society & justice</button>
+        <button class="nav-item" data-page="climate"><span class="nav-glyph">☼</span>Environment</button>
+        <button class="nav-item" data-page="events"><span class="nav-glyph">≋</span>Events</button>
+        <button class="nav-item" data-page="content"><span class="nav-glyph">▤</span>Content</button>
+        <button class="nav-item" data-page="diagnostics"><span class="nav-glyph">⌁</span>Diagnostics</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="connection-card">
+          <span class="connection-indicator" id="connection-indicator"></span>
+          <span><strong id="connection-state">Not connected</strong><small id="connection-detail">Waiting for local API</small></span>
+        </div>
+        <div class="sidebar-foot"><span class="status-dot"></span> LOCAL WORKSPACE <span class="version" id="api-version">API —</span></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="breadcrumbs"><span>Workspace</span><span class="crumb-sep">/</span><strong id="breadcrumb">Overview</strong></div>
+        <div class="topbar-actions">
+          <span class="sim-clock" id="sim-clock">SIMULATION TIME —</span>
+          <button class="icon-button" id="refresh-button" title="Refresh data" aria-label="Refresh data">↻</button>
+          <button class="button button-primary button-small" id="run-button" disabled>Start simulation</button>
+        </div>
+      </header>
+
+      <section class="page-wrap">
+        <div class="page-heading">
+          <div><div class="eyebrow" id="page-eyebrow">SIMULATION WORKSPACE</div><h1 id="page-title">Overview</h1><p id="page-description">A live operational view of Oakwood and the systems shaping it.</p></div>
+          <div class="page-actions" id="page-actions"></div>
+        </div>
+        <div id="page-content" aria-live="polite">
+          <div class="loading-state"><span class="spinner"></span><span>Connecting to simulation…</span></div>
+        </div>
+        <footer><span>OAKWOOD SIMULATION STUDIO</span><span>Data is read from the connected simulation API · No preview values</span></footer>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <dialog id="confirm-dialog" class="dialog">
+    <form method="dialog"><div class="dialog-kicker">CONFIRM SIMULATION ACTION</div><h2 id="dialog-title">Continue?</h2><p id="dialog-message">This action will affect the running simulation.</p><div class="dialog-actions"><button class="button button-secondary" value="cancel">Cancel</button><button class="button button-primary" id="dialog-confirm" value="confirm">Confirm</button></div></form>
+  </dialog>
+  <script>window.OAKWOOD_API_BASE = window.OAKWOOD_API_BASE || "http://127.0.0.1:8765/api/v1";</script>
+  <script src="./app.js" defer></script>
+</body>
+</html>
