@@ -74,6 +74,7 @@ func _draw() -> void:
     _draw_objects(room_manifest)
     _draw_portals(room_manifest)
     _draw_npcs()
+    _draw_selection_prompt()
     _draw_observer()
     _draw_environment()
     _draw_inspection()
@@ -185,6 +186,12 @@ func _draw_objects(room_manifest: Dictionary) -> void:
             draw_rect(Rect2(x-65,y-80,130,75),Color("#70513a"))
             draw_rect(Rect2(x-32,y-113,64,48),Color("#e6ddc8"))
             draw_line(Vector2(x-20,y-98),Vector2(x+20,y-98),INK,2.0)
+        elif kind == "clock":
+            draw_circle(Vector2(x,y-70),38,Color("#e7dec8"))
+            draw_circle(Vector2(x,y-70),31,Color("#6c5a43"),false,3.0)
+            draw_line(Vector2(x,y-70),Vector2(x,y-91),INK,3.0)
+            draw_line(Vector2(x,y-70),Vector2(x+18,y-58),INK,3.0)
+            draw_rect(Rect2(x-6,y-18,12,50),Color("#70553c"))
         elif kind == "shop":
             draw_rect(Rect2(x-75,y-80,150,65),Color("#785b42"))
             draw_rect(Rect2(x-65,y-70,130,14),Color("#d4b98d"))
@@ -237,6 +244,16 @@ func _draw_ellipse(center: Vector2,radius: Vector2,colour: Color) -> void:
         var angle := TAU*float(i)/20.0
         points.append(center+Vector2(cos(angle)*radius.x,sin(angle)*radius.y))
     draw_colored_polygon(points,colour)
+
+func _draw_selection_prompt() -> void:
+    var selected: Dictionary = _state.get("selected",{})
+    if selected.is_empty():
+        return
+    var x := float(selected.get("x",_state.get("observer_x",500.0)))
+    var y := float(selected.get("y",500.0))-92.0
+    var prompt := "E  ·  ENTER" if selected.get("kind") == "portal" else ("E  ·  INSPECT" if selected.get("kind") == "object" else "E  ·  MEET")
+    draw_rect(Rect2(x-72,y-25,144,32),Color("#283a38",0.9))
+    draw_string(ThemeDB.fallback_font,Vector2(x-61,y-4),prompt,HORIZONTAL_ALIGNMENT_LEFT,122,12,PAPER)
 
 func _draw_observer() -> void:
     _draw_character(float(_state.get("observer_x",500.0)),585.0,Color("#d1b17d"),true)
