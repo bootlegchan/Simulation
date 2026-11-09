@@ -1,4 +1,5 @@
 """Unit tests for the immersive presentation bridge."""
+import json
 import math
 import unittest
 from dataclasses import dataclass
@@ -46,6 +47,34 @@ class ValidationTests(unittest.TestCase):
         for invalid in (True,0,100001,"2"):
             with self.assertRaises(ValueError):
                 validate_ticks(invalid)
+
+
+class PresentationManifestTests(unittest.TestCase):
+    def test_room_portal_object_and_population_mappings_resolve(self):
+        root = Path(__file__).resolve().parents[1]
+        manifest = json.loads((root / "frontend/data/presentation/oakwood.json").read_text(encoding="utf-8"))
+        settlement = json.loads((root / "data/settlements/oakwood.json").read_text(encoding="utf-8"))
+        objects = json.loads((root / "data/objects/objects.json").read_text(encoding="utf-8"))
+        npcs = json.loads((root / "data/npcs/npcs.json").read_text(encoding="utf-8"))
+
+        backend_rooms = {
+            room_id
+            for building in settlement["buildings"].values()
+            for room_id in building["rooms"].keys()
+        }
+        mapped_rooms = set(manifest["rooms"])
+        self.assertTrue(mapped_rooms.issubset(backend_rooms))
+        self.assertTrue({"room_village_square", "room_town_hall", "room_shop", "room_bakery", "room_tavern"}.issubset(mapped_rooms))
+
+        for room in manifest["rooms"].values():
+            for portal in room.get("portals", []):
+                self.assertIn(portal["target_room_id"], backend_rooms)
+            for item in room.get("objects", []):
+                if not item.get("presentation_only", False):
+                    self.assertIn(item["id"], objects)
+
+        square_population = sum(1 for npc in npcs.values() if npc.get("location_id") == "room_village_square")
+        self.assertGreaterEqual(square_population, 5)
 
 
 class SnapshotTests(unittest.TestCase):
