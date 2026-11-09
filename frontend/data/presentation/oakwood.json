@@ -17,7 +17,8 @@
       ],
       "objects": [
         {"id":"obj_notice_board_square","label":"Village Noticeboard","x":850,"kind":"noticeboard"},
-        {"id":"obj_bocce_lawn","label":"Bocce Lawn","x":1770,"kind":"inspect"}
+        {"id":"obj_bocce_lawn","label":"Bocce Lawn","x":1770,"kind":"inspect"},
+        {"id":"obj_square_clock","label":"Village Clock","x":2580,"kind":"clock","presentation_only":true}
       ]
     },
     "room_town_hall": {
