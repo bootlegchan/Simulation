@@ -134,8 +134,8 @@
       '<div class="data-line"><span>Virtual time</span><strong>' + esc(s.virtual_time_iso || "—") + '</strong></div>' +
       '<div class="data-line"><span>Day</span><strong>' + esc(num(s.day)) + '</strong></div>' +
       '<div class="data-line"><span>Hour</span><strong>' + esc(num(s.hour)) + '</strong></div>' +
-      '<div class="data-line"><span>Season</span><strong>' + esc(s.season || "—") + '</strong></div>' +
-      '<div class="data-line"><span>Temperature</span><strong>' + (s.ambient_temperature_celsius == null ? "—" : esc(num(s.ambient_temperature_celsius) + " °C")) + '</strong></div>' +
+      '<div class="data-line"><span>Season</span><strong>' + (obj(s.data_quality).weather_available === false ? "Unavailable" : esc(s.season || "—")) + '</strong></div>' +
+      '<div class="data-line"><span>Temperature</span><strong>' + (obj(s.data_quality).weather_available === false || s.ambient_temperature_celsius == null ? "Unavailable" : esc(num(s.ambient_temperature_celsius) + " °C")) + '</strong></div>' +
       '</div></section>' +
       '<section class="card"><div class="card-head"><div><h2>Recent events</h2><p>Latest events retained by the event bus</p></div><button class="quiet-link" data-go="events">View all →</button></div><div class="activity-list">' +
       (eventRows || '<div class="empty-state"><strong>No event records</strong><p>Events will appear here when the event API is connected.</p></div>') + '</div></section></div>' +
@@ -261,14 +261,15 @@
   }
   async function renderClimate() {
     const c = obj(await get(routes.climate));
+    const climateAvailable = obj(c.data_quality).weather_available !== false;
     $("#page-content").innerHTML = '<div class="metrics">' +
-      metric("Season",c.season || "—","Current climate season","☼") +
-      metric("Temperature",c.ambient_temperature_celsius == null ? "—" : num(c.ambient_temperature_celsius) + " °C","Ambient temperature","°") +
-      metric("Humidity",c.humidity == null ? "—" : num(c.humidity * 100) + "%","Relative humidity","≈") +
-      metric("Pressure",c.barometric_pressure_kpa == null ? "—" : num(c.barometric_pressure_kpa) + " kPa","Barometric pressure","⌁") +
+      metric("Season",climateAvailable ? (c.season || "—") : "Unavailable","Current climate season","☼") +
+      metric("Temperature",!climateAvailable || c.ambient_temperature_celsius == null ? "Unavailable" : num(c.ambient_temperature_celsius) + " °C","Ambient temperature","°") +
+      metric("Humidity",!climateAvailable || c.humidity == null ? "Unavailable" : num(c.humidity * 100) + "%","Relative humidity","≈") +
+      metric("Pressure",!climateAvailable || c.barometric_pressure_kpa == null ? "Unavailable" : num(c.barometric_pressure_kpa) + " kPa","Barometric pressure","⌁") +
       '</div><section class="card mini-card"><h3>Current conditions</h3>' +
-      '<div class="data-line"><span>Precipitation</span><strong>' + esc(c.precipitation) + '</strong></div>' +
-      '<div class="data-line"><span>Solar peak hour</span><strong>' + esc(num(c.solar_peak_hour)) + '</strong></div></section>' +
+      '<div class="data-line"><span>Precipitation</span><strong>' + (climateAvailable ? esc(c.precipitation) : "Unavailable") + '</strong></div>' +
+      '<div class="data-line"><span>Solar peak hour</span><strong>' + (!climateAvailable ? "Unavailable" : esc(num(c.solar_peak_hour))) + '</strong></div></section>' +
       '<div class="notice">The current facade provides a current climate snapshot only. Climate history, local room conditions over time, health incidents and mortality analytics are not exposed as UI queries.</div>';
   }
   async function renderEvents() {
