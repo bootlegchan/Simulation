@@ -23,12 +23,12 @@
     "room_town_hall": {
       "scene_kind":"interior","title":"Mayor's Office","ground_y":590,"observer_spawn_x":180,
       "portals":[{"id":"town_hall_exit","label":"Village Square","target_room_id":"room_village_square","x":70,"door_x":120,"width":180}],
-      "objects":[{"id":"obj_town_hall_ledger","label":"Civic Ledger","x":690,"kind":"ledger"}]
+      "objects":[{"id":"obj_town_hall_ledger","label":"Civic Ledger","x":690,"kind":"ledger","presentation_only":true}]
     },
     "room_shop": {
       "scene_kind":"interior","title":"Vance General Emporium","ground_y":590,"observer_spawn_x":180,
       "portals":[{"id":"shop_exit","label":"Village Square","target_room_id":"room_village_square","x":70,"door_x":120,"width":180}],
-      "objects":[{"id":"obj_shop_counter","label":"Shop Counter","x":760,"kind":"shop"}]
+      "objects":[{"id":"obj_shop_counter","label":"Shop Counter","x":760,"kind":"shop","presentation_only":true}]
     },
     "room_bakery": {
       "scene_kind":"interior","title":"Greta's Hearth Bakery","ground_y":590,"observer_spawn_x":180,
