@@ -316,13 +316,25 @@
       '<div class="notice">The current API exposes pipeline timing and integrity audit calls. Health/uptime, structured logs, memory use, service-level status and telemetry history are not yet connected. Integrity output should be treated as authoritative only after its underlying auditor has been validated against real runs.</div>';
   }
   async function loadPage() {
+    if (state.refreshBusy) return;
+    state.refreshBusy = true;
     header(); showLoading();
-    const connected = await refreshCore();
-    if (!connected) { disconnected(); return; }
     try {
+      const connected = await refreshCore();
+      if (!connected) { disconnected(); return; }
       const renderers = { overview:renderOverview, citizens:renderCitizens, world:renderWorld, economy:renderEconomy, society:renderSociety, climate:renderClimate, events:renderEvents, content:renderContent, diagnostics:renderDiagnostics };
       await renderers[state.page]();
     } catch (error) { $("#page-content").innerHTML = errorBox("Unable to load " + pages[state.page][1].toLowerCase(), error); }
+    finally { state.refreshBusy = false; }
+  }
+  async function pollLiveStatus() {
+    if (state.refreshBusy || document.hidden) return;
+    state.refreshBusy = true;
+    try {
+      const connected = await refreshCore();
+      if (!connected && state.page === "overview") disconnected();
+      else if (connected && state.page === "overview") await renderOverview();
+    } finally { state.refreshBusy = false; }
   }
   function navigate(page) {
     if (!pages[page]) return;
@@ -354,6 +366,7 @@
   });
   $("#refresh-button").addEventListener("click",loadPage);
   $("#run-button").addEventListener("click",simulationToggle);
+  window.setInterval(pollLiveStatus, 2000);
   window.addEventListener("DOMContentLoaded",loadPage);
   if (document.readyState !== "loading") loadPage();
 })();
