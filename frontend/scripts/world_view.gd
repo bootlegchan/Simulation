@@ -224,8 +224,9 @@ func _draw_npcs() -> void:
     for npc in npcs:
         if str(npc.get("location_id","")) != room_id or not bool(npc.get("is_alive",true)):
             continue
-        var x := 360.0+float(visible_index)*72.0
-        var y := 550.0+float((visible_index%3)*4)
+        var phase := float(Time.get_ticks_msec()) / 1000.0
+        var x := 360.0 + float(visible_index) * 72.0 + sin(phase * 0.65 + float(visible_index) * 1.7) * 7.0
+        var y := 550.0 + float((visible_index % 3) * 4) + sin(phase * 2.2 + float(visible_index)) * 2.0
         var colour_index := abs(str(npc.get("id","")).hash())%5
         var palette := [Color("#627b70"),Color("#a36d50"),Color("#65748a"),Color("#b39a70"),Color("#7b6c83")]
         _draw_character(x,y,palette[colour_index],false)
@@ -234,15 +235,58 @@ func _draw_npcs() -> void:
         _npc_items.append({"kind":"npc","id":str(npc.get("id","")),"label":str(npc.get("name","Citizen")),"x":x,"y":y-8.0})
         visible_index += 1
 
-func _draw_character(x: float,y: float,clothes: Color,observer: bool) -> void:
-    _draw_ellipse(Vector2(x,y+2),Vector2(19,6),Color("#403a32",0.22))
-    draw_rect(Rect2(x-12,y-34,9,32),Color("#5a4b40"))
-    draw_rect(Rect2(x+3,y-34,9,32),Color("#5a4b40"))
-    draw_colored_polygon(PackedVector2Array([Vector2(x-19,y-76),Vector2(x+19,y-76),Vector2(x+15,y-30),Vector2(x-15,y-30)]),clothes)
-    draw_circle(Vector2(x,y-91),19,Color("#d9b28c"))
-    draw_arc(Vector2(x,y-93),19,PI,TAU,24,Color("#574538"),5.0)
+func _draw_character(x: float, y: float, clothes: Color, observer: bool) -> void:
+    # Small original storybook-style character rig. Motion is presentation-only;
+    # identity, action and location continue to come from the simulation engine.
+    var phase := float(Time.get_ticks_msec()) / 260.0 + x * 0.025
+    var bob := sin(phase) * 2.0
+    var stride := sin(phase * 0.72) * 4.0
+    var skin := Color("#e8bd98")
+    var hair := Color("#514038")
+    if not observer:
+        var hair_variant := int(absf(x)) % 3
+        if hair_variant == 1:
+            hair = Color("#79533e")
+        elif hair_variant == 2:
+            hair = Color("#343b3c")
+
+    _draw_ellipse(Vector2(x, y + 2), Vector2(21, 7), Color("#403a32", 0.2))
+    # Shoes and legs
+    draw_line(Vector2(x - 7, y - 31 + bob), Vector2(x - 10 + stride, y - 5), Color("#55483e"), 8.0)
+    draw_line(Vector2(x + 7, y - 31 + bob), Vector2(x + 10 - stride, y - 5), Color("#55483e"), 8.0)
+    draw_ellipse(Vector2(x - 13 + stride, y - 4), Vector2(10, 5), Color("#4b4039"))
+    draw_ellipse(Vector2(x + 13 - stride, y - 4), Vector2(10, 5), Color("#4b4039"))
+    # Shirt and short arms
+    draw_colored_polygon(PackedVector2Array([
+        Vector2(x - 14, y - 77 + bob), Vector2(x - 22, y - 68 + bob),
+        Vector2(x - 16, y - 43 + bob), Vector2(x - 12, y - 31 + bob),
+        Vector2(x + 12, y - 31 + bob), Vector2(x + 16, y - 43 + bob),
+        Vector2(x + 22, y - 68 + bob), Vector2(x + 14, y - 77 + bob)
+    ]), clothes)
+    draw_line(Vector2(x - 17, y - 68 + bob), Vector2(x - 22, y - 43 + bob), skin, 7.0)
+    draw_line(Vector2(x + 17, y - 68 + bob), Vector2(x + 22, y - 43 + bob), skin, 7.0)
+    draw_line(Vector2(x - 8, y - 73 + bob), Vector2(x + 8, y - 73 + bob), Color("#f1dfc2", 0.8), 2.0)
+    # Neck, ears and face
+    draw_rect(Rect2(x - 5, y - 87 + bob, 10, 14), skin)
+    draw_circle(Vector2(x - 19, y - 96 + bob), 5, skin)
+    draw_circle(Vector2(x + 19, y - 96 + bob), 5, skin)
+    draw_circle(Vector2(x, y - 99 + bob), 20, skin)
+    # Hair cap and fringe
+    draw_colored_polygon(PackedVector2Array([
+        Vector2(x - 20, y - 103 + bob), Vector2(x - 17, y - 116 + bob),
+        Vector2(x - 7, y - 122 + bob), Vector2(x + 8, y - 120 + bob),
+        Vector2(x + 19, y - 110 + bob), Vector2(x + 18, y - 99 + bob),
+        Vector2(x + 8, y - 105 + bob), Vector2(x, y - 101 + bob),
+        Vector2(x - 8, y - 106 + bob)
+    ]), hair)
+    # Eyes, cheeks and mouth
+    draw_circle(Vector2(x - 7, y - 99 + bob), 2.0, Color("#352f2c"))
+    draw_circle(Vector2(x + 7, y - 99 + bob), 2.0, Color("#352f2c"))
+    draw_circle(Vector2(x - 12, y - 91 + bob), 3.0, Color("#d78e7a", 0.45))
+    draw_circle(Vector2(x + 12, y - 91 + bob), 3.0, Color("#d78e7a", 0.45))
+    draw_arc(Vector2(x, y - 91 + bob), 5.0, 0.2, PI - 0.2, 12, Color("#8e5148"), 1.5)
     if observer:
-        draw_circle(Vector2(x,y-118),5,Color("#f2d99d"))
+        draw_circle(Vector2(x, y - 128 + bob), 5, Color("#f2d99d"))
 
 func _draw_ellipse(center: Vector2,radius: Vector2,colour: Color) -> void:
     var points := PackedVector2Array()
@@ -335,7 +379,7 @@ func _draw_simulation_hud() -> void:
     draw_rect(Rect2(camera_x - 610, 24, 210, 54), Color("#f0e5ce", 0.92))
     draw_rect(Rect2(camera_x - 610, 24, 210, 54), Color("#76634b"), false, 2.0)
     draw_string(ThemeDB.fallback_font, Vector2(camera_x - 594, 46), "OAKWOOD  ·  DAY %d" % day, HORIZONTAL_ALIGNMENT_LEFT, 190, 12, INK)
-    draw_string(ThemeDB.fallback_font, Vector2(camera_x - 594, 65), "%s   /   TICK %d" % [clock_text, tick], HORIZONTAL_ALIGNMENT_LEFT, 190, 14, INK)
+    draw_string(ThemeDB.fallback_font, Vector2(camera_x - 594, 65), "%s   /   TICK %d   /   %d CITIZENS" % [clock_text, tick, int(_state.get("population", {}).get("alive", 0))], HORIZONTAL_ALIGNMENT_LEFT, 190, 14, INK)
     var state_colour := Color("#52785a") if lifecycle == "RUNNING" else Color("#a36d50")
     draw_circle(Vector2(camera_x + 580, 48), 5, state_colour)
     draw_string(ThemeDB.fallback_font, Vector2(camera_x + 594, 53), lifecycle, HORIZONTAL_ALIGNMENT_LEFT, 100, 12, INK)
