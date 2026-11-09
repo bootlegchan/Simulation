@@ -4,7 +4,7 @@
   "use strict";
   const BASE = String(window.OAKWOOD_API_BASE || "").replace(/\/$/, "");
   const $ = (selector, root) => (root || document).querySelector(selector);
-  const state = { page: "overview", status: null, capabilities: null, health: null, selectedCitizen: null, citizenRows: [], refreshBusy: false };
+  const state = { page: "overview", status: null, capabilities: null, health: null, selectedCitizen: null, citizenRows: [], refreshBusy: false, pendingLoad: false };
   const pages = {
     overview: ["SIMULATION WORKSPACE", "Overview", "A live operational view of Oakwood and the systems shaping it."],
     citizens: ["POPULATION", "Citizens", "Inspect individual citizens, their condition, relationships and decision-making."],
@@ -316,7 +316,7 @@
       '<div class="notice">The current API exposes pipeline timing and integrity audit calls. Health/uptime, structured logs, memory use, service-level status and telemetry history are not yet connected. Integrity output should be treated as authoritative only after its underlying auditor has been validated against real runs.</div>';
   }
   async function loadPage() {
-    if (state.refreshBusy) return;
+    if (state.refreshBusy) { state.pendingLoad = true; return; }
     state.refreshBusy = true;
     header(); showLoading();
     try {
@@ -325,7 +325,10 @@
       const renderers = { overview:renderOverview, citizens:renderCitizens, world:renderWorld, economy:renderEconomy, society:renderSociety, climate:renderClimate, events:renderEvents, content:renderContent, diagnostics:renderDiagnostics };
       await renderers[state.page]();
     } catch (error) { $("#page-content").innerHTML = errorBox("Unable to load " + pages[state.page][1].toLowerCase(), error); }
-    finally { state.refreshBusy = false; }
+    finally {
+      state.refreshBusy = false;
+      if (state.pendingLoad) { state.pendingLoad = false; loadPage(); }
+    }
   }
   async function pollLiveStatus() {
     if (state.refreshBusy || document.hidden) return;
