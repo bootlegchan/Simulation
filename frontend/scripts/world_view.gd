@@ -262,6 +262,11 @@ func _draw_environment() -> void:
     var climate: Dictionary = _state.get("climate",{})
     var precipitation := str(climate.get("precipitation","CLEAR")).to_upper()
     var hour := int(_state.get("status",{}).get("hour",10))
+    if precipitation in ["CLOUDY","OVERCAST"]:
+        var cloud_tint := Color("#63727a",0.12) if precipitation == "CLOUDY" else Color("#4f5c65",0.22)
+        draw_rect(Rect2(0,0,3600,WORLD_HEIGHT),cloud_tint)
+        for cloud_x in range(220,3600,620):
+            _draw_ellipse(Vector2(float(cloud_x),135.0),Vector2(95.0,25.0),Color("#e0e0d4",0.18))
     if precipitation in ["RAIN","SLEET","SNOW","BLIZZARD"]:
         for i in range(90):
             var x := float((i*137+int(Time.get_ticks_msec()/25))%3600)
