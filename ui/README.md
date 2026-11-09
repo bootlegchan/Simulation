@@ -12,12 +12,12 @@ python ui/server.py
 
 Then open **http://127.0.0.1:4173**.
 
-The server initializes the real `SimulationEngine`, obtains its `LocalVisualAPI` facade, serves the HTML/CSS/JavaScript, and exposes the JSON endpoints under the same origin at `/api/v1`. No separate static server or manually configured API URL is needed.
+The server initializes the real `SimulationEngine`, obtains its `LocalVisualAPI` facade, serves the HTML/CSS/JavaScript, and exposes the JSON endpoints under the same origin at `/api/v1`. A controlled ticker advances one simulation tick per second while running (configurable from 1 to 60); Pause stops advancement, and Reset returns the engine to its ready state. The dashboard polls live status every two seconds. No separate static server or manually configured API URL is needed.
 
 Optional startup arguments:
 
 ```bash
-python ui/server.py --port 4173 --seed 42 --scenario oakwood_baseline.json
+python ui/server.py --port 4173 --seed 42 --scenario oakwood_baseline.json --ticks-per-second 2
 ```
 
 The adapter binds to loopback only by default. It deliberately refuses non-loopback bind addresses. Use Ctrl+C to stop it.
