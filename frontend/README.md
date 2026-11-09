@@ -4,7 +4,7 @@ This is the first implementation slice of the illustrated, diegetic 2.5D fronten
 
 ## Run
 
-1. Install the Python dependencies from the repository root (`python3 -m pip install -r requirements.txt`).
+1. Make sure Python 3 is installed. The current simulation bridge uses the Python standard library and the repository's own modules; there is no `requirements.txt` in this repository.
 2. Open `frontend/project.godot` with Godot 4.4.1.
 3. Run the project. Godot first checks for an existing local bridge; if none is running, it starts `frontend_bridge/server.py` automatically and connects to the live simulation.
 
