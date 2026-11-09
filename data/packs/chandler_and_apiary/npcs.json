@@ -1,0 +1,18 @@
+{
+  "npc_corin_apiarist": {
+    "id": "npc_corin_apiarist",
+    "name": "Corin Honey-Hand",
+    "occupation": "Apiarist",
+    "home_location_id": "room_village_square",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 50.0,
+    "personality": {
+      "openness": 0.7,
+      "conscientiousness": 0.7,
+      "extraversion": 0.5,
+      "agreeableness": 0.8,
+      "neuroticism": 0.3
+    }
+  }
+}

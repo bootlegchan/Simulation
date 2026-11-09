@@ -1,0 +1,46 @@
+{
+  "taxation": {
+    "income_tax_rate": 0.08,
+    "audit_vigilance": 0.12,
+    "evasion_penalty_multiplier": 1.5,
+    "audit_evasion_min_threshold_gold": 0.5,
+    "max_audit_probability": 0.4
+  },
+  "commercial_taxation": {
+    "sales_tax_rate": 0.08,
+    "daily_commercial_stall_fee_gold": 0.50
+  },
+  "treasury": {
+    "reserve_brake_gold": 150.0,
+    "daily_maintenance_cap_gold": 15.0,
+    "indigent_relief_wealth_ceiling_gold": 15.0,
+    "max_relief_recipients": 3
+  },
+  "legal_aid": {
+    "indigent_wealth_threshold_gold": 12.0,
+    "client_token_copay_max_gold": 0.5,
+    "municipal_retainer_case_subsidy_gold": 2.0
+  },
+  "cost_of_living": {
+    "enabled": true,
+    "daily_homestead_upkeep_gold": 0.35,
+    "daily_tool_maintenance_gold": 0.2,
+    "poverty_exemption_wealth_gold": 5.0
+  },
+  "tax_exemptions": {
+    "exempt_building_categories": ["SACRED", "CIVIC"],
+    "exempt_occupations": ["priest", "clergy", "monk", "curate"],
+    "exempt_from_homestead_upkeep": true,
+    "exempt_from_income_tax": true,
+    "exempt_from_commercial_fees": true,
+    "institution_levy_source_description": "Earnings for sacred and fraternal institutions derive from member levies, dues, and tithes rather than commercial trading."
+  },
+  "institutional_levies": {
+    "parish_tithes": {
+      "enabled": true,
+      "target_lodge_id": "aid_sacred_hearth_alms",
+      "pious_parishioner_tithe_gold": 0.12,
+      "clergy_stipend_per_shift_gold": 1.50
+    }
+  }
+}

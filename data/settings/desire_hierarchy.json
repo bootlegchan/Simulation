@@ -1,0 +1,85 @@
+{
+  "desire_hierarchy": {
+    "tiers": {
+      "PHYSIOLOGICAL": {
+        "base_weight": 1.0,
+        "hunger": {
+          "exponential_exponent": 1.6,
+          "urgency_threshold": 60.0,
+          "emergency_threshold": 85.0
+        },
+        "rest": {
+          "process_s_exponent": 2.2,
+          "fatigue_threshold": 70.0,
+          "collapse_threshold": 90.0
+        },
+        "thermal_comfort": {
+          "comfort_band_low_celsius": 16.0,
+          "freezing_hazard_celsius": 0.0
+        }
+      },
+      "SAFETY_SECURITY": {
+        "financial_security": {
+          "subsistence_reserve_gold": 15.0,
+          "comfortable_reserve_gold": 50.0,
+          "affluent_ceiling_gold": 120.0,
+          "poverty_urgency_exponent": 1.5,
+          "wealthy_work_dampening_floor": 0.03
+        },
+        "shelter_security": {
+          "home_hearth_warmth_weight": 20.0,
+          "bed_rest_comfort_weight": 25.0
+        }
+      },
+      "LOVE_BELONGING": {
+        "courtship_unattached": {
+          "base_drive_weight": 25.0,
+          "attraction_scaling": 0.40,
+          "passion_scaling": 0.35,
+          "intimacy_tension_scaling": 0.35
+        },
+        "marital_devotion": {
+          "base_drive_weight": 35.0,
+          "spousal_affection_scaling": 0.45,
+          "domestic_harmony_bonus": 15.0,
+          "spousal_resentment_penalty": 25.0
+        },
+        "fraternal_kinship": {
+          "extraversion_scaling": 22.0,
+          "club_kinship_bonus": 18.0,
+          "peer_trust_weight": 15.0
+        }
+      },
+      "ESTEEM_MASTERY": {
+        "vocational_mastery": {
+          "conscientiousness_scaling": 26.0,
+          "ambition_scaling": 18.0,
+          "artisan_trade_bonus": 20.0,
+          "in_shift_vocational_alignment": 35.0
+        },
+        "civic_esteem": {
+          "civic_role_bonus": 25.0,
+          "leadership_scaling": 15.0
+        }
+      },
+      "SELF_ACTUALIZATION": {
+        "life_aspiration": {
+          "goal_progress_urgency": 25.0,
+          "milestone_imminence_bonus": 20.0
+        },
+        "recreation_and_contemplation": {
+          "leisure_base_potential": 14.0,
+          "private_reflection_weight": 12.0
+        }
+      }
+    },
+    "cohabitation_dynamics": {
+      "standard_room_capacity": 2,
+      "overcrowding_penalty_per_excess_occupant": 0.25,
+      "max_overcrowding_drag": 0.60,
+      "marital_communion_wealth_sharing": true,
+      "unmarried_cohabitation_separate_wallets": true,
+      "non_romantic_lodger_separate_wallets": true
+    }
+  }
+}

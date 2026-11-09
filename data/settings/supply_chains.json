@@ -1,0 +1,171 @@
+{
+  "supply_chains": {
+    "AGRARIAN_BAKING": {
+      "chain_id": "AGRARIAN_BAKING",
+      "name": "Agrarian Grain Milling & Bread Baking Chain",
+      "stages": [
+        "harvest_wheat",
+        "mill_flour",
+        "bake_bread"
+      ]
+    },
+    "FORESTRY_AND_CARPENTRY": {
+      "chain_id": "FORESTRY_AND_CARPENTRY",
+      "name": "Forestry Timber & Carpentry Chain",
+      "stages": [
+        "fell_timber",
+        "split_firewood",
+        "craft_furniture"
+      ]
+    },
+    "METALLURGY_AND_TOOLS": {
+      "chain_id": "METALLURGY_AND_TOOLS",
+      "name": "Iron Mining & Tool Forging Chain",
+      "stages": [
+        "smelt_iron",
+        "forge_tools"
+      ]
+    },
+    "TAVERN_BREWING": {
+      "chain_id": "TAVERN_BREWING",
+      "name": "Tavern Hospitality & Ale Brewing Chain",
+      "stages": [
+        "brew_ale"
+      ]
+    }
+  },
+  "market_dynamics": {
+    "target_reserve_baselines": {
+      "raw_wheat": { "target_stock": 25, "elasticity": 0.60, "base_price": 0.30 },
+      "flour": { "target_stock": 20, "elasticity": 0.65, "base_price": 0.60 },
+      "food_bread": { "target_stock": 30, "elasticity": 0.70, "base_price": 1.20 },
+      "raw_timber": { "target_stock": 20, "elasticity": 0.50, "base_price": 0.80 },
+      "firewood": { "target_stock": 40, "elasticity": 0.60, "base_price": 0.40 },
+      "furniture": { "target_stock": 10, "elasticity": 0.55, "base_price": 12.0 },
+      "raw_iron_ore": { "target_stock": 20, "elasticity": 0.50, "base_price": 1.0 },
+      "iron_ingot": { "target_stock": 15, "elasticity": 0.55, "base_price": 3.0 },
+      "iron_tools": { "target_stock": 12, "elasticity": 0.60, "base_price": 8.0 },
+      "oakwood_ale": { "target_stock": 20, "elasticity": 0.65, "base_price": 2.50 }
+    },
+    "min_price_multiplier": 0.40,
+    "max_price_multiplier": 3.50,
+    "spoilage_check_interval_ticks": 1440
+  },
+  "supply_chain_mechanics": {
+    "urgency_scaling": {
+      "gamma": 1.2,
+      "max_wage_multiplier_boost": 0.75,
+      "pay_scaling_factor": 0.50,
+      "duration_reduction_ratio": 0.50,
+      "min_duration_ticks": 90,
+      "standard_duration_ticks": 240,
+      "standard_validity_ticks": 1440,
+      "urgent_validity_ticks": 720,
+      "max_priority_score": 3.50
+    },
+    "decision_dynamics": {
+      "decision_temperature": 10.0,
+      "self_completion_weights": {
+        "skill_weight": 30.0,
+        "stamina_weight": 25.0,
+        "frugality_weight": 20.0,
+        "conscientiousness_weight": 15.0,
+        "urgency_bonus": 10.0
+      },
+      "subcontracting_weights": {
+        "affordability_weight": 35.0,
+        "fatigue_weight": 25.0,
+        "specialization_weight": 20.0,
+        "ambition_weight": 15.0,
+        "urgency_bonus": 15.0
+      }
+    },
+    "industry_upstream_dependencies": {
+      "baker": {
+        "core_recipe": "bake_bread",
+        "dependencies": [
+          {
+            "required_commodity": "flour",
+            "threshold_stock": 10.0,
+            "upstream_recipe": "mill_flour",
+            "upstream_skill": "farming",
+            "title": "Milling Requisition: Grain Grinding for Bakery",
+            "description": "Bakery requires flour ground from wheat sheaves to sustain fresh hearth bread baking.",
+            "base_reward_gold": 5.5,
+            "standard_duration_ticks": 240
+          }
+        ]
+      },
+      "miller": {
+        "core_recipe": "mill_flour",
+        "dependencies": [
+          {
+            "required_commodity": "raw_wheat",
+            "threshold_stock": 15.0,
+            "upstream_recipe": "harvest_wheat",
+            "upstream_skill": "farming",
+            "title": "Harvest Requisition: Wheat Gathering for Mill",
+            "description": "Windmill grain stores require fresh wheat harvest to operate the millstones.",
+            "base_reward_gold": 5.0,
+            "standard_duration_ticks": 240
+          }
+        ]
+      },
+      "blacksmith": {
+        "core_recipe": "forge_tools",
+        "dependencies": [
+          {
+            "required_commodity": "iron_ingot",
+            "threshold_stock": 8.0,
+            "upstream_recipe": "smelt_iron",
+            "upstream_skill": "smithing",
+            "title": "Smelting Requisition: Iron Ore Smelting for Forge",
+            "description": "Forge requires smelted iron ingots to fabricate tools and horseshoes.",
+            "base_reward_gold": 7.0,
+            "standard_duration_ticks": 240
+          },
+          {
+            "required_commodity": "raw_timber",
+            "threshold_stock": 10.0,
+            "upstream_recipe": "fell_timber",
+            "upstream_skill": "crafting",
+            "title": "Timber Requisition: Hardwood for Tool Handles",
+            "description": "Blacksmith requires timber poles and fuel for tool manufacturing.",
+            "base_reward_gold": 5.0,
+            "standard_duration_ticks": 240
+          }
+        ]
+      },
+      "carpenter": {
+        "core_recipe": "craft_furniture",
+        "dependencies": [
+          {
+            "required_commodity": "raw_timber",
+            "threshold_stock": 12.0,
+            "upstream_recipe": "fell_timber",
+            "upstream_skill": "crafting",
+            "title": "Timber Requisition: Forest Felling for Carpentry",
+            "description": "Carpenter workshop requires timber logs to craft planks and furniture.",
+            "base_reward_gold": 5.5,
+            "standard_duration_ticks": 240
+          }
+        ]
+      },
+      "innkeeper": {
+        "core_recipe": "brew_ale",
+        "dependencies": [
+          {
+            "required_commodity": "raw_wheat",
+            "threshold_stock": 10.0,
+            "upstream_recipe": "harvest_wheat",
+            "upstream_skill": "farming",
+            "title": "Grain Requisition: Wheat Delivery for Ale Brewing",
+            "description": "Tavern brewery requires wheat bushels to brew amber ale.",
+            "base_reward_gold": 5.0,
+            "standard_duration_ticks": 240
+          }
+        ]
+      }
+    }
+  }
+}

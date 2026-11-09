@@ -1,0 +1,38 @@
+{
+  "courtroom_lawsuits_config": {
+    "lawsuit_types": {
+      "SLANDER_AND_DEFAMATION": {
+        "required_filing_fee_gold": 5.0,
+        "evidence_threshold": 35.0,
+        "guilty_fine_gold": 25.0,
+        "pillory_hours": 12,
+        "victim_pride_restoration": 20.0
+      },
+      "BREACH_OF_DOWRY_CONTRACT": {
+        "required_filing_fee_gold": 10.0,
+        "evidence_threshold": 50.0,
+        "guilty_restitution_gold": 40.0,
+        "pillory_hours": 0,
+        "victim_pride_restoration": 25.0
+      },
+      "COMMERCIAL_FRAUD_OR_USURY": {
+        "required_filing_fee_gold": 8.0,
+        "evidence_threshold": 45.0,
+        "guilty_fine_gold": 35.0,
+        "pillory_hours": 24,
+        "victim_pride_restoration": 15.0
+      }
+    },
+    "indigent_legal_aid": {
+      "poverty_threshold_gold": 12.0,
+      "client_token_copay_max": 0.5,
+      "municipal_retainer_case_subsidy_gold": 2.0,
+      "appointed_advocate_roles": [
+        "notary",
+        "clerk",
+        "magistrate",
+        "judge"
+      ]
+    }
+  }
+}

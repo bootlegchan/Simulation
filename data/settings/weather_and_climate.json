@@ -1,0 +1,86 @@
+{
+  "climate_system": {
+    "seasonal_initialization": {
+      "default_season": "RANDOM_BY_SEED",
+      "season_offsets": {
+        "WINTER": 0,
+        "SPRING": 90,
+        "SUMMER": 180,
+        "AUTUMN": 270
+      }
+    },
+    "seasons": {
+      "WINTER": {
+        "mean_temp": -3.5,
+        "diurnal_amplitude": 4.0,
+        "base_humidity": 0.75,
+        "snow_threshold_temp": 1.0,
+        "solar_peak_hour": 13.0,
+        "daylight_hours": 8.0
+      },
+      "SPRING": {
+        "mean_temp": 12.0,
+        "diurnal_amplitude": 6.5,
+        "base_humidity": 0.65,
+        "snow_threshold_temp": 0.0,
+        "solar_peak_hour": 13.0,
+        "daylight_hours": 12.0
+      },
+      "SUMMER": {
+        "mean_temp": 23.5,
+        "diurnal_amplitude": 8.5,
+        "base_humidity": 0.50,
+        "snow_threshold_temp": -2.0,
+        "solar_peak_hour": 13.5,
+        "daylight_hours": 15.0
+      },
+      "AUTUMN": {
+        "mean_temp": 10.0,
+        "diurnal_amplitude": 5.5,
+        "base_humidity": 0.70,
+        "snow_threshold_temp": 0.5,
+        "solar_peak_hour": 13.0,
+        "daylight_hours": 10.5
+      }
+    },
+    "barometric_dynamics": {
+      "baseline_pressure_kpa": 101.32,
+      "pressure_drift_sigma": 0.15,
+      "precipitation_low_pressure_threshold_kpa": 100.80,
+      "max_rain_intensity": 1.0
+    },
+    "thermodynamics": {
+      "building_insulation_retention": {
+        "CIVIC": 0.85,
+        "COMMERCIAL": 0.75,
+        "RESIDENTIAL": 0.70,
+        "INDUSTRIAL": 0.55,
+        "DEFAULT": 0.65
+      },
+      "hearth_heat_output_celsius": 18.0,
+      "hearth_fuel_consumption_per_hour": 0.25,
+      "occupant_body_heat_celsius": 0.35,
+      "doorway_thermal_leak_factor": 0.15,
+      "thermal_inertia_alpha": 0.10
+    },
+    "somatic_comfort": {
+      "optimal_temp_low": 18.0,
+      "optimal_temp_high": 23.0,
+      "cold_metabolic_scaling_exponent": 1.8,
+      "cold_max_metabolic_boost": 0.65,
+      "heat_fatigue_multiplier": 1.25,
+      "freezing_stress_penalty_rate": 0.025,
+      "shivering_threshold_celsius": 12.0,
+      "freezing_threshold_celsius": 0.0
+    },
+    "agricultural_weather_feedback": {
+      "rain_moisture_influx_rate": 0.08,
+      "optimal_soil_moisture": 0.60,
+      "frost_crop_damage_threshold_temp": -2.0
+    },
+    "commute_weather_effects": {
+      "precipitation_commute_drag_max": 0.50,
+      "blizzard_commute_drag": 0.75
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "metabolic_decay": {
+    "base_rate": 0.055,
+    "composite_exertion_exponent": 1.15,
+    "min_rate_clamp": 0.018,
+    "max_rate_clamp": 0.18,
+    "physical_exertion_weight": 0.7,
+    "mental_exertion_weight": 0.3,
+    "action_exertion_multipliers": {
+      "SLEEP_REST": 0.28,
+      "COLLAPSE_FATIGUE": 0.28,
+      "IDLE": 0.5,
+      "HEARTH_WARMTH": 0.5,
+      "PRAYER_SANCTUARY": 0.5,
+      "SOLITARY_REST": 0.5,
+      "WRITE_DIARY": 0.5,
+      "COMMUNITY_SOCIALIZE": 0.7,
+      "CONVERSATION_CIRCLE": 0.7,
+      "COMMUNAL_DINING": 0.7,
+      "COUPLE_STROLL": 0.7,
+      "FLIRT_AND_TEASE": 0.7,
+      "LABOR_WORK": 1.2,
+      "MEND_EQUIPMENT": 1.2,
+      "DAY_LABOR_FOR_BREAD": 1.2,
+      "EMERGENCY_DAY_LABOR": 1.2,
+      "HOMESTEAD_GARDEN_HARVEST": 1.2,
+      "SMELT_INGOTS": 1.55,
+      "BLACKSMITHING": 1.55,
+      "FORGE_TOOLS": 1.55,
+      "MINING": 1.55,
+      "CRIME_ASSAULT": 1.55,
+      "TAVERN_BRAWLING": 1.55,
+      "DEFAULT": 0.85
+    },
+    "satiety_buffer_decay": 0.008
+  },
+  "sleep_recovery": {
+    "energy_gain_per_hour": 14.0,
+    "stress_relief_per_hour": -8.0,
+    "outdoor_sleep_penalty_multiplier": 0.5,
+    "outdoor_sleep_stress_gain": 6.0,
+    "outdoor_sleep_contentment_penalty": 8.0
+  },
+  "need_decay_defaults": {
+    "energy": -0.07,
+    "social": -0.05
+  },
+  "feelings_homeostasis": {
+    "negative_feelings_decay": 0.002,
+    "contentment_equilibrium": 50.0,
+    "contentment_drift_up": 0.003,
+    "contentment_drift_down": 0.012,
+    "moral_erosion_decay": 0.1
+  }
+}

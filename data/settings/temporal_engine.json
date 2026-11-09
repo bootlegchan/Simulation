@@ -1,0 +1,58 @@
+{
+  "temporal_engine": {
+    "ticks_per_minute": 1,
+    "minutes_per_hour": 60,
+    "hours_per_day": 24,
+    "ticks_per_day": 1440,
+    "adaptive_leaping": {
+      "enabled": true,
+      "max_leap_ticks": 60,
+      "min_leap_ticks": 1,
+      "dormant_night_start_hour": 1,
+      "dormant_night_end_hour": 4
+    },
+    "action_durations": {
+      "SLEEP_REST": 420,
+      "COLLAPSE_FATIGUE": 240,
+      "LABOR_WORK": 120,
+      "COMMUNITY_SOCIALIZE": 45,
+      "COMMUNAL_DINING": 35,
+      "BUY_AND_EAT_FOOD": 20,
+      "EAT_FROM_STORES": 15,
+      "PRIVATE_INTIMACY": 45,
+      "COURT_WITH_GIFT": 20,
+      "COMFORT_PARTNER": 30,
+      "PUBLIC_AFFECTION_DISPLAY": 15,
+      "INVITE_TO_PRIVATE_QUARTERS": 15,
+      "READ_NOTICE_BOARD": 10,
+      "REPORT_CRIME_TO_WATCH": 15,
+      "APPRAISE_WEALTHY_MARK": 20,
+      "VOCATIONAL_STUDY": 60,
+      "OBSERVE_MASTER_ARTISAN": 60,
+      "FORAGE_PROVISIONS": 45,
+      "PETTY_SHOPLIFTING": 15,
+      "BORROW_FOOD_COMPANION": 20,
+      "TRESPASSING_TRYST": 45,
+      "SPIRITUAL_CONFESSION": 30,
+      "CONFIDE_SECRET": 25,
+      "CLUB_GATHERING": 60,
+      "PLAY_DICE_HAZARD": 30,
+      "PLAY_ARM_WRESTLING": 20,
+      "PLAY_BOCCE_BALL": 45,
+      "PLAY_TAVERN_CHESS": 45,
+      "PASTORAL_COMMUNITY_CARE": 60,
+      "PARISH_ALMS_EAT": 20,
+      "SOLITARY_REFLECTION": 30,
+      "STARVATION_DISTRESS": 30,
+      "COMMUTE_STEP": 1,
+      "IDLE": 20,
+      "DEFAULT": 30
+    },
+    "subsystem_intervals": {
+      "cognitive_decision": 60,
+      "information_diffusion": 60,
+      "tax_assessment": 1440,
+      "infrastructure_upkeep": 1440
+    }
+  }
+}

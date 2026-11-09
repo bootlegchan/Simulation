@@ -1,0 +1,36 @@
+{
+  "id": "settlement_ironreach",
+  "name": "Ironreach Port & Smelter Fortress",
+  "buildings": {
+    "bldg_fortress": {
+      "id": "bldg_fortress",
+      "name": "Smelter Fortress",
+      "category": "CIVIC",
+      "rooms": {
+        "room_harbor_quay": {
+          "id": "room_harbor_quay",
+          "name": "Ironreach Harbor Quay",
+          "connected_room_ids": [
+            "room_blast_furnace",
+            "room_captain_quarters"
+          ],
+          "archetype": "MARKET_PLAZA"
+        },
+        "room_blast_furnace": {
+          "id": "room_blast_furnace",
+          "name": "Foundry Blast Furnace",
+          "connected_room_ids": [
+            "room_harbor_quay"
+          ]
+        },
+        "room_captain_quarters": {
+          "id": "room_captain_quarters",
+          "name": "Fortress Commander Quarters",
+          "connected_room_ids": [
+            "room_harbor_quay"
+          ]
+        }
+      }
+    }
+  }
+}

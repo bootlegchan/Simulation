@@ -1,0 +1,2835 @@
+{
+  "npc_aldous": {
+    "id": "npc_aldous",
+    "name": "Aldous Miller",
+    "occupation": "Farmer",
+    "home_location_id": "room_farmhouse_bedroom",
+    "work_location_id": "room_farmhouse",
+    "location_id": "room_farmhouse",
+    "wealth": 50.0,
+    "personality": {
+      "openness": 0.4,
+      "conscientiousness": 0.8,
+      "extraversion": 0.5,
+      "agreeableness": 0.7,
+      "neuroticism": 0.3
+    },
+    "social_profile": {
+      "spouse_id": "npc_greta"
+    },
+    "cognition": {
+      "thinking_profile": "FOCUSED_CRAFTSMAN",
+      "working_memory_capacity": 5,
+      "focus_depth": 1.3
+    }
+  },
+  "npc_greta": {
+    "id": "npc_greta",
+    "name": "Greta Grain",
+    "occupation": "Baker",
+    "home_location_id": "room_farmhouse_bedroom",
+    "work_location_id": "room_bakery",
+    "location_id": "room_bakery",
+    "wealth": 45.0,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.7,
+      "extraversion": 0.6,
+      "agreeableness": 0.6,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "spouse_id": "npc_aldous"
+    },
+    "cognition": {
+      "thinking_profile": "FOCUSED_CRAFTSMAN",
+      "working_memory_capacity": 5,
+      "focus_depth": 1.25
+    }
+  },
+  "npc_silas": {
+    "id": "npc_silas",
+    "name": "Silas Tavernier",
+    "occupation": "Innkeeper",
+    "home_location_id": "room_tavern_bedroom",
+    "work_location_id": "room_tavern",
+    "location_id": "room_tavern",
+    "wealth": 55.0,
+    "personality": {
+      "openness": 0.6,
+      "conscientiousness": 0.5,
+      "extraversion": 0.8,
+      "agreeableness": 0.6,
+      "neuroticism": 0.4
+    }
+  },
+  "npc_devon": {
+    "id": "npc_devon",
+    "name": "Devon Blackwood",
+    "occupation": "Mayor",
+    "civic_role": "Town Mayor",
+    "home_location_id": "room_town_hall",
+    "work_location_id": "room_town_hall",
+    "location_id": "room_town_hall",
+    "wealth": 80.0,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.8,
+      "extraversion": 0.6,
+      "agreeableness": 0.6,
+      "neuroticism": 0.3
+    },
+    "cognition": {
+      "thinking_profile": "SCHOLAR_ANALYTICAL",
+      "working_memory_capacity": 7,
+      "focus_depth": 1.4,
+      "deliberation_bandwidth": 1.3
+    }
+  },
+  "npc_barnaby_priest": {
+    "id": "npc_barnaby_priest",
+    "name": "Father Barnaby",
+    "occupation": "Priest",
+    "home_location_id": "room_rectory_bedroom",
+    "work_location_id": "room_chapel",
+    "location_id": "room_chapel",
+    "wealth": 35.0,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.8,
+      "extraversion": 0.4,
+      "agreeableness": 0.8,
+      "neuroticism": 0.2
+    },
+    "cognition": {
+      "thinking_profile": "SCHOLAR_ANALYTICAL",
+      "working_memory_capacity": 6,
+      "focus_depth": 1.35
+    }
+  },
+  "npc_beatrice": {
+    "id": "npc_beatrice",
+    "name": "Beatrice Vance",
+    "occupation": "Merchant",
+    "home_location_id": "room_vance_bedroom",
+    "work_location_id": "room_shop",
+    "location_id": "room_shop",
+    "wealth": 60.0,
+    "personality": {
+      "openness": 0.6,
+      "conscientiousness": 0.7,
+      "extraversion": 0.7,
+      "agreeableness": 0.6,
+      "neuroticism": 0.4
+    }
+  },
+  "npc_tobias": {
+    "id": "npc_tobias",
+    "name": "Tobias Smuggler",
+    "occupation": "Scavenger",
+    "home_location_id": "room_village_square",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 25.0,
+    "vices": {
+      "crime_propensity": 65.0
+    },
+    "personality": {
+      "openness": 0.7,
+      "conscientiousness": 0.3,
+      "extraversion": 0.5,
+      "agreeableness": 0.3,
+      "neuroticism": 0.6
+    },
+    "cognition": {
+      "thinking_profile": "INTUITIVE_IMPULSIVE",
+      "working_memory_capacity": 3,
+      "distractibility": 0.8,
+      "emotional_reactivity": 1.4
+    }
+  },
+  "npc_citizen_01": {
+    "id": "npc_citizen_01",
+    "name": "Citizen 01",
+    "occupation": "Commoner",
+    "home_location_id": "room_cottage_bedroom_north",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 30.8,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "spouse_id": "npc_citizen_02"
+    },
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    },
+    "cognition": {
+      "thinking_profile": "SCATTERBRAIN_ABSENTMINDED",
+      "working_memory_capacity": 2,
+      "distractibility": 0.9
+    }
+  },
+  "npc_citizen_02": {
+    "id": "npc_citizen_02",
+    "name": "Citizen 02",
+    "occupation": "Laborer",
+    "home_location_id": "room_cottage_bedroom_north",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 31.5,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "spouse_id": "npc_citizen_01"
+    },
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_03": {
+    "id": "npc_citizen_03",
+    "name": "Citizen 03",
+    "occupation": "Commoner",
+    "home_location_id": "room_cottage_bedroom_south",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 32.2,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "partner_id": "npc_citizen_04",
+      "spouse_id": "npc_citizen_04"
+    },
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_04": {
+    "id": "npc_citizen_04",
+    "name": "Citizen 04",
+    "occupation": "Laborer",
+    "home_location_id": "room_cottage_bedroom_south",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 33.0,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "partner_id": "npc_citizen_03",
+      "spouse_id": "npc_citizen_03"
+    },
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_05": {
+    "id": "npc_citizen_05",
+    "name": "Citizen 05",
+    "occupation": "Commoner",
+    "home_location_id": "room_tavern_bedroom",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 33.8,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "spouse_id": "npc_citizen_06"
+    },
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_06": {
+    "id": "npc_citizen_06",
+    "name": "Citizen 06",
+    "occupation": "Laborer",
+    "home_location_id": "room_tavern_bedroom",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 34.5,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "spouse_id": "npc_citizen_05"
+    },
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_07": {
+    "id": "npc_citizen_07",
+    "name": "Citizen 07",
+    "occupation": "Commoner",
+    "home_location_id": "room_farmhouse_loft",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 35.2,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "spouse_id": "npc_citizen_08"
+    },
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_08": {
+    "id": "npc_citizen_08",
+    "name": "Citizen 08",
+    "occupation": "Laborer",
+    "home_location_id": "room_farmhouse_loft",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 36.0,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "spouse_id": "npc_citizen_07"
+    },
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_09": {
+    "id": "npc_citizen_09",
+    "name": "Citizen 09",
+    "occupation": "Commoner",
+    "home_location_id": "room_lodgings_bedroom_east",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 36.8,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_10": {
+    "id": "npc_citizen_10",
+    "name": "Citizen 10",
+    "occupation": "Miller",
+    "home_location_id": "room_mill_bedroom",
+    "work_location_id": "room_windmill",
+    "location_id": "room_village_square",
+    "wealth": 37.5,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "skills": {
+      "farming": 55.0,
+      "crafting": 40.0
+    },
+    "social_profile": {
+      "spouse_id": "npc_citizen_11"
+    },
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_11": {
+    "id": "npc_citizen_11",
+    "name": "Citizen 11",
+    "occupation": "Commoner",
+    "home_location_id": "room_mill_bedroom",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 38.2,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "spouse_id": "npc_citizen_10"
+    },
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_12": {
+    "id": "npc_citizen_12",
+    "name": "Citizen 12",
+    "occupation": "Blacksmith",
+    "home_location_id": "room_smith_bedroom",
+    "work_location_id": "room_blacksmith",
+    "location_id": "room_village_square",
+    "wealth": 39.0,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "skills": {
+      "smithing": 60.0,
+      "crafting": 45.0
+    },
+    "social_profile": {
+      "spouse_id": "npc_citizen_13"
+    },
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    },
+    "cognition": {
+      "thinking_profile": "FOCUSED_CRAFTSMAN",
+      "working_memory_capacity": 5,
+      "focus_depth": 1.3
+    }
+  },
+  "npc_citizen_13": {
+    "id": "npc_citizen_13",
+    "name": "Citizen 13",
+    "occupation": "Commoner",
+    "home_location_id": "room_smith_bedroom",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 39.8,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "spouse_id": "npc_citizen_12"
+    },
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_14": {
+    "id": "npc_citizen_14",
+    "name": "Citizen 14",
+    "occupation": "Carpenter",
+    "home_location_id": "room_carpenter_bedroom",
+    "work_location_id": "room_carpenter",
+    "location_id": "room_village_square",
+    "wealth": 40.5,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "skills": {
+      "crafting": 60.0,
+      "bargaining": 35.0
+    },
+    "social_profile": {
+      "spouse_id": "npc_citizen_15"
+    },
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    },
+    "cognition": {
+      "thinking_profile": "FOCUSED_CRAFTSMAN",
+      "working_memory_capacity": 5,
+      "focus_depth": 1.3
+    }
+  },
+  "npc_citizen_15": {
+    "id": "npc_citizen_15",
+    "name": "Citizen 15",
+    "occupation": "Commoner",
+    "home_location_id": "room_carpenter_bedroom",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 41.2,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "spouse_id": "npc_citizen_14"
+    },
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_16": {
+    "id": "npc_citizen_16",
+    "name": "Citizen 16",
+    "occupation": "Town Guard",
+    "home_location_id": "room_barracks_bedroom",
+    "work_location_id": "room_guardhouse",
+    "location_id": "room_village_square",
+    "wealth": 42.0,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "skills": {
+      "brawling": 60.0,
+      "subterfuge": 20.0
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_17": {
+    "id": "npc_citizen_17",
+    "name": "Citizen 17",
+    "occupation": "Commoner",
+    "home_location_id": "room_lodgings_bedroom_east",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 42.8,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_18": {
+    "id": "npc_citizen_18",
+    "name": "Citizen 18",
+    "occupation": "Laborer",
+    "home_location_id": "room_lodgings_bedroom_east",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 43.5,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_19": {
+    "id": "npc_citizen_19",
+    "name": "Citizen 19",
+    "occupation": "Commoner",
+    "home_location_id": "room_lodgings_bedroom_east",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 44.2,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_20": {
+    "id": "npc_citizen_20",
+    "name": "Citizen 20",
+    "occupation": "Laborer",
+    "home_location_id": "room_lodgings_bedroom_east",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 45.0,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_21": {
+    "id": "npc_citizen_21",
+    "name": "Citizen 21",
+    "occupation": "Commoner",
+    "home_location_id": "room_lodgings_bedroom_east",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 45.8,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_22": {
+    "id": "npc_citizen_22",
+    "name": "Citizen 22",
+    "occupation": "Laborer",
+    "home_location_id": "room_lodgings_bedroom_east",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 46.5,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_23": {
+    "id": "npc_citizen_23",
+    "name": "Citizen 23",
+    "occupation": "Commoner",
+    "home_location_id": "room_lodgings_bedroom_east",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 47.2,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_24": {
+    "id": "npc_citizen_24",
+    "name": "Citizen 24",
+    "occupation": "Laborer",
+    "home_location_id": "room_lodgings_bedroom_east",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 48.0,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_25": {
+    "id": "npc_citizen_25",
+    "name": "Citizen 25",
+    "occupation": "Commoner",
+    "home_location_id": "room_lodgings_bedroom_west",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 48.8,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_26": {
+    "id": "npc_citizen_26",
+    "name": "Citizen 26",
+    "occupation": "Laborer",
+    "home_location_id": "room_lodgings_bedroom_west",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 49.5,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_27": {
+    "id": "npc_citizen_27",
+    "name": "Citizen 27",
+    "occupation": "Commoner",
+    "home_location_id": "room_lodgings_bedroom_west",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 50.2,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_28": {
+    "id": "npc_citizen_28",
+    "name": "Citizen 28",
+    "occupation": "Laborer",
+    "home_location_id": "room_lodgings_bedroom_west",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 51.0,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_29": {
+    "id": "npc_citizen_29",
+    "name": "Citizen 29",
+    "occupation": "Commoner",
+    "home_location_id": "room_lodgings_bedroom_west",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 51.8,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_30": {
+    "id": "npc_citizen_30",
+    "name": "Citizen 30",
+    "occupation": "Laborer",
+    "home_location_id": "room_lodgings_bedroom_west",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 52.5,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_31": {
+    "id": "npc_citizen_31",
+    "name": "Citizen 31",
+    "occupation": "Commoner",
+    "home_location_id": "room_lodgings_bedroom_west",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 53.2,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_32": {
+    "id": "npc_citizen_32",
+    "name": "Citizen 32",
+    "occupation": "Laborer",
+    "home_location_id": "room_lodgings_bedroom_west",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 54.0,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_33": {
+    "id": "npc_citizen_33",
+    "name": "Citizen 33",
+    "occupation": "Commoner",
+    "home_location_id": "room_lodgings_bedroom_west",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 54.8,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_34": {
+    "id": "npc_citizen_34",
+    "name": "Citizen 34",
+    "occupation": "Laborer",
+    "home_location_id": "room_lodgings_bedroom_west",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 55.5,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_35": {
+    "id": "npc_citizen_35",
+    "name": "Citizen 35",
+    "occupation": "Commoner",
+    "home_location_id": "room_lodgings_bedroom_west",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 56.2,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_36": {
+    "id": "npc_citizen_36",
+    "name": "Citizen 36",
+    "occupation": "Laborer",
+    "home_location_id": "room_lodgings_bedroom_west",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 57.0,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_37": {
+    "id": "npc_citizen_37",
+    "name": "Citizen 37",
+    "occupation": "Commoner",
+    "home_location_id": "room_lodgings_bedroom_west",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 57.8,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_citizen_38": {
+    "id": "npc_citizen_38",
+    "name": "Citizen 38",
+    "occupation": "Laborer",
+    "home_location_id": "room_lodgings_bedroom_west",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 58.5,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.5,
+      "extraversion": 0.5,
+      "agreeableness": 0.5,
+      "neuroticism": 0.4
+    },
+    "social_profile": {},
+    "reputation_facets": {
+      "trustworthiness": 75.0,
+      "civic_standing": 50.0,
+      "moral_piety": 50.0
+    }
+  },
+  "npc_valeria_notary": {
+    "id": "npc_valeria_notary",
+    "name": "Valeria Notary",
+    "occupation": "Notary",
+    "civic_role": "Municipal Notary & Legal Advocate",
+    "home_location_id": "room_town_hall",
+    "work_location_id": "room_town_hall",
+    "location_id": "room_town_hall",
+    "wealth": 65.0,
+    "personality": {
+      "openness": 0.6,
+      "conscientiousness": 0.85,
+      "extraversion": 0.5,
+      "agreeableness": 0.7,
+      "neuroticism": 0.3
+    },
+    "cognition": {
+      "thinking_profile": "SCHOLAR_ANALYTICAL",
+      "working_memory_capacity": 7,
+      "focus_depth": 1.5
+    }
+  },
+  "npc_cedric": {
+    "id": "npc_cedric",
+    "name": "Cedric Clerk",
+    "occupation": "Clerk",
+    "civic_role": "Town Clerk",
+    "home_location_id": "room_town_hall",
+    "work_location_id": "room_town_hall",
+    "location_id": "room_town_hall",
+    "wealth": 40.0,
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.8,
+      "extraversion": 0.4,
+      "agreeableness": 0.6,
+      "neuroticism": 0.3
+    }
+  },
+  "npc_citizen_39": {
+    "id": "npc_citizen_39",
+    "name": "Roderick Guard",
+    "occupation": "Town Guard",
+    "home_location_id": "room_barracks_bedroom",
+    "work_location_id": "room_guardhouse",
+    "location_id": "room_barracks_bedroom",
+    "wealth": 35.0,
+    "needs": {
+      "hunger": 15.0,
+      "energy": 85.0,
+      "social": 50.0
+    },
+    "decay_rates": {
+      "hunger": 0.05,
+      "energy": -0.07,
+      "social": -0.05
+    },
+    "attributes": {
+      "strength": 12.0,
+      "intelligence": 11.0,
+      "stamina": 12.0
+    },
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.6,
+      "extraversion": 0.5,
+      "agreeableness": 0.6,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "moral_values": {
+        "loyalty": 0.7,
+        "honor": 0.8,
+        "ambition": 0.5
+      },
+      "reputation_facets": {
+        "trustworthiness": 75.0,
+        "civic_standing": 50.0,
+        "moral_piety": 50.0
+      },
+      "social_class": "COMMONER",
+      "background": "Dedicated town guard in Oakwood Village.",
+      "spouse_id": "npc_citizen_40"
+    },
+    "feelings": {
+      "contentment": 60.0,
+      "tenderness": 30.0,
+      "passion": 20.0,
+      "loneliness": 5.0,
+      "stress": 5.0,
+      "jealousy": 0.0,
+      "guilt": 0.0,
+      "grief": 0.0,
+      "pride": 30.0,
+      "resentment": 0.0
+    },
+    "moral_erosion": 5.0,
+    "skills": {
+      "farming": 15.0,
+      "crafting": 20.0,
+      "smithing": 15.0,
+      "baking": 15.0,
+      "hospitality": 20.0,
+      "brawling": 50.0
+    },
+    "physical_attributes": {
+      "constitution": 55.0,
+      "work_rate": 55.0,
+      "agility": 50.0,
+      "pain_tolerance": 45.0,
+      "recovery_rate": 50.0
+    },
+    "mental_attributes": {
+      "composure": 55.0,
+      "ambition": 50.0,
+      "leadership": 40.0,
+      "adaptability": 50.0,
+      "loyalty": 60.0,
+      "shrewdness": 45.0
+    },
+    "career_statistics": {
+      "career_earnings_gold": 0.0,
+      "taxes_paid_gold": 0.0,
+      "goods_crafted_count": 0,
+      "trades_executed_count": 0,
+      "contracts_fulfilled": 0,
+      "crimes_committed": 0
+    },
+    "vices": {
+      "alcohol_dependence": 0.0,
+      "gambling_drive": 0.0,
+      "crime_propensity": 0.0,
+      "vice_indulgence": 0.0
+    },
+    "cognition": {
+      "decision_quality": "Rational",
+      "laziness": 0.2
+    },
+    "inventory": [],
+    "current_state": "IDLE",
+    "current_action": "IDLE"
+  },
+  "npc_citizen_40": {
+    "id": "npc_citizen_40",
+    "name": "Dorothy Guard",
+    "occupation": "Commoner",
+    "home_location_id": "room_barracks_bedroom",
+    "work_location_id": "room_village_square",
+    "location_id": "room_barracks_bedroom",
+    "wealth": 30.0,
+    "needs": {
+      "hunger": 15.0,
+      "energy": 85.0,
+      "social": 50.0
+    },
+    "decay_rates": {
+      "hunger": 0.05,
+      "energy": -0.07,
+      "social": -0.05
+    },
+    "attributes": {
+      "strength": 12.0,
+      "intelligence": 11.0,
+      "stamina": 12.0
+    },
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.6,
+      "extraversion": 0.5,
+      "agreeableness": 0.6,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "moral_values": {
+        "loyalty": 0.7,
+        "honor": 0.8,
+        "ambition": 0.5
+      },
+      "reputation_facets": {
+        "trustworthiness": 75.0,
+        "civic_standing": 50.0,
+        "moral_piety": 50.0
+      },
+      "social_class": "COMMONER",
+      "background": "Dedicated commoner in Oakwood Village.",
+      "spouse_id": "npc_citizen_39"
+    },
+    "feelings": {
+      "contentment": 60.0,
+      "tenderness": 30.0,
+      "passion": 20.0,
+      "loneliness": 5.0,
+      "stress": 5.0,
+      "jealousy": 0.0,
+      "guilt": 0.0,
+      "grief": 0.0,
+      "pride": 30.0,
+      "resentment": 0.0
+    },
+    "moral_erosion": 5.0,
+    "skills": {
+      "farming": 15.0,
+      "crafting": 20.0,
+      "smithing": 15.0,
+      "baking": 15.0,
+      "hospitality": 20.0,
+      "brawling": 15.0
+    },
+    "physical_attributes": {
+      "constitution": 55.0,
+      "work_rate": 55.0,
+      "agility": 50.0,
+      "pain_tolerance": 45.0,
+      "recovery_rate": 50.0
+    },
+    "mental_attributes": {
+      "composure": 55.0,
+      "ambition": 50.0,
+      "leadership": 40.0,
+      "adaptability": 50.0,
+      "loyalty": 60.0,
+      "shrewdness": 45.0
+    },
+    "career_statistics": {
+      "career_earnings_gold": 0.0,
+      "taxes_paid_gold": 0.0,
+      "goods_crafted_count": 0,
+      "trades_executed_count": 0,
+      "contracts_fulfilled": 0,
+      "crimes_committed": 0
+    },
+    "vices": {
+      "alcohol_dependence": 0.0,
+      "gambling_drive": 0.0,
+      "crime_propensity": 0.0,
+      "vice_indulgence": 0.0
+    },
+    "cognition": {
+      "decision_quality": "Rational",
+      "laziness": 0.2
+    },
+    "inventory": [],
+    "current_state": "IDLE",
+    "current_action": "IDLE"
+  },
+  "npc_citizen_41": {
+    "id": "npc_citizen_41",
+    "name": "Godfrey Woodman",
+    "occupation": "Woodcutter",
+    "home_location_id": "room_farmhouse_loft",
+    "work_location_id": "room_farmhouse",
+    "location_id": "room_farmhouse_bedroom",
+    "wealth": 32.0,
+    "needs": {
+      "hunger": 15.0,
+      "energy": 85.0,
+      "social": 50.0
+    },
+    "decay_rates": {
+      "hunger": 0.05,
+      "energy": -0.07,
+      "social": -0.05
+    },
+    "attributes": {
+      "strength": 12.0,
+      "intelligence": 11.0,
+      "stamina": 12.0
+    },
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.6,
+      "extraversion": 0.5,
+      "agreeableness": 0.6,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "moral_values": {
+        "loyalty": 0.7,
+        "honor": 0.8,
+        "ambition": 0.5
+      },
+      "reputation_facets": {
+        "trustworthiness": 75.0,
+        "civic_standing": 50.0,
+        "moral_piety": 50.0
+      },
+      "social_class": "COMMONER",
+      "background": "Dedicated woodcutter in Oakwood Village.",
+      "spouse_id": "npc_citizen_42"
+    },
+    "feelings": {
+      "contentment": 60.0,
+      "tenderness": 30.0,
+      "passion": 20.0,
+      "loneliness": 5.0,
+      "stress": 5.0,
+      "jealousy": 0.0,
+      "guilt": 0.0,
+      "grief": 0.0,
+      "pride": 30.0,
+      "resentment": 0.0
+    },
+    "moral_erosion": 5.0,
+    "skills": {
+      "farming": 15.0,
+      "crafting": 50.0,
+      "smithing": 15.0,
+      "baking": 15.0,
+      "hospitality": 20.0,
+      "brawling": 15.0
+    },
+    "physical_attributes": {
+      "constitution": 55.0,
+      "work_rate": 55.0,
+      "agility": 50.0,
+      "pain_tolerance": 45.0,
+      "recovery_rate": 50.0
+    },
+    "mental_attributes": {
+      "composure": 55.0,
+      "ambition": 50.0,
+      "leadership": 40.0,
+      "adaptability": 50.0,
+      "loyalty": 60.0,
+      "shrewdness": 45.0
+    },
+    "career_statistics": {
+      "career_earnings_gold": 0.0,
+      "taxes_paid_gold": 0.0,
+      "goods_crafted_count": 0,
+      "trades_executed_count": 0,
+      "contracts_fulfilled": 0,
+      "crimes_committed": 0
+    },
+    "vices": {
+      "alcohol_dependence": 0.0,
+      "gambling_drive": 0.0,
+      "crime_propensity": 0.0,
+      "vice_indulgence": 0.0
+    },
+    "cognition": {
+      "decision_quality": "Rational",
+      "laziness": 0.2
+    },
+    "inventory": [],
+    "current_state": "IDLE",
+    "current_action": "IDLE"
+  },
+  "npc_citizen_42": {
+    "id": "npc_citizen_42",
+    "name": "Alice Woodman",
+    "occupation": "Laborer",
+    "home_location_id": "room_farmhouse_loft",
+    "work_location_id": "room_farmhouse",
+    "location_id": "room_farmhouse_bedroom",
+    "wealth": 28.0,
+    "needs": {
+      "hunger": 15.0,
+      "energy": 85.0,
+      "social": 50.0
+    },
+    "decay_rates": {
+      "hunger": 0.05,
+      "energy": -0.07,
+      "social": -0.05
+    },
+    "attributes": {
+      "strength": 12.0,
+      "intelligence": 11.0,
+      "stamina": 12.0
+    },
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.6,
+      "extraversion": 0.5,
+      "agreeableness": 0.6,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "moral_values": {
+        "loyalty": 0.7,
+        "honor": 0.8,
+        "ambition": 0.5
+      },
+      "reputation_facets": {
+        "trustworthiness": 75.0,
+        "civic_standing": 50.0,
+        "moral_piety": 50.0
+      },
+      "social_class": "COMMONER",
+      "background": "Dedicated laborer in Oakwood Village.",
+      "spouse_id": "npc_citizen_41"
+    },
+    "feelings": {
+      "contentment": 60.0,
+      "tenderness": 30.0,
+      "passion": 20.0,
+      "loneliness": 5.0,
+      "stress": 5.0,
+      "jealousy": 0.0,
+      "guilt": 0.0,
+      "grief": 0.0,
+      "pride": 30.0,
+      "resentment": 0.0
+    },
+    "moral_erosion": 5.0,
+    "skills": {
+      "farming": 15.0,
+      "crafting": 20.0,
+      "smithing": 15.0,
+      "baking": 15.0,
+      "hospitality": 20.0,
+      "brawling": 15.0
+    },
+    "physical_attributes": {
+      "constitution": 55.0,
+      "work_rate": 55.0,
+      "agility": 50.0,
+      "pain_tolerance": 45.0,
+      "recovery_rate": 50.0
+    },
+    "mental_attributes": {
+      "composure": 55.0,
+      "ambition": 50.0,
+      "leadership": 40.0,
+      "adaptability": 50.0,
+      "loyalty": 60.0,
+      "shrewdness": 45.0
+    },
+    "career_statistics": {
+      "career_earnings_gold": 0.0,
+      "taxes_paid_gold": 0.0,
+      "goods_crafted_count": 0,
+      "trades_executed_count": 0,
+      "contracts_fulfilled": 0,
+      "crimes_committed": 0
+    },
+    "vices": {
+      "alcohol_dependence": 0.0,
+      "gambling_drive": 0.0,
+      "crime_propensity": 0.0,
+      "vice_indulgence": 0.0
+    },
+    "cognition": {
+      "decision_quality": "Rational",
+      "laziness": 0.2
+    },
+    "inventory": [],
+    "current_state": "IDLE",
+    "current_action": "IDLE"
+  },
+  "npc_citizen_43": {
+    "id": "npc_citizen_43",
+    "name": "Thurstan Mason",
+    "occupation": "Mason",
+    "home_location_id": "room_cottage_bedroom_north",
+    "work_location_id": "room_village_square",
+    "location_id": "room_cottage_bedroom_north",
+    "wealth": 36.0,
+    "needs": {
+      "hunger": 15.0,
+      "energy": 85.0,
+      "social": 50.0
+    },
+    "decay_rates": {
+      "hunger": 0.05,
+      "energy": -0.07,
+      "social": -0.05
+    },
+    "attributes": {
+      "strength": 12.0,
+      "intelligence": 11.0,
+      "stamina": 12.0
+    },
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.6,
+      "extraversion": 0.5,
+      "agreeableness": 0.6,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "moral_values": {
+        "loyalty": 0.7,
+        "honor": 0.8,
+        "ambition": 0.5
+      },
+      "reputation_facets": {
+        "trustworthiness": 75.0,
+        "civic_standing": 50.0,
+        "moral_piety": 50.0
+      },
+      "social_class": "COMMONER",
+      "background": "Dedicated mason in Oakwood Village.",
+      "spouse_id": "npc_citizen_44"
+    },
+    "feelings": {
+      "contentment": 60.0,
+      "tenderness": 30.0,
+      "passion": 20.0,
+      "loneliness": 5.0,
+      "stress": 5.0,
+      "jealousy": 0.0,
+      "guilt": 0.0,
+      "grief": 0.0,
+      "pride": 30.0,
+      "resentment": 0.0
+    },
+    "moral_erosion": 5.0,
+    "skills": {
+      "farming": 15.0,
+      "crafting": 50.0,
+      "smithing": 15.0,
+      "baking": 15.0,
+      "hospitality": 20.0,
+      "brawling": 15.0
+    },
+    "physical_attributes": {
+      "constitution": 55.0,
+      "work_rate": 55.0,
+      "agility": 50.0,
+      "pain_tolerance": 45.0,
+      "recovery_rate": 50.0
+    },
+    "mental_attributes": {
+      "composure": 55.0,
+      "ambition": 50.0,
+      "leadership": 40.0,
+      "adaptability": 50.0,
+      "loyalty": 60.0,
+      "shrewdness": 45.0
+    },
+    "career_statistics": {
+      "career_earnings_gold": 0.0,
+      "taxes_paid_gold": 0.0,
+      "goods_crafted_count": 0,
+      "trades_executed_count": 0,
+      "contracts_fulfilled": 0,
+      "crimes_committed": 0
+    },
+    "vices": {
+      "alcohol_dependence": 0.0,
+      "gambling_drive": 0.0,
+      "crime_propensity": 0.0,
+      "vice_indulgence": 0.0
+    },
+    "cognition": {
+      "decision_quality": "Rational",
+      "laziness": 0.2
+    },
+    "inventory": [],
+    "current_state": "IDLE",
+    "current_action": "IDLE"
+  },
+  "npc_citizen_44": {
+    "id": "npc_citizen_44",
+    "name": "Beatrice Mason",
+    "occupation": "Commoner",
+    "home_location_id": "room_cottage_bedroom_north",
+    "work_location_id": "room_village_square",
+    "location_id": "room_cottage_bedroom_north",
+    "wealth": 28.0,
+    "needs": {
+      "hunger": 15.0,
+      "energy": 85.0,
+      "social": 50.0
+    },
+    "decay_rates": {
+      "hunger": 0.05,
+      "energy": -0.07,
+      "social": -0.05
+    },
+    "attributes": {
+      "strength": 12.0,
+      "intelligence": 11.0,
+      "stamina": 12.0
+    },
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.6,
+      "extraversion": 0.5,
+      "agreeableness": 0.6,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "moral_values": {
+        "loyalty": 0.7,
+        "honor": 0.8,
+        "ambition": 0.5
+      },
+      "reputation_facets": {
+        "trustworthiness": 75.0,
+        "civic_standing": 50.0,
+        "moral_piety": 50.0
+      },
+      "social_class": "COMMONER",
+      "background": "Dedicated commoner in Oakwood Village.",
+      "spouse_id": "npc_citizen_43"
+    },
+    "feelings": {
+      "contentment": 60.0,
+      "tenderness": 30.0,
+      "passion": 20.0,
+      "loneliness": 5.0,
+      "stress": 5.0,
+      "jealousy": 0.0,
+      "guilt": 0.0,
+      "grief": 0.0,
+      "pride": 30.0,
+      "resentment": 0.0
+    },
+    "moral_erosion": 5.0,
+    "skills": {
+      "farming": 15.0,
+      "crafting": 20.0,
+      "smithing": 15.0,
+      "baking": 15.0,
+      "hospitality": 20.0,
+      "brawling": 15.0
+    },
+    "physical_attributes": {
+      "constitution": 55.0,
+      "work_rate": 55.0,
+      "agility": 50.0,
+      "pain_tolerance": 45.0,
+      "recovery_rate": 50.0
+    },
+    "mental_attributes": {
+      "composure": 55.0,
+      "ambition": 50.0,
+      "leadership": 40.0,
+      "adaptability": 50.0,
+      "loyalty": 60.0,
+      "shrewdness": 45.0
+    },
+    "career_statistics": {
+      "career_earnings_gold": 0.0,
+      "taxes_paid_gold": 0.0,
+      "goods_crafted_count": 0,
+      "trades_executed_count": 0,
+      "contracts_fulfilled": 0,
+      "crimes_committed": 0
+    },
+    "vices": {
+      "alcohol_dependence": 0.0,
+      "gambling_drive": 0.0,
+      "crime_propensity": 0.0,
+      "vice_indulgence": 0.0
+    },
+    "cognition": {
+      "decision_quality": "Rational",
+      "laziness": 0.2
+    },
+    "inventory": [],
+    "current_state": "IDLE",
+    "current_action": "IDLE"
+  },
+  "npc_citizen_45": {
+    "id": "npc_citizen_45",
+    "name": "Gilbert Weaver",
+    "occupation": "Weaver",
+    "home_location_id": "room_vance_bedroom",
+    "work_location_id": "room_shop",
+    "location_id": "room_vance_bedroom",
+    "wealth": 34.0,
+    "needs": {
+      "hunger": 15.0,
+      "energy": 85.0,
+      "social": 50.0
+    },
+    "decay_rates": {
+      "hunger": 0.05,
+      "energy": -0.07,
+      "social": -0.05
+    },
+    "attributes": {
+      "strength": 12.0,
+      "intelligence": 11.0,
+      "stamina": 12.0
+    },
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.6,
+      "extraversion": 0.5,
+      "agreeableness": 0.6,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "moral_values": {
+        "loyalty": 0.7,
+        "honor": 0.8,
+        "ambition": 0.5
+      },
+      "reputation_facets": {
+        "trustworthiness": 75.0,
+        "civic_standing": 50.0,
+        "moral_piety": 50.0
+      },
+      "social_class": "COMMONER",
+      "background": "Dedicated weaver in Oakwood Village.",
+      "spouse_id": "npc_citizen_46"
+    },
+    "feelings": {
+      "contentment": 60.0,
+      "tenderness": 30.0,
+      "passion": 20.0,
+      "loneliness": 5.0,
+      "stress": 5.0,
+      "jealousy": 0.0,
+      "guilt": 0.0,
+      "grief": 0.0,
+      "pride": 30.0,
+      "resentment": 0.0
+    },
+    "moral_erosion": 5.0,
+    "skills": {
+      "farming": 15.0,
+      "crafting": 50.0,
+      "smithing": 15.0,
+      "baking": 15.0,
+      "hospitality": 20.0,
+      "brawling": 15.0
+    },
+    "physical_attributes": {
+      "constitution": 55.0,
+      "work_rate": 55.0,
+      "agility": 50.0,
+      "pain_tolerance": 45.0,
+      "recovery_rate": 50.0
+    },
+    "mental_attributes": {
+      "composure": 55.0,
+      "ambition": 50.0,
+      "leadership": 40.0,
+      "adaptability": 50.0,
+      "loyalty": 60.0,
+      "shrewdness": 45.0
+    },
+    "career_statistics": {
+      "career_earnings_gold": 0.0,
+      "taxes_paid_gold": 0.0,
+      "goods_crafted_count": 0,
+      "trades_executed_count": 0,
+      "contracts_fulfilled": 0,
+      "crimes_committed": 0
+    },
+    "vices": {
+      "alcohol_dependence": 0.0,
+      "gambling_drive": 0.0,
+      "crime_propensity": 0.0,
+      "vice_indulgence": 0.0
+    },
+    "cognition": {
+      "decision_quality": "Rational",
+      "laziness": 0.2
+    },
+    "inventory": [],
+    "current_state": "IDLE",
+    "current_action": "IDLE"
+  },
+  "npc_citizen_46": {
+    "id": "npc_citizen_46",
+    "name": "Mabel Weaver",
+    "occupation": "Laborer",
+    "home_location_id": "room_vance_bedroom",
+    "work_location_id": "room_shop",
+    "location_id": "room_vance_bedroom",
+    "wealth": 30.0,
+    "needs": {
+      "hunger": 15.0,
+      "energy": 85.0,
+      "social": 50.0
+    },
+    "decay_rates": {
+      "hunger": 0.05,
+      "energy": -0.07,
+      "social": -0.05
+    },
+    "attributes": {
+      "strength": 12.0,
+      "intelligence": 11.0,
+      "stamina": 12.0
+    },
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.6,
+      "extraversion": 0.5,
+      "agreeableness": 0.6,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "moral_values": {
+        "loyalty": 0.7,
+        "honor": 0.8,
+        "ambition": 0.5
+      },
+      "reputation_facets": {
+        "trustworthiness": 75.0,
+        "civic_standing": 50.0,
+        "moral_piety": 50.0
+      },
+      "social_class": "COMMONER",
+      "background": "Dedicated laborer in Oakwood Village.",
+      "spouse_id": "npc_citizen_45"
+    },
+    "feelings": {
+      "contentment": 60.0,
+      "tenderness": 30.0,
+      "passion": 20.0,
+      "loneliness": 5.0,
+      "stress": 5.0,
+      "jealousy": 0.0,
+      "guilt": 0.0,
+      "grief": 0.0,
+      "pride": 30.0,
+      "resentment": 0.0
+    },
+    "moral_erosion": 5.0,
+    "skills": {
+      "farming": 15.0,
+      "crafting": 20.0,
+      "smithing": 15.0,
+      "baking": 15.0,
+      "hospitality": 20.0,
+      "brawling": 15.0
+    },
+    "physical_attributes": {
+      "constitution": 55.0,
+      "work_rate": 55.0,
+      "agility": 50.0,
+      "pain_tolerance": 45.0,
+      "recovery_rate": 50.0
+    },
+    "mental_attributes": {
+      "composure": 55.0,
+      "ambition": 50.0,
+      "leadership": 40.0,
+      "adaptability": 50.0,
+      "loyalty": 60.0,
+      "shrewdness": 45.0
+    },
+    "career_statistics": {
+      "career_earnings_gold": 0.0,
+      "taxes_paid_gold": 0.0,
+      "goods_crafted_count": 0,
+      "trades_executed_count": 0,
+      "contracts_fulfilled": 0,
+      "crimes_committed": 0
+    },
+    "vices": {
+      "alcohol_dependence": 0.0,
+      "gambling_drive": 0.0,
+      "crime_propensity": 0.0,
+      "vice_indulgence": 0.0
+    },
+    "cognition": {
+      "decision_quality": "Rational",
+      "laziness": 0.2
+    },
+    "inventory": [],
+    "current_state": "IDLE",
+    "current_action": "IDLE"
+  },
+  "npc_citizen_47": {
+    "id": "npc_citizen_47",
+    "name": "Eustace Herbalist",
+    "occupation": "Healer",
+    "home_location_id": "room_vance_bedroom",
+    "work_location_id": "room_shop",
+    "location_id": "room_vance_bedroom",
+    "wealth": 38.0,
+    "needs": {
+      "hunger": 15.0,
+      "energy": 85.0,
+      "social": 50.0
+    },
+    "decay_rates": {
+      "hunger": 0.05,
+      "energy": -0.07,
+      "social": -0.05
+    },
+    "attributes": {
+      "strength": 12.0,
+      "intelligence": 11.0,
+      "stamina": 12.0
+    },
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.6,
+      "extraversion": 0.5,
+      "agreeableness": 0.6,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "moral_values": {
+        "loyalty": 0.7,
+        "honor": 0.8,
+        "ambition": 0.5
+      },
+      "reputation_facets": {
+        "trustworthiness": 75.0,
+        "civic_standing": 50.0,
+        "moral_piety": 50.0
+      },
+      "social_class": "COMMONER",
+      "background": "Dedicated healer in Oakwood Village.",
+      "spouse_id": "npc_citizen_48"
+    },
+    "feelings": {
+      "contentment": 60.0,
+      "tenderness": 30.0,
+      "passion": 20.0,
+      "loneliness": 5.0,
+      "stress": 5.0,
+      "jealousy": 0.0,
+      "guilt": 0.0,
+      "grief": 0.0,
+      "pride": 30.0,
+      "resentment": 0.0
+    },
+    "moral_erosion": 5.0,
+    "skills": {
+      "farming": 15.0,
+      "crafting": 20.0,
+      "smithing": 15.0,
+      "baking": 15.0,
+      "hospitality": 20.0,
+      "brawling": 15.0
+    },
+    "physical_attributes": {
+      "constitution": 55.0,
+      "work_rate": 55.0,
+      "agility": 50.0,
+      "pain_tolerance": 45.0,
+      "recovery_rate": 50.0
+    },
+    "mental_attributes": {
+      "composure": 55.0,
+      "ambition": 50.0,
+      "leadership": 40.0,
+      "adaptability": 50.0,
+      "loyalty": 60.0,
+      "shrewdness": 45.0
+    },
+    "career_statistics": {
+      "career_earnings_gold": 0.0,
+      "taxes_paid_gold": 0.0,
+      "goods_crafted_count": 0,
+      "trades_executed_count": 0,
+      "contracts_fulfilled": 0,
+      "crimes_committed": 0
+    },
+    "vices": {
+      "alcohol_dependence": 0.0,
+      "gambling_drive": 0.0,
+      "crime_propensity": 0.0,
+      "vice_indulgence": 0.0
+    },
+    "cognition": {
+      "decision_quality": "Rational",
+      "laziness": 0.2
+    },
+    "inventory": [],
+    "current_state": "IDLE",
+    "current_action": "IDLE"
+  },
+  "npc_citizen_48": {
+    "id": "npc_citizen_48",
+    "name": "Agatha Herbalist",
+    "occupation": "Commoner",
+    "home_location_id": "room_vance_bedroom",
+    "work_location_id": "room_shop",
+    "location_id": "room_vance_bedroom",
+    "wealth": 32.0,
+    "needs": {
+      "hunger": 15.0,
+      "energy": 85.0,
+      "social": 50.0
+    },
+    "decay_rates": {
+      "hunger": 0.05,
+      "energy": -0.07,
+      "social": -0.05
+    },
+    "attributes": {
+      "strength": 12.0,
+      "intelligence": 11.0,
+      "stamina": 12.0
+    },
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.6,
+      "extraversion": 0.5,
+      "agreeableness": 0.6,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "moral_values": {
+        "loyalty": 0.7,
+        "honor": 0.8,
+        "ambition": 0.5
+      },
+      "reputation_facets": {
+        "trustworthiness": 75.0,
+        "civic_standing": 50.0,
+        "moral_piety": 50.0
+      },
+      "social_class": "COMMONER",
+      "background": "Dedicated commoner in Oakwood Village.",
+      "spouse_id": "npc_citizen_47"
+    },
+    "feelings": {
+      "contentment": 60.0,
+      "tenderness": 30.0,
+      "passion": 20.0,
+      "loneliness": 5.0,
+      "stress": 5.0,
+      "jealousy": 0.0,
+      "guilt": 0.0,
+      "grief": 0.0,
+      "pride": 30.0,
+      "resentment": 0.0
+    },
+    "moral_erosion": 5.0,
+    "skills": {
+      "farming": 15.0,
+      "crafting": 20.0,
+      "smithing": 15.0,
+      "baking": 15.0,
+      "hospitality": 20.0,
+      "brawling": 15.0
+    },
+    "physical_attributes": {
+      "constitution": 55.0,
+      "work_rate": 55.0,
+      "agility": 50.0,
+      "pain_tolerance": 45.0,
+      "recovery_rate": 50.0
+    },
+    "mental_attributes": {
+      "composure": 55.0,
+      "ambition": 50.0,
+      "leadership": 40.0,
+      "adaptability": 50.0,
+      "loyalty": 60.0,
+      "shrewdness": 45.0
+    },
+    "career_statistics": {
+      "career_earnings_gold": 0.0,
+      "taxes_paid_gold": 0.0,
+      "goods_crafted_count": 0,
+      "trades_executed_count": 0,
+      "contracts_fulfilled": 0,
+      "crimes_committed": 0
+    },
+    "vices": {
+      "alcohol_dependence": 0.0,
+      "gambling_drive": 0.0,
+      "crime_propensity": 0.0,
+      "vice_indulgence": 0.0
+    },
+    "cognition": {
+      "decision_quality": "Rational",
+      "laziness": 0.2
+    },
+    "inventory": [],
+    "current_state": "IDLE",
+    "current_action": "IDLE"
+  },
+  "npc_citizen_49": {
+    "id": "npc_citizen_49",
+    "name": "Miles Brewer",
+    "occupation": "Brewer",
+    "home_location_id": "room_tavern_bedroom",
+    "work_location_id": "room_tavern",
+    "location_id": "room_tavern_bedroom",
+    "wealth": 35.0,
+    "needs": {
+      "hunger": 15.0,
+      "energy": 85.0,
+      "social": 50.0
+    },
+    "decay_rates": {
+      "hunger": 0.05,
+      "energy": -0.07,
+      "social": -0.05
+    },
+    "attributes": {
+      "strength": 12.0,
+      "intelligence": 11.0,
+      "stamina": 12.0
+    },
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.6,
+      "extraversion": 0.5,
+      "agreeableness": 0.6,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "moral_values": {
+        "loyalty": 0.7,
+        "honor": 0.8,
+        "ambition": 0.5
+      },
+      "reputation_facets": {
+        "trustworthiness": 75.0,
+        "civic_standing": 50.0,
+        "moral_piety": 50.0
+      },
+      "social_class": "COMMONER",
+      "background": "Dedicated brewer in Oakwood Village.",
+      "spouse_id": "npc_citizen_50"
+    },
+    "feelings": {
+      "contentment": 60.0,
+      "tenderness": 30.0,
+      "passion": 20.0,
+      "loneliness": 5.0,
+      "stress": 5.0,
+      "jealousy": 0.0,
+      "guilt": 0.0,
+      "grief": 0.0,
+      "pride": 30.0,
+      "resentment": 0.0
+    },
+    "moral_erosion": 5.0,
+    "skills": {
+      "farming": 15.0,
+      "crafting": 20.0,
+      "smithing": 15.0,
+      "baking": 15.0,
+      "hospitality": 45.0,
+      "brawling": 15.0
+    },
+    "physical_attributes": {
+      "constitution": 55.0,
+      "work_rate": 55.0,
+      "agility": 50.0,
+      "pain_tolerance": 45.0,
+      "recovery_rate": 50.0
+    },
+    "mental_attributes": {
+      "composure": 55.0,
+      "ambition": 50.0,
+      "leadership": 40.0,
+      "adaptability": 50.0,
+      "loyalty": 60.0,
+      "shrewdness": 45.0
+    },
+    "career_statistics": {
+      "career_earnings_gold": 0.0,
+      "taxes_paid_gold": 0.0,
+      "goods_crafted_count": 0,
+      "trades_executed_count": 0,
+      "contracts_fulfilled": 0,
+      "crimes_committed": 0
+    },
+    "vices": {
+      "alcohol_dependence": 5.0,
+      "gambling_drive": 0.0,
+      "crime_propensity": 0.0,
+      "vice_indulgence": 0.0
+    },
+    "cognition": {
+      "decision_quality": "Rational",
+      "laziness": 0.2
+    },
+    "inventory": [],
+    "current_state": "IDLE",
+    "current_action": "IDLE"
+  },
+  "npc_citizen_50": {
+    "id": "npc_citizen_50",
+    "name": "Winnifred Brewer",
+    "occupation": "Laborer",
+    "home_location_id": "room_tavern_bedroom",
+    "work_location_id": "room_tavern",
+    "location_id": "room_tavern_bedroom",
+    "wealth": 28.0,
+    "needs": {
+      "hunger": 15.0,
+      "energy": 85.0,
+      "social": 50.0
+    },
+    "decay_rates": {
+      "hunger": 0.05,
+      "energy": -0.07,
+      "social": -0.05
+    },
+    "attributes": {
+      "strength": 12.0,
+      "intelligence": 11.0,
+      "stamina": 12.0
+    },
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.6,
+      "extraversion": 0.5,
+      "agreeableness": 0.6,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "moral_values": {
+        "loyalty": 0.7,
+        "honor": 0.8,
+        "ambition": 0.5
+      },
+      "reputation_facets": {
+        "trustworthiness": 75.0,
+        "civic_standing": 50.0,
+        "moral_piety": 50.0
+      },
+      "social_class": "COMMONER",
+      "background": "Dedicated laborer in Oakwood Village.",
+      "spouse_id": "npc_citizen_49"
+    },
+    "feelings": {
+      "contentment": 60.0,
+      "tenderness": 30.0,
+      "passion": 20.0,
+      "loneliness": 5.0,
+      "stress": 5.0,
+      "jealousy": 0.0,
+      "guilt": 0.0,
+      "grief": 0.0,
+      "pride": 30.0,
+      "resentment": 0.0
+    },
+    "moral_erosion": 5.0,
+    "skills": {
+      "farming": 15.0,
+      "crafting": 20.0,
+      "smithing": 15.0,
+      "baking": 15.0,
+      "hospitality": 20.0,
+      "brawling": 15.0
+    },
+    "physical_attributes": {
+      "constitution": 55.0,
+      "work_rate": 55.0,
+      "agility": 50.0,
+      "pain_tolerance": 45.0,
+      "recovery_rate": 50.0
+    },
+    "mental_attributes": {
+      "composure": 55.0,
+      "ambition": 50.0,
+      "leadership": 40.0,
+      "adaptability": 50.0,
+      "loyalty": 60.0,
+      "shrewdness": 45.0
+    },
+    "career_statistics": {
+      "career_earnings_gold": 0.0,
+      "taxes_paid_gold": 0.0,
+      "goods_crafted_count": 0,
+      "trades_executed_count": 0,
+      "contracts_fulfilled": 0,
+      "crimes_committed": 0
+    },
+    "vices": {
+      "alcohol_dependence": 0.0,
+      "gambling_drive": 0.0,
+      "crime_propensity": 0.0,
+      "vice_indulgence": 0.0
+    },
+    "cognition": {
+      "decision_quality": "Rational",
+      "laziness": 0.2
+    },
+    "inventory": [],
+    "current_state": "IDLE",
+    "current_action": "IDLE"
+  },
+  "npc_citizen_51": {
+    "id": "npc_citizen_51",
+    "name": "Philip Apprentice",
+    "occupation": "Apprentice",
+    "home_location_id": "room_bakery_bedroom",
+    "work_location_id": "room_blacksmith",
+    "location_id": "room_smith_bedroom",
+    "wealth": 22.0,
+    "needs": {
+      "hunger": 15.0,
+      "energy": 85.0,
+      "social": 50.0
+    },
+    "decay_rates": {
+      "hunger": 0.05,
+      "energy": -0.07,
+      "social": -0.05
+    },
+    "attributes": {
+      "strength": 12.0,
+      "intelligence": 11.0,
+      "stamina": 12.0
+    },
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.6,
+      "extraversion": 0.5,
+      "agreeableness": 0.6,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "moral_values": {
+        "loyalty": 0.7,
+        "honor": 0.8,
+        "ambition": 0.5
+      },
+      "reputation_facets": {
+        "trustworthiness": 75.0,
+        "civic_standing": 50.0,
+        "moral_piety": 50.0
+      },
+      "social_class": "COMMONER",
+      "background": "Dedicated apprentice in Oakwood Village."
+    },
+    "feelings": {
+      "contentment": 60.0,
+      "tenderness": 30.0,
+      "passion": 20.0,
+      "loneliness": 5.0,
+      "stress": 5.0,
+      "jealousy": 0.0,
+      "guilt": 0.0,
+      "grief": 0.0,
+      "pride": 30.0,
+      "resentment": 0.0
+    },
+    "moral_erosion": 5.0,
+    "skills": {
+      "farming": 15.0,
+      "crafting": 50.0,
+      "smithing": 45.0,
+      "baking": 15.0,
+      "hospitality": 20.0,
+      "brawling": 15.0
+    },
+    "physical_attributes": {
+      "constitution": 55.0,
+      "work_rate": 55.0,
+      "agility": 50.0,
+      "pain_tolerance": 45.0,
+      "recovery_rate": 50.0
+    },
+    "mental_attributes": {
+      "composure": 55.0,
+      "ambition": 50.0,
+      "leadership": 40.0,
+      "adaptability": 50.0,
+      "loyalty": 60.0,
+      "shrewdness": 45.0
+    },
+    "career_statistics": {
+      "career_earnings_gold": 0.0,
+      "taxes_paid_gold": 0.0,
+      "goods_crafted_count": 0,
+      "trades_executed_count": 0,
+      "contracts_fulfilled": 0,
+      "crimes_committed": 0
+    },
+    "vices": {
+      "alcohol_dependence": 0.0,
+      "gambling_drive": 0.0,
+      "crime_propensity": 0.0,
+      "vice_indulgence": 0.0
+    },
+    "cognition": {
+      "decision_quality": "Rational",
+      "laziness": 0.2
+    },
+    "inventory": [],
+    "current_state": "IDLE",
+    "current_action": "IDLE"
+  },
+  "npc_citizen_52": {
+    "id": "npc_citizen_52",
+    "name": "Eleanor Apprentice",
+    "occupation": "Apprentice",
+    "home_location_id": "room_bakery_bedroom",
+    "work_location_id": "room_bakery",
+    "location_id": "room_bakery_bedroom",
+    "wealth": 22.0,
+    "needs": {
+      "hunger": 15.0,
+      "energy": 85.0,
+      "social": 50.0
+    },
+    "decay_rates": {
+      "hunger": 0.05,
+      "energy": -0.07,
+      "social": -0.05
+    },
+    "attributes": {
+      "strength": 12.0,
+      "intelligence": 11.0,
+      "stamina": 12.0
+    },
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.6,
+      "extraversion": 0.5,
+      "agreeableness": 0.6,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "moral_values": {
+        "loyalty": 0.7,
+        "honor": 0.8,
+        "ambition": 0.5
+      },
+      "reputation_facets": {
+        "trustworthiness": 75.0,
+        "civic_standing": 50.0,
+        "moral_piety": 50.0
+      },
+      "social_class": "COMMONER",
+      "background": "Dedicated apprentice in Oakwood Village."
+    },
+    "feelings": {
+      "contentment": 60.0,
+      "tenderness": 30.0,
+      "passion": 20.0,
+      "loneliness": 5.0,
+      "stress": 5.0,
+      "jealousy": 0.0,
+      "guilt": 0.0,
+      "grief": 0.0,
+      "pride": 30.0,
+      "resentment": 0.0
+    },
+    "moral_erosion": 5.0,
+    "skills": {
+      "farming": 15.0,
+      "crafting": 50.0,
+      "smithing": 15.0,
+      "baking": 45.0,
+      "hospitality": 20.0,
+      "brawling": 15.0
+    },
+    "physical_attributes": {
+      "constitution": 55.0,
+      "work_rate": 55.0,
+      "agility": 50.0,
+      "pain_tolerance": 45.0,
+      "recovery_rate": 50.0
+    },
+    "mental_attributes": {
+      "composure": 55.0,
+      "ambition": 50.0,
+      "leadership": 40.0,
+      "adaptability": 50.0,
+      "loyalty": 60.0,
+      "shrewdness": 45.0
+    },
+    "career_statistics": {
+      "career_earnings_gold": 0.0,
+      "taxes_paid_gold": 0.0,
+      "goods_crafted_count": 0,
+      "trades_executed_count": 0,
+      "contracts_fulfilled": 0,
+      "crimes_committed": 0
+    },
+    "vices": {
+      "alcohol_dependence": 0.0,
+      "gambling_drive": 0.0,
+      "crime_propensity": 0.0,
+      "vice_indulgence": 0.0
+    },
+    "cognition": {
+      "decision_quality": "Rational",
+      "laziness": 0.2
+    },
+    "inventory": [],
+    "current_state": "IDLE",
+    "current_action": "IDLE"
+  },
+  "npc_citizen_53": {
+    "id": "npc_citizen_53",
+    "name": "Jocelyn Farmhand",
+    "occupation": "Farmer",
+    "home_location_id": "room_farmhouse_loft",
+    "work_location_id": "room_farmhouse",
+    "location_id": "room_farmhouse_bedroom",
+    "wealth": 30.0,
+    "needs": {
+      "hunger": 15.0,
+      "energy": 85.0,
+      "social": 50.0
+    },
+    "decay_rates": {
+      "hunger": 0.05,
+      "energy": -0.07,
+      "social": -0.05
+    },
+    "attributes": {
+      "strength": 12.0,
+      "intelligence": 11.0,
+      "stamina": 12.0
+    },
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.6,
+      "extraversion": 0.5,
+      "agreeableness": 0.6,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "moral_values": {
+        "loyalty": 0.7,
+        "honor": 0.8,
+        "ambition": 0.5
+      },
+      "reputation_facets": {
+        "trustworthiness": 75.0,
+        "civic_standing": 50.0,
+        "moral_piety": 50.0
+      },
+      "social_class": "COMMONER",
+      "background": "Dedicated farmer in Oakwood Village.",
+      "spouse_id": "npc_citizen_54"
+    },
+    "feelings": {
+      "contentment": 60.0,
+      "tenderness": 30.0,
+      "passion": 20.0,
+      "loneliness": 5.0,
+      "stress": 5.0,
+      "jealousy": 0.0,
+      "guilt": 0.0,
+      "grief": 0.0,
+      "pride": 30.0,
+      "resentment": 0.0
+    },
+    "moral_erosion": 5.0,
+    "skills": {
+      "farming": 40.0,
+      "crafting": 20.0,
+      "smithing": 15.0,
+      "baking": 15.0,
+      "hospitality": 20.0,
+      "brawling": 15.0
+    },
+    "physical_attributes": {
+      "constitution": 55.0,
+      "work_rate": 55.0,
+      "agility": 50.0,
+      "pain_tolerance": 45.0,
+      "recovery_rate": 50.0
+    },
+    "mental_attributes": {
+      "composure": 55.0,
+      "ambition": 50.0,
+      "leadership": 40.0,
+      "adaptability": 50.0,
+      "loyalty": 60.0,
+      "shrewdness": 45.0
+    },
+    "career_statistics": {
+      "career_earnings_gold": 0.0,
+      "taxes_paid_gold": 0.0,
+      "goods_crafted_count": 0,
+      "trades_executed_count": 0,
+      "contracts_fulfilled": 0,
+      "crimes_committed": 0
+    },
+    "vices": {
+      "alcohol_dependence": 0.0,
+      "gambling_drive": 0.0,
+      "crime_propensity": 0.0,
+      "vice_indulgence": 0.0
+    },
+    "cognition": {
+      "decision_quality": "Rational",
+      "laziness": 0.2
+    },
+    "inventory": [],
+    "current_state": "IDLE",
+    "current_action": "IDLE"
+  },
+  "npc_citizen_54": {
+    "id": "npc_citizen_54",
+    "name": "Gwenllian Farmhand",
+    "occupation": "Commoner",
+    "home_location_id": "room_farmhouse_loft",
+    "work_location_id": "room_farmhouse",
+    "location_id": "room_farmhouse_bedroom",
+    "wealth": 26.0,
+    "needs": {
+      "hunger": 15.0,
+      "energy": 85.0,
+      "social": 50.0
+    },
+    "decay_rates": {
+      "hunger": 0.05,
+      "energy": -0.07,
+      "social": -0.05
+    },
+    "attributes": {
+      "strength": 12.0,
+      "intelligence": 11.0,
+      "stamina": 12.0
+    },
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.6,
+      "extraversion": 0.5,
+      "agreeableness": 0.6,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "moral_values": {
+        "loyalty": 0.7,
+        "honor": 0.8,
+        "ambition": 0.5
+      },
+      "reputation_facets": {
+        "trustworthiness": 75.0,
+        "civic_standing": 50.0,
+        "moral_piety": 50.0
+      },
+      "social_class": "COMMONER",
+      "background": "Dedicated commoner in Oakwood Village.",
+      "spouse_id": "npc_citizen_53"
+    },
+    "feelings": {
+      "contentment": 60.0,
+      "tenderness": 30.0,
+      "passion": 20.0,
+      "loneliness": 5.0,
+      "stress": 5.0,
+      "jealousy": 0.0,
+      "guilt": 0.0,
+      "grief": 0.0,
+      "pride": 30.0,
+      "resentment": 0.0
+    },
+    "moral_erosion": 5.0,
+    "skills": {
+      "farming": 15.0,
+      "crafting": 20.0,
+      "smithing": 15.0,
+      "baking": 15.0,
+      "hospitality": 20.0,
+      "brawling": 15.0
+    },
+    "physical_attributes": {
+      "constitution": 55.0,
+      "work_rate": 55.0,
+      "agility": 50.0,
+      "pain_tolerance": 45.0,
+      "recovery_rate": 50.0
+    },
+    "mental_attributes": {
+      "composure": 55.0,
+      "ambition": 50.0,
+      "leadership": 40.0,
+      "adaptability": 50.0,
+      "loyalty": 60.0,
+      "shrewdness": 45.0
+    },
+    "career_statistics": {
+      "career_earnings_gold": 0.0,
+      "taxes_paid_gold": 0.0,
+      "goods_crafted_count": 0,
+      "trades_executed_count": 0,
+      "contracts_fulfilled": 0,
+      "crimes_committed": 0
+    },
+    "vices": {
+      "alcohol_dependence": 0.0,
+      "gambling_drive": 0.0,
+      "crime_propensity": 0.0,
+      "vice_indulgence": 0.0
+    },
+    "cognition": {
+      "decision_quality": "Rational",
+      "laziness": 0.2
+    },
+    "inventory": [],
+    "current_state": "IDLE",
+    "current_action": "IDLE"
+  },
+  "npc_citizen_55": {
+    "id": "npc_citizen_55",
+    "name": "Tobias Ward",
+    "occupation": "Scavenger",
+    "home_location_id": "room_village_square",
+    "work_location_id": "room_village_square",
+    "location_id": "room_village_square",
+    "wealth": 18.0,
+    "needs": {
+      "hunger": 15.0,
+      "energy": 85.0,
+      "social": 50.0
+    },
+    "decay_rates": {
+      "hunger": 0.05,
+      "energy": -0.07,
+      "social": -0.05
+    },
+    "attributes": {
+      "strength": 12.0,
+      "intelligence": 11.0,
+      "stamina": 12.0
+    },
+    "personality": {
+      "openness": 0.5,
+      "conscientiousness": 0.6,
+      "extraversion": 0.5,
+      "agreeableness": 0.6,
+      "neuroticism": 0.4
+    },
+    "social_profile": {
+      "moral_values": {
+        "loyalty": 0.7,
+        "honor": 0.8,
+        "ambition": 0.5
+      },
+      "reputation_facets": {
+        "trustworthiness": 75.0,
+        "civic_standing": 50.0,
+        "moral_piety": 50.0
+      },
+      "social_class": "COMMONER",
+      "background": "Dedicated scavenger in Oakwood Village."
+    },
+    "feelings": {
+      "contentment": 60.0,
+      "tenderness": 30.0,
+      "passion": 20.0,
+      "loneliness": 5.0,
+      "stress": 5.0,
+      "jealousy": 0.0,
+      "guilt": 0.0,
+      "grief": 0.0,
+      "pride": 30.0,
+      "resentment": 0.0
+    },
+    "moral_erosion": 5.0,
+    "skills": {
+      "farming": 15.0,
+      "crafting": 20.0,
+      "smithing": 15.0,
+      "baking": 15.0,
+      "hospitality": 20.0,
+      "brawling": 15.0
+    },
+    "physical_attributes": {
+      "constitution": 55.0,
+      "work_rate": 55.0,
+      "agility": 50.0,
+      "pain_tolerance": 45.0,
+      "recovery_rate": 50.0
+    },
+    "mental_attributes": {
+      "composure": 55.0,
+      "ambition": 50.0,
+      "leadership": 40.0,
+      "adaptability": 50.0,
+      "loyalty": 60.0,
+      "shrewdness": 45.0
+    },
+    "career_statistics": {
+      "career_earnings_gold": 0.0,
+      "taxes_paid_gold": 0.0,
+      "goods_crafted_count": 0,
+      "trades_executed_count": 0,
+      "contracts_fulfilled": 0,
+      "crimes_committed": 0
+    },
+    "vices": {
+      "alcohol_dependence": 5.0,
+      "gambling_drive": 10.0,
+      "crime_propensity": 35.0,
+      "vice_indulgence": 0.0
+    },
+    "cognition": {
+      "decision_quality": "Rational",
+      "laziness": 0.2
+    },
+    "inventory": [],
+    "current_state": "IDLE",
+    "current_action": "IDLE"
+  }
+}

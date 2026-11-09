@@ -1,0 +1,62 @@
+{
+  "transgressions": {
+    "THEFT": {
+      "transgression_id": "THEFT",
+      "name": "Theft and Larceny",
+      "base_guilt": 25.0,
+      "base_stress": 20.0,
+      "moral_erosion_delta": 3.0,
+      "trustworthiness_penalty": 30.0
+    },
+    "MARITAL_INFIDELITY": {
+      "transgression_id": "MARITAL_INFIDELITY",
+      "name": "Breach of Marital Faith",
+      "base_guilt": 35.0,
+      "base_stress": 30.0,
+      "moral_erosion_delta": 4.0,
+      "trustworthiness_penalty": 40.0
+    },
+    "PHYSICAL_ASSAULT": {
+      "transgression_id": "PHYSICAL_ASSAULT",
+      "name": "Unprovoked Physical Assault",
+      "base_guilt": 30.0,
+      "base_stress": 25.0,
+      "moral_erosion_delta": 3.5,
+      "trustworthiness_penalty": 35.0
+    },
+    "TAX_EVASION": {
+      "transgression_id": "TAX_EVASION",
+      "name": "Fraudulent Tax Underreporting",
+      "base_guilt": 15.0,
+      "base_stress": 12.0,
+      "moral_erosion_delta": 2.0,
+      "trustworthiness_penalty": 20.0
+    },
+    "CONTRACT_BREACH": {
+      "transgression_id": "CONTRACT_BREACH",
+      "name": "Default on Debt or Contract",
+      "base_guilt": 20.0,
+      "base_stress": 18.0,
+      "moral_erosion_delta": 2.5,
+      "trustworthiness_penalty": 25.0
+    }
+  },
+  "therapeutic_mechanisms": {
+    "spiritual_confession": {
+      "sacred_room_keywords": ["chapel", "sanctuary", "church"],
+      "required_clergy_role": "priest",
+      "alms_donation_gold": 0.50,
+      "guilt_reduction": -35.0,
+      "stress_relief": -25.0,
+      "moral_erosion_relief": -10.0,
+      "piety_standing_gain": 15.0
+    },
+    "confide_in_friend": {
+      "min_trust_threshold": 60.0,
+      "guilt_reduction": -20.0,
+      "stress_relief": -18.0,
+      "mutual_trust_gain": 8.0,
+      "leak_risk_factor": 0.30
+    }
+  }
+}

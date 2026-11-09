@@ -1,0 +1,16 @@
+{
+  "id": "scenario_oakwood_baseline",
+  "name": "Oakwood Village Baseline Scenario",
+  "settlements": [
+    "settlements/oakwood.json"
+  ],
+  "npcs": [
+    "npcs/npcs.json"
+  ],
+  "items": [
+    "items/items.json"
+  ],
+  "objects": [
+    "objects/objects.json"
+  ]
+}

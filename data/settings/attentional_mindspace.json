@@ -1,0 +1,246 @@
+{
+  "attentional_mindspace": {
+    "thinking_ability_profiles": {
+      "SCHOLAR_ANALYTICAL": {
+        "profile_id": "SCHOLAR_ANALYTICAL",
+        "name": "Analytical Scholar",
+        "working_memory_capacity": 7,
+        "focus_depth": 1.4,
+        "distractibility": 0.15,
+        "deliberation_bandwidth": 1.25,
+        "emotional_reactivity": 0.7,
+        "description": "High working memory capacity, deep sustained focus on vocational and philosophical goals, low distractibility."
+      },
+      "FOCUSED_CRAFTSMAN": {
+        "profile_id": "FOCUSED_CRAFTSMAN",
+        "name": "Focused Craftsman",
+        "working_memory_capacity": 5,
+        "focus_depth": 1.3,
+        "distractibility": 0.25,
+        "deliberation_bandwidth": 1.1,
+        "emotional_reactivity": 0.8,
+        "description": "High vocational absorption, steady concentration during shifts, moderate working memory."
+      },
+      "BALANCED_COMMONER": {
+        "profile_id": "BALANCED_COMMONER",
+        "name": "Balanced Commoner",
+        "working_memory_capacity": 4,
+        "focus_depth": 1.0,
+        "distractibility": 0.45,
+        "deliberation_bandwidth": 1.0,
+        "emotional_reactivity": 1.0,
+        "description": "Average working memory capacity and focus, balanced between routine tasks and ambient appetites."
+      },
+      "INTUITIVE_IMPULSIVE": {
+        "profile_id": "INTUITIVE_IMPULSIVE",
+        "name": "Intuitive & Impulsive",
+        "working_memory_capacity": 3,
+        "focus_depth": 0.75,
+        "distractibility": 0.75,
+        "deliberation_bandwidth": 0.85,
+        "emotional_reactivity": 1.4,
+        "description": "Short working memory buffer, highly reactive to momentary appetites, romantic passion, or ambient stimuli."
+      },
+      "SCATTERBRAIN_ABSENTMINDED": {
+        "profile_id": "SCATTERBRAIN_ABSENTMINDED",
+        "name": "Scatterbrained & Absentminded",
+        "working_memory_capacity": 2,
+        "focus_depth": 0.5,
+        "distractibility": 0.9,
+        "deliberation_bandwidth": 0.7,
+        "emotional_reactivity": 1.2,
+        "description": "Easily distracted by fleeting sensations or rumors, low working memory retention, frequent thought drift."
+      }
+    },
+    "default_profile": "BALANCED_COMMONER",
+    "thought_domains": {
+      "ROMANCE_AND_CRUSH": {
+        "matching_tags": [
+          "love",
+          "romance",
+          "crush",
+          "spouse",
+          "intimacy",
+          "betrothal",
+          "passion"
+        ],
+        "state_amplifiers": {
+          "passion": 0.02,
+          "unmet_intimacy_tension": 0.015,
+          "extraversion": 0.35
+        },
+        "state_inhibitors": {
+          "fatigue": 0.01,
+          "hunger": 0.012
+        },
+        "utility_biases": {
+          "socialize": 30.0,
+          "work_production": -30.0
+        },
+        "thought_templates": [
+          "Thoughts drift tenderly to {target_name}",
+          "Longing for quiet private moments with {target_name}",
+          "Anticipating reuniting with {target_name} this evening"
+        ]
+      },
+      "VOCATIONAL_LABOR": {
+        "matching_tags": [
+          "work",
+          "craft",
+          "recipe",
+          "production",
+          "order",
+          "milling",
+          "baking",
+          "forging",
+          "tools",
+          "wheat",
+          "timber",
+          "farming",
+          "harvest",
+          "field",
+          "crop",
+          "agrarian"
+        ],
+        "state_amplifiers": {
+          "conscientiousness": 0.7,
+          "ambition": 0.5,
+          "in_shift_bonus": 1.25
+        },
+        "state_inhibitors": {
+          "hunger": 0.015,
+          "stress": 0.01,
+          "fatigue": 0.015
+        },
+        "utility_biases": {
+          "work_production": 30.0,
+          "socialize": -10.0
+        },
+        "thought_templates": [
+          "Concentrating on trade duties and craft execution",
+          "Mentally reviewing orders and workshop throughput",
+          "Determined to finish production quotas efficiently"
+        ]
+      },
+      "SOMATIC_APPETITE": {
+        "matching_tags": [
+          "food",
+          "bread",
+          "meal",
+          "hunger",
+          "bakery",
+          "tavern",
+          "ale",
+          "stew"
+        ],
+        "state_amplifiers": {
+          "hunger_exponential_factor": 1.75,
+          "hunger_scale": 0.03
+        },
+        "state_inhibitors": {
+          "contentment": 0.005
+        },
+        "utility_biases": {
+          "satisfy_hunger": 35.0,
+          "communal_dining": 20.0
+        },
+        "thought_templates": [
+          "Stomach rumbling with desire for warm hearth bread",
+          "Craving a hearty tavern stew and spiced ale",
+          "Preoccupied with where to procure the next meal"
+        ]
+      },
+      "SOMATIC_REST": {
+        "matching_tags": [
+          "rest",
+          "sleep",
+          "fatigue",
+          "exhaustion",
+          "bedchamber"
+        ],
+        "state_amplifiers": {
+          "fatigue_exponential_factor": 1.6,
+          "fatigue_scale": 0.025
+        },
+        "state_inhibitors": {
+          "energy": 0.02
+        },
+        "utility_biases": {
+          "rest": 35.0,
+          "work_production": -20.0,
+          "socialize": -15.0
+        },
+        "thought_templates": [
+          "Weary limbs aching for the comfort of a warm bed",
+          "Fighting off heavy eyelids and bodily fatigue",
+          "Seeking a quiet sanctuary to restore drained stamina"
+        ]
+      },
+      "ANXIETY_AND_GRUDGE": {
+        "matching_tags": [
+          "grudge",
+          "debt",
+          "crime",
+          "threat",
+          "rival",
+          "guilt",
+          "poverty",
+          "tax"
+        ],
+        "state_amplifiers": {
+          "neuroticism": 0.75,
+          "stress": 0.02,
+          "resentment": 0.025,
+          "guilt": 0.02
+        },
+        "state_inhibitors": {
+          "contentment": 0.01,
+          "composure": 0.01
+        },
+        "utility_biases": {
+          "rest": -10.0,
+          "socialize": -15.0
+        },
+        "thought_templates": [
+          "Brooding anxiously over outstanding debts and shortages",
+          "Troubled mind ruminating on unresolved grievances",
+          "Inner tension stirred by suspicion and unsettled accounts"
+        ]
+      },
+      "COMMUNITY_LEISURE": {
+        "matching_tags": [
+          "game",
+          "dice",
+          "bocce",
+          "contest",
+          "tavern",
+          "fellowship",
+          "club"
+        ],
+        "state_amplifiers": {
+          "extraversion": 0.5,
+          "gambling_drive": 0.02,
+          "contentment": 0.01
+        },
+        "state_inhibitors": {
+          "fatigue": 0.015,
+          "hunger": 0.01
+        },
+        "utility_biases": {
+          "socialize": 20.0,
+          "communal_dining": 15.0
+        },
+        "thought_templates": [
+          "Eager for a spirited game of dice hazard at the tavern",
+          "Looking forward to friendly banter and village fellowship",
+          "Drawn to the lively camaraderie of the village square"
+        ]
+      }
+    },
+    "mindspace_dynamics": {
+      "salience_temperature": 8.0,
+      "utility_injection_scale": 0.75,
+      "max_inner_thought_records": 5
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "scenario_ironreach_frontier",
+  "name": "Ironreach Coastal Outpost Scenario",
+  "settlements": [
+    "settlements/ironreach.json"
+  ],
+  "npcs": [
+    "npcs/ironreach_npcs.json"
+  ],
+  "items": [
+    "items/items.json"
+  ]
+}

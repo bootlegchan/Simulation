@@ -1,0 +1,110 @@
+{
+  "food_bread": {
+    "id": "food_bread",
+    "name": "Hearth Bread Loaf",
+    "base_value": 1.2,
+    "category": "FOOD"
+  },
+  "raw_wheat": {
+    "id": "raw_wheat",
+    "name": "Raw Wheat Sheaf",
+    "base_value": 0.3,
+    "category": "RAW_MATERIAL"
+  },
+  "flour": {
+    "id": "flour",
+    "name": "Milled White Flour",
+    "base_value": 0.6,
+    "category": "PROCESSED"
+  },
+  "oakwood_ale": {
+    "id": "oakwood_ale",
+    "name": "Spiced Amber Ale",
+    "base_value": 2.5,
+    "category": "FOOD"
+  },
+  "raw_timber": {
+    "id": "raw_timber",
+    "name": "Rough Oak Timber",
+    "base_value": 0.8,
+    "category": "RAW_MATERIAL"
+  },
+  "firewood": {
+    "id": "firewood",
+    "name": "Split Firewood Bundle",
+    "base_value": 0.4,
+    "category": "RAW_MATERIAL"
+  },
+  "furniture": {
+    "id": "furniture",
+    "name": "Handcrafted Oak Furniture",
+    "base_value": 12.0,
+    "category": "PROCESSED"
+  },
+  "raw_iron_ore": {
+    "id": "raw_iron_ore",
+    "name": "Bog Iron Ore",
+    "base_value": 1.0,
+    "category": "RAW_MATERIAL"
+  },
+  "iron_ingot": {
+    "id": "iron_ingot",
+    "name": "Smelted Iron Ingot",
+    "base_value": 3.0,
+    "category": "PROCESSED"
+  },
+  "iron_tools": {
+    "id": "iron_tools",
+    "name": "Forged Artisan Iron Tools",
+    "base_value": 8.0,
+    "category": "PROCESSED"
+  },
+  "book_metallurgy_manual": {
+    "id": "book_metallurgy_manual",
+    "name": "Treatise on Smelting & Fine Iron Forging",
+    "base_value": 15.0,
+    "category": "INSCRIBED_CARRIER",
+    "metadata": {
+      "carrier_type": "BOOK",
+      "teaches_skill": "smithing"
+    }
+  },
+  "town_tax_ledger": {
+    "id": "town_tax_ledger",
+    "name": "Oakwood Municipal Revenue & Tax Rolls",
+    "base_value": 25.0,
+    "category": "INSCRIBED_CARRIER",
+    "metadata": {
+      "carrier_type": "LEDGER",
+      "is_confidential": true
+    }
+  },
+  "parchment_letter": {
+    "id": "parchment_letter",
+    "name": "Wax-Sealed Private Parchment Letter",
+    "base_value": 2.0,
+    "category": "INSCRIBED_CARRIER",
+    "metadata": {
+      "carrier_type": "LETTER"
+    }
+  },
+  "smuggler_cipher_note": {
+    "id": "smuggler_cipher_note",
+    "name": "Clandestine River Smuggler Cipher Note",
+    "base_value": 5.0,
+    "category": "INSCRIBED_CARRIER",
+    "metadata": {
+      "carrier_type": "NOTE",
+      "is_secret": true
+    }
+  },
+  "physical_clue_evidence": {
+    "id": "physical_clue_evidence",
+    "name": "Investigative Physical Clue Evidence",
+    "base_value": 0.5,
+    "category": "CLUE",
+    "metadata": {
+      "carrier_type": "PHYSICAL_CLUE"
+    }
+  }
+}

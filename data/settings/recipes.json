@@ -1,0 +1,145 @@
+{
+  "recipes": {
+    "harvest_wheat": {
+      "recipe_id": "harvest_wheat",
+      "name": "Harvest Wheat Sheaves",
+      "chain_id": "AGRARIAN_BAKING",
+      "worker_skill": "farming",
+      "required_capabilities": ["farm", "field", "hearth", "kitchen", "village_square"],
+      "inputs": {},
+      "outputs": {
+        "raw_wheat": 3
+      },
+      "labor_ticks": 60,
+      "weather_sensitive": true,
+      "base_yield_multiplier": 1.0
+    },
+    "mill_flour": {
+      "recipe_id": "mill_flour",
+      "name": "Grind Grain into Flour",
+      "chain_id": "AGRARIAN_BAKING",
+      "worker_skill": "farming",
+      "required_capabilities": ["mill", "grindstone", "hearth", "kitchen"],
+      "inputs": {
+        "raw_wheat": 1
+      },
+      "outputs": {
+        "flour": 2
+      },
+      "labor_ticks": 60,
+      "weather_sensitive": false,
+      "base_yield_multiplier": 1.0
+    },
+    "bake_bread": {
+      "recipe_id": "bake_bread",
+      "name": "Bake Hearth Bread Loaves",
+      "chain_id": "AGRARIAN_BAKING",
+      "worker_skill": "baking",
+      "required_capabilities": ["oven", "hearth", "bakery"],
+      "inputs": {
+        "flour": 1
+      },
+      "outputs": {
+        "food_bread": 3
+      },
+      "labor_ticks": 60,
+      "weather_sensitive": false,
+      "base_yield_multiplier": 1.0
+    },
+    "fell_timber": {
+      "recipe_id": "fell_timber",
+      "name": "Harvest Forest Timber",
+      "chain_id": "FORESTRY_AND_CARPENTRY",
+      "worker_skill": "crafting",
+      "required_capabilities": ["forest", "timber", "village_square", "carpenter"],
+      "inputs": {},
+      "outputs": {
+        "raw_timber": 2
+      },
+      "labor_ticks": 60,
+      "weather_sensitive": true,
+      "base_yield_multiplier": 1.0
+    },
+    "split_firewood": {
+      "recipe_id": "split_firewood",
+      "name": "Split Firewood Fuel",
+      "chain_id": "FORESTRY_AND_CARPENTRY",
+      "worker_skill": "crafting",
+      "required_capabilities": ["sawmill", "workbench", "carpenter", "hearth"],
+      "inputs": {
+        "raw_timber": 1
+      },
+      "outputs": {
+        "firewood": 4
+      },
+      "labor_ticks": 60,
+      "weather_sensitive": false,
+      "base_yield_multiplier": 1.0
+    },
+    "craft_furniture": {
+      "recipe_id": "craft_furniture",
+      "name": "Craft Domestic Furniture",
+      "chain_id": "FORESTRY_AND_CARPENTRY",
+      "worker_skill": "crafting",
+      "required_capabilities": ["workbench", "sawmill", "carpenter"],
+      "inputs": {
+        "raw_timber": 2
+      },
+      "outputs": {
+        "furniture": 1
+      },
+      "labor_ticks": 120,
+      "weather_sensitive": false,
+      "base_yield_multiplier": 1.0
+    },
+    "smelt_iron": {
+      "recipe_id": "smelt_iron",
+      "name": "Smelt Raw Ore into Iron Ingots",
+      "chain_id": "METALLURGY_AND_TOOLS",
+      "worker_skill": "smithing",
+      "required_capabilities": ["furnace", "forge", "blacksmith"],
+      "inputs": {
+        "raw_iron_ore": 1
+      },
+      "outputs": {
+        "iron_ingot": 1
+      },
+      "labor_ticks": 60,
+      "weather_sensitive": false,
+      "base_yield_multiplier": 1.0
+    },
+    "forge_tools": {
+      "recipe_id": "forge_tools",
+      "name": "Forge Artisan Iron Tools",
+      "chain_id": "METALLURGY_AND_TOOLS",
+      "worker_skill": "smithing",
+      "required_capabilities": ["anvil", "forge", "blacksmith"],
+      "inputs": {
+        "iron_ingot": 1,
+        "raw_timber": 1
+      },
+      "outputs": {
+        "iron_tools": 1
+      },
+      "labor_ticks": 120,
+      "weather_sensitive": false,
+      "base_yield_multiplier": 1.0
+    },
+    "brew_ale": {
+      "recipe_id": "brew_ale",
+      "name": "Brew Spiced Tavern Ale",
+      "chain_id": "TAVERN_BREWING",
+      "worker_skill": "hospitality",
+      "required_capabilities": ["brewery", "still", "kitchen", "tavern"],
+      "inputs": {
+        "raw_wheat": 1
+      },
+      "outputs": {
+        "oakwood_ale": 2
+      },
+      "labor_ticks": 60,
+      "weather_sensitive": false,
+      "base_yield_multiplier": 1.0
+    }
+  }
+}

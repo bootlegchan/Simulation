@@ -1,0 +1,93 @@
+{
+  "life_goals": {
+    "DYNASTIC_MERCHANT": {
+      "goal_id": "DYNASTIC_MERCHANT",
+      "name": "Dynastic Merchant Magnate",
+      "goal_type": "ACHIEVEMENT",
+      "description": "Amass considerable personal fortune and commercial volume to secure a generational legacy.",
+      "target_wealth_gold": 350.0,
+      "target_trades_count": 50,
+      "utility_modifiers": {
+        "work_production": 1.25,
+        "communal_dining": 0.85
+      },
+      "fulfillment_points_on_completion": 40.0
+    },
+    "MASTER_ARTISAN": {
+      "goal_id": "MASTER_ARTISAN",
+      "name": "Guildmaster of the Trade",
+      "goal_type": "ACHIEVEMENT",
+      "description": "Attain pinnacle vocational skill, craft exemplary masterpieces, and mentor the next generation.",
+      "target_primary_skill": 80.0,
+      "target_crafted_goods": 40,
+      "utility_modifiers": {
+        "work_production": 1.20,
+        "rest": 0.90
+      },
+      "fulfillment_points_on_completion": 35.0
+    },
+    "CIVIC_PATRICIAN": {
+      "goal_id": "CIVIC_PATRICIAN",
+      "name": "Civic Statesman & Council Leader",
+      "goal_type": "ACHIEVEMENT",
+      "description": "Lead the municipal council, enact protective ordinances, and maintain spotless civic honor.",
+      "target_civic_standing": 75.0,
+      "target_career_earnings_gold": 250.0,
+      "utility_modifiers": {
+        "socialize": 1.20,
+        "work_production": 1.10
+      },
+      "fulfillment_points_on_completion": 35.0
+    },
+    "DEVOTED_SPOUSE": {
+      "goal_id": "DEVOTED_SPOUSE",
+      "name": "Devoted Spouse & Homestead Guardian",
+      "goal_type": "ONGOING_MAINTENANCE",
+      "description": "Cultivate sustained marital harmony, regular intimacy, deep affection (>= 70), and protect the household from grief and domestic distress.",
+      "target_spousal_affection": 70.0,
+      "target_contentment": 70.0,
+      "max_tolerated_spousal_resentment": 15.0,
+      "utility_modifiers": {
+        "socialize": 1.20,
+        "communal_dining": 1.15
+      },
+      "daily_maintenance_pride": 10.0,
+      "fulfillment_points_on_completion": 30.0
+    },
+    "PILLAR_OF_THE_COMMUNITY": {
+      "goal_id": "PILLAR_OF_THE_COMMUNITY",
+      "name": "Pillar of the Community",
+      "goal_type": "ONGOING_MAINTENANCE",
+      "description": "Maintain an unblemished civic standing (>= 70.0), active mutual aid lodge support, moral piety, and communal harmony.",
+      "target_civic_standing": 70.0,
+      "target_piety_standing": 65.0,
+      "target_contentment": 65.0,
+      "utility_modifiers": {
+        "socialize": 1.15,
+        "work_production": 1.10
+      },
+      "daily_maintenance_pride": 8.0,
+      "fulfillment_points_on_completion": 30.0
+    },
+    "OUTLAW_KINGPIN": {
+      "goal_id": "OUTLAW_KINGPIN",
+      "name": "Underworld Shadow Boss",
+      "goal_type": "ACHIEVEMENT",
+      "description": "Rule the clandestine night market, pulling strings in taverns and evading the Town Watch.",
+      "target_crimes_committed": 20,
+      "target_wealth_gold": 200.0,
+      "utility_modifiers": {
+        "work_production": 0.80,
+        "socialize": 1.10
+      },
+      "fulfillment_points_on_completion": 35.0
+    }
+  },
+  "aspiration_dynamics": {
+    "progress_check_interval_ticks": 1440,
+    "milestone_contentment_reward": 20.0,
+    "frustration_resentment_rate": 0.05,
+    "ongoing_maintenance_threshold": 0.80,
+    "ongoing_strain_threshold": 0.40
+  }
+}

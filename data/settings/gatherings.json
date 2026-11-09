@@ -1,0 +1,20 @@
+{
+  "gatherings": {
+    "GUILD_CONCLAVE": {
+      "gathering_type": "GUILD_CONCLAVE",
+      "name": "Quarterly Guildmasters Trade Conclave"
+    },
+    "VILLAGE_TOURNAMENT": {
+      "gathering_type": "VILLAGE_TOURNAMENT",
+      "name": "Grand Settlement Athletics & Bocce Tournament"
+    },
+    "THEATRICAL_PAGEANT": {
+      "gathering_type": "THEATRICAL_PAGEANT",
+      "name": "Epic Folk Ballad & Theatrical Pageant"
+    },
+    "SOLSTICE_FESTIVAL": {
+      "gathering_type": "SOLSTICE_FESTIVAL",
+      "name": "Midsummer Solstice Festival"
+    }
+  }
+}

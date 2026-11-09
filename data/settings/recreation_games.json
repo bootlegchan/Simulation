@@ -1,0 +1,77 @@
+{
+  "games": {
+    "dice_hazard": {
+      "game_id": "dice_hazard",
+      "name": "Tavern Dice Hazard",
+      "category": "GAMBLING_DICE",
+      "preferred_rooms": ["tavern"],
+      "primary_attribute": "shrewdness",
+      "secondary_attribute": "composure",
+      "base_wager_gold": 0.30,
+      "min_wealth_to_play_gold": 2.0,
+      "skill_influence_weight": 0.50,
+      "luck_weight": 0.50,
+      "winner_contentment_gain": 12.0,
+      "winner_pride_gain": 10.0,
+      "loser_stress_gain": 4.0,
+      "spectator_contentment_boost": 4.0,
+      "spectator_stress_relief": -3.0
+    },
+    "arm_wrestling": {
+      "game_id": "arm_wrestling",
+      "name": "Brawn & Bench Arm-Wrestling",
+      "category": "PHYSICAL_CONTEST",
+      "preferred_rooms": ["tavern", "workshop", "square"],
+      "primary_attribute": "strength",
+      "secondary_attribute": "constitution",
+      "base_wager_gold": 0.25,
+      "min_wealth_to_play_gold": 1.5,
+      "skill_influence_weight": 0.75,
+      "luck_weight": 0.25,
+      "winner_contentment_gain": 15.0,
+      "winner_pride_gain": 18.0,
+      "loser_stress_gain": 6.0,
+      "spectator_contentment_boost": 5.0,
+      "spectator_stress_relief": -4.0
+    },
+    "bocce_ball": {
+      "game_id": "bocce_ball",
+      "name": "Village Square Lawn Bowls",
+      "category": "OUTDOOR_SPORT",
+      "preferred_rooms": ["square", "plaza", "field"],
+      "primary_attribute": "agility",
+      "secondary_attribute": "adaptability",
+      "base_wager_gold": 0.20,
+      "min_wealth_to_play_gold": 1.0,
+      "skill_influence_weight": 0.65,
+      "luck_weight": 0.35,
+      "winner_contentment_gain": 10.0,
+      "winner_pride_gain": 8.0,
+      "loser_stress_gain": 2.0,
+      "spectator_contentment_boost": 4.0,
+      "spectator_stress_relief": -3.0
+    },
+    "tavern_chess": {
+      "game_id": "tavern_chess",
+      "name": "Grandmaster's Hearthside Chess",
+      "category": "INTELLECTUAL_MATCH",
+      "preferred_rooms": ["tavern", "hall", "rectory"],
+      "primary_attribute": "intelligence",
+      "secondary_attribute": "shrewdness",
+      "base_wager_gold": 0.35,
+      "min_wealth_to_play_gold": 3.0,
+      "skill_influence_weight": 0.85,
+      "luck_weight": 0.15,
+      "winner_contentment_gain": 14.0,
+      "winner_pride_gain": 15.0,
+      "loser_stress_gain": 3.0,
+      "spectator_contentment_boost": 3.0,
+      "spectator_stress_relief": -2.0
+    }
+  },
+  "recreation_dynamics": {
+    "attribute_scale_divisor": 15.0,
+    "max_wagers_per_evening": 4,
+    "cheating_detection_base_chance": 0.12
+  }
+}
