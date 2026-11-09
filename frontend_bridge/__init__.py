@@ -1,0 +1,1 @@
+"""Local presentation bridge for the immersive Godot frontend."""

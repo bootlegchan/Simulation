@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "settlement_id": "settlement_oakwood",
+  "start_room_id": "room_village_square",
+  "world_width": 3600,
+  "rooms": {
+    "room_village_square": {
+      "scene_kind": "outdoor",
+      "title": "Oakwood Village",
+      "ground_y": 590,
+      "observer_spawn_x": 650,
+      "portals": [
+        {"id":"town_hall","label":"Town Hall","target_room_id":"room_town_hall","x":430,"door_x":470,"width":230},
+        {"id":"shop","label":"Vance General Emporium","target_room_id":"room_shop","x":1190,"door_x":1280,"width":250},
+        {"id":"bakery","label":"Greta's Hearth Bakery","target_room_id":"room_bakery","x":2080,"door_x":2170,"width":250},
+        {"id":"tavern","label":"The Boar & Flagon","target_room_id":"room_tavern","x":3000,"door_x":3090,"width":260}
+      ],
+      "objects": [
+        {"id":"obj_notice_board_square","label":"Village Noticeboard","x":850,"kind":"noticeboard"},
+        {"id":"obj_bocce_lawn","label":"Bocce Lawn","x":1770,"kind":"inspect"}
+      ]
+    },
+    "room_town_hall": {
+      "scene_kind":"interior","title":"Mayor's Office","ground_y":590,"observer_spawn_x":180,
+      "portals":[{"id":"town_hall_exit","label":"Village Square","target_room_id":"room_village_square","x":70,"door_x":120,"width":180}],
+      "objects":[{"id":"obj_town_hall_ledger","label":"Civic Ledger","x":690,"kind":"ledger"}]
+    },
+    "room_shop": {
+      "scene_kind":"interior","title":"Vance General Emporium","ground_y":590,"observer_spawn_x":180,
+      "portals":[{"id":"shop_exit","label":"Village Square","target_room_id":"room_village_square","x":70,"door_x":120,"width":180}],
+      "objects":[{"id":"obj_shop_counter","label":"Shop Counter","x":760,"kind":"shop"}]
+    },
+    "room_bakery": {
+      "scene_kind":"interior","title":"Greta's Hearth Bakery","ground_y":590,"observer_spawn_x":180,
+      "portals":[{"id":"bakery_exit","label":"Village Square","target_room_id":"room_village_square","x":70,"door_x":120,"width":180}],
+      "objects":[{"id":"obj_hearth_oven","label":"Hearth Oven","x":760,"kind":"inspect"}]
+    },
+    "room_tavern": {
+      "scene_kind":"interior","title":"The Boar & Flagon Tavern","ground_y":590,"observer_spawn_x":180,
+      "portals":[{"id":"tavern_exit","label":"Village Square","target_room_id":"room_village_square","x":70,"door_x":120,"width":180}],
+      "objects":[
+        {"id":"obj_tavern_hearth","label":"Tavern Hearth","x":620,"kind":"inspect"},
+        {"id":"obj_gaming_table","label":"Gaming Table","x":920,"kind":"inspect"}
+      ]
+    }
+  }
+}
