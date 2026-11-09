@@ -14,8 +14,10 @@ var _camera: Camera2D
 var _npc_items: Array[Dictionary] = []
 var _object_items: Array[Dictionary] = []
 var _portal_items: Array[Dictionary] = []
+var _outdoor_background: Texture2D
 
 func _ready() -> void:
+    _outdoor_background = load("res://assets/backgrounds/village_square.svg") as Texture2D
     _camera = Camera2D.new()
     _camera.position_smoothing_enabled = true
     _camera.position_smoothing_speed = 5.0
@@ -79,8 +81,12 @@ func _draw() -> void:
     _draw_environment()
     _draw_inspection()
     _draw_connection_state()
+    _draw_simulation_hud()
 
 func _draw_outdoor(width: float) -> void:
+    if _outdoor_background:
+        draw_texture_rect(_outdoor_background, Rect2(0, 0, width, WORLD_HEIGHT), false)
+        return
     var hour := int(_state.get("status",{}).get("hour",10))
     var sky := _sky_colour(hour)
     draw_rect(Rect2(0,0,width,WORLD_HEIGHT),sky)
@@ -314,3 +320,22 @@ func _draw_connection_state() -> void:
         draw_rect(Rect2(camera_x-180,24,360,42),Color("#282e2b",0.78))
         var error := str(_state.get("error",""))
         draw_string(ThemeDB.fallback_font,Vector2(camera_x-160,51),error if not error.is_empty() else "CONNECTING TO SIMULATION…",HORIZONTAL_ALIGNMENT_LEFT,320,13,PAPER)
+
+func _draw_simulation_hud() -> void:
+    var status: Dictionary = _state.get("status", {})
+    if status.is_empty():
+        return
+    var camera_x := _camera.position.x if _camera else 640.0
+    var lifecycle := str(status.get("lifecycle_state", "STARTING"))
+    var tick := int(status.get("tick", 0))
+    var day := int(status.get("day", 1))
+    var hour := int(status.get("hour", 0))
+    var population: Dictionary = _state.get("population", {})
+    var clock_text := "%02d:%02d" % [hour, int(tick % 60)]
+    draw_rect(Rect2(camera_x - 610, 24, 210, 54), Color("#f0e5ce", 0.92))
+    draw_rect(Rect2(camera_x - 610, 24, 210, 54), Color("#76634b"), false, 2.0)
+    draw_string(ThemeDB.fallback_font, Vector2(camera_x - 594, 46), "OAKWOOD  ·  DAY %d" % day, HORIZONTAL_ALIGNMENT_LEFT, 190, 12, INK)
+    draw_string(ThemeDB.fallback_font, Vector2(camera_x - 594, 65), "%s   /   TICK %d" % [clock_text, tick], HORIZONTAL_ALIGNMENT_LEFT, 190, 14, INK)
+    var state_colour := Color("#52785a") if lifecycle == "RUNNING" else Color("#a36d50")
+    draw_circle(Vector2(camera_x + 580, 48), 5, state_colour)
+    draw_string(ThemeDB.fallback_font, Vector2(camera_x + 594, 53), lifecycle, HORIZONTAL_ALIGNMENT_LEFT, 100, 12, INK)

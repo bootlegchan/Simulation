@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3600" height="720" viewBox="0 0 3600 720">
+<defs>
+ <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#a8c9d0"/><stop offset=".66" stop-color="#e8d9bd"/><stop offset="1" stop-color="#f1d9ad"/></linearGradient>
+ <linearGradient id="hill" x2="0" y2="1"><stop stop-color="#91a77e"/><stop offset="1" stop-color="#58775d"/></linearGradient>
+ <linearGradient id="road" x2="0" y2="1"><stop stop-color="#d8c49e"/><stop offset="1" stop-color="#b99c75"/></linearGradient>
+ <linearGradient id="roof" x2="0" y2="1"><stop stop-color="#8d6651"/><stop offset="1" stop-color="#654b42"/></linearGradient>
+</defs>
+<rect width="3600" height="720" fill="url(#sky)"/>
+<circle cx="2980" cy="128" r="58" fill="#f6e5b9" opacity=".9"/>
+<path d="M0 335 C240 235 410 260 650 332 S1050 260 1300 320 S1710 220 1970 316 S2390 255 2630 330 S3110 230 3600 300 V600 H0Z" fill="#b8c4a0"/>
+<path d="M0 408 C260 330 490 362 730 414 S1120 345 1390 405 S1800 320 2100 408 S2500 340 2770 410 S3240 330 3600 390 V620 H0Z" fill="url(#hill)"/>
+<path d="M0 495 C420 450 700 475 1020 495 S1570 440 1900 495 S2500 450 2840 495 S3300 455 3600 480 V720 H0Z" fill="#78906a"/>
+<!-- distant woodland -->
+<g fill="#57745d" opacity=".72">
+ <circle cx="90" cy="370" r="74"/><circle cx="170" cy="355" r="92"/><circle cx="300" cy="378" r="72/>
+ <circle cx="900" cy="372" r="88"/><circle cx="1010" cy="350" r="110"/><circle cx="1140" cy="382" r="80"/>
+ <circle cx="1650" cy="366" r="88"/><circle cx="1760" cy="344" r="105"/><circle cx="1880" cy="382" r="82"/>
+ <circle cx="2500" cy="366" r="90"/><circle cx="2610" cy="350" r="105"/><circle cx="2730" cy="380" r="76"/>
+ <circle cx="3310" cy="360" r="95"/><circle cx="3425" cy="345" r="112"/><circle cx="3550" cy="380" r="82"/>
+</g>
+<!-- tree trunks and layered canopies -->
+<g stroke="#725b43" stroke-width="17" stroke-linecap="round" fill="none">
+ <path d="M180 520 Q170 445 190 390 M190 430 L140 380 M190 440 L238 385"/>
+ <path d="M790 520 Q810 440 790 375 M790 430 L740 380 M790 440 L850 380"/>
+ <path d="M1510 520 Q1490 440 1520 375 M1510 430 L1455 380 M1510 445 L1570 385"/>
+ <path d="M2370 520 Q2350 440 2380 375 M2370 430 L2315 380 M2370 445 L2430 385"/>
+ <path d="M3230 520 Q3210 440 3240 375 M3230 430 L3175 380 M3230 445 L3290 385"/>
+</g>
+<g fill="#6f8b66" stroke="#526f56" stroke-width="5">
+ <circle cx="145" cy="365" r="77"/><circle cx="215" cy="350" r="91"/><circle cx="270" cy="386" r="64"/>
+ <circle cx="740" cy="365" r="75"/><circle cx="810" cy="345" r="95"/><circle cx="875" cy="380" r="66"/>
+ <circle cx="1455" cy="365" r="78"/><circle cx="1525" cy="345" r="95"/><circle cx="1590" cy="380" r="67"/>
+ <circle cx="2315" cy="365" r="78"/><circle cx="2385" cy="345" r="95"/><circle cx="2450" cy="380" r="67"/>
+ <circle cx="3175" cy="365" r="78"/><circle cx="3245" cy="345" r="95"/><circle cx="3310" cy="380" r="67"/>
+</g>
+<!-- town hall -->
+<g stroke="#5c4c40" stroke-width="8" stroke-linejoin="round">
+ <path d="M370 355 L580 220 L790 355Z" fill="url(#roof)"/>
+ <rect x="405" y="350" width="350" height="238" rx="5" fill="#e4d3ae"/>
+ <path d="M385 355 H775" stroke="#f0e4c9" stroke-width="15"/>
+ <rect x="535" y="445" width="88" height="143" fill="#765846"/>
+ <rect x="438" y="405" width="70" height="75" fill="#8fa9a2"/>
+ <rect x="650" y="405" width="70" height="75" fill="#8fa9a2"/>
+ <path d="M438 443 H508 M473 405 V480 M650 443 H720 M685 405 V480" stroke="#e7ddc7" stroke-width="7"/>
+ <path d="M535 350 V295 H625 V350" fill="#c5b18d"/>
+</g>
+<!-- general store -->
+<g stroke="#5c4c40" stroke-width="8" stroke-linejoin="round">
+ <path d="M1115 380 L1315 255 L1515 380Z" fill="url(#roof)"/>
+ <rect x="1145" y="375" width="340" height="213" rx="5" fill="#e9cda0"/>
+ <rect x="1175" y="430" width="270" height="42" fill="#f1e3c5"/>
+ <path d="M1175 430 H1445 L1420 475 H1200Z" fill="#b66d50"/>
+ <rect x="1190" y="490" width="110" height="98" fill="#8fa9a2"/>
+ <rect x="1330" y="485" width="115" height="103" fill="#765846"/>
+ <path d="M1190 535 H1300 M1245 490 V588" stroke="#e7ddc7" stroke-width="6"/>
+</g>
+<!-- bakery -->
+<g stroke="#5c4c40" stroke-width="8" stroke-linejoin="round">
+ <path d="M2000 365 L2210 235 L2420 365Z" fill="#9c6d50"/>
+ <rect x="2035" y="360" width="350" height="228" rx="5" fill="#ead7b8"/>
+ <path d="M2035 405 H2385" stroke="#b66d50" stroke-width="20"/>
+ <rect x="2070" y="450" width="115" height="88" fill="#8fa9a2"/>
+ <rect x="2240" y="438" width="110" height="150" fill="#765846"/>
+ <path d="M2070 493 H2185 M2127 450 V538" stroke="#e7ddc7" stroke-width="6"/>
+ <circle cx="2322" cy="514" r="7" fill="#e4c47f" stroke="none"/>
+</g>
+<!-- tavern -->
+<g stroke="#51483f" stroke-width="8" stroke-linejoin="round">
+ <path d="M2920 365 L3135 225 L3350 365Z" fill="#685348"/>
+ <rect x="2955" y="360" width="360" height="228" rx="5" fill="#c9c5a9"/>
+ <rect x="2990" y="415" width="290" height="48" fill="#785a46"/>
+ <rect x="2990" y="490" width="100" height="98" fill="#8fa9a2"/>
+ <rect x="3130" y="465" width="140" height="123" fill="#6d5040"/>
+ <path d="M2990 539 H3090 M3040 490 V588" stroke="#e7ddc7" stroke-width="6"/>
+</g>
+<!-- lane, verge, stone path -->
+<path d="M0 560 C600 535 1150 575 1770 550 S2900 535 3600 560 V720 H0Z" fill="#9ca77d"/>
+<path d="M0 602 C620 575 1100 620 1750 595 S2850 575 3600 600 V720 H0Z" fill="url(#road)"/>
+<path d="M0 605 C620 578 1100 623 1750 598 S2850 578 3600 603" fill="none" stroke="#eee0bd" stroke-width="10" opacity=".85"/>
+<g fill="#d9c7a5" stroke="#a98e6c" stroke-width="3" opacity=".85">
+ <ellipse cx="150" cy="652" rx="55" ry="13"/><ellipse cx="330" cy="672" rx="42" ry="11"/>
+ <ellipse cx="580" cy="641" rx="62" ry="14"/><ellipse cx="820" cy="681" rx="52" ry="12"/>
+ <ellipse cx="1080" cy="648" rx="66" ry="14"/><ellipse cx="1330" cy="680" rx="48" ry="11"/>
+ <ellipse cx="1580" cy="642" rx="55" ry="12"/><ellipse cx="1840" cy="674" rx="60" ry="13"/>
+ <ellipse cx="2110" cy="645" rx="58" ry="12"/><ellipse cx="2370" cy="680" rx="50" ry="12"/>
+ <ellipse cx="2650" cy="646" rx="66" ry="13"/><ellipse cx="2910" cy="674" rx="48" ry="11"/>
+ <ellipse cx="3180" cy="645" rx="58" ry="12"/><ellipse cx="3440" cy="680" rx="55" ry="12"/>
+</g>
+<!-- foreground flowers and grasses -->
+<g stroke="#526d4e" stroke-width="5" stroke-linecap="round" fill="none">
+ <path d="M65 605 l-8 -38 m8 38 l16 -29 M990 605 l-8 -45 m8 45 l17 -34 M1750 600 l-4 -42 m4 42 l18 -30 M2570 600 l-7 -43 m7 43 l17 -31 M3500 602 l-8 -45 m8 45 l17 -32"/>
+</g>
+<g fill="#e9d29a"><circle cx="57" cy="566" r="8"/><circle cx="81" cy="576" r="7"/><circle cx="982" cy="557" r="8"/><circle cx="1007" cy="568" r="7"/><circle cx="1745" cy="555" r="8"/><circle cx="1768" cy="568" r="7"/><circle cx="2563" cy="557" r="8"/><circle cx="2588" cy="568" r="7"/><circle cx="3493" cy="557" r="8"/></g>
+</svg>
