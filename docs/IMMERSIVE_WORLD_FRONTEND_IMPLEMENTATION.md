@@ -183,3 +183,10 @@ The character rig now includes independent garment and headwear components in ad
 Garment treatments include simple belts, shoulder wraps, waist aprons, tunic overlays, light collars and outerwear trim. Headwear includes several distinct cap, brim and cloth-wrap silhouettes. Optional facial-hair styling is drawn only on the front-facing face layer. The existing directional rendering rules remain in place.
 
 All additions are presentation-only. Appearance is generated once during actor configuration and does not reroll on snapshot updates. This remains a stylised procedural wardrobe foundation rather than a final authored character asset library.
+
+
+## Interior architectural detail pass
+
+Interior room shells now have deeper window treatments with divided glazing, projecting sills and restrained curtain panels. Wall composition includes paired sconces, framed landscape artwork and finer panel trim. Shop and bakery floors use perspective tile joints; tavern and civic interiors retain timber floorboards with cross seams. All detail is rendered inside the reusable building component and follows the existing room style and palette inputs.
+
+Furniture remains independently Y-sorted. These additions are architectural presentation only and do not introduce new room contents or simulation state.

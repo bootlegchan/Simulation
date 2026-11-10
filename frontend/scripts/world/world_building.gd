@@ -131,16 +131,46 @@ func _draw_interior(w: float,h: float,style: String,wall: Color,trim: Color) -> 
         draw_rect(Rect2(window_x-52,54,104,118),trim.darkened(0.22))
         draw_rect(Rect2(window_x-44,62,88,102),Color("#8ea9a2"))
         draw_rect(Rect2(window_x-38,68,76,90),Color("#d7dfc8"))
+        # Recessed glazing, divided panes and a projecting sill create real depth.
+        draw_rect(Rect2(window_x-35,72,70,82),Color("#b9c9b6"))
         draw_rect(Rect2(window_x-4,62,8,102),trim)
         draw_rect(Rect2(window_x-44,108,88,6),trim)
-        draw_rect(Rect2(window_x-58,174,116,8),trim)
+        draw_rect(Rect2(window_x-58,174,116,8),trim.lightened(0.12))
+        draw_rect(Rect2(window_x-62,182,124,4),trim.darkened(0.18))
+        # Soft curtain panels are tucked inside the window frame.
+        draw_colored_polygon(PackedVector2Array([Vector2(window_x-39,68),Vector2(window_x-27,72),Vector2(window_x-28,154),Vector2(window_x-39,160)]),Color("#eee2ca",0.88))
+        draw_colored_polygon(PackedVector2Array([Vector2(window_x+39,68),Vector2(window_x+27,72),Vector2(window_x+28,154),Vector2(window_x+39,160)]),Color("#eee2ca",0.88))
+        draw_line(Vector2(window_x-30,78),Vector2(window_x-31,150),Color("#c4b69c",0.7),1.2)
+        draw_line(Vector2(window_x+30,78),Vector2(window_x+31,150),Color("#c4b69c",0.7),1.2)
     for panel_x in range(80,int(w)-80,160):
         draw_rect(Rect2(float(panel_x),floor_y-82,118,64),wall.darkened(0.045),false,1.5)
+        draw_line(Vector2(float(panel_x+8),floor_y-74),Vector2(float(panel_x+110),floor_y-74),wall.lightened(0.08),1.0)
+    # Wall sconces and framed prints give the long interior walls a human scale.
+    for sconce_x in [w*0.34,w*0.68]:
+        draw_rect(Rect2(sconce_x-5,floor_y-142,10,22),trim.darkened(0.2))
+        draw_colored_polygon(PackedVector2Array([Vector2(sconce_x-12,floor_y-145),Vector2(sconce_x,floor_y-166),Vector2(sconce_x+12,floor_y-145)]),Color("#d6b47a"))
+        draw_circle(Vector2(sconce_x,floor_y-143),13.0,Color("#f4d69b",0.10))
+    for picture_x in [w*0.27,w*0.75]:
+        draw_rect(Rect2(picture_x-25,floor_y-132,50,42),trim.darkened(0.18))
+        draw_rect(Rect2(picture_x-20,floor_y-127,40,32),Color("#d6c39f"))
+        draw_colored_polygon(PackedVector2Array([Vector2(picture_x-16,floor_y-101),Vector2(picture_x-4,floor_y-119),Vector2(picture_x+4,floor_y-108),Vector2(picture_x+15,floor_y-122),Vector2(picture_x+17,floor_y-101)]),Color("#71836c"))
     draw_rect(Rect2(28,floor_y-172,92,172),Color("#584638"))
     draw_rect(Rect2(35,floor_y-165,78,165),Color("#8b6b4c"))
     draw_rect(Rect2(42,floor_y-156,64,156),Color("#a7855d"))
     draw_circle(Vector2(99,floor_y-82),3.5,Color("#d7b46f"))
-    for plank in range(1,10):
-        var plank_x := float(plank)*w/10.0
-        draw_line(Vector2(plank_x,floor_y+10),Vector2(plank_x+18,h),floor_colour.darkened(0.10),1.2)
+    if style == "interior_shop" or style == "interior_bakery":
+        # Perspective tile joints converge subtly toward the back wall.
+        for tile in range(1,9):
+            var tile_x := float(tile)*w/9.0
+            draw_line(Vector2(tile_x,floor_y+2),Vector2(w*0.5+(tile_x-w*0.5)*1.7,h),floor_colour.darkened(0.12),1.0)
+        for row in range(1,5):
+            var tile_y := floor_y+float(row)*(h-floor_y)/5.0
+            draw_line(Vector2(0,tile_y),Vector2(w,tile_y),floor_colour.darkened(0.10),1.0)
+    else:
+        for plank in range(1,10):
+            var plank_x := float(plank)*w/10.0
+            draw_line(Vector2(plank_x,floor_y+10),Vector2(plank_x+18,h),floor_colour.darkened(0.10),1.2)
+        for seam in range(1,6):
+            var seam_y := floor_y+float(seam)*(h-floor_y)/6.0
+            draw_line(Vector2(0,seam_y),Vector2(w,seam_y),floor_colour.darkened(0.08),0.9)
     draw_line(Vector2(0,h-3),Vector2(w,h-3),floor_colour.lightened(0.12),2.0)
