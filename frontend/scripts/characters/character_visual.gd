@@ -22,7 +22,7 @@ func configure(entity: Dictionary, is_observer: bool = false) -> void:
     var skins := ["#f5d0ad","#e9b994","#d9a17e","#c98b6b","#a96f56","#754c3d"]
     var hairs := ["#302923","#49372f","#72503b","#a06d45","#c1a06d","#4b5555"]
     var clothes := ["#718b79","#bd8060","#657c99","#c2a16b","#81738e","#d0bca0","#55716f","#a75e4c"]
-    var generated := {"skin":skins[rng.randi_range(0,skins.size()-1)],"hair":hairs[rng.randi_range(0,hairs.size()-1)],"clothes":clothes[rng.randi_range(0,clothes.size()-1)],"eyes":"#302923","head_shape":rng.randi_range(0,3),"body_shape":rng.randi_range(0,3),"hair_style":rng.randi_range(0,5),"face_style":rng.randi_range(0,4),"accessory":rng.randi_range(0,5),"scale":rng.randf_range(0.88,1.13)}
+    var generated := {"skin":skins[rng.randi_range(0,skins.size()-1)],"hair":hairs[rng.randi_range(0,hairs.size()-1)],"clothes":clothes[rng.randi_range(0,clothes.size()-1)],"eyes":"#302923","head_shape":rng.randi_range(0,3),"body_shape":rng.randi_range(0,3),"hair_style":rng.randi_range(0,5),"face_style":rng.randi_range(0,4),"accessory":rng.randi_range(0,5),"outfit_style":rng.randi_range(0,5),"outfit_accent":clothes[rng.randi_range(0,clothes.size()-1)],"headwear":rng.randi_range(0,5),"facial_hair":rng.randi_range(0,3),"scale":rng.randf_range(0.88,1.13)}
     var supplied: Variant = entity.get("appearance",{})
     if supplied is Dictionary:
         for key in supplied:
@@ -41,9 +41,11 @@ func _assemble() -> void:
     _add_part("shadow",Vector2.ZERO)
     _add_part("legs",Vector2(0,-8))
     _add_part("body",Vector2(0,-39))
+    _add_part("garment",Vector2(0,-39))
     _add_part("arms",Vector2(0,-39))
     _add_part("head",Vector2(0,-83))
     _add_part("hair",Vector2(0,-103))
+    _add_part("headwear",Vector2(0,-103))
     _add_part("face",Vector2(0,-83))
     _add_part("accessory",Vector2(0,-39))
 
@@ -78,6 +80,7 @@ func _process(delta: float) -> void:
     var stride := sin(_phase)*5.2*absf(_motion_direction.x) if _moving else 0.0
     var depth_stride := sin(_phase)*3.8*absf(_motion_direction.y) if _moving else 0.0
     _parts["body"].position.y = -39.0+bob
+    _parts["garment"].position.y = -39.0+bob
     _parts["body"].rotation = sin(_phase*0.5)*0.025 if _moving else sin(_phase*0.45)*0.012
     _parts["arms"].position.y = -39.0+bob
     _parts["arms"].call("set_stride",stride,depth_stride)

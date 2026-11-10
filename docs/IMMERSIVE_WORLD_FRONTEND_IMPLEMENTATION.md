@@ -174,3 +174,12 @@ The modular actor rig now changes its rendered orientation for front-facing, rea
 Walking now distinguishes horizontal stride from depth stride. Feet and arms receive a depth offset when the observer moves toward or away from the camera, reducing the impression of skating sideways during depth navigation. Clothing silhouettes also have finer seam and collar accents that remain legible at the current illustrated scale.
 
 Only the observer receives movement direction from the existing waypoint path. NPCs remain idle at stable presentation slots until the authoritative API provides activity/navigation data. No NPC movement or behaviour is fabricated.
+
+
+## Layered wardrobe and silhouette variation
+
+The character rig now includes independent garment and headwear components in addition to its existing body, limb, hair, face and accessory layers. Stable ID-seeded appearance generation selects a clothing treatment, accent colour and headwear style; optional NPC appearance data can override these visual properties without changing simulation attributes.
+
+Garment treatments include simple belts, shoulder wraps, waist aprons, tunic overlays, light collars and outerwear trim. Headwear includes several distinct cap, brim and cloth-wrap silhouettes. Optional facial-hair styling is drawn only on the front-facing face layer. The existing directional rendering rules remain in place.
+
+All additions are presentation-only. Appearance is generated once during actor configuration and does not reroll on snapshot updates. This remains a stylised procedural wardrobe foundation rather than a final authored character asset library.

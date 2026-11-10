@@ -38,9 +38,11 @@ func _draw() -> void:
         "shadow": draw_ellipse(Vector2.ZERO,Vector2(21,5),Color("#3e382f",0.22))
         "legs": _draw_legs(ink)
         "body": _draw_body(ink,clothes)
+        "garment": _draw_garment(ink,clothes)
         "arms": _draw_arms(ink,skin,clothes)
         "head": _draw_head(ink,skin)
         "hair": _draw_hair(ink,hair)
+        "headwear": _draw_headwear()
         "face": _draw_face(ink,skin,eyes)
         "accessory": _draw_accessory()
 
@@ -138,6 +140,67 @@ func _draw_face(ink: Color,skin: Color,eyes: Color) -> void:
     draw_line(Vector2(4,-13),Vector2(12,-12),ink,1.8)
     draw_circle(Vector2(0,3),1.6,skin.darkened(0.08))
     draw_arc(Vector2(0,10),5.0,0.15,PI-0.15,10,ink,1.7)
+
+    var beard := int(appearance.get("facial_hair",0))
+    var beard_colour := Color(str(appearance.get("hair","#49372f")))
+    if beard == 1:
+        draw_arc(Vector2(0,9),10.0,0.15,PI-0.15,12,beard_colour,3.0)
+    elif beard == 2:
+        draw_colored_polygon(PackedVector2Array([Vector2(-10,7),Vector2(-8,16),Vector2(0,21),Vector2(8,16),Vector2(10,7)]),beard_colour)
+    elif beard == 3:
+        draw_line(Vector2(-13,4),Vector2(-5,10),beard_colour,3.0)
+        draw_line(Vector2(13,4),Vector2(5,10),beard_colour,3.0)
+
+
+
+func _draw_garment(ink: Color,base: Color) -> void:
+    var style := int(appearance.get("outfit_style",0))
+    var accent := Color(str(appearance.get("outfit_accent","#c9a36d")))
+    var hw := [12.0,15.0,13.0,17.0][clampi(int(appearance.get("body_shape",0)),0,3)]
+    match style:
+        0:
+            draw_line(Vector2(-hw-2,-28),Vector2(hw+2,-28),accent.darkened(0.12),3.0)
+            draw_rect(Rect2(-2,-30,4,4),accent)
+        1:
+            draw_colored_polygon(PackedVector2Array([Vector2(-hw-3,-37),Vector2(-hw-9,-27),Vector2(-7,-7),Vector2(0,-13),Vector2(7,-7),Vector2(hw+9,-27),Vector2(hw+3,-37)]),accent.darkened(0.08))
+            draw_line(Vector2(-hw-2,-27),Vector2(-7,-9),accent.lightened(0.18),1.4)
+            draw_line(Vector2(hw+2,-27),Vector2(7,-9),accent.lightened(0.18),1.4)
+        2:
+            draw_rect(Rect2(-hw-4,-35,hw*2+8,7),Color("#594638"))
+            draw_rect(Rect2(-4,-35,8,7),accent)
+            draw_line(Vector2(-hw-2,-18),Vector2(hw+2,-18),base.lightened(0.18),2.0)
+        3:
+            draw_colored_polygon(PackedVector2Array([Vector2(-hw-3,-39),Vector2(-hw-8,-24),Vector2(-hw+1,-8),Vector2(hw-1,-8),Vector2(hw+8,-24),Vector2(hw+3,-39)]),accent)
+            draw_line(Vector2(0,-34),Vector2(0,-10),accent.darkened(0.24),1.5)
+        4:
+            draw_rect(Rect2(-hw-2,-36,hw*2+4,10),Color("#f0e2c8"))
+            draw_rect(Rect2(-hw-2,-27,hw*2+4,4),accent)
+            draw_line(Vector2(-hw,-20),Vector2(hw,-20),Color("#fff0d7"),1.3)
+        5:
+            draw_line(Vector2(-hw-5,-34),Vector2(-hw-8,-12),accent,5.0)
+            draw_line(Vector2(hw+5,-34),Vector2(hw+8,-12),accent,5.0)
+            draw_rect(Rect2(-hw-8,-35,hw*2+16,5),accent.darkened(0.18))
+
+func _draw_headwear() -> void:
+    var style := int(appearance.get("headwear",0))
+    var accent := Color(str(appearance.get("outfit_accent","#c9a36d")))
+    if style == 1:
+        draw_rect(Rect2(-25,-15,50,7),Color("#5c4938"))
+        draw_colored_polygon(PackedVector2Array([Vector2(-18,-15),Vector2(-15,-28),Vector2(0,-34),Vector2(15,-28),Vector2(18,-15)]),Color("#a17b53"))
+        draw_rect(Rect2(-18,-17,36,3),accent)
+    elif style == 2:
+        draw_colored_polygon(PackedVector2Array([Vector2(-25,-15),Vector2(-20,-31),Vector2(0,-38),Vector2(20,-31),Vector2(25,-15)]),Color("#536d5c"))
+        draw_rect(Rect2(-24,-16,48,4),accent)
+    elif style == 3:
+        draw_arc(Vector2(0,-16),23.0,PI,TAU,16,Color("#9b704c"),5.0)
+        draw_line(Vector2(-23,-16),Vector2(23,-16),accent,2.0)
+    elif style == 4:
+        draw_colored_polygon(PackedVector2Array([Vector2(-20,-17),Vector2(-18,-35),Vector2(0,-42),Vector2(18,-35),Vector2(20,-17)]),Color("#3f5149"))
+        draw_rect(Rect2(-20,-19,40,5),accent)
+    elif style == 5:
+        draw_ellipse(Vector2(0,-19),Vector2(20,5),Color("#d2b88a"))
+        draw_colored_polygon(PackedVector2Array([Vector2(-12,-20),Vector2(-9,-36),Vector2(0,-41),Vector2(9,-36),Vector2(12,-20)]),Color("#d2b88a"))
+        draw_line(Vector2(-10,-21),Vector2(10,-21),accent,2.0)
 
 func _draw_accessory() -> void:
     var item := int(appearance.get("accessory",0))
