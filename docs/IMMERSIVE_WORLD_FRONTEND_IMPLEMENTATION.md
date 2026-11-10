@@ -209,3 +209,8 @@ This remains a low-cost presentation layer and does not change navigation, simul
 Sky atmosphere, clouds, distant birds, night glows and precipitation now render through a dedicated WorldAtmosphere node rather than the main world-view draw pass. The layer refreshes independently at frame cadence, so weather and sky motion no longer depend on hover changes or snapshot redraw timing. It is disabled for interior rooms, keeping outdoor clouds, stars, rain and fog off indoor scenes. A raised world z-index keeps weather effects above scenery while the screen-space HUD remains in its own CanvasLayer.
 
 The world-view renderer now focuses on scene composition, targets and selection feedback; the atmosphere component owns only camera-world environmental overlays. Python remains authoritative for climate and time values.
+
+
+## Manifest-driven exterior facade detailing
+
+Exterior buildings now support an optional `facade` object interpreted by the shared building renderer. The Oakwood civic hall, general store, bakery and tavern each use a different combination of corner stones, shutters, flower boxes, roof crest and sign treatment. Colours, sign copy and dimensions are presentation data in `oakwood.json`; no building-specific drawing scripts or simulation attributes were added. Buildings without a facade object retain the existing base treatment. Source integration and manifest JSON parsing were checked; no Godot runtime test was run.

@@ -79,7 +79,15 @@
           "style": "civic",
           "wall": "#d8c8a8",
           "roof": "#6e5949",
-          "light_windows": true
+          "light_windows": true,
+          "facade": {
+            "corner_stones": true,
+            "roof_crest": true,
+            "crest_colour": "#e4d5b5",
+            "sign_text": "Oakwood",
+            "sign_width": 138,
+            "sign_y": 72
+          }
         },
         {
           "id": "building_general_store",
@@ -91,7 +99,17 @@
           "style": "shop",
           "wall": "#d6b98e",
           "roof": "#765b48",
-          "light_windows": true
+          "light_windows": true,
+          "facade": {
+            "shutters": true,
+            "shutter_colour": "#806047",
+            "window_boxes": true,
+            "box_colour": "#79583f",
+            "bloom_colour": "#d99b79",
+            "sign_text": "General Goods",
+            "sign_width": 164,
+            "sign_y": 70
+          }
         },
         {
           "id": "building_bakery",
@@ -103,7 +121,17 @@
           "style": "bakery",
           "wall": "#d9c4a1",
           "roof": "#805b49",
-          "light_windows": true
+          "light_windows": true,
+          "facade": {
+            "window_boxes": true,
+            "box_colour": "#80563f",
+            "bloom_colour": "#d88a66",
+            "roof_crest": true,
+            "crest_colour": "#e5c99b",
+            "sign_text": "Fresh Bread",
+            "sign_width": 154,
+            "sign_y": 72
+          }
         },
         {
           "id": "building_tavern",
@@ -115,7 +143,16 @@
           "style": "tavern",
           "wall": "#b9b49c",
           "roof": "#655345",
-          "light_windows": true
+          "light_windows": true,
+          "facade": {
+            "shutters": true,
+            "shutter_colour": "#604a3d",
+            "corner_stones": true,
+            "stone_colour": "#d0c6aa",
+            "sign_text": "The Boar & Flagon",
+            "sign_width": 188,
+            "sign_y": 70
+          }
         }
       ],
       "scenery": [

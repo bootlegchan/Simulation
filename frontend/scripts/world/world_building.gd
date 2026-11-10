@@ -99,6 +99,7 @@ func _draw() -> void:
         draw_rect(Rect2(w*0.5-64,74,128,46),Color("#5a4334"))
         draw_rect(Rect2(w*0.5-58,80,116,34),Color("#d6bd91"))
         draw_string(ThemeDB.fallback_font,Vector2(w*0.5-52,102),"THE TAVERN",HORIZONTAL_ALIGNMENT_CENTER,104,12,Color("#514235"))
+    _draw_facade_details(w,h,style,wall,roof,ink)
     # Subtle roof seams and facade courses add readable material scale.
     for seam in range(0,5):
         var seam_y := -h*0.40+float(seam)*h*0.075
@@ -112,6 +113,51 @@ func _draw() -> void:
     draw_rect(Rect2(0,0,10,h),roof.darkened(0.12))
     draw_rect(Rect2(w-10,0,10,h),roof.darkened(0.12))
     draw_set_transform(Vector2.ZERO)
+
+
+func _draw_facade_details(w: float,h: float,style: String,wall: Color,roof: Color,ink: Color) -> void:
+    # Optional facade treatments are manifest-driven so buildings can share
+    # the same renderer without sharing the same architectural identity.
+    var facade: Dictionary = definition.get("facade",{})
+    if bool(facade.get("corner_stones",false)):
+        var stone := Color(str(facade.get("stone_colour","#e6d7b9")))
+        for corner_x in [8.0,w-20.0]:
+            for course in range(5):
+                draw_rect(Rect2(corner_x,82.0+float(course)*42.0,12,28),stone.darkened(0.04 if course%2==0 else 0.10))
+    if bool(facade.get("shutters",false)):
+        var shutter := Color(str(facade.get("shutter_colour","#765b48")))
+        for window_x in [34.0,w-94.0]:
+            draw_rect(Rect2(window_x-13,99,10,80),shutter)
+            draw_rect(Rect2(window_x+63,99,10,80),shutter)
+            for rail_y in [112.0,136.0,160.0]:
+                draw_line(Vector2(window_x-12,rail_y),Vector2(window_x-4,rail_y),shutter.lightened(0.18),1.2)
+                draw_line(Vector2(window_x+64,rail_y),Vector2(window_x+72,rail_y),shutter.lightened(0.18),1.2)
+    if bool(facade.get("window_boxes",false)):
+        var box_colour := Color(str(facade.get("box_colour","#79583f")))
+        var bloom_colour := Color(str(facade.get("bloom_colour","#d99b79")))
+        for window_x in [34.0,w-94.0]:
+            draw_rect(Rect2(window_x-5,181,70,9),box_colour)
+            for flower_index in range(5):
+                var flower_x := window_x+float(flower_index)*13.0+2.0
+                draw_line(Vector2(flower_x,181),Vector2(flower_x-2,169),Color("#587653"),1.4)
+                draw_circle(Vector2(flower_x-2,166),3.5,bloom_colour)
+                draw_circle(Vector2(flower_x+2,168),2.5,Color("#e8d4a8"))
+    if bool(facade.get("roof_crest",false)):
+        var crest_colour := Color(str(facade.get("crest_colour","#d8bd8c")))
+        draw_colored_polygon(PackedVector2Array([
+            Vector2(w*0.5-24,-h*0.57),Vector2(w*0.5,-h*0.70),
+            Vector2(w*0.5+24,-h*0.57),Vector2(w*0.5,-h*0.54)
+        ]),crest_colour)
+        draw_circle(Vector2(w*0.5,-h*0.60),5.0,roof.darkened(0.12))
+    var sign_text := str(facade.get("sign_text",""))
+    if not sign_text.is_empty():
+        var sign_width := minf(w-52.0,float(facade.get("sign_width",150.0)))
+        var sign_x := (w-sign_width)*0.5
+        var sign_y := float(facade.get("sign_y",70.0))
+        var sign_fill := Color(str(facade.get("sign_colour","#ead9b9")))
+        draw_rect(Rect2(sign_x,sign_y,sign_width,28),roof.darkened(0.08))
+        draw_rect(Rect2(sign_x+3,sign_y+3,sign_width-6,22),sign_fill)
+        draw_string(ThemeDB.fallback_font,Vector2(sign_x+6,sign_y+21),sign_text.to_upper(),HORIZONTAL_ALIGNMENT_CENTER,sign_width-12,11,ink)
 
 func _draw_interior(w: float,h: float,style: String,wall: Color,trim: Color) -> void:
     # Architectural room shell only. Furniture is independently positioned and Y-sorted.
