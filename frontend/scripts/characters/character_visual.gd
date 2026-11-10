@@ -14,6 +14,7 @@ func configure(entity: Dictionary, is_observer: bool = false) -> void:
     _observer = is_observer
     var identity := str(entity.get("id",entity.get("name","citizen")))
     _appearance = _build_appearance(identity,entity.get("appearance",{}))
+    scale = Vector2.ONE * float(_appearance.get("scale",1.0))
     _assemble()
     set_process(true)
 
