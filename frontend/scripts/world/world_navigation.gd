@@ -7,13 +7,15 @@ func build_path(start: Vector2, destination: Vector2, room: Dictionary, width: f
     var limits: Dictionary = room.get("navigation",{})
     var min_y := float(limits.get("min_y",450.0))
     var max_y := float(limits.get("max_y",680.0))
-    var start_cell := _cell(start)
+    var original_start := _cell(start)
+    var start_cell := original_start
     var goal := _cell(Vector2(clampf(destination.x,32.0,width-32.0),clampf(destination.y,min_y,max_y)))
     start_cell = _nearest_open(start_cell,room,width,min_y,max_y)
     goal = _nearest_open(goal,room,width,min_y,max_y)
     var queue:Array[Vector2i] = [start_cell]
     var came:Dictionary = {}
-    var seen:Dictionary = {start_cell:true}
+    var seen:Dictionary = {}
+    seen[start_cell] = true
     var cursor := 0
     while cursor < queue.size() and cursor < 1800:
         var current := queue[cursor]
@@ -24,11 +26,13 @@ func build_path(start: Vector2, destination: Vector2, room: Dictionary, width: f
                 current = came[current]
                 cells.push_front(current)
             var path := PackedVector2Array()
-            for point in cells.slice(1):
+            if original_start != start_cell:
+                path.append(_world(start_cell))
+            for point: Vector2i in cells.slice(1):
                 path.append(_world(point))
             return path
-        for direction in DIRS:
-            var next := current+direction
+        for direction: Vector2i in DIRS:
+            var next: Vector2i = current+direction
             if seen.has(next) or _blocked(next,room,width,min_y,max_y):
                 continue
             seen[next] = true

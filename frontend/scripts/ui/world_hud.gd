@@ -101,6 +101,13 @@ func _ready() -> void:
     _connection.add_theme_font_size_override("font_size",11)
     _connection.add_theme_color_override("font_color",Color("#9b5b43"))
     root.add_child(_connection)
+    _make_pass_through(root)
+
+func _make_pass_through(control: Control) -> void:
+    control.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    for child in control.get_children():
+        if child is Control:
+            _make_pass_through(child)
 
 func _panel() -> PanelContainer:
     var panel := PanelContainer.new()
