@@ -25,6 +25,9 @@ var _character_nodes: Dictionary = {}
 var _observer_visual: Node2D
 
 func _ready() -> void:
+    # Sort independent world nodes by their ground contact point so trees,
+    # buildings and people can overlap naturally as the camera moves.
+    y_sort_enabled = true
     _camera = Camera2D.new()
     _camera.position_smoothing_enabled = true
     _camera.position_smoothing_speed = 5.0
@@ -34,6 +37,7 @@ func _ready() -> void:
     _lighting.set_script(LIGHTING_SCRIPT)
     add_child(_lighting)
     _observer_visual = Node2D.new()
+    _observer_visual.z_index = 5
     _observer_visual.set_script(CHARACTER_VISUAL_SCRIPT)
     add_child(_observer_visual)
     _observer_visual.call("configure", {"id":"observer","name":"Observer"}, true)
