@@ -88,6 +88,9 @@ func _refresh_snapshot() -> void:
     if error != OK:
         _connected = false
         _last_error = "Could not start the simulation connection."
+        if _room_transition_busy:
+            _room_transition_busy = false
+            world_view.call("complete_room_transition")
 
 func _request(path: String, kind: String) -> void:
     if _http.get_http_client_status() != HTTPClient.STATUS_DISCONNECTED:
@@ -273,6 +276,9 @@ func _enter_room(room_id: String) -> void:
         _last_error = "No presentation scene is mapped for that room yet."
         _pending_room_id = ""
         return
+    # Let any previous-room request finish before beginning the visual transition.
+    while _http.get_http_client_status() != HTTPClient.STATUS_DISCONNECTED:
+        await get_tree().process_frame
     _room_transition_busy = true
     await world_view.call("begin_room_transition")
     _current_room_id = room_id
@@ -283,8 +289,6 @@ func _enter_room(room_id: String) -> void:
     _target_x = _observer_x
     _pending_room_id = ""
     world_view.set_presentation_state(_build_view_state())
-    while _http.get_http_client_status() != HTTPClient.STATUS_DISCONNECTED:
-        await get_tree().process_frame
     _refresh_snapshot()
 
 func _close_inspection() -> void:
