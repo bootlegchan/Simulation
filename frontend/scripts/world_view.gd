@@ -12,6 +12,8 @@ const CHARACTER_VISUAL_SCRIPT = preload("res://scripts/characters/character_visu
 const BUILDING_SCRIPT = preload("res://scripts/world/world_building.gd")
 const LIGHTING_SCRIPT = preload("res://scripts/world/world_lighting.gd")
 const PROP_SCRIPT = preload("res://scripts/world/world_prop.gd")
+const FOREGROUND_SCRIPT = preload("res://scripts/world/world_foreground.gd")
+const HUD_SCRIPT = preload("res://scripts/ui/world_hud.gd")
 
 var _state: Dictionary = {}
 var _camera: Camera2D
@@ -34,6 +36,8 @@ var _transition_tween: Tween
 var _camera_zoom_target := 1.0
 var _hovered: Dictionary = {}
 var _hover_signature := ""
+var _foreground: Node2D
+var _hud: CanvasLayer
 
 func _ready() -> void:
     # Sort independent world nodes by their ground contact point so trees,
@@ -60,6 +64,12 @@ func _ready() -> void:
     _observer_visual.set_script(CHARACTER_VISUAL_SCRIPT)
     add_child(_observer_visual)
     _observer_visual.call("configure", {"id":"observer","name":"Observer"}, true)
+    _foreground = Node2D.new()
+    _foreground.set_script(FOREGROUND_SCRIPT)
+    add_child(_foreground)
+    _hud = CanvasLayer.new()
+    _hud.set_script(HUD_SCRIPT)
+    add_child(_hud)
 
 func set_presentation_state(state: Dictionary) -> void:
     var incoming_room_id := str(state.get("room_id",""))
@@ -70,6 +80,10 @@ func set_presentation_state(state: Dictionary) -> void:
     if not _camera_initialized:
         _last_observer_x = float(state.get("observer_x",500.0))
     _state = state
+    if _hud:
+        _hud.call("configure",_state)
+    if _foreground:
+        _foreground.call("configure",float(_state.get("world_width",3600.0)))
     _sync_character_nodes()
     _sync_building_nodes()
     _sync_prop_nodes()
@@ -88,7 +102,7 @@ func _process(delta: float) -> void:
     if _camera:
         _update_camera_follow(observer_x,delta)
     if _observer_visual:
-        _observer_visual.position = Vector2(observer_x,585.0)
+        _observer_visual.position = Vector2(observer_x,float(_state.get("observer_y",585.0)))
     var mouse_target := pick_target(get_global_mouse_position())
     var hover_signature := ""
     if not mouse_target.is_empty():
@@ -205,13 +219,8 @@ func _draw() -> void:
     _draw_objects(room_manifest)
     _draw_portals(room_manifest)
     _draw_npcs()
-    _draw_selection_prompt()
     _draw_hover_feedback()
     _draw_environment()
-    _draw_foreground(width)
-    _draw_inspection()
-    _draw_connection_state()
-    _draw_simulation_hud()
 
 func _draw_outdoor(width: float) -> void:
     # The environment is a renderable stage, not a pre-painted village image.

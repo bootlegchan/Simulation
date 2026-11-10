@@ -109,6 +109,22 @@ Building silhouettes retain their shared procedural base but now have distinct v
 
 These are presentation-only improvements. Python remains authoritative for simulation state and the frontend does not fabricate NPC activity or player actions.
 
+## Depth navigation, occlusion and screen-space interface
+
+A reusable grid navigator now drives the observer across horizontal and depth axes. It uses room navigation bounds and building/scenery footprints from the presentation manifest, routes around obstacles, and recognises mapped doorway corridors. This is presentation-only movement: Python remains authoritative for all simulation-owned state.
+
+Building nodes now sort by their ground-contact edge rather than their roof origin. Characters can therefore render behind a building when their ground position is farther back, or in front when they move closer to the viewer. A separate foreground vegetation pass provides another Y-sorted depth layer.
+
+A screen-space HUD now presents location identity, simulation clock/state, population, connection feedback, interaction prompts and inspection details independently of the camera. Room manifests may optionally define a `navigation` object with `min_y` and `max_y`; sensible defaults are provided.
+
+## Depth navigation, occlusion and screen-space interface
+
+A reusable grid navigator now moves the observer across both horizontal and depth axes. It reads room navigation bounds and building/scenery footprints from the presentation manifest, routes around obstacles and recognises mapped doorway corridors. This is presentation-only movement; Python remains authoritative for simulation state.
+
+Building nodes now sort by their ground-contact edge rather than their roof origin. Characters can consequently render behind a building when their ground position is farther back, or in front when they move towards the viewer. A separate Y-sorted foreground vegetation pass provides another depth layer.
+
+A screen-space HUD presents location identity, simulation clock/state, population, connection feedback, interaction prompts and inspection details independently of the camera. Room manifests may optionally define a `navigation` object with `min_y` and `max_y`; defaults are supplied when omitted.
+
 ## Cinematic room transitions and camera focus
 
 Room travel now uses a short, full-screen dark fade so the scene and camera can change without exposing a hard cut.

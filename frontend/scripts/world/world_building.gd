@@ -9,7 +9,8 @@ func configure(data: Dictionary) -> void:
     if definition == data:
         return
     definition = data.duplicate(true)
-    position = Vector2(float(definition.get("x",0.0)),float(definition.get("y",0.0)))
+    var h := float(definition.get("height",260.0))
+    position = Vector2(float(definition.get("x",0.0)),float(definition.get("y",0.0))+h)
     queue_redraw()
     _configure_occluder()
 
@@ -23,9 +24,9 @@ func _configure_occluder() -> void:
     var w := float(definition.get("width",260.0))
     var h := float(definition.get("height",260.0))
     polygon.polygon = PackedVector2Array([
-        Vector2(-w*0.08,-h*0.28),Vector2(0,-h*0.58),
-        Vector2(w*0.5,-h*0.58),Vector2(w*1.08,-h*0.28),
-        Vector2(w,h),Vector2(0,h)
+        Vector2(-w*0.08,-h*1.28),Vector2(0,-h*1.58),
+        Vector2(w*0.5,-h*1.58),Vector2(w*1.08,-h*1.28),
+        Vector2(w,0),Vector2(0,0)
     ])
     _occluder.occluder = polygon
     add_child(_occluder)
@@ -37,8 +38,10 @@ func _draw() -> void:
     var roof := Color(str(definition.get("roof","#6e5949")))
     var ink := Color("#4f493e")
     var style := str(definition.get("style","house"))
+    draw_set_transform(Vector2(0.0,-h))
     if style.begins_with("interior_"):
         _draw_interior(w,h,style)
+        draw_set_transform(Vector2.ZERO)
         return
     # Contact shadow and an offset cast shadow anchor the silhouette to the ground.
     draw_colored_polygon(PackedVector2Array([
@@ -92,6 +95,7 @@ func _draw() -> void:
     draw_rect(Rect2(-8,8,w+16,9),roof.darkened(0.12))
     draw_rect(Rect2(0,0,10,h),roof.darkened(0.12))
     draw_rect(Rect2(w-10,0,10,h),roof.darkened(0.12))
+    draw_set_transform(Vector2.ZERO)
 
 func _draw_interior(w: float,h: float,style: String) -> void:
     var wood := Color("#76553b")

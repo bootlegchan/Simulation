@@ -4,6 +4,7 @@ const API_BASE := "http://127.0.0.1:8765/api/v1"
 const MANIFEST_PATH := "res://data/presentation/oakwood.json"
 const BRIDGE_SCRIPT := "res://../frontend_bridge/server.py"
 const WALK_SPEED := 260.0
+const NAV_SCRIPT = preload("res://scripts/world/world_navigation.gd")
 
 @onready var world_view: Node2D = $WorldView
 
@@ -23,6 +24,11 @@ var _last_error := "Connecting to Oakwood simulation…"
 var _bridge_pid := -1
 var _bridge_launch_attempted := false
 var _room_transition_busy := false
+var _observer_position := Vector2(500.0,585.0)
+var _target_position := Vector2(500.0,585.0)
+var _path := PackedVector2Array()
+var _path_index := 0
+var _navigator
 
 func _ready() -> void:
     _load_manifest()
@@ -45,6 +51,9 @@ func _ready() -> void:
     var start_data: Dictionary = _room_manifest()
     _observer_x = float(start_data.get("observer_spawn_x", 500.0))
     _target_x = _observer_x
+    _observer_position = Vector2(_observer_x,float(start_data.get("observer_spawn_y",585.0)))
+    _target_position = _observer_position
+    _navigator = NAV_SCRIPT.new()
 
     # The game starts its own local simulation bridge. A separately started bridge
     # is detected by the first request and is never claimed or terminated by Godot.
@@ -57,13 +66,21 @@ func _exit_tree() -> void:
         _bridge_pid = -1
 
 func _process(delta: float) -> void:
-    if absf(_target_x - _observer_x) > 1.0:
-        _observer_x = move_toward(_observer_x, _target_x, WALK_SPEED * delta)
-        if absf(_target_x - _observer_x) <= 1.0:
-            _observer_x = _target_x
-            if not _pending_room_id.is_empty():
-                _enter_room(_pending_room_id)
-    world_view.call("set_observer_motion",absf(_target_x-_observer_x)>1.0)
+    var moving := _path_index < _path.size()
+    if moving:
+        var destination := _path[_path_index]
+        var offset := destination-_observer_position
+        var step := WALK_SPEED*delta
+        if offset.length() <= step:
+            _observer_position = destination
+            _path_index += 1
+        elif offset.length() > 0.001:
+            _observer_position += offset.normalized()*step
+        _observer_x = _observer_position.x
+        _target_x = _target_position.x
+        if _path_index >= _path.size() and not _pending_room_id.is_empty():
+            _enter_room(_pending_room_id)
+    world_view.call("set_observer_motion",moving)
     world_view.set_presentation_state(_build_view_state())
 
 func _load_manifest() -> void:
@@ -181,6 +198,7 @@ func _build_view_state() -> Dictionary:
         "economy": _snapshot.get("economy", {}),
         "population": _snapshot.get("population", {}),
         "observer_x": _observer_x,
+        "observer_y": _observer_position.y,
         "selected": _selected,
         "inspection": _inspection,
         "connected": _connected,
@@ -189,14 +207,24 @@ func _build_view_state() -> Dictionary:
 
 func _on_world_clicked(world_position: Vector2) -> void:
     var target: Dictionary = world_view.pick_target(world_position)
+    var destination := world_position
     if target.is_empty():
         _selected = {}
         _pending_room_id = ""
-        _target_x = clampf(world_position.x, 80.0, float(_manifest.get("world_width", 3600)) - 80.0)
     else:
         _selected = target
-        _target_x = float(target.get("door_x", target.get("x", world_position.x)))
-        _pending_room_id = str(target.get("target_room_id", "")) if target.get("kind") == "portal" else ""
+        destination.x = float(target.get("door_x",target.get("x",world_position.x)))
+        destination.y = float(target.get("y",_room_manifest().get("ground_y",590.0)))
+        _pending_room_id = str(target.get("target_room_id","")) if target.get("kind") == "portal" else ""
+    var nav: Dictionary = _room_manifest().get("navigation",{})
+    destination.y = clampf(destination.y,float(nav.get("min_y",450.0)),float(nav.get("max_y",680.0)))
+    _target_position = destination
+    _target_x = destination.x
+    _path = _navigator.build_path(_observer_position,destination,_room_manifest(),float(_manifest.get("world_width",3600.0)))
+    _path_index = 0
+    if _path.is_empty() and _observer_position.distance_to(destination) > 48.0:
+        _pending_room_id = ""
+        _last_error = "No clear walking route to that point."
     world_view.set_presentation_state(_build_view_state())
 
 func _on_interact() -> void:
@@ -287,7 +315,11 @@ func _enter_room(room_id: String) -> void:
     _inspection = {}
     var room_data: Dictionary = _room_manifest()
     _observer_x = float(room_data.get("observer_spawn_x", 140.0))
+    _observer_position = Vector2(_observer_x,float(room_data.get("observer_spawn_y",585.0)))
+    _target_position = _observer_position
     _target_x = _observer_x
+    _path = PackedVector2Array()
+    _path_index = 0
     _pending_room_id = ""
     world_view.set_presentation_state(_build_view_state())
     _refresh_snapshot()
