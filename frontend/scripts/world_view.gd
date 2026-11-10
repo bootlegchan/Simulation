@@ -79,6 +79,7 @@ func _draw() -> void:
     _draw_selection_prompt()
     _draw_observer()
     _draw_environment()
+    _draw_foreground(width)
     _draw_inspection()
     _draw_connection_state()
     _draw_simulation_hud()
@@ -117,36 +118,109 @@ func _draw_outdoor(width: float) -> void:
     draw_string(ThemeDB.fallback_font,Vector2(90,95),"OAKWOOD",HORIZONTAL_ALIGNMENT_LEFT,-1,18,Color("#f4eedf"))
 
 func _draw_interior(width: float,title: String) -> void:
-    draw_rect(Rect2(0,0,width,WORLD_HEIGHT),Color("#d5c8ad"))
-    draw_rect(Rect2(0,0,width,515),Color("#d8cbb5"))
-    draw_rect(Rect2(0,515,width,205),Color("#876f56"))
-    draw_rect(Rect2(0,505,width,14),Color("#594c3e"))
-    for x in range(90,int(width),300):
-        draw_rect(Rect2(float(x),100,180,190),Color("#718779"))
-        draw_rect(Rect2(float(x+12),112,156,166),Color("#b5c4ad"))
-        draw_line(Vector2(float(x+90),112),Vector2(float(x+90),278),Color("#6a6856"),5.0)
-    draw_rect(Rect2(0,0,width,80),Color("#5a5144"))
-    draw_string(ThemeDB.fallback_font,Vector2(100,55),title.to_upper(),HORIZONTAL_ALIGNMENT_LEFT,-1,20,PAPER)
-    for x in [380.0,1040.0,1680.0]:
-        draw_rect(Rect2(x,420,240,28),Color("#604a38"))
-        draw_rect(Rect2(x+20,448,18,110),Color("#604a38"))
-        draw_rect(Rect2(x+200,448,18,110),Color("#604a38"))
+    # Warm, illustrated interiors with room-specific furniture silhouettes.
+    draw_rect(Rect2(0,0,width,WORLD_HEIGHT),Color("#d8c9ae"))
+    draw_rect(Rect2(0,0,width,515),Color("#e8d9bd"))
+    # Wallpaper panels and timber trim
+    for x in range(28,int(width),84):
+        draw_line(Vector2(float(x),104),Vector2(float(x),486),Color("#d5c2a2",0.32),2.0)
+        draw_circle(Vector2(float(x+28),154),3.0,Color("#bd9b79",0.42))
+        draw_circle(Vector2(float(x+28),234),3.0,Color("#bd9b79",0.42))
+    draw_rect(Rect2(0,82,width,12),Color("#9b8061"))
+    draw_rect(Rect2(0,486,width,30),Color("#b28d68"))
+    # Floorboards with perspective-like seams
+    draw_rect(Rect2(0,516,width,204),Color("#9a7959"))
+    for y in range(540,720,34):
+        draw_line(Vector2(0,float(y)),Vector2(width,float(y)),Color("#71583f",0.55),2.0)
+    for x in range(80,int(width),210):
+        draw_line(Vector2(float(x),518),Vector2(float(x-35),720),Color("#71583f",0.38),2.0)
+    # Soft rug in the centre of the room
+    draw_rect(Rect2(520,570,570,112),Color("#a85f4b"))
+    draw_rect(Rect2(538,583,534,86),Color("#d4a77a"),false,3.0)
+    for x in range(560,1060,42):
+        draw_circle(Vector2(float(x),626),3.0,Color("#8e5748",0.6))
+    # Windows, curtains and sill
+    for x in [110.0,1450.0,2780.0]:
+        draw_rect(Rect2(x-12,118,196,220),Color("#745941"))
+        draw_rect(Rect2(x,130,172,194),Color("#9ab5ad"))
+        draw_rect(Rect2(x+8,138,156,178),Color("#c6d6c3"))
+        draw_rect(Rect2(x+8,230,156,86),Color("#8faeaa"))
+        draw_line(Vector2(x+86,138),Vector2(x+86,316),Color("#745941"),8.0)
+        draw_line(Vector2(x+8,225),Vector2(x+164,225),Color("#745941"),8.0)
+        draw_rect(Rect2(x-25,112,28,235),Color("#b66f58"))
+        draw_rect(Rect2(x+184,112,28,235),Color("#b66f58"))
+        draw_rect(Rect2(x-22,334,222,12),Color("#755b43"))
+    # Ceiling beams and hanging lamps
+    for x in range(120,int(width),620):
+        draw_rect(Rect2(float(x),80,18,410),Color("#9a7958",0.72))
+    draw_line(Vector2(width*0.5,0),Vector2(width*0.5,118),Color("#70573f"),5.0)
+    draw_circle(Vector2(width*0.5,145),30.0,Color("#f2d79a"))
+    draw_circle(Vector2(width*0.5,145),19.0,Color("#fff0c9"))
+    # Room title on a painted wooden plaque
+    draw_rect(Rect2(80,22,420,48),Color("#795d43"))
+    draw_rect(Rect2(86,27,408,38),Color("#ead8b8"))
+    draw_string(ThemeDB.fallback_font,Vector2(104,54),title.to_upper(),HORIZONTAL_ALIGNMENT_LEFT,370,19,INK)
+
     var room_id := str(_state.get("room_id",""))
     if room_id == "room_town_hall":
-        draw_rect(Rect2(580,240,500,150),Color("#e6ddc8"))
-        draw_rect(Rect2(610,260,440,110),Color("#9a805d"))
-        draw_string(ThemeDB.fallback_font,Vector2(670,320),"CIVIC RECORDS",HORIZONTAL_ALIGNMENT_LEFT,-1,24,PAPER)
+        # Mayor's desk, filing shelves and framed civic map
+        draw_rect(Rect2(570,345,520,28),Color("#654832"))
+        draw_rect(Rect2(600,373,24,150),Color("#654832"))
+        draw_rect(Rect2(1035,373,24,150),Color("#654832"))
+        draw_rect(Rect2(710,230,220,112),Color("#c8b38e"))
+        draw_rect(Rect2(722,242,196,88),Color("#e8ddc7"))
+        draw_line(Vector2(738,270),Vector2(900,270),Color("#9e8c72"),3.0)
+        draw_line(Vector2(738,290),Vector2(875,290),Color("#9e8c72"),3.0)
+        draw_rect(Rect2(1240,205,240,230),Color("#77583f"))
+        for y in [220.0,292.0,364.0]:
+            draw_rect(Rect2(1252,y,216,10),Color("#d0b48a"))
+            for x in range(1268,1450,42):
+                draw_rect(Rect2(float(x),y-42,28,42),Color("#8d6749"))
+                draw_rect(Rect2(float(x+4),y-36,20,30),Color("#e0cda8"))
     elif room_id == "room_shop":
-        for x in [420.0,780.0,1140.0]:
-            draw_rect(Rect2(x,250,220,150),Color("#87694a"))
-            for y in [280.0,335.0]:
-                draw_rect(Rect2(x+12,y,196,8),Color("#d5bd91"))
-                for j in range(4):
-                    draw_circle(Vector2(x+35+j*48,y-14),12,Color("#b6a06f"))
+        # Shelves stocked with colourful jars and baskets
+        for x in [390.0,760.0,1130.0,1500.0]:
+            draw_rect(Rect2(x,230,245,18),Color("#76553b"))
+            draw_rect(Rect2(x+8,248,12,145),Color("#76553b"))
+            draw_rect(Rect2(x+225,248,12,145),Color("#76553b"))
+            for j in range(5):
+                var jar_x := x+28.0+float(j)*42.0
+                var jar_colour := [Color("#c57d56"),Color("#d4b66f"),Color("#8da28a"),Color("#9b8194"),Color("#d4c29c")][j]
+                draw_rect(Rect2(jar_x,184,27,42),jar_colour)
+                draw_rect(Rect2(jar_x+5,176,17,10),Color("#755b43"))
+                draw_rect(Rect2(jar_x+4,196,19,12),Color("#f0dfbd",0.7))
+        draw_rect(Rect2(620,430,680,42),Color("#76553b"))
+        draw_rect(Rect2(650,472,26,74),Color("#76553b"))
+        draw_rect(Rect2(1240,472,26,74),Color("#76553b"))
     elif room_id == "room_bakery":
-        draw_circle(Vector2(850,365),95,Color("#684a38"))
-        draw_circle(Vector2(850,365),65,Color("#bd7950"))
-        draw_circle(Vector2(850,365),35,Color("#e7c28d"))
+        # Brick oven, cooling rack and pastry counter
+        draw_rect(Rect2(1280,205,360,275),Color("#b66e4c"))
+        for y in range(224,460,34):
+            draw_line(Vector2(1280,float(y)),Vector2(1640,float(y)),Color("#e0a17a",0.65),3.0)
+        for x in range(1300,1640,72):
+            draw_line(Vector2(float(x),205),Vector2(float(x-24),480),Color("#e0a17a",0.55),3.0)
+        draw_circle(Vector2(1460,365),92,Color("#6e4838"))
+        draw_circle(Vector2(1460,365),68,Color("#2e2926"))
+        draw_rect(Rect2(520,430,560,34),Color("#79573e"))
+        for x in [610.0,780.0,950.0]:
+            draw_ellipse(Vector2(x,418),Vector2(36,12),Color("#d8a65f"))
+            draw_ellipse(Vector2(x,414),Vector2(24,8),Color("#f0d29a"))
+    elif room_id == "room_tavern":
+        # Hearth, timber tables and warm wall lamps
+        draw_rect(Rect2(1290,210,330,280),Color("#795a43"))
+        draw_rect(Rect2(1320,235,270,230),Color("#4d4037"))
+        draw_rect(Rect2(1350,320,210,145),Color("#292c2b"))
+        draw_colored_polygon(PackedVector2Array([Vector2(1400,460),Vector2(1440,355),Vector2(1490,460)]),Color("#d8894f"))
+        draw_colored_polygon(PackedVector2Array([Vector2(1450,460),Vector2(1510,330),Vector2(1550,460)]),Color("#f0c16f"))
+        for x in [430.0,850.0,1180.0]:
+            draw_rect(Rect2(x,450,230,20),Color("#725139"))
+            draw_rect(Rect2(x+18,470,16,78),Color("#725139"))
+            draw_rect(Rect2(x+196,470,16,78),Color("#725139"))
+            draw_circle(Vector2(x+70,436),12,Color("#d5ad72"))
+            draw_circle(Vector2(x+150,436),12,Color("#d5ad72"))
+        for x in [620.0,1740.0]:
+            draw_circle(Vector2(x,185),22,Color("#e9c67f"))
+            draw_circle(Vector2(x,185),12,Color("#fff0c5"))
 
 func _draw_building(x: float,y: float,w: float,h: float,label: String,wall: Color) -> void:
     draw_rect(Rect2(x+10,y+12,w,h),Color("#574d40",0.25))
@@ -236,57 +310,95 @@ func _draw_npcs() -> void:
         visible_index += 1
 
 func _draw_character(x: float, y: float, clothes: Color, observer: bool) -> void:
-    # Small original storybook-style character rig. Motion is presentation-only;
-    # identity, action and location continue to come from the simulation engine.
+    # Original expressive cartoon villagers: compact bodies, large heads,
+    # ink-like outlines and simple readable facial expressions.
     var phase := float(Time.get_ticks_msec()) / 260.0 + x * 0.025
-    var bob := sin(phase) * 2.0
-    var stride := sin(phase * 0.72) * 4.0
-    var skin := Color("#e8bd98")
-    var hair := Color("#514038")
+    var bob := sin(phase) * 2.2
+    var stride := sin(phase * 0.72) * 4.5
+    var skin := Color("#f0c6a1")
+    var outline := Color("#4b3c35")
+    var hair := Color("#49372f")
     if not observer:
-        var hair_variant := int(absf(x)) % 3
+        var hair_variant := int(absf(x)) % 4
         if hair_variant == 1:
-            hair = Color("#79533e")
+            hair = Color("#8a583b")
         elif hair_variant == 2:
-            hair = Color("#343b3c")
+            hair = Color("#30383a")
+        elif hair_variant == 3:
+            hair = Color("#b17a48")
 
-    _draw_ellipse(Vector2(x, y + 2), Vector2(21, 7), Color("#403a32", 0.2))
-    # Shoes and legs
-    draw_line(Vector2(x - 7, y - 31 + bob), Vector2(x - 10 + stride, y - 5), Color("#55483e"), 8.0)
-    draw_line(Vector2(x + 7, y - 31 + bob), Vector2(x + 10 - stride, y - 5), Color("#55483e"), 8.0)
-    draw_ellipse(Vector2(x - 13 + stride, y - 4), Vector2(10, 5), Color("#4b4039"))
-    draw_ellipse(Vector2(x + 13 - stride, y - 4), Vector2(10, 5), Color("#4b4039"))
-    # Shirt and short arms
-    draw_colored_polygon(PackedVector2Array([
-        Vector2(x - 14, y - 77 + bob), Vector2(x - 22, y - 68 + bob),
-        Vector2(x - 16, y - 43 + bob), Vector2(x - 12, y - 31 + bob),
-        Vector2(x + 12, y - 31 + bob), Vector2(x + 16, y - 43 + bob),
-        Vector2(x + 22, y - 68 + bob), Vector2(x + 14, y - 77 + bob)
-    ]), clothes)
-    draw_line(Vector2(x - 17, y - 68 + bob), Vector2(x - 22, y - 43 + bob), skin, 7.0)
-    draw_line(Vector2(x + 17, y - 68 + bob), Vector2(x + 22, y - 43 + bob), skin, 7.0)
-    draw_line(Vector2(x - 8, y - 73 + bob), Vector2(x + 8, y - 73 + bob), Color("#f1dfc2", 0.8), 2.0)
-    # Neck, ears and face
-    draw_rect(Rect2(x - 5, y - 87 + bob, 10, 14), skin)
-    draw_circle(Vector2(x - 19, y - 96 + bob), 5, skin)
-    draw_circle(Vector2(x + 19, y - 96 + bob), 5, skin)
-    draw_circle(Vector2(x, y - 99 + bob), 20, skin)
-    # Hair cap and fringe
-    draw_colored_polygon(PackedVector2Array([
-        Vector2(x - 20, y - 103 + bob), Vector2(x - 17, y - 116 + bob),
-        Vector2(x - 7, y - 122 + bob), Vector2(x + 8, y - 120 + bob),
-        Vector2(x + 19, y - 110 + bob), Vector2(x + 18, y - 99 + bob),
-        Vector2(x + 8, y - 105 + bob), Vector2(x, y - 101 + bob),
-        Vector2(x - 8, y - 106 + bob)
-    ]), hair)
-    # Eyes, cheeks and mouth
-    draw_circle(Vector2(x - 7, y - 99 + bob), 2.0, Color("#352f2c"))
-    draw_circle(Vector2(x + 7, y - 99 + bob), 2.0, Color("#352f2c"))
-    draw_circle(Vector2(x - 12, y - 91 + bob), 3.0, Color("#d78e7a", 0.45))
-    draw_circle(Vector2(x + 12, y - 91 + bob), 3.0, Color("#d78e7a", 0.45))
-    draw_arc(Vector2(x, y - 91 + bob), 5.0, 0.2, PI - 0.2, 12, Color("#8e5148"), 1.5)
+    _draw_ellipse(Vector2(x,y+2),Vector2(23,7),Color("#403a32",0.22))
+    # Short legs, chunky shoes and socks
+    draw_line(Vector2(x-7,y-35+bob),Vector2(x-11+stride,y-7),outline,11.0)
+    draw_line(Vector2(x+7,y-35+bob),Vector2(x+11-stride,y-7),outline,11.0)
+    draw_line(Vector2(x-7,y-34+bob),Vector2(x-11+stride,y-12),Color("#d8c7a8"),5.0)
+    draw_line(Vector2(x+7,y-34+bob),Vector2(x+11-stride,y-12),Color("#d8c7a8"),5.0)
+    _draw_ellipse(Vector2(x-14+stride,y-5),Vector2(12,6),outline)
+    _draw_ellipse(Vector2(x+14-stride,y-5),Vector2(12,6),outline)
+    # Torso with rounded shoulders and an inked silhouette
+    var torso := PackedVector2Array([
+        Vector2(x-13,y-83+bob),Vector2(x-24,y-75+bob),
+        Vector2(x-19,y-48+bob),Vector2(x-14,y-32+bob),
+        Vector2(x+14,y-32+bob),Vector2(x+19,y-48+bob),
+        Vector2(x+24,y-75+bob),Vector2(x+13,y-83+bob)
+    ])
+    draw_colored_polygon(torso,outline)
+    var shirt := PackedVector2Array([
+        Vector2(x-10,y-79+bob),Vector2(x-19,y-72+bob),
+        Vector2(x-14,y-49+bob),Vector2(x-10,y-36+bob),
+        Vector2(x+10,y-36+bob),Vector2(x+14,y-49+bob),
+        Vector2(x+19,y-72+bob),Vector2(x+10,y-79+bob)
+    ])
+    draw_colored_polygon(shirt,clothes)
+    # Little collar and a simple clothing detail
+    draw_colored_polygon(PackedVector2Array([Vector2(x-8,y-79+bob),Vector2(x,y-68+bob),Vector2(x+8,y-79+bob)]),Color("#f0e2c8"))
+    draw_line(Vector2(x-16,y-61+bob),Vector2(x-20,y-43+bob),skin,8.0)
+    draw_line(Vector2(x+16,y-61+bob),Vector2(x+20,y-43+bob),skin,8.0)
+    draw_circle(Vector2(x-20,y-42+bob),5.0,skin)
+    draw_circle(Vector2(x+20,y-42+bob),5.0,skin)
+    # Neck and broad, rounded face
+    draw_rect(Rect2(x-6,y-91+bob,12,15),skin)
+    draw_circle(Vector2(x-22,y-103+bob),6.0,skin)
+    draw_circle(Vector2(x+22,y-103+bob),6.0,skin)
+    draw_circle(Vector2(x,y-107+bob),25.0,outline)
+    draw_circle(Vector2(x,y-108+bob),22.0,skin)
+    # Hair cap with uneven fringe: deliberately hand-drawn rather than realistic
+    var hair_shape := PackedVector2Array([
+        Vector2(x-23,y-111+bob),Vector2(x-22,y-125+bob),
+        Vector2(x-12,y-132+bob),Vector2(x-5,y-127+bob),
+        Vector2(x+3,y-135+bob),Vector2(x+12,y-128+bob),
+        Vector2(x+23,y-121+bob),Vector2(x+22,y-108+bob),
+        Vector2(x+12,y-114+bob),Vector2(x+5,y-108+bob),
+        Vector2(x-3,y-115+bob),Vector2(x-12,y-108+bob)
+    ])
+    draw_colored_polygon(hair_shape,outline)
+    var fringe := PackedVector2Array([
+        Vector2(x-18,y-116+bob),Vector2(x-13,y-128+bob),
+        Vector2(x-5,y-124+bob),Vector2(x+3,y-131+bob),
+        Vector2(x+10,y-123+bob),Vector2(x+18,y-117+bob),
+        Vector2(x+9,y-118+bob),Vector2(x+2,y-115+bob),
+        Vector2(x-5,y-120+bob),Vector2(x-12,y-115+bob)
+    ])
+    draw_colored_polygon(fringe,hair)
+    # Big expressive eyes with tiny highlights
+    draw_ellipse(Vector2(x-8,y-107+bob),Vector2(4.0,6.0),Color("#fff9e9"))
+    draw_ellipse(Vector2(x+8,y-107+bob),Vector2(4.0,6.0),Color("#fff9e9"))
+    draw_circle(Vector2(x-7,y-106+bob),2.5,outline)
+    draw_circle(Vector2(x+9,y-106+bob),2.5,outline)
+    draw_circle(Vector2(x-8,y-108+bob),0.9,Color.WHITE)
+    draw_circle(Vector2(x+8,y-108+bob),0.9,Color.WHITE)
+    # Brows, blush, nose and a changing little smile
+    draw_line(Vector2(x-13,y-117+bob),Vector2(x-4,y-119+bob),outline,2.0)
+    draw_line(Vector2(x+4,y-119+bob),Vector2(x+13,y-117+bob),outline,2.0)
+    draw_ellipse(Vector2(x-15,y-97+bob),Vector2(5.0,2.8),Color("#df9180",0.62))
+    draw_ellipse(Vector2(x+15,y-97+bob),Vector2(5.0,2.8),Color("#df9180",0.62))
+    draw_circle(Vector2(x,y-101+bob),1.8,Color("#d99c7a"))
+    if int(absf(x)) % 5 == 0:
+        draw_arc(Vector2(x,y-94+bob),5.5,0.1,PI-0.1,12,outline,1.8)
+    else:
+        draw_line(Vector2(x-4,y-94+bob),Vector2(x+4,y-94+bob),outline,1.8)
     if observer:
-        draw_circle(Vector2(x, y - 128 + bob), 5, Color("#f2d99d"))
+        draw_circle(Vector2(x,y-141+bob),5.0,Color("#f2d99d"))
 
 func _draw_ellipse(center: Vector2,radius: Vector2,colour: Color) -> void:
     var points := PackedVector2Array()
@@ -307,6 +419,24 @@ func _draw_selection_prompt() -> void:
 
 func _draw_observer() -> void:
     _draw_character(float(_state.get("observer_x",500.0)),585.0,Color("#d1b17d"),true)
+
+func _draw_foreground(width: float) -> void:
+    # Foreground grasses and flowers create a layered illustrated stage.
+    var t := float(Time.get_ticks_msec()) / 1000.0
+    for i in range(0,int(width),145):
+        var x := float(i)
+        var sway := sin(t*1.4+x*0.03)*5.0
+        draw_line(Vector2(x,590),Vector2(x-8+sway,560),Color("#536d4e"),3.0)
+        draw_line(Vector2(x+5,592),Vector2(x+15+sway,566),Color("#6e8759"),3.0)
+        if i % 435 == 0:
+            draw_circle(Vector2(x-8+sway,557),5.0,Color("#e8c58b"))
+            draw_circle(Vector2(x-14+sway,562),4.0,Color("#d88b76"))
+            draw_circle(Vector2(x-2+sway,562),4.0,Color("#f1dfb6"))
+    # Scattered stepping stones and tiny tufts along the lane edge
+    for i in range(0,int(width),260):
+        var x := float(i)+float((i/260)%2)*70.0
+        draw_ellipse(Vector2(x,676),Vector2(30,7),Color("#d4c4a4",0.72))
+        draw_ellipse(Vector2(x-4,674),Vector2(17,3),Color("#eee0c4",0.58))
 
 func _draw_environment() -> void:
     var climate: Dictionary = _state.get("climate",{})
