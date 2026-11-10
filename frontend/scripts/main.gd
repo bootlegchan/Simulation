@@ -22,6 +22,7 @@ var _connected := false
 var _last_error := "Connecting to Oakwood simulation…"
 var _bridge_pid := -1
 var _bridge_launch_attempted := false
+var _room_transition_busy := false
 
 func _ready() -> void:
     _load_manifest()
@@ -112,12 +113,18 @@ func _on_request_completed(result: int, response_code: int, _headers: PackedStri
         if not _bridge_launch_attempted:
             _start_local_simulation()
         world_view.set_presentation_state(_build_view_state())
+        if _room_transition_busy:
+            _room_transition_busy = false
+            world_view.call("complete_room_transition")
         return
 
     var payload = JSON.parse_string(body.get_string_from_utf8())
     if not payload is Dictionary:
         _connected = false
         _last_error = "The simulation returned an invalid response."
+        if _room_transition_busy:
+            _room_transition_busy = false
+            world_view.call("complete_room_transition")
         return
 
     if _request_kind == "control":
@@ -129,6 +136,9 @@ func _on_request_completed(result: int, response_code: int, _headers: PackedStri
         if _snapshot.get("active_room", {}).is_empty():
             _last_error = "This room is not available in the current simulation."
         world_view.set_presentation_state(_build_view_state())
+        if _room_transition_busy:
+            _room_transition_busy = false
+            world_view.call("complete_room_transition")
     elif _request_kind == "profile":
         _inspection = {"title": str(payload.get("name", "Citizen")), "kind": "Citizen record", "data": payload}
         world_view.set_presentation_state(_build_view_state())
@@ -181,7 +191,7 @@ func _on_world_clicked(world_position: Vector2) -> void:
         _target_x = clampf(world_position.x, 80.0, float(_manifest.get("world_width", 3600)) - 80.0)
     else:
         _selected = target
-        _target_x = float(target.get("x", world_position.x))
+        _target_x = float(target.get("door_x", target.get("x", world_position.x)))
         _pending_room_id = str(target.get("target_room_id", "")) if target.get("kind") == "portal" else ""
     world_view.set_presentation_state(_build_view_state())
 
@@ -257,10 +267,14 @@ func _find_object(object_id: String) -> Dictionary:
     return {}
 
 func _enter_room(room_id: String) -> void:
+    if _room_transition_busy:
+        return
     if room_id.is_empty() or not _manifest.get("rooms", {}).has(room_id):
         _last_error = "No presentation scene is mapped for that room yet."
         _pending_room_id = ""
         return
+    _room_transition_busy = true
+    await world_view.call("begin_room_transition")
     _current_room_id = room_id
     _selected = {}
     _inspection = {}
@@ -268,6 +282,9 @@ func _enter_room(room_id: String) -> void:
     _observer_x = float(room_data.get("observer_spawn_x", 140.0))
     _target_x = _observer_x
     _pending_room_id = ""
+    world_view.set_presentation_state(_build_view_state())
+    while _http.get_http_client_status() != HTTPClient.STATUS_DISCONNECTED:
+        await get_tree().process_frame
     _refresh_snapshot()
 
 func _close_inspection() -> void:

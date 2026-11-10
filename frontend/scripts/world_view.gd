@@ -28,6 +28,10 @@ var _camera_lead := 0.0
 var _camera_initialized := false
 var _camera_snap_pending := false
 var _last_room_id := ""
+var _transition_layer: CanvasLayer
+var _transition_cover: ColorRect
+var _transition_tween: Tween
+var _camera_zoom_target := 1.0
 
 func _ready() -> void:
     # Sort independent world nodes by their ground contact point so trees,
@@ -38,6 +42,14 @@ func _ready() -> void:
     _camera.position_smoothing_enabled = false
     add_child(_camera)
     _camera.make_current()
+    _transition_layer = CanvasLayer.new()
+    _transition_layer.layer = 100
+    add_child(_transition_layer)
+    _transition_cover = ColorRect.new()
+    _transition_cover.color = Color(0.0,0.0,0.0,0.0)
+    _transition_cover.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    _transition_cover.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+    _transition_layer.add_child(_transition_cover)
     _lighting = Node2D.new()
     _lighting.set_script(LIGHTING_SCRIPT)
     add_child(_lighting)
@@ -74,11 +86,41 @@ func _process(delta: float) -> void:
         _update_camera_follow(observer_x,delta)
     if _observer_visual:
         _observer_visual.position = Vector2(observer_x,585.0)
+    if _camera:
+        var zoom_weight := 1.0-exp(-3.0*delta)
+        _camera.zoom = _camera.zoom.lerp(Vector2.ONE * _camera_zoom_target,zoom_weight)
     _last_observer_x = observer_x
+
+func begin_room_transition() -> void:
+    if is_instance_valid(_transition_tween) and _transition_tween.is_running():
+        _transition_tween.kill()
+    var room_manifest: Dictionary = _state.get("room_manifest",{})
+    var camera_config: Dictionary = room_manifest.get("camera",{})
+    var duration := maxf(float(camera_config.get("transition_out_seconds",0.28)),0.05)
+    _transition_cover.visible = true
+    _transition_tween = create_tween()
+    _transition_tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+    _transition_tween.tween_property(_transition_cover,"color",Color(0.035,0.045,0.04,0.97),duration)
+    await _transition_tween.finished
+
+func complete_room_transition() -> void:
+    if is_instance_valid(_transition_tween) and _transition_tween.is_running():
+        _transition_tween.kill()
+    var room_manifest: Dictionary = _state.get("room_manifest",{})
+    var camera_config: Dictionary = room_manifest.get("camera",{})
+    var duration := maxf(float(camera_config.get("transition_in_seconds",0.42)),0.05)
+    _transition_tween = create_tween()
+    _transition_tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+    _transition_tween.tween_property(_transition_cover,"color",Color(0.035,0.045,0.04,0.0),duration)
+    _transition_tween.tween_callback(func() -> void: _transition_cover.visible = false)
 
 func _update_camera_follow(observer_x: float, delta: float) -> void:
     var room_manifest: Dictionary = _state.get("room_manifest",{})
     var camera_config: Dictionary = room_manifest.get("camera",{})
+    _camera_zoom_target = maxf(float(camera_config.get("zoom",1.0)),0.5)
+    var selected: Dictionary = _state.get("selected",{})
+    if str(selected.get("kind","")) == "portal":
+        _camera_zoom_target = maxf(_camera_zoom_target,float(camera_config.get("portal_focus_zoom",1.07)))
     var viewport_width := get_viewport_rect().size.x / maxf(_camera.zoom.x,0.001)
     var anchor_ratio := clampf(float(camera_config.get("screen_anchor",0.42)),0.30,0.50)
     var follow_speed := maxf(float(camera_config.get("follow_speed",3.8)),0.1)

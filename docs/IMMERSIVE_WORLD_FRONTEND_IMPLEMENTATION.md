@@ -97,3 +97,15 @@ The world camera is configured for an elevated three-quarter adventure presentat
 - Existing distant-landform parallax continues to move more slowly than the foreground as the camera travels.
 
 This is a horizontal follow foundation. Vertical tracking, camera rails, room-specific cinematic pans and zoom transitions can be layered in later without coupling camera behaviour to simulation logic.
+
+
+## Cinematic room transitions and camera focus
+
+Room travel now uses a short, full-screen dark fade so the scene and camera can change without exposing a hard cut.
+
+- Clicking an entrance moves the observer toward the portal's explicit door_x anchor. The portal remains the destination trigger when the observer reaches it.
+- The camera gently tightens its framing while a portal is selected, creating a subtle approach shot.
+- Entering or exiting a room fades the current scene down, changes the room presentation and spawn position, requests the authoritative room snapshot, then fades back up.
+- The transition waits for an in-flight HTTP request to finish before requesting the new room snapshot. Failed or malformed requests also release the fade instead of leaving the screen covered.
+- Camera zoom, framing, follow response, portal focus and fade durations are room-manifest settings. Interiors use a slightly tighter zoom and slower reveal than the outdoor square.
+- Camera and transition code remain in Godot. No simulation rules or Python API behaviour is changed.

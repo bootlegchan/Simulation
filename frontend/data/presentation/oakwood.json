@@ -184,7 +184,19 @@
           "energy": 0.9,
           "radius": 2.8
         }
-      ]
+      ],
+      "camera": {
+        "screen_anchor": 0.42,
+        "follow_speed": 3.8,
+        "look_ahead_distance": 125,
+        "look_ahead_response": 2.8,
+        "dead_zone_left": 0.34,
+        "dead_zone_right": 0.59,
+        "zoom": 1,
+        "portal_focus_zoom": 1.07,
+        "transition_out_seconds": 0.28,
+        "transition_in_seconds": 0.42
+      }
     },
     "room_town_hall": {
       "scene_kind": "interior",
@@ -232,7 +244,19 @@
           "energy": 0.8,
           "radius": 2.4
         }
-      ]
+      ],
+      "camera": {
+        "screen_anchor": 0.46,
+        "follow_speed": 4.4,
+        "look_ahead_distance": 70,
+        "look_ahead_response": 2.8,
+        "dead_zone_left": 0.34,
+        "dead_zone_right": 0.59,
+        "zoom": 1.07,
+        "portal_focus_zoom": 1.1,
+        "transition_out_seconds": 0.28,
+        "transition_in_seconds": 0.48
+      }
     },
     "room_shop": {
       "scene_kind": "interior",
@@ -280,7 +304,19 @@
           "energy": 0.75,
           "radius": 2.2
         }
-      ]
+      ],
+      "camera": {
+        "screen_anchor": 0.46,
+        "follow_speed": 4.4,
+        "look_ahead_distance": 70,
+        "look_ahead_response": 2.8,
+        "dead_zone_left": 0.34,
+        "dead_zone_right": 0.59,
+        "zoom": 1.07,
+        "portal_focus_zoom": 1.1,
+        "transition_out_seconds": 0.28,
+        "transition_in_seconds": 0.48
+      }
     },
     "room_bakery": {
       "scene_kind": "interior",
@@ -327,7 +363,19 @@
           "energy": 1.1,
           "radius": 2.8
         }
-      ]
+      ],
+      "camera": {
+        "screen_anchor": 0.46,
+        "follow_speed": 4.4,
+        "look_ahead_distance": 70,
+        "look_ahead_response": 2.8,
+        "dead_zone_left": 0.34,
+        "dead_zone_right": 0.59,
+        "zoom": 1.07,
+        "portal_focus_zoom": 1.1,
+        "transition_out_seconds": 0.28,
+        "transition_in_seconds": 0.48
+      }
     },
     "room_tavern": {
       "scene_kind": "interior",
@@ -388,7 +436,19 @@
           "energy": 0.7,
           "radius": 2
         }
-      ]
+      ],
+      "camera": {
+        "screen_anchor": 0.46,
+        "follow_speed": 4.4,
+        "look_ahead_distance": 70,
+        "look_ahead_response": 2.8,
+        "dead_zone_left": 0.34,
+        "dead_zone_right": 0.59,
+        "zoom": 1.07,
+        "portal_focus_zoom": 1.1,
+        "transition_out_seconds": 0.28,
+        "transition_in_seconds": 0.48
+      }
     }
   }
 }
