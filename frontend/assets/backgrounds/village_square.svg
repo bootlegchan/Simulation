@@ -91,4 +91,62 @@
  <path d="M65 605 l-8 -38 m8 38 l16 -29 M990 605 l-8 -45 m8 45 l17 -34 M1750 600 l-4 -42 m4 42 l18 -30 M2570 600 l-7 -43 m7 43 l17 -31 M3500 602 l-8 -45 m8 45 l17 -32"/>
 </g>
 <g fill="#e9d29a"><circle cx="57" cy="566" r="8"/><circle cx="81" cy="576" r="7"/><circle cx="982" cy="557" r="8"/><circle cx="1007" cy="568" r="7"/><circle cx="1745" cy="555" r="8"/><circle cx="1768" cy="568" r="7"/><circle cx="2563" cy="557" r="8"/><circle cx="2588" cy="568" r="7"/><circle cx="3493" cy="557" r="8"/></g>
+
+<!-- Additional village life: shop awnings, hanging signs, chimney smoke and flower boxes -->
+<g stroke="#59483b" stroke-width="5" stroke-linejoin="round">
+  <path d="M1160 420 H1470 L1450 463 H1180Z" fill="#f0dfc2"/>
+  <path d="M1180 420 V463 M1235 420 V463 M1290 420 V463 M1345 420 V463 M1400 420 V463" stroke="#b66b50" stroke-width="18"/>
+  <path d="M2050 408 H2370 L2350 450 H2070Z" fill="#f2dfbd"/>
+  <path d="M2070 408 V450 M2125 408 V450 M2180 408 V450 M2235 408 V450 M2290 408 V450 M2345 408 V450" stroke="#6d8570" stroke-width="18"/>
+  <path d="M2970 410 H3300 L3280 452 H2990Z" fill="#ead8b9"/>
+  <path d="M2990 410 V452 M3045 410 V452 M3100 410 V452 M3155 410 V452 M3210 410 V452 M3265 410 V452" stroke="#b77b52" stroke-width="18"/>
+  <!-- shop hanging sign -->
+  <path d="M1280 330 V275 H1390 V330" fill="none" stroke="#5c493b" stroke-width="7"/>
+  <rect x="1258" y="280" width="154" height="58" rx="8" fill="#e8d7b7"/>
+  <rect x="1268" y="289" width="134" height="40" rx="5" fill="#a66d4d"/>
+  <circle cx="1335" cy="309" r="11" fill="#f1dfbd" stroke="none"/>
+  <!-- bakery sign and small flourishes -->
+  <path d="M2160 315 V260 H2285 V315" fill="none" stroke="#5c493b" stroke-width="7"/>
+  <rect x="2142" y="266" width="160" height="54" rx="8" fill="#e8d7b7"/>
+  <rect x="2152" y="275" width="140" height="36" rx="5" fill="#b66b48"/>
+  <path d="M2180 293 Q2222 270 2264 293" fill="none" stroke="#f1dfbd" stroke-width="4"/>
+  <!-- tavern sign -->
+  <path d="M3070 308 V248 H3205 V308" fill="none" stroke="#5c493b" stroke-width="7"/>
+  <rect x="3050" y="254" width="175" height="60" rx="8" fill="#d8c49f"/>
+  <rect x="3060" y="263" width="155" height="42" rx="5" fill="#695447"/>
+  <path d="M3110 285 H3165" stroke="#e5c88f" stroke-width="5"/>
+</g>
+<!-- Window flower boxes and soft green plant shapes -->
+<g>
+ <rect x="430" y="486" width="90" height="18" rx="4" fill="#77583f"/>
+ <rect x="650" y="486" width="90" height="18" rx="4" fill="#77583f"/>
+ <rect x="1188" y="520" width="110" height="16" rx="4" fill="#77583f"/>
+ <rect x="1340" y="520" width="110" height="16" rx="4" fill="#77583f"/>
+ <g fill="#78916a">
+  <ellipse cx="450" cy="482" rx="16" ry="10"/><ellipse cx="477" cy="480" rx="17" ry="11"/><ellipse cx="502" cy="482" rx="15" ry="9"/>
+  <ellipse cx="670" cy="482" rx="16" ry="10"/><ellipse cx="697" cy="480" rx="17" ry="11"/><ellipse cx="722" cy="482" rx="15" ry="9"/>
+  <ellipse cx="1215" cy="516" rx="17" ry="9"/><ellipse cx="1245" cy="515" rx="17" ry="10"/><ellipse cx="1275" cy="516" rx="17" ry="9"/>
+  <ellipse cx="1368" cy="516" rx="17" ry="9"/><ellipse cx="1398" cy="515" rx="17" ry="10"/><ellipse cx="1428" cy="516" rx="17" ry="9"/>
+ </g>
+ <g fill="#d88c75"><circle cx="465" cy="472" r="6"/><circle cx="493" cy="471" r="6"/><circle cx="685" cy="472" r="6"/><circle cx="713" cy="471" r="6"/><circle cx="1230" cy="506" r="6"/><circle cx="1260" cy="505" r="6"/><circle cx="1383" cy="506" r="6"/><circle cx="1413" cy="505" r="6"/></g>
+</g>
+<!-- Chimney smoke drifting upward -->
+<g fill="#f3eee0" opacity=".48">
+ <circle cx="690" cy="190" r="18"/><circle cx="674" cy="165" r="14"/><circle cx="704" cy="145" r="19"/>
+ <circle cx="2300" cy="205" r="17"/><circle cx="2285" cy="178" r="13"/><circle cx="2314" cy="157" r="18"/>
+ <circle cx="3220" cy="195" r="17"/><circle cx="3205" cy="170" r="13"/><circle cx="3232" cy="149" r="18"/>
+</g>
+<!-- Low stone wall, bench and path-side planter -->
+<g stroke="#9a8768" stroke-width="3">
+ <path d="M90 560 H340 V590 H90Z" fill="#c5b392"/>
+ <path d="M110 560 V590 M170 560 V590 M230 560 V590 M290 560 V590" fill="none"/>
+ <path d="M1600 545 H1790 V557 H1600Z" fill="#72583f"/>
+ <path d="M1620 557 V590 M1770 557 V590" stroke="#72583f" stroke-width="9"/>
+ <rect x="2660" y="540" width="130" height="30" rx="5" fill="#9a7654"/>
+</g>
+<g fill="#708967">
+ <circle cx="2680" cy="533" r="18"/><circle cx="2710" cy="526" r="22"/><circle cx="2745" cy="534" r="18"/>
+ <circle cx="120" cy="548" r="15"/><circle cx="150" cy="542" r="20"/><circle cx="180" cy="549" r="15"/>
+</g>
+
 </svg>
