@@ -150,6 +150,40 @@
           "y": 440,
           "scale": 0.9
         }
+      ],
+      "lights": [
+        {
+          "id": "town_hall_window",
+          "x": 494,
+          "y": 420,
+          "color": "#f5c77c",
+          "energy": 0.8,
+          "radius": 2.5
+        },
+        {
+          "id": "shop_window",
+          "x": 1255,
+          "y": 450,
+          "color": "#f5c77c",
+          "energy": 0.8,
+          "radius": 2.4
+        },
+        {
+          "id": "bakery_window",
+          "x": 2145,
+          "y": 440,
+          "color": "#f5b96f",
+          "energy": 0.95,
+          "radius": 2.8
+        },
+        {
+          "id": "tavern_window",
+          "x": 3065,
+          "y": 430,
+          "color": "#f5b96f",
+          "energy": 0.9,
+          "radius": 2.8
+        }
       ]
     },
     "room_town_hall": {
@@ -187,6 +221,16 @@
           "style": "interior_civic",
           "wall": "#e8d9bd",
           "roof": "#9b8061"
+        }
+      ],
+      "lights": [
+        {
+          "id": "ceiling_lamp",
+          "x": 990,
+          "y": 330,
+          "color": "#f6d69b",
+          "energy": 0.8,
+          "radius": 2.4
         }
       ]
     },
@@ -226,6 +270,16 @@
           "wall": "#e8d9bd",
           "roof": "#9b8061"
         }
+      ],
+      "lights": [
+        {
+          "id": "shop_lamp",
+          "x": 990,
+          "y": 330,
+          "color": "#f6d69b",
+          "energy": 0.75,
+          "radius": 2.2
+        }
       ]
     },
     "room_bakery": {
@@ -262,6 +316,16 @@
           "style": "interior_bakery",
           "wall": "#e8d9bd",
           "roof": "#9b8061"
+        }
+      ],
+      "lights": [
+        {
+          "id": "oven_glow",
+          "x": 1285,
+          "y": 340,
+          "color": "#f0a45d",
+          "energy": 1.1,
+          "radius": 2.8
         }
       ]
     },
@@ -305,6 +369,24 @@
           "style": "interior_tavern",
           "wall": "#e8d9bd",
           "roof": "#9b8061"
+        }
+      ],
+      "lights": [
+        {
+          "id": "hearth_glow",
+          "x": 1240,
+          "y": 340,
+          "color": "#ef9a54",
+          "energy": 1.2,
+          "radius": 3.2
+        },
+        {
+          "id": "wall_lamp",
+          "x": 670,
+          "y": 240,
+          "color": "#f5cf8b",
+          "energy": 0.7,
+          "radius": 2
         }
       ]
     }
