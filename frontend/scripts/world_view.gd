@@ -9,23 +9,28 @@ const PAPER := Color("#eee5d2")
 const INK := Color("#283a38")
 const RUST := Color("#b66b48")
 const CHARACTER_VISUAL_SCRIPT = preload("res://scripts/characters/character_visual.gd")
+const BUILDING_SCRIPT = preload("res://scripts/world/world_building.gd")
+const LIGHTING_SCRIPT = preload("res://scripts/world/world_lighting.gd")
 
 var _state: Dictionary = {}
 var _camera: Camera2D
 var _npc_items: Array[Dictionary] = []
 var _object_items: Array[Dictionary] = []
 var _portal_items: Array[Dictionary] = []
-var _outdoor_background: Texture2D
+var _building_nodes: Dictionary = {}
+var _lighting: Node2D
 var _character_nodes: Dictionary = {}
 var _observer_visual: Node2D
 
 func _ready() -> void:
-    _outdoor_background = load("res://assets/backgrounds/village_square.svg") as Texture2D
     _camera = Camera2D.new()
     _camera.position_smoothing_enabled = true
     _camera.position_smoothing_speed = 5.0
     add_child(_camera)
     _camera.make_current()
+    _lighting = Node2D.new()
+    _lighting.set_script(LIGHTING_SCRIPT)
+    add_child(_lighting)
     _observer_visual = Node2D.new()
     _observer_visual.set_script(CHARACTER_VISUAL_SCRIPT)
     add_child(_observer_visual)
@@ -34,6 +39,9 @@ func _ready() -> void:
 func set_presentation_state(state: Dictionary) -> void:
     _state = state
     _sync_character_nodes()
+    _sync_building_nodes()
+    if _lighting:
+        _lighting.call("configure",_state)
     var width := float(_state.get("world_width",3600.0))
     if _camera:
         _camera.limit_left = 0
@@ -94,9 +102,8 @@ func _draw() -> void:
     _draw_simulation_hud()
 
 func _draw_outdoor(width: float) -> void:
-    if _outdoor_background:
-        draw_texture_rect(_outdoor_background, Rect2(0, 0, width, WORLD_HEIGHT), false)
-        return
+    # The environment is a renderable stage, not a pre-painted village image.
+    # Buildings and movable scenery are separate nodes sourced from the manifest.
     var hour := int(_state.get("status",{}).get("hour",10))
     var sky := _sky_colour(hour)
     draw_rect(Rect2(0,0,width,WORLD_HEIGHT),sky)
@@ -104,26 +111,29 @@ func _draw_outdoor(width: float) -> void:
     var sun_y := 115.0+absf(12.0-float(hour))*8.0
     var sun_colour := Color("#f4d79b") if hour >= 6 and hour < 19 else Color("#d9d9ce")
     draw_circle(Vector2(sun_x,sun_y),34.0,sun_colour)
-    draw_set_transform(Vector2(_camera.position.x * 0.82 if _camera else 0.0,0))
-    var ridge := PackedVector2Array([
-        Vector2(0,390),Vector2(260,270),Vector2(520,350),Vector2(830,245),
+
+    # Distant landforms are deliberately abstract and parallax-friendly.
+    draw_set_transform(Vector2(_camera.position.x*0.18 if _camera else 0.0,0))
+    draw_colored_polygon(PackedVector2Array([
+        Vector2(-200,390),Vector2(260,270),Vector2(520,350),Vector2(830,245),
         Vector2(1120,340),Vector2(1450,260),Vector2(1790,350),Vector2(2130,250),
-        Vector2(2470,350),Vector2(2820,260),Vector2(3200,350),Vector2(width,300),
-        Vector2(width,600),Vector2(0,600)
-    ])
-    draw_colored_polygon(ridge,Color("#82927d"))
-    for tree_x in range(120,int(width),310):
-        _draw_tree(float(tree_x),425.0,0.82)
+        Vector2(2470,350),Vector2(2820,260),Vector2(3200,350),Vector2(width+200,300),
+        Vector2(width+200,600),Vector2(-200,600)
+    ]),Color("#82927d"))
     draw_set_transform(Vector2.ZERO)
-    _draw_building(430.0,310.0,300.0,280.0,"TOWN HALL",Color("#d8c8a8"))
-    _draw_building(1190.0,340.0,280.0,250.0,"GENERAL STORE",Color("#d6b98e"))
-    _draw_building(2080.0,330.0,280.0,260.0,"BAKERY",Color("#d9c4a1"))
-    _draw_building(3000.0,320.0,300.0,270.0,"THE TAVERN",Color("#b9b49c"))
+
+    # Mid-ground terrain is a simple base surface. It carries no building art.
     draw_rect(Rect2(0,560,width,160),Color("#a99b7b"))
     draw_rect(Rect2(0,590,width,130),Color("#8e846e"))
     draw_line(Vector2(0,590),Vector2(width,590),Color("#d3c5a5"),4.0)
     for stone_x in range(0,int(width),150):
         draw_line(Vector2(float(stone_x),620),Vector2(float(stone_x+95),620),Color("#a99d86"),2.0)
+
+    # A few distant tree silhouettes are environmental dressing, not buildings.
+    draw_set_transform(Vector2(_camera.position.x*0.42 if _camera else 0.0,0))
+    for tree_x in range(120,int(width)+200,310):
+        _draw_tree(float(tree_x),425.0,0.82)
+    draw_set_transform(Vector2.ZERO)
     draw_string(ThemeDB.fallback_font,Vector2(90,95),"OAKWOOD",HORIZONTAL_ALIGNMENT_LEFT,-1,18,Color("#f4eedf"))
 
 func _draw_interior(width: float,title: String) -> void:
@@ -231,24 +241,35 @@ func _draw_interior(width: float,title: String) -> void:
             draw_circle(Vector2(x,185),22,Color("#e9c67f"))
             draw_circle(Vector2(x,185),12,Color("#fff0c5"))
 
-func _draw_building(x: float,y: float,w: float,h: float,label: String,wall: Color) -> void:
-    draw_rect(Rect2(x+10,y+12,w,h),Color("#574d40",0.25))
-    draw_colored_polygon(PackedVector2Array([Vector2(x-25,y+10),Vector2(x+w*0.5,y-90),Vector2(x+w+25,y+10)]),Color("#6e5949"))
-    draw_rect(Rect2(x,y,w,h),wall)
-    draw_rect(Rect2(x+24,y+35,w-48,30),Color("#a28c6e"))
-    draw_string(ThemeDB.fallback_font,Vector2(x+34,y+57),label,HORIZONTAL_ALIGNMENT_LEFT,-1,17,INK)
-    for wx in [x+40,x+w-95]:
-        draw_rect(Rect2(wx,y+100,55,70),Color("#64796f"))
-        draw_rect(Rect2(wx+6,y+106,43,58),Color("#c6d0b4"))
-        draw_line(Vector2(wx+27,y+106),Vector2(wx+27,y+164),INK,3.0)
-    draw_rect(Rect2(x+w*0.5-34,y+h-105,68,105),Color("#614b3b"))
-    draw_circle(Vector2(x+w*0.5+18,y+h-55),4,Color("#d7b46f"))
-
 func _draw_tree(x: float,y: float,scale: float) -> void:
     draw_rect(Rect2(x-8*scale,y,16*scale,110*scale),Color("#705b43"))
     draw_circle(Vector2(x,y-35*scale),62*scale,Color("#617a61"))
     draw_circle(Vector2(x-28*scale,y-12*scale),42*scale,Color("#71866a"))
     draw_circle(Vector2(x+32*scale,y-10*scale),39*scale,Color("#536f59"))
+
+func _sync_building_nodes() -> void:
+    var room_manifest: Dictionary = _state.get("room_manifest",{})
+    var definitions: Array = room_manifest.get("buildings",[])
+    var visible_ids: Dictionary = {}
+    for definition in definitions:
+        var building_id := str(definition.get("id",""))
+        if building_id.is_empty():
+            continue
+        visible_ids[building_id] = true
+        var building: Node2D
+        if _building_nodes.has(building_id):
+            building = _building_nodes[building_id]
+        else:
+            building = Node2D.new()
+            building.set_script(BUILDING_SCRIPT)
+            add_child(building)
+            _building_nodes[building_id] = building
+        building.call("configure",definition)
+    for existing_id in _building_nodes.keys():
+        if not visible_ids.has(existing_id):
+            var old_building: Node2D = _building_nodes[existing_id]
+            old_building.queue_free()
+            _building_nodes.erase(existing_id)
 
 func _draw_objects(room_manifest: Dictionary) -> void:
     var definitions: Array = room_manifest.get("objects",[])
@@ -390,9 +411,10 @@ func _draw_environment() -> void:
     var width := float(_state.get("world_width",3600.0))
     var t := float(Time.get_ticks_msec()) / 1000.0
 
-    # Time-of-day colour grading across the village illustration.
+    # Time-of-day lighting is handled by WorldLighting/CanvasModulate. This pass
+    # is reserved for atmosphere that belongs in front of the world geometry.
     if hour < 5 or hour >= 21:
-        draw_rect(Rect2(0,0,width,WORLD_HEIGHT),Color("#17273c",0.54))
+        draw_rect(Rect2(0,0,width,WORLD_HEIGHT),Color("#17273c",0.12))
         for i in range(22):
             var sx := float((i*173+41)%int(maxf(width,1.0)))
             var sy := float((i*83+29)%310)
@@ -403,9 +425,9 @@ func _draw_environment() -> void:
             draw_circle(Vector2(fx,fy),3.0,Color("#f4d98a",0.8))
             draw_circle(Vector2(fx,fy),7.0,Color("#f4d98a",0.14))
     elif hour < 8 or hour >= 17:
-        draw_rect(Rect2(0,0,width,WORLD_HEIGHT),Color("#d98f72",0.16))
+        draw_rect(Rect2(0,0,width,WORLD_HEIGHT),Color("#d98f72",0.06))
     elif hour >= 11 and hour <= 15:
-        draw_rect(Rect2(0,0,width,WORLD_HEIGHT),Color("#fff1c9",0.055))
+        draw_rect(Rect2(0,0,width,WORLD_HEIGHT),Color("#fff1c9",0.02))
 
     # Slow drifting clouds and distant birds add gentle life to quiet scenes.
     for i in range(4):

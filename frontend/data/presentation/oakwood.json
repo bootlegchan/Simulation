@@ -10,38 +10,302 @@
       "ground_y": 590,
       "observer_spawn_x": 650,
       "portals": [
-        {"id":"town_hall","label":"Town Hall","target_room_id":"room_town_hall","x":430,"door_x":470,"width":230},
-        {"id":"shop","label":"Vance General Emporium","target_room_id":"room_shop","x":1190,"door_x":1280,"width":250},
-        {"id":"bakery","label":"Greta's Hearth Bakery","target_room_id":"room_bakery","x":2080,"door_x":2170,"width":250},
-        {"id":"tavern","label":"The Boar & Flagon","target_room_id":"room_tavern","x":3000,"door_x":3090,"width":260}
+        {
+          "id": "town_hall",
+          "label": "Town Hall",
+          "target_room_id": "room_town_hall",
+          "x": 430,
+          "door_x": 470,
+          "width": 230
+        },
+        {
+          "id": "shop",
+          "label": "Vance General Emporium",
+          "target_room_id": "room_shop",
+          "x": 1190,
+          "door_x": 1280,
+          "width": 250
+        },
+        {
+          "id": "bakery",
+          "label": "Greta's Hearth Bakery",
+          "target_room_id": "room_bakery",
+          "x": 2080,
+          "door_x": 2170,
+          "width": 250
+        },
+        {
+          "id": "tavern",
+          "label": "The Boar & Flagon",
+          "target_room_id": "room_tavern",
+          "x": 3000,
+          "door_x": 3090,
+          "width": 260
+        }
       ],
       "objects": [
-        {"id":"obj_notice_board_square","label":"Village Noticeboard","x":850,"kind":"noticeboard"},
-        {"id":"obj_bocce_lawn","label":"Bocce Lawn","x":1770,"kind":"inspect"},
-        {"id":"obj_square_clock","label":"Village Clock","x":2580,"kind":"clock","presentation_only":true}
+        {
+          "id": "obj_notice_board_square",
+          "label": "Village Noticeboard",
+          "x": 850,
+          "kind": "noticeboard"
+        },
+        {
+          "id": "obj_bocce_lawn",
+          "label": "Bocce Lawn",
+          "x": 1770,
+          "kind": "inspect"
+        },
+        {
+          "id": "obj_square_clock",
+          "label": "Village Clock",
+          "x": 2580,
+          "kind": "clock",
+          "presentation_only": true
+        }
+      ],
+      "buildings": [
+        {
+          "id": "building_town_hall",
+          "label": "Town Hall",
+          "x": 430,
+          "y": 310,
+          "width": 300,
+          "height": 300,
+          "style": "civic",
+          "wall": "#d8c8a8",
+          "roof": "#6e5949",
+          "light_windows": true
+        },
+        {
+          "id": "building_general_store",
+          "label": "General Store",
+          "x": 1190,
+          "y": 340,
+          "width": 280,
+          "height": 270,
+          "style": "shop",
+          "wall": "#d6b98e",
+          "roof": "#765b48",
+          "light_windows": true
+        },
+        {
+          "id": "building_bakery",
+          "label": "Bakery",
+          "x": 2080,
+          "y": 330,
+          "width": 280,
+          "height": 280,
+          "style": "bakery",
+          "wall": "#d9c4a1",
+          "roof": "#805b49",
+          "light_windows": true
+        },
+        {
+          "id": "building_tavern",
+          "label": "The Tavern",
+          "x": 3000,
+          "y": 320,
+          "width": 300,
+          "height": 290,
+          "style": "tavern",
+          "wall": "#b9b49c",
+          "roof": "#655345",
+          "light_windows": true
+        }
+      ],
+      "scenery": [
+        {
+          "id": "tree_west_01",
+          "kind": "tree",
+          "x": 180,
+          "y": 440,
+          "scale": 1.1
+        },
+        {
+          "id": "tree_west_02",
+          "kind": "tree",
+          "x": 930,
+          "y": 430,
+          "scale": 0.9
+        },
+        {
+          "id": "tree_mid_01",
+          "kind": "tree",
+          "x": 1620,
+          "y": 435,
+          "scale": 1
+        },
+        {
+          "id": "tree_east_01",
+          "kind": "tree",
+          "x": 2500,
+          "y": 430,
+          "scale": 1.15
+        },
+        {
+          "id": "tree_east_02",
+          "kind": "tree",
+          "x": 3450,
+          "y": 440,
+          "scale": 0.9
+        }
       ]
     },
     "room_town_hall": {
-      "scene_kind":"interior","title":"Mayor's Office","ground_y":590,"observer_spawn_x":180,
-      "portals":[{"id":"town_hall_exit","label":"Village Square","target_room_id":"room_village_square","x":70,"door_x":120,"width":180}],
-      "objects":[{"id":"obj_town_hall_ledger","label":"Civic Ledger","x":690,"kind":"ledger","presentation_only":true}]
+      "scene_kind": "interior",
+      "title": "Mayor's Office",
+      "ground_y": 590,
+      "observer_spawn_x": 180,
+      "portals": [
+        {
+          "id": "town_hall_exit",
+          "label": "Village Square",
+          "target_room_id": "room_village_square",
+          "x": 70,
+          "door_x": 120,
+          "width": 180
+        }
+      ],
+      "objects": [
+        {
+          "id": "obj_town_hall_ledger",
+          "label": "Civic Ledger",
+          "x": 690,
+          "kind": "ledger",
+          "presentation_only": true
+        }
+      ],
+      "buildings": [
+        {
+          "id": "interior_town_hall_furniture",
+          "label": "Town Hall Interior",
+          "x": 500,
+          "y": 180,
+          "width": 980,
+          "height": 120,
+          "style": "interior_civic",
+          "wall": "#e8d9bd",
+          "roof": "#9b8061"
+        }
+      ]
     },
     "room_shop": {
-      "scene_kind":"interior","title":"Vance General Emporium","ground_y":590,"observer_spawn_x":180,
-      "portals":[{"id":"shop_exit","label":"Village Square","target_room_id":"room_village_square","x":70,"door_x":120,"width":180}],
-      "objects":[{"id":"obj_shop_counter","label":"Shop Counter","x":760,"kind":"shop","presentation_only":true}]
+      "scene_kind": "interior",
+      "title": "Vance General Emporium",
+      "ground_y": 590,
+      "observer_spawn_x": 180,
+      "portals": [
+        {
+          "id": "shop_exit",
+          "label": "Village Square",
+          "target_room_id": "room_village_square",
+          "x": 70,
+          "door_x": 120,
+          "width": 180
+        }
+      ],
+      "objects": [
+        {
+          "id": "obj_shop_counter",
+          "label": "Shop Counter",
+          "x": 760,
+          "kind": "shop",
+          "presentation_only": true
+        }
+      ],
+      "buildings": [
+        {
+          "id": "interior_shop_furniture",
+          "label": "Shop Interior",
+          "x": 500,
+          "y": 180,
+          "width": 980,
+          "height": 120,
+          "style": "interior_shop",
+          "wall": "#e8d9bd",
+          "roof": "#9b8061"
+        }
+      ]
     },
     "room_bakery": {
-      "scene_kind":"interior","title":"Greta's Hearth Bakery","ground_y":590,"observer_spawn_x":180,
-      "portals":[{"id":"bakery_exit","label":"Village Square","target_room_id":"room_village_square","x":70,"door_x":120,"width":180}],
-      "objects":[{"id":"obj_hearth_oven","label":"Hearth Oven","x":760,"kind":"inspect"}]
+      "scene_kind": "interior",
+      "title": "Greta's Hearth Bakery",
+      "ground_y": 590,
+      "observer_spawn_x": 180,
+      "portals": [
+        {
+          "id": "bakery_exit",
+          "label": "Village Square",
+          "target_room_id": "room_village_square",
+          "x": 70,
+          "door_x": 120,
+          "width": 180
+        }
+      ],
+      "objects": [
+        {
+          "id": "obj_hearth_oven",
+          "label": "Hearth Oven",
+          "x": 760,
+          "kind": "inspect"
+        }
+      ],
+      "buildings": [
+        {
+          "id": "interior_bakery_furniture",
+          "label": "Bakery Interior",
+          "x": 500,
+          "y": 180,
+          "width": 980,
+          "height": 120,
+          "style": "interior_bakery",
+          "wall": "#e8d9bd",
+          "roof": "#9b8061"
+        }
+      ]
     },
     "room_tavern": {
-      "scene_kind":"interior","title":"The Boar & Flagon Tavern","ground_y":590,"observer_spawn_x":180,
-      "portals":[{"id":"tavern_exit","label":"Village Square","target_room_id":"room_village_square","x":70,"door_x":120,"width":180}],
-      "objects":[
-        {"id":"obj_tavern_hearth","label":"Tavern Hearth","x":620,"kind":"inspect"},
-        {"id":"obj_gaming_table","label":"Gaming Table","x":920,"kind":"inspect"}
+      "scene_kind": "interior",
+      "title": "The Boar & Flagon Tavern",
+      "ground_y": 590,
+      "observer_spawn_x": 180,
+      "portals": [
+        {
+          "id": "tavern_exit",
+          "label": "Village Square",
+          "target_room_id": "room_village_square",
+          "x": 70,
+          "door_x": 120,
+          "width": 180
+        }
+      ],
+      "objects": [
+        {
+          "id": "obj_tavern_hearth",
+          "label": "Tavern Hearth",
+          "x": 620,
+          "kind": "inspect"
+        },
+        {
+          "id": "obj_gaming_table",
+          "label": "Gaming Table",
+          "x": 920,
+          "kind": "inspect"
+        }
+      ],
+      "buildings": [
+        {
+          "id": "interior_tavern_furniture",
+          "label": "Tavern Interior",
+          "x": 500,
+          "y": 180,
+          "width": 980,
+          "height": 120,
+          "style": "interior_tavern",
+          "wall": "#e8d9bd",
+          "roof": "#9b8061"
+        }
       ]
     }
   }

@@ -64,3 +64,19 @@ The original fixed-shape NPC drawing routine has been replaced by an assembled c
 - The rig currently provides lightweight idle/walk motion and a stylized base art direction. It is a modular foundation, not a final character asset library.
 
 No fixed character cast, role-to-appearance mapping, or random appearance reroll per frame is introduced. Appearance randomness is seeded from entity identity and does not alter the simulation.
+
+## Procedural world composition and lighting foundation
+
+The environment is moving away from a single pre-painted village background. The renderer now treats the environment as separate world layers and manifest-driven objects.
+
+- The outdoor background SVG is no longer used as the active scene plate. The sky, distant ridge and ground are rendered by the engine.
+- Building instances are separate nodes created from each room's `buildings` manifest array. Their IDs, positions, footprints, palette and style are data-driven; moving a building no longer requires editing a background image.
+- Buildings create independent light-occluder polygons for 2D shadows.
+- The new WorldLighting node uses CanvasModulate for time-of-day ambient grading and PointLight2D sources for practical lights. Light positions and colours are configured through each room's `lights` array.
+- Weather is intended as a separate camera-space overlay driven by climate data, so precipitation does not need to be painted into scenery.
+- The outdoor manifest now has an explicit `scenery` array for independently placeable natural props. The first building and scenery entries are a proof of composition structure, not a complete procedural settlement generator.
+- The engine remains authoritative for simulation state. Presentation manifests only define visual style and scene composition.
+
+### Height-aware 2D rendering direction
+
+A future height-map pass should use a per-object height texture or polygon-derived height profile, not a single global height map. The map should encode relative elevation for roofs, walls, eaves, props and character parts. A shader can derive a pseudo-normal from neighbouring height samples and use it with 2D light direction for directional shading, while LightOccluder2D handles cast shadows. Height and occlusion are separate concepts: the height map shades surfaces; occluders determine which light rays are blocked. Keep this optional per material so flat objects remain inexpensive.
