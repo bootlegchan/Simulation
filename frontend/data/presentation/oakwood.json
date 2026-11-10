@@ -120,35 +120,98 @@
           "kind": "tree",
           "x": 180,
           "y": 440,
-          "scale": 1.1
+          "scale": 1.1,
+          "species": "oak"
         },
         {
           "id": "tree_west_02",
           "kind": "tree",
           "x": 930,
           "y": 430,
-          "scale": 0.9
+          "scale": 0.9,
+          "species": "cypress"
         },
         {
           "id": "tree_mid_01",
           "kind": "tree",
           "x": 1620,
           "y": 435,
-          "scale": 1
+          "scale": 1,
+          "species": "pine"
         },
         {
           "id": "tree_east_01",
           "kind": "tree",
           "x": 2500,
           "y": 430,
-          "scale": 1.15
+          "scale": 1.15,
+          "species": "oak"
         },
         {
           "id": "tree_east_02",
           "kind": "tree",
           "x": 3450,
           "y": 440,
+          "scale": 0.9,
+          "species": "pine"
+        },
+        {
+          "id": "square_bench_west",
+          "kind": "bench",
+          "x": 720,
+          "y": 620,
+          "scale": 1
+        },
+        {
+          "id": "square_planter_01",
+          "kind": "planter",
+          "x": 1030,
+          "y": 610,
+          "scale": 1
+        },
+        {
+          "id": "square_planter_02",
+          "kind": "planter",
+          "x": 1900,
+          "y": 612,
+          "scale": 1
+        },
+        {
+          "id": "square_bush_01",
+          "kind": "bush",
+          "x": 1110,
+          "y": 570,
+          "scale": 1.1
+        },
+        {
+          "id": "square_bush_02",
+          "kind": "bush",
+          "x": 2820,
+          "y": 575,
           "scale": 0.9
+        },
+        {
+          "id": "square_flower_01",
+          "kind": "flower",
+          "x": 420,
+          "y": 596,
+          "scale": 1.2,
+          "flower_colour": "#d8a17c"
+        },
+        {
+          "id": "square_flower_02",
+          "kind": "flower",
+          "x": 1760,
+          "y": 590,
+          "scale": 1,
+          "flower_colour": "#e2c18c"
+        },
+        {
+          "id": "square_rock_01",
+          "kind": "rock",
+          "x": 1510,
+          "y": 610,
+          "scale": 0.8
         }
       ],
       "lights": [
@@ -196,6 +259,150 @@
         "portal_focus_zoom": 1.07,
         "transition_out_seconds": 0.28,
         "transition_in_seconds": 0.42
+      },
+      "terrain": {
+        "ground_y": 548,
+        "soil_y": 632,
+        "grass_base": "#a6a17a",
+        "soil": "#8b8069",
+        "path_colour": "#c4b18f",
+        "path_width": 166,
+        "path_points": [
+          {
+            "x": -40,
+            "y": 664
+          },
+          {
+            "x": 460,
+            "y": 648
+          },
+          {
+            "x": 980,
+            "y": 655
+          },
+          {
+            "x": 1510,
+            "y": 638
+          },
+          {
+            "x": 2050,
+            "y": 652
+          },
+          {
+            "x": 2580,
+            "y": 642
+          },
+          {
+            "x": 3160,
+            "y": 658
+          },
+          {
+            "x": 3640,
+            "y": 644
+          }
+        ],
+        "patches": [
+          {
+            "x": 280,
+            "y": 568,
+            "width": 260,
+            "height": 34,
+            "colour": "#7f9369"
+          },
+          {
+            "x": 760,
+            "y": 594,
+            "width": 190,
+            "height": 28,
+            "colour": "#87976a"
+          },
+          {
+            "x": 1430,
+            "y": 566,
+            "width": 310,
+            "height": 36,
+            "colour": "#82936a"
+          },
+          {
+            "x": 2260,
+            "y": 590,
+            "width": 230,
+            "height": 32,
+            "colour": "#7e9065"
+          },
+          {
+            "x": 3240,
+            "y": 572,
+            "width": 270,
+            "height": 34,
+            "colour": "#84966d"
+          }
+        ],
+        "flower_beds": [
+          {
+            "x": 350,
+            "y": 574,
+            "count": 8,
+            "colour": "#d7a27c"
+          },
+          {
+            "x": 1010,
+            "y": 582,
+            "count": 7,
+            "colour": "#e2c18c"
+          },
+          {
+            "x": 1860,
+            "y": 570,
+            "count": 9,
+            "colour": "#c98270"
+          },
+          {
+            "x": 2730,
+            "y": 578,
+            "count": 8,
+            "colour": "#e2c18c"
+          }
+        ],
+        "stones": [
+          {
+            "x": 210,
+            "y": 692,
+            "size": 1
+          },
+          {
+            "x": 590,
+            "y": 690,
+            "size": 0.8
+          },
+          {
+            "x": 1160,
+            "y": 698,
+            "size": 1.1
+          },
+          {
+            "x": 1680,
+            "y": 690,
+            "size": 0.9
+          },
+          {
+            "x": 2390,
+            "y": 696,
+            "size": 1
+          },
+          {
+            "x": 2910,
+            "y": 688,
+            "size": 0.8
+          },
+          {
+            "x": 3420,
+            "y": 696,
+            "size": 1
+          }
+        ],
+        "tuft_spacing": 96,
+        "detail_seed": 29
       }
     },
     "room_town_hall": {

@@ -135,3 +135,15 @@ Room travel now uses a short, full-screen dark fade so the scene and camera can 
 - The transition waits for an in-flight HTTP request to finish before requesting the new room snapshot. Failed or malformed requests also release the fade instead of leaving the screen covered.
 - Camera zoom, framing, follow response, portal focus and fade durations are room-manifest settings. Interiors use a slightly tighter zoom and slower reveal than the outdoor square.
 - Camera and transition code remain in Godot. No simulation rules or Python API behaviour is changed.
+
+
+## Illustrated village environment milestone
+
+The first art-direction pass adds a dedicated, data-driven outdoor terrain renderer and richer reusable scenery assets.
+
+- `world_terrain.gd` renders ground colour regions, a curved settlement path, grass patches, flower beds, scattered stones and deterministic grass tufts from each room's optional `terrain` manifest.
+- `world_prop.gd` now supports oak, pine and cypress silhouettes plus reusable rocks, bushes, lamps, flowers, benches and planters.
+- The Oakwood square manifest defines path geometry, terrain palette, natural detail placement and additional independent props. These are presentation-only and do not alter simulation state.
+- The terrain renderer is a separate world node beneath Y-sorted actors and scenery; it is not a painted background image.
+
+This is an authored proof area, not yet a complete terrain editor or final hand-painted asset library. Building facade depth, detailed character animation and production-quality illustrated sprites remain later passes.
