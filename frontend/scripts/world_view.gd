@@ -11,6 +11,7 @@ const RUST := Color("#b66b48")
 const CHARACTER_VISUAL_SCRIPT = preload("res://scripts/characters/character_visual.gd")
 const BUILDING_SCRIPT = preload("res://scripts/world/world_building.gd")
 const LIGHTING_SCRIPT = preload("res://scripts/world/world_lighting.gd")
+const PROP_SCRIPT = preload("res://scripts/world/world_prop.gd")
 
 var _state: Dictionary = {}
 var _camera: Camera2D
@@ -18,6 +19,7 @@ var _npc_items: Array[Dictionary] = []
 var _object_items: Array[Dictionary] = []
 var _portal_items: Array[Dictionary] = []
 var _building_nodes: Dictionary = {}
+var _prop_nodes: Dictionary = {}
 var _lighting: Node2D
 var _character_nodes: Dictionary = {}
 var _observer_visual: Node2D
@@ -40,6 +42,7 @@ func set_presentation_state(state: Dictionary) -> void:
     _state = state
     _sync_character_nodes()
     _sync_building_nodes()
+    _sync_prop_nodes()
     if _lighting:
         _lighting.call("configure",_state)
     var width := float(_state.get("world_width",3600.0))
@@ -129,11 +132,6 @@ func _draw_outdoor(width: float) -> void:
     for stone_x in range(0,int(width),150):
         draw_line(Vector2(float(stone_x),620),Vector2(float(stone_x+95),620),Color("#a99d86"),2.0)
 
-    # A few distant tree silhouettes are environmental dressing, not buildings.
-    draw_set_transform(Vector2(_camera.position.x*0.42 if _camera else 0.0,0))
-    for tree_x in range(120,int(width)+200,310):
-        _draw_tree(float(tree_x),425.0,0.82)
-    draw_set_transform(Vector2.ZERO)
     draw_string(ThemeDB.fallback_font,Vector2(90,95),"OAKWOOD",HORIZONTAL_ALIGNMENT_LEFT,-1,18,Color("#f4eedf"))
 
 func _draw_interior(width: float,title: String) -> void:
@@ -180,72 +178,6 @@ func _draw_interior(width: float,title: String) -> void:
     draw_rect(Rect2(86,27,408,38),Color("#ead8b8"))
     draw_string(ThemeDB.fallback_font,Vector2(104,54),title.to_upper(),HORIZONTAL_ALIGNMENT_LEFT,370,19,INK)
 
-    var room_id := str(_state.get("room_id",""))
-    if room_id == "room_town_hall":
-        # Mayor's desk, filing shelves and framed civic map
-        draw_rect(Rect2(570,345,520,28),Color("#654832"))
-        draw_rect(Rect2(600,373,24,150),Color("#654832"))
-        draw_rect(Rect2(1035,373,24,150),Color("#654832"))
-        draw_rect(Rect2(710,230,220,112),Color("#c8b38e"))
-        draw_rect(Rect2(722,242,196,88),Color("#e8ddc7"))
-        draw_line(Vector2(738,270),Vector2(900,270),Color("#9e8c72"),3.0)
-        draw_line(Vector2(738,290),Vector2(875,290),Color("#9e8c72"),3.0)
-        draw_rect(Rect2(1240,205,240,230),Color("#77583f"))
-        for y in [220.0,292.0,364.0]:
-            draw_rect(Rect2(1252,y,216,10),Color("#d0b48a"))
-            for x in range(1268,1450,42):
-                draw_rect(Rect2(float(x),y-42,28,42),Color("#8d6749"))
-                draw_rect(Rect2(float(x+4),y-36,20,30),Color("#e0cda8"))
-    elif room_id == "room_shop":
-        # Shelves stocked with colourful jars and baskets
-        for x in [390.0,760.0,1130.0,1500.0]:
-            draw_rect(Rect2(x,230,245,18),Color("#76553b"))
-            draw_rect(Rect2(x+8,248,12,145),Color("#76553b"))
-            draw_rect(Rect2(x+225,248,12,145),Color("#76553b"))
-            for j in range(5):
-                var jar_x := x+28.0+float(j)*42.0
-                var jar_colour := [Color("#c57d56"),Color("#d4b66f"),Color("#8da28a"),Color("#9b8194"),Color("#d4c29c")][j]
-                draw_rect(Rect2(jar_x,184,27,42),jar_colour)
-                draw_rect(Rect2(jar_x+5,176,17,10),Color("#755b43"))
-                draw_rect(Rect2(jar_x+4,196,19,12),Color("#f0dfbd",0.7))
-        draw_rect(Rect2(620,430,680,42),Color("#76553b"))
-        draw_rect(Rect2(650,472,26,74),Color("#76553b"))
-        draw_rect(Rect2(1240,472,26,74),Color("#76553b"))
-    elif room_id == "room_bakery":
-        # Brick oven, cooling rack and pastry counter
-        draw_rect(Rect2(1280,205,360,275),Color("#b66e4c"))
-        for y in range(224,460,34):
-            draw_line(Vector2(1280,float(y)),Vector2(1640,float(y)),Color("#e0a17a",0.65),3.0)
-        for x in range(1300,1640,72):
-            draw_line(Vector2(float(x),205),Vector2(float(x-24),480),Color("#e0a17a",0.55),3.0)
-        draw_circle(Vector2(1460,365),92,Color("#6e4838"))
-        draw_circle(Vector2(1460,365),68,Color("#2e2926"))
-        draw_rect(Rect2(520,430,560,34),Color("#79573e"))
-        for x in [610.0,780.0,950.0]:
-            _draw_ellipse(Vector2(x,418),Vector2(36,12),Color("#d8a65f"))
-            _draw_ellipse(Vector2(x,414),Vector2(24,8),Color("#f0d29a"))
-    elif room_id == "room_tavern":
-        # Hearth, timber tables and warm wall lamps
-        draw_rect(Rect2(1290,210,330,280),Color("#795a43"))
-        draw_rect(Rect2(1320,235,270,230),Color("#4d4037"))
-        draw_rect(Rect2(1350,320,210,145),Color("#292c2b"))
-        draw_colored_polygon(PackedVector2Array([Vector2(1400,460),Vector2(1440,355),Vector2(1490,460)]),Color("#d8894f"))
-        draw_colored_polygon(PackedVector2Array([Vector2(1450,460),Vector2(1510,330),Vector2(1550,460)]),Color("#f0c16f"))
-        for x in [430.0,850.0,1180.0]:
-            draw_rect(Rect2(x,450,230,20),Color("#725139"))
-            draw_rect(Rect2(x+18,470,16,78),Color("#725139"))
-            draw_rect(Rect2(x+196,470,16,78),Color("#725139"))
-            draw_circle(Vector2(x+70,436),12,Color("#d5ad72"))
-            draw_circle(Vector2(x+150,436),12,Color("#d5ad72"))
-        for x in [620.0,1740.0]:
-            draw_circle(Vector2(x,185),22,Color("#e9c67f"))
-            draw_circle(Vector2(x,185),12,Color("#fff0c5"))
-
-func _draw_tree(x: float,y: float,scale: float) -> void:
-    draw_rect(Rect2(x-8*scale,y,16*scale,110*scale),Color("#705b43"))
-    draw_circle(Vector2(x,y-35*scale),62*scale,Color("#617a61"))
-    draw_circle(Vector2(x-28*scale,y-12*scale),42*scale,Color("#71866a"))
-    draw_circle(Vector2(x+32*scale,y-10*scale),39*scale,Color("#536f59"))
 
 func _sync_building_nodes() -> void:
     var room_manifest: Dictionary = _state.get("room_manifest",{})
@@ -270,6 +202,30 @@ func _sync_building_nodes() -> void:
             var old_building: Node2D = _building_nodes[existing_id]
             old_building.queue_free()
             _building_nodes.erase(existing_id)
+
+func _sync_prop_nodes() -> void:
+    var room_manifest: Dictionary = _state.get("room_manifest",{})
+    var definitions: Array = room_manifest.get("scenery",[])
+    var visible_ids: Dictionary = {}
+    for definition in definitions:
+        var prop_id := str(definition.get("id",""))
+        if prop_id.is_empty():
+            continue
+        visible_ids[prop_id] = true
+        var prop: Node2D
+        if _prop_nodes.has(prop_id):
+            prop = _prop_nodes[prop_id]
+        else:
+            prop = Node2D.new()
+            prop.set_script(PROP_SCRIPT)
+            add_child(prop)
+            _prop_nodes[prop_id] = prop
+        prop.call("configure",definition)
+    for existing_id in _prop_nodes.keys():
+        if not visible_ids.has(existing_id):
+            var old_prop: Node2D = _prop_nodes[existing_id]
+            old_prop.queue_free()
+            _prop_nodes.erase(existing_id)
 
 func _draw_objects(room_manifest: Dictionary) -> void:
     var definitions: Array = room_manifest.get("objects",[])

@@ -74,7 +74,9 @@ The environment is moving away from a single pre-painted village background. The
 - Buildings create independent light-occluder polygons for 2D shadows.
 - The new WorldLighting node uses CanvasModulate for time-of-day ambient grading and PointLight2D sources for practical lights. Light positions and colours are configured through each room's `lights` array.
 - Weather is intended as a separate camera-space overlay driven by climate data, so precipitation does not need to be painted into scenery.
-- The outdoor manifest now has an explicit `scenery` array for independently placeable natural props. The first building and scenery entries are a proof of composition structure, not a complete procedural settlement generator.
+- The outdoor manifest now has an explicit `scenery` array, rendered as independent prop nodes. Trees, rocks, bushes and lamps can be repositioned or regenerated without editing a background image. The first entries are a proof of composition structure, not a complete procedural settlement generator.
+- Interior furniture groups are also separate manifest-driven nodes, rather than being hard-coded into the room background drawing routine.
+- Building configuration is only reapplied when its data changes, avoiding needless redraw and shadow-occluder reconstruction on every simulation frame.
 - The engine remains authoritative for simulation state. Presentation manifests only define visual style and scene composition.
 
 ### Height-aware 2D rendering direction

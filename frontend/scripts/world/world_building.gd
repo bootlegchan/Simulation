@@ -6,6 +6,8 @@ var definition: Dictionary = {}
 var _occluder: LightOccluder2D
 
 func configure(data: Dictionary) -> void:
+    if definition == data:
+        return
     definition = data.duplicate(true)
     position = Vector2(float(definition.get("x",0.0)),float(definition.get("y",0.0)))
     queue_redraw()
