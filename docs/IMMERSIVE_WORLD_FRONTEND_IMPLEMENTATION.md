@@ -156,3 +156,12 @@ The character rig now uses separate arm, leg, body, head, hair, face and accesso
 Interior buildings now render as architectural room shells only. Furniture is defined independently in each room's `furniture` manifest and rendered by the reusable `world_furniture.gd` component. Supported dressing types include desks, tables, counters, chairs, shelving, bread racks, ovens/hearths, barrels, baskets, plants and rugs. Each item is positioned at its ground-contact point and participates in world Y-sorting, allowing actors to pass in front of or behind furniture.
 
 The practical-light cache signature now includes room light definitions, so manifest edits trigger a rebuild even when room title and time remain unchanged. New character and furniture details are presentation-only; Python remains authoritative. JSON and source integration were checked; no Godot runtime test was run.
+
+
+## Manifest-driven interactive environmental details
+
+Room objects now have independent, Y-sorted visual nodes through `world_interactable.gd`. The room manifest can separate an object's simulation interaction kind from its presentation `visual_kind`, so an oven, hearth, game table or bocce lawn can have a recognisable illustration without changing the interaction endpoint or inventing gameplay state. Noticeboards, civic ledgers, clocks and shop counters have dedicated treatments; the village clock reads the existing authoritative hour/tick values.
+
+The controller still decides whether a non-presentation-only object exists from the Python snapshot. Presentation-only objects remain explicitly marked in the manifest. Click targets now accept a manifest-defined `interaction_radius` rather than sharing one fixed radius. Decorative fire motion is visual-only.
+
+Practical lights support optional manifest-driven `flicker` and `flicker_frequency` values. Their brightness modulation is a small deterministic combination of sine waves; it does not change the simulation clock or state. Existing room transitions, navigation, HUD and camera behaviour are unchanged.

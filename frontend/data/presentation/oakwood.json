@@ -48,20 +48,24 @@
           "id": "obj_notice_board_square",
           "label": "Village Noticeboard",
           "x": 850,
-          "kind": "noticeboard"
+          "kind": "noticeboard",
+          "interaction_radius": 82
         },
         {
           "id": "obj_bocce_lawn",
           "label": "Bocce Lawn",
           "x": 1770,
-          "kind": "inspect"
+          "kind": "inspect",
+          "visual_kind": "lawn_marker",
+          "interaction_radius": 72
         },
         {
           "id": "obj_square_clock",
           "label": "Village Clock",
           "x": 2580,
           "kind": "clock",
-          "presentation_only": true
+          "presentation_only": true,
+          "interaction_radius": 72
         }
       ],
       "buildings": [
@@ -426,7 +430,8 @@
           "label": "Civic Ledger",
           "x": 690,
           "kind": "ledger",
-          "presentation_only": true
+          "presentation_only": true,
+          "interaction_radius": 72
         }
       ],
       "buildings": [
@@ -449,7 +454,9 @@
           "y": 330,
           "color": "#f6d69b",
           "energy": 0.8,
-          "radius": 2.4
+          "radius": 2.4,
+          "flicker": 0.018,
+          "flicker_frequency": 2.6
         }
       ],
       "camera": {
@@ -564,7 +571,8 @@
           "label": "Shop Counter",
           "x": 760,
           "kind": "shop",
-          "presentation_only": true
+          "presentation_only": true,
+          "interaction_radius": 72
         }
       ],
       "buildings": [
@@ -587,7 +595,9 @@
           "y": 330,
           "color": "#f6d69b",
           "energy": 0.75,
-          "radius": 2.2
+          "radius": 2.2,
+          "flicker": 0.018,
+          "flicker_frequency": 2.6
         }
       ],
       "camera": {
@@ -691,7 +701,9 @@
           "id": "obj_hearth_oven",
           "label": "Hearth Oven",
           "x": 760,
-          "kind": "inspect"
+          "kind": "inspect",
+          "visual_kind": "oven",
+          "interaction_radius": 72
         }
       ],
       "buildings": [
@@ -714,7 +726,9 @@
           "y": 340,
           "color": "#f0a45d",
           "energy": 1.1,
-          "radius": 2.8
+          "radius": 2.8,
+          "flicker": 0.055,
+          "flicker_frequency": 4.4
         }
       ],
       "camera": {
@@ -807,13 +821,17 @@
           "id": "obj_tavern_hearth",
           "label": "Tavern Hearth",
           "x": 620,
-          "kind": "inspect"
+          "kind": "inspect",
+          "visual_kind": "hearth",
+          "interaction_radius": 72
         },
         {
           "id": "obj_gaming_table",
           "label": "Gaming Table",
           "x": 920,
-          "kind": "inspect"
+          "kind": "inspect",
+          "visual_kind": "game_table",
+          "interaction_radius": 72
         }
       ],
       "buildings": [
@@ -836,7 +854,9 @@
           "y": 340,
           "color": "#ef9a54",
           "energy": 1.2,
-          "radius": 3.2
+          "radius": 3.2,
+          "flicker": 0.055,
+          "flicker_frequency": 4.4
         },
         {
           "id": "wall_lamp",
@@ -844,7 +864,9 @@
           "y": 240,
           "color": "#f5cf8b",
           "energy": 0.7,
-          "radius": 2
+          "radius": 2,
+          "flicker": 0.018,
+          "flicker_frequency": 2.6
         }
       ],
       "camera": {

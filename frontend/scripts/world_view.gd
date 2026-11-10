@@ -11,6 +11,7 @@ const RUST := Color("#b66b48")
 const CHARACTER_VISUAL_SCRIPT = preload("res://scripts/characters/character_visual.gd")
 const BUILDING_SCRIPT = preload("res://scripts/world/world_building.gd")
 const FURNITURE_SCRIPT = preload("res://scripts/world/world_furniture.gd")
+const INTERACTABLE_SCRIPT = preload("res://scripts/world/world_interactable.gd")
 const LIGHTING_SCRIPT = preload("res://scripts/world/world_lighting.gd")
 const PROP_SCRIPT = preload("res://scripts/world/world_prop.gd")
 const TERRAIN_SCRIPT = preload("res://scripts/world/world_terrain.gd")
@@ -24,6 +25,7 @@ var _object_items: Array[Dictionary] = []
 var _portal_items: Array[Dictionary] = []
 var _building_nodes: Dictionary = {}
 var _furniture_nodes: Dictionary = {}
+var _interactable_nodes: Dictionary = {}
 var _prop_nodes: Dictionary = {}
 var _lighting: Node2D
 var _character_nodes: Dictionary = {}
@@ -96,6 +98,7 @@ func set_presentation_state(state: Dictionary) -> void:
     _sync_character_nodes()
     _sync_building_nodes()
     _sync_furniture_nodes()
+    _sync_interactable_nodes()
     _sync_prop_nodes()
     if _lighting:
         _lighting.call("configure",_state)
@@ -208,7 +211,7 @@ func pick_target(position: Vector2) -> Dictionary:
         if absf(position.x-float(portal.get("x",0.0))) < float(portal.get("width",120.0))*0.5 and position.y > 260.0:
             return portal
     for item in _object_items:
-        if position.distance_to(Vector2(float(item.get("x",0.0)),float(item.get("y",500.0)))) < 65.0:
+        if position.distance_to(Vector2(float(item.get("x",0.0)),float(item.get("y",500.0)))) < float(item.get("interaction_radius",65.0)):
             return item
     for actor in _npc_items:
         if position.distance_to(Vector2(float(actor.get("x",0.0)),float(actor.get("y",520.0)))) < 45.0:
@@ -369,45 +372,64 @@ func _sync_prop_nodes() -> void:
             old_prop.queue_free()
             _prop_nodes.erase(existing_id)
 
+func _sync_interactable_nodes() -> void:
+    var room_manifest: Dictionary = _state.get("room_manifest",{})
+    var definitions: Array = room_manifest.get("objects",[])
+    var actual_objects: Array = _state.get("objects",[])
+    var status: Dictionary = _state.get("status",{})
+    var visible_ids: Dictionary = {}
+    for definition in definitions:
+        var object_id := str(definition.get("id",""))
+        if object_id.is_empty():
+            continue
+        var actual: Dictionary = {}
+        for candidate in actual_objects:
+            if str(candidate.get("id","")) == object_id:
+                actual = candidate
+                break
+        if actual.is_empty() and not bool(definition.get("presentation_only",false)):
+            continue
+        visible_ids[object_id] = true
+        var visual: Node2D
+        if _interactable_nodes.has(object_id):
+            visual = _interactable_nodes[object_id]
+        else:
+            visual = Node2D.new()
+            visual.set_script(INTERACTABLE_SCRIPT)
+            add_child(visual)
+            _interactable_nodes[object_id] = visual
+        visual.call("configure",definition,actual,status)
+    for existing_id in _interactable_nodes.keys():
+        if not visible_ids.has(existing_id):
+            var old_visual: Node2D = _interactable_nodes[existing_id]
+            old_visual.queue_free()
+            _interactable_nodes.erase(existing_id)
+
 func _draw_objects(room_manifest: Dictionary) -> void:
     var definitions: Array = room_manifest.get("objects",[])
     var actual_objects: Array = _state.get("objects",[])
     for definition in definitions:
         var object_id := str(definition.get("id",""))
-        var actual := {}
-        for item in actual_objects:
-            if str(item.get("id","")) == object_id:
-                actual = item
+        var actual: Dictionary = {}
+        for candidate in actual_objects:
+            if str(candidate.get("id","")) == object_id:
+                actual = candidate
                 break
         if actual.is_empty() and not bool(definition.get("presentation_only",false)):
             continue
         var x := float(definition.get("x",600.0))
         var y := 500.0
         var kind := str(definition.get("kind","inspect"))
-        if kind == "noticeboard":
-            draw_rect(Rect2(x-32,y-135,64,118),Color("#72533a"))
-            draw_rect(Rect2(x-24,y-127,48,102),Color("#e8dfc7"))
-            draw_line(Vector2(x-14,y-105),Vector2(x+14,y-105),RUST,3.0)
-            draw_line(Vector2(x-14,y-85),Vector2(x+14,y-85),RUST,3.0)
-            draw_rect(Rect2(x-7,y-18,14,55),Color("#70553c"))
-        elif kind == "ledger":
-            draw_rect(Rect2(x-65,y-80,130,75),Color("#70513a"))
-            draw_rect(Rect2(x-32,y-113,64,48),Color("#e6ddc8"))
-            draw_line(Vector2(x-20,y-98),Vector2(x+20,y-98),INK,2.0)
-        elif kind == "clock":
-            draw_circle(Vector2(x,y-70),38,Color("#e7dec8"))
-            draw_circle(Vector2(x,y-70),31,Color("#6c5a43"),false,3.0)
-            draw_line(Vector2(x,y-70),Vector2(x,y-91),INK,3.0)
-            draw_line(Vector2(x,y-70),Vector2(x+18,y-58),INK,3.0)
-            draw_rect(Rect2(x-6,y-18,12,50),Color("#70553c"))
-        elif kind == "shop":
-            draw_rect(Rect2(x-75,y-80,150,65),Color("#785b42"))
-            draw_rect(Rect2(x-65,y-70,130,14),Color("#d4b98d"))
-        else:
-            draw_rect(Rect2(x-55,y-65,110,50),Color("#886e51"))
-            draw_rect(Rect2(x-42,y-55,84,30),Color("#c5a47a"))
-        _object_items.append({"kind":"object","interaction":kind,"id":object_id,"label":str(definition.get("label",actual.get("name",object_id))),"x":x,"y":y-60.0})
-        draw_string(ThemeDB.fallback_font,Vector2(x-90,y+55),str(definition.get("label","")),HORIZONTAL_ALIGNMENT_LEFT,180,13,INK)
+        var label := str(definition.get("label",actual.get("name",object_id)))
+        _object_items.append({
+            "kind":"object",
+            "interaction":kind,
+            "id":object_id,
+            "label":label,
+            "x":x,
+            "y":y-60.0,
+            "interaction_radius":float(definition.get("interaction_radius",72.0))
+        })
 
 func _draw_portals(room_manifest: Dictionary) -> void:
     for portal in room_manifest.get("portals",[]):
