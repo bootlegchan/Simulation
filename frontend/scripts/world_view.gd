@@ -8,6 +8,7 @@ const WORLD_HEIGHT := 720.0
 const PAPER := Color("#eee5d2")
 const INK := Color("#283a38")
 const RUST := Color("#b66b48")
+const CHARACTER_VISUAL_SCRIPT = preload("res://scripts/characters/character_visual.gd")
 
 var _state: Dictionary = {}
 var _camera: Camera2D
@@ -15,6 +16,8 @@ var _npc_items: Array[Dictionary] = []
 var _object_items: Array[Dictionary] = []
 var _portal_items: Array[Dictionary] = []
 var _outdoor_background: Texture2D
+var _character_nodes: Dictionary = {}
+var _observer_visual: Node2D
 
 func _ready() -> void:
     _outdoor_background = load("res://assets/backgrounds/village_square.svg") as Texture2D
@@ -23,9 +26,14 @@ func _ready() -> void:
     _camera.position_smoothing_speed = 5.0
     add_child(_camera)
     _camera.make_current()
+    _observer_visual = Node2D.new()
+    _observer_visual.set_script(CHARACTER_VISUAL_SCRIPT)
+    add_child(_observer_visual)
+    _observer_visual.call("configure", {"id":"observer","name":"Observer"}, true)
 
 func set_presentation_state(state: Dictionary) -> void:
     _state = state
+    _sync_character_nodes()
     var width := float(_state.get("world_width",3600.0))
     if _camera:
         _camera.limit_left = 0
@@ -37,6 +45,8 @@ func set_presentation_state(state: Dictionary) -> void:
 func _process(_delta: float) -> void:
     if _camera:
         _camera.position.x = lerpf(_camera.position.x,float(_state.get("observer_x",500.0)),0.12)
+    if _observer_visual:
+        _observer_visual.position = Vector2(float(_state.get("observer_x",500.0)),585.0)
 
 func _unhandled_input(event: InputEvent) -> void:
     if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -77,7 +87,6 @@ func _draw() -> void:
     _draw_portals(room_manifest)
     _draw_npcs()
     _draw_selection_prompt()
-    _draw_observer()
     _draw_environment()
     _draw_foreground(width)
     _draw_inspection()
@@ -291,6 +300,32 @@ func _draw_portals(room_manifest: Dictionary) -> void:
         draw_string(ThemeDB.fallback_font,Vector2(x,445),str(portal.get("label","Exit")),HORIZONTAL_ALIGNMENT_LEFT,width,15,INK)
         _portal_items.append({"kind":"portal","id":str(portal.get("id","")),"label":str(portal.get("label","Exit")),"target_room_id":str(portal.get("target_room_id","")),"x":door_x,"width":width})
 
+func _sync_character_nodes() -> void:
+    # NPC identity and simulation state remain authoritative in Python.
+    # Godot only assembles a persistent visual rig from each NPC's stable ID.
+    var visible_ids: Dictionary = {}
+    var npcs: Array = _state.get("npcs",[])
+    for npc in npcs:
+        if str(npc.get("location_id","")) != str(_state.get("room_id","")):
+            continue
+        if not bool(npc.get("is_alive",true)):
+            continue
+        var npc_id := str(npc.get("id",""))
+        if npc_id.is_empty():
+            continue
+        visible_ids[npc_id] = true
+        if not _character_nodes.has(npc_id):
+            var actor := Node2D.new()
+            actor.set_script(CHARACTER_VISUAL_SCRIPT)
+            add_child(actor)
+            actor.call("configure",npc,false)
+            _character_nodes[npc_id] = actor
+    for existing_id in _character_nodes.keys():
+        if not visible_ids.has(existing_id):
+            var old_actor: Node2D = _character_nodes[existing_id]
+            old_actor.queue_free()
+            _character_nodes.erase(existing_id)
+
 func _draw_npcs() -> void:
     var npcs: Array = _state.get("npcs",[])
     var room_id := str(_state.get("room_id",""))
@@ -298,128 +333,18 @@ func _draw_npcs() -> void:
     for npc in npcs:
         if str(npc.get("location_id","")) != room_id or not bool(npc.get("is_alive",true)):
             continue
+        var npc_id := str(npc.get("id",""))
+        if not _character_nodes.has(npc_id):
+            continue
         var phase := float(Time.get_ticks_msec()) / 1000.0
         var x := 360.0 + float(visible_index) * 72.0 + sin(phase * 0.65 + float(visible_index) * 1.7) * 7.0
-        var y := 550.0 + float((visible_index % 3) * 4) + sin(phase * 2.2 + float(visible_index)) * 2.0
-        var colour_index := abs(str(npc.get("id","")).hash())%5
-        var palette := [Color("#627b70"),Color("#a36d50"),Color("#65748a"),Color("#b39a70"),Color("#7b6c83")]
-        _draw_character(x,y,palette[colour_index],false)
+        var y := 550.0 + float((visible_index % 3) * 4)
+        var actor: Node2D = _character_nodes[npc_id]
+        actor.position = Vector2(x,y)
         if visible_index < 8 or absf(x-float(_state.get("observer_x",500.0))) < 240.0:
-            draw_string(ThemeDB.fallback_font,Vector2(x-48,y-55),str(npc.get("name","Citizen")),HORIZONTAL_ALIGNMENT_CENTER,96,12,INK)
-        _npc_items.append({"kind":"npc","id":str(npc.get("id","")),"label":str(npc.get("name","Citizen")),"x":x,"y":y-8.0})
+            draw_string(ThemeDB.fallback_font,Vector2(x-48,y-145),str(npc.get("name","Citizen")),HORIZONTAL_ALIGNMENT_CENTER,96,12,INK)
+        _npc_items.append({"kind":"npc","id":npc_id,"label":str(npc.get("name","Citizen")),"x":x,"y":y-8.0})
         visible_index += 1
-
-func _draw_character(x: float, y: float, clothes: Color, observer: bool) -> void:
-    # Original expressive cartoon villagers: compact bodies, large heads,
-    # ink-like outlines and simple readable facial expressions.
-    var phase := float(Time.get_ticks_msec()) / 260.0 + x * 0.025
-    var bob := sin(phase) * 2.2
-    var stride := sin(phase * 0.72) * 4.5
-    var character_variant := int(absf(x)) % 5
-    var skin_palette := [Color("#f0c6a1"),Color("#e8b58f"),Color("#d99c78"),Color("#f2cda9"),Color("#c98768")]
-    var skin := skin_palette[character_variant]
-    var outline := Color("#4b3c35")
-    var hair := Color("#49372f")
-    if not observer:
-        var hair_variant := character_variant % 4
-        if hair_variant == 1:
-            hair = Color("#8a583b")
-        elif hair_variant == 2:
-            hair = Color("#30383a")
-        elif hair_variant == 3:
-            hair = Color("#b17a48")
-
-    _draw_ellipse(Vector2(x,y+2),Vector2(23,7),Color("#403a32",0.22))
-    # Short legs, chunky shoes and socks
-    draw_line(Vector2(x-7,y-35+bob),Vector2(x-11+stride,y-7),outline,11.0)
-    draw_line(Vector2(x+7,y-35+bob),Vector2(x+11-stride,y-7),outline,11.0)
-    draw_line(Vector2(x-7,y-34+bob),Vector2(x-11+stride,y-12),Color("#d8c7a8"),5.0)
-    draw_line(Vector2(x+7,y-34+bob),Vector2(x+11-stride,y-12),Color("#d8c7a8"),5.0)
-    _draw_ellipse(Vector2(x-14+stride,y-5),Vector2(12,6),outline)
-    _draw_ellipse(Vector2(x+14-stride,y-5),Vector2(12,6),outline)
-    # Torso with rounded shoulders and an inked silhouette
-    var torso := PackedVector2Array([
-        Vector2(x-13,y-83+bob),Vector2(x-24,y-75+bob),
-        Vector2(x-19,y-48+bob),Vector2(x-14,y-32+bob),
-        Vector2(x+14,y-32+bob),Vector2(x+19,y-48+bob),
-        Vector2(x+24,y-75+bob),Vector2(x+13,y-83+bob)
-    ])
-    draw_colored_polygon(torso,outline)
-    var shirt := PackedVector2Array([
-        Vector2(x-10,y-79+bob),Vector2(x-19,y-72+bob),
-        Vector2(x-14,y-49+bob),Vector2(x-10,y-36+bob),
-        Vector2(x+10,y-36+bob),Vector2(x+14,y-49+bob),
-        Vector2(x+19,y-72+bob),Vector2(x+10,y-79+bob)
-    ])
-    draw_colored_polygon(shirt,clothes)
-    # Little collar and a simple clothing detail
-    draw_colored_polygon(PackedVector2Array([Vector2(x-8,y-79+bob),Vector2(x,y-68+bob),Vector2(x+8,y-79+bob)]),Color("#f0e2c8"))
-    draw_line(Vector2(x-16,y-61+bob),Vector2(x-20,y-43+bob),skin,8.0)
-    draw_line(Vector2(x+16,y-61+bob),Vector2(x+20,y-43+bob),skin,8.0)
-    draw_circle(Vector2(x-20,y-42+bob),5.0,skin)
-    draw_circle(Vector2(x+20,y-42+bob),5.0,skin)
-    # Neck and broad, rounded face
-    draw_rect(Rect2(x-6,y-91+bob,12,15),skin)
-    draw_circle(Vector2(x-22,y-103+bob),6.0,skin)
-    draw_circle(Vector2(x+22,y-103+bob),6.0,skin)
-    draw_circle(Vector2(x,y-107+bob),25.0,outline)
-    draw_circle(Vector2(x,y-108+bob),22.0,skin)
-    # Hair cap with uneven fringe: deliberately hand-drawn rather than realistic
-    var hair_shape := PackedVector2Array([
-        Vector2(x-23,y-111+bob),Vector2(x-22,y-125+bob),
-        Vector2(x-12,y-132+bob),Vector2(x-5,y-127+bob),
-        Vector2(x+3,y-135+bob),Vector2(x+12,y-128+bob),
-        Vector2(x+23,y-121+bob),Vector2(x+22,y-108+bob),
-        Vector2(x+12,y-114+bob),Vector2(x+5,y-108+bob),
-        Vector2(x-3,y-115+bob),Vector2(x-12,y-108+bob)
-    ])
-    draw_colored_polygon(hair_shape,outline)
-    var fringe := PackedVector2Array([
-        Vector2(x-18,y-116+bob),Vector2(x-13,y-128+bob),
-        Vector2(x-5,y-124+bob),Vector2(x+3,y-131+bob),
-        Vector2(x+10,y-123+bob),Vector2(x+18,y-117+bob),
-        Vector2(x+9,y-118+bob),Vector2(x+2,y-115+bob),
-        Vector2(x-5,y-120+bob),Vector2(x-12,y-115+bob)
-    ])
-    draw_colored_polygon(fringe,hair)
-    # Big expressive eyes with tiny highlights
-    _draw_ellipse(Vector2(x-8,y-107+bob),Vector2(4.0,6.0),Color("#fff9e9"))
-    _draw_ellipse(Vector2(x+8,y-107+bob),Vector2(4.0,6.0),Color("#fff9e9"))
-    draw_circle(Vector2(x-7,y-106+bob),2.5,outline)
-    draw_circle(Vector2(x+9,y-106+bob),2.5,outline)
-    draw_circle(Vector2(x-8,y-108+bob),0.9,Color.WHITE)
-    draw_circle(Vector2(x+8,y-108+bob),0.9,Color.WHITE)
-    # Brows, blush, nose and a changing little smile
-    draw_line(Vector2(x-13,y-117+bob),Vector2(x-4,y-119+bob),outline,2.0)
-    draw_line(Vector2(x+4,y-119+bob),Vector2(x+13,y-117+bob),outline,2.0)
-    _draw_ellipse(Vector2(x-15,y-97+bob),Vector2(5.0,2.8),Color("#df9180",0.62))
-    _draw_ellipse(Vector2(x+15,y-97+bob),Vector2(5.0,2.8),Color("#df9180",0.62))
-    draw_circle(Vector2(x,y-101+bob),1.8,Color("#d99c7a"))
-    if character_variant == 0:
-        draw_arc(Vector2(x,y-94+bob),5.5,0.1,PI-0.1,12,outline,1.8)
-    elif character_variant == 1:
-        draw_line(Vector2(x-4,y-94+bob),Vector2(x+4,y-94+bob),outline,1.8)
-        draw_arc(Vector2(x,y-92+bob),5.0,0.1,PI-0.1,12,outline,1.8)
-    elif character_variant == 2:
-        draw_circle(Vector2(x-17,y-90+bob),1.5,outline)
-        draw_circle(Vector2(x-12,y-88+bob),1.5,outline)
-        draw_circle(Vector2(x+12,y-88+bob),1.5,outline)
-        draw_circle(Vector2(x+17,y-90+bob),1.5,outline)
-        draw_arc(Vector2(x,y-94+bob),5.5,0.1,PI-0.1,12,outline,1.8)
-    elif character_variant == 3:
-        draw_colored_polygon(PackedVector2Array([Vector2(x-9,y-95+bob),Vector2(x-2,y-91+bob),Vector2(x-8,y-88+bob)]),outline)
-        draw_colored_polygon(PackedVector2Array([Vector2(x+9,y-95+bob),Vector2(x+2,y-91+bob),Vector2(x+8,y-88+bob)]),outline)
-    else:
-        _draw_ellipse(Vector2(x,y-92+bob),Vector2(5.0,4.0),Color("#8e5148"))
-    if observer:
-        draw_circle(Vector2(x,y-141+bob),5.0,Color("#f2d99d"))
-
-func _draw_ellipse(center: Vector2,radius: Vector2,colour: Color) -> void:
-    var points := PackedVector2Array()
-    for i in range(20):
-        var angle := TAU*float(i)/20.0
-        points.append(center+Vector2(cos(angle)*radius.x,sin(angle)*radius.y))
-    draw_colored_polygon(points,colour)
 
 func _draw_selection_prompt() -> void:
     var selected: Dictionary = _state.get("selected",{})
@@ -439,9 +364,6 @@ func _draw_selection_prompt() -> void:
         Vector2(x-75,y-30)
     ]),Color("#6e5743"),2.0)
     draw_string(ThemeDB.fallback_font,Vector2(x-65,y-7),prompt,HORIZONTAL_ALIGNMENT_CENTER,130,12,INK)
-
-func _draw_observer() -> void:
-    _draw_character(float(_state.get("observer_x",500.0)),585.0,Color("#d1b17d"),true)
 
 func _draw_foreground(width: float) -> void:
     # Foreground grasses and flowers create a layered illustrated stage.

@@ -50,3 +50,17 @@ The first renderer uses original procedural illustration as a stand-in for final
 8. Add Godot headless import/scene tests and run the Python adapter plus existing backend regression suites on a local checkout.
 
 No simulation engine rules or simulation data manifests are modified by this implementation.
+
+## Modular randomized character presentation
+
+The original fixed-shape NPC drawing routine has been replaced by an assembled character rig. It is deliberately a presentation system, not a second source of simulation identity or attributes.
+
+- `frontend/scripts/characters/character_visual.gd` assembles one visual actor from independent child parts.
+- `frontend/scripts/characters/character_part.gd` implements the replaceable shadow, legs, body, head, hair, face and accessory layers.
+- Each actor is keyed by the authoritative NPC ID. Its generated appearance is deterministic for that ID, so a character does not change appearance on every snapshot or redraw.
+- Appearance can be supplied as an optional `appearance` dictionary on an NPC DTO. Recognized visual keys override generated defaults; the current summary DTO does not yet expose this field, so stable ID-based variation is used without changing backend simulation data.
+- Components can be swapped, hidden, extended or replaced independently. New hairstyles, body silhouettes, clothing layers, age cues, professions and animation sets should be added as data/components rather than new one-off NPC drawing functions.
+- The observer uses the same rig and component pipeline.
+- The rig currently provides lightweight idle/walk motion and a stylized base art direction. It is a modular foundation, not a final character asset library.
+
+No fixed character cast, role-to-appearance mapping, or random appearance reroll per frame is introduced. Appearance randomness is seeded from entity identity and does not alter the simulation.
