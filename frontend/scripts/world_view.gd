@@ -52,6 +52,8 @@ func set_presentation_state(state: Dictionary) -> void:
         _camera_snap_pending = true
         _camera_lead = 0.0
     _last_room_id = incoming_room_id
+    if not _camera_initialized:
+        _last_observer_x = float(state.get("observer_x",500.0))
     _state = state
     _sync_character_nodes()
     _sync_building_nodes()
