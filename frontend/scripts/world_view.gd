@@ -47,7 +47,8 @@ func _ready() -> void:
     add_child(_transition_layer)
     _transition_cover = ColorRect.new()
     _transition_cover.color = Color(0.0,0.0,0.0,0.0)
-    _transition_cover.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    _transition_cover.visible = false
+    _transition_cover.mouse_filter = Control.MOUSE_FILTER_STOP
     _transition_cover.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     _transition_layer.add_child(_transition_cover)
     _lighting = Node2D.new()
