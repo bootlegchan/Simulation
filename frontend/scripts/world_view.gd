@@ -37,7 +37,6 @@ func _ready() -> void:
     _lighting.set_script(LIGHTING_SCRIPT)
     add_child(_lighting)
     _observer_visual = Node2D.new()
-    _observer_visual.z_index = 5
     _observer_visual.set_script(CHARACTER_VISUAL_SCRIPT)
     add_child(_observer_visual)
     _observer_visual.call("configure", {"id":"observer","name":"Observer"}, true)
