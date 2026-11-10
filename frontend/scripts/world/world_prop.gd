@@ -2,13 +2,27 @@ extends Node2D
 ## Independent scenery prop. Prop placement is manifest data, not baked scenery.
 
 var definition: Dictionary = {}
+var _wind_phase := 0.0
+var _base_rotation := 0.0
 
 func configure(data: Dictionary) -> void:
     if definition == data:
         return
     definition = data.duplicate(true)
     position = Vector2(float(definition.get("x",0.0)),float(definition.get("y",0.0)))
+    _base_rotation = float(definition.get("rotation",0.0))
+    _wind_phase = float(abs(definition.get("id","").hash()) % 1000) * 0.01
+    set_process(kind_is_animated())
+    rotation = _base_rotation
     queue_redraw()
+
+func kind_is_animated() -> bool:
+    return str(definition.get("kind","tree")) in ["tree","bush"]
+
+func _process(delta: float) -> void:
+    _wind_phase += delta * 0.7
+    var strength := 0.012 if str(definition.get("kind","")) == "tree" else 0.006
+    rotation = _base_rotation + sin(_wind_phase) * strength
 
 func _draw() -> void:
     var kind := str(definition.get("kind","tree"))

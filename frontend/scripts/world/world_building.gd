@@ -63,6 +63,31 @@ func _draw() -> void:
     draw_rect(Rect2(door_x,h-118,70,118),Color("#614b3b"))
     draw_rect(Rect2(door_x+7,h-111,56,111),Color("#927253"))
     draw_circle(Vector2(door_x+50,h-58),4.0,Color("#d7b46f"))
+    # Distinctive architectural signatures keep each building recognisable.
+    if style == "shop":
+        draw_rect(Rect2(-5,82,w+10,18),Color("#ead9b9"))
+        for awning_x in range(12,int(w)-12,42):
+            var stripe := int(awning_x / 42) % 2 == 0
+            draw_colored_polygon(PackedVector2Array([
+                Vector2(float(awning_x),100),Vector2(float(awning_x+38),100),
+                Vector2(float(awning_x+32),130),Vector2(float(awning_x+5),130)
+            ]),Color("#b96f55") if stripe else Color("#e8d8b8"))
+    elif style == "bakery":
+        draw_rect(Rect2(w-72,-h*0.58,34,86),Color("#8a6a52"))
+        draw_rect(Rect2(w-78,-h*0.58-8,46,10),Color("#6c5545"))
+        draw_rect(Rect2(w*0.5-52,h-154,104,22),Color("#a65f47"))
+        draw_string(ThemeDB.fallback_font,Vector2(w*0.5-45,h-137),"BAKERY",HORIZONTAL_ALIGNMENT_CENTER,90,12,Color("#f6e8cf"))
+    elif style == "civic":
+        for column_x in [48.0,w-62.0]:
+            draw_rect(Rect2(column_x,h-190,14,190),Color("#eee0c3"))
+            draw_rect(Rect2(column_x-6,h-190,26,10),Color("#a18a6c"))
+            draw_rect(Rect2(column_x-6,h-8,26,10),Color("#a18a6c"))
+        draw_rect(Rect2(w*0.5-52,18,104,42),Color("#eee0c3"))
+        draw_circle(Vector2(w*0.5,39),15.0,Color("#b58a58"),false,2.0)
+    elif style == "tavern":
+        draw_rect(Rect2(w*0.5-64,74,128,46),Color("#5a4334"))
+        draw_rect(Rect2(w*0.5-58,80,116,34),Color("#d6bd91"))
+        draw_string(ThemeDB.fallback_font,Vector2(w*0.5-52,102),"THE TAVERN",HORIZONTAL_ALIGNMENT_CENTER,104,12,Color("#514235"))
     # Roof eaves and corner timber add depth without baking the building into scenery.
     draw_rect(Rect2(-8,8,w+16,9),roof.darkened(0.12))
     draw_rect(Rect2(0,0,10,h),roof.darkened(0.12))

@@ -63,6 +63,7 @@ func _process(delta: float) -> void:
             _observer_x = _target_x
             if not _pending_room_id.is_empty():
                 _enter_room(_pending_room_id)
+    world_view.call("set_observer_motion",absf(_target_x-_observer_x)>1.0)
     world_view.set_presentation_state(_build_view_state())
 
 func _load_manifest() -> void:

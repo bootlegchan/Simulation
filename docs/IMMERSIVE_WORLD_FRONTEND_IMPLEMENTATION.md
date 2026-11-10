@@ -99,6 +99,16 @@ The world camera is configured for an elevated three-quarter adventure presentat
 This is a horizontal follow foundation. Vertical tracking, camera rails, room-specific cinematic pans and zoom transitions can be layered in later without coupling camera behaviour to simulation logic.
 
 
+## Interactive world feedback and character presentation
+
+The interaction layer now provides a lightweight hover/selection affordance: a ground-contact ring and restrained name plate follow the current point of interest. It reuses existing target-picking and selection data, so no new backend commands or simulation state are introduced.
+
+NPC presentation slots are stable between redraws instead of drifting with a decorative sine wave. NPC rigs default to an idle gait; the observer's walk animation is explicitly driven by actual player movement. This avoids showing every citizen as if they were constantly walking. When authoritative NPC navigation/activity fields become available, the same motion hook can be connected to them.
+
+Building silhouettes retain their shared procedural base but now have distinct visual signatures for civic, shop, bakery and tavern styles. Scenery trees and bushes receive subtle wind motion through their independent Node2D transforms.
+
+These are presentation-only improvements. Python remains authoritative for simulation state and the frontend does not fabricate NPC activity or player actions.
+
 ## Cinematic room transitions and camera focus
 
 Room travel now uses a short, full-screen dark fade so the scene and camera can change without exposing a hard cut.

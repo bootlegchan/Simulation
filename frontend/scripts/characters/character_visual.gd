@@ -9,6 +9,7 @@ var _appearance: Dictionary = {}
 var _parts: Dictionary = {}
 var _observer := false
 var _phase := 0.0
+var _is_moving := false
 
 func configure(entity: Dictionary, is_observer: bool = false) -> void:
     _observer = is_observer
@@ -67,10 +68,13 @@ func _apply_appearance() -> void:
     for part in _parts.values():
         part.call("set_appearance",_appearance)
 
+func set_motion(moving: bool) -> void:
+    _is_moving = moving
+
 func _process(delta: float) -> void:
-    _phase += delta * 7.0
-    var bob := sin(_phase) * 1.2
-    var stride := sin(_phase * 0.72) * 3.0
+    _phase += delta * (7.0 if _is_moving else 1.8)
+    var bob := sin(_phase) * (1.2 if _is_moving else 0.45)
+    var stride := sin(_phase * 0.72) * 3.0 if _is_moving else 0.0
     if _parts.has("body"):
         _parts["body"].position.y = -39.0 + bob
     if _parts.has("head"):

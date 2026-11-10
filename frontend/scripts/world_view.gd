@@ -32,6 +32,8 @@ var _transition_layer: CanvasLayer
 var _transition_cover: ColorRect
 var _transition_tween: Tween
 var _camera_zoom_target := 1.0
+var _hovered: Dictionary = {}
+var _hover_signature := ""
 
 func _ready() -> void:
     # Sort independent world nodes by their ground contact point so trees,
@@ -87,10 +89,22 @@ func _process(delta: float) -> void:
         _update_camera_follow(observer_x,delta)
     if _observer_visual:
         _observer_visual.position = Vector2(observer_x,585.0)
+    var mouse_target := pick_target(get_global_mouse_position())
+    var hover_signature := ""
+    if not mouse_target.is_empty():
+        hover_signature = "%s:%s" % [str(mouse_target.get("kind","")),str(mouse_target.get("id",""))]
+    if hover_signature != _hover_signature:
+        _hover_signature = hover_signature
+        _hovered = mouse_target
+        queue_redraw()
     if _camera:
         var zoom_weight := 1.0-exp(-3.0*delta)
         _camera.zoom = _camera.zoom.lerp(Vector2.ONE * _camera_zoom_target,zoom_weight)
     _last_observer_x = observer_x
+
+func set_observer_motion(moving: bool) -> void:
+    if _observer_visual:
+        _observer_visual.call("set_motion",moving)
 
 func begin_room_transition() -> void:
     if is_instance_valid(_transition_tween) and _transition_tween.is_running():
@@ -192,6 +206,7 @@ func _draw() -> void:
     _draw_portals(room_manifest)
     _draw_npcs()
     _draw_selection_prompt()
+    _draw_hover_feedback()
     _draw_environment()
     _draw_foreground(width)
     _draw_inspection()
@@ -407,15 +422,39 @@ func _draw_npcs() -> void:
         var npc_id := str(npc.get("id",""))
         if not _character_nodes.has(npc_id):
             continue
-        var phase := float(Time.get_ticks_msec()) / 1000.0
-        var x := 360.0 + float(visible_index) * 72.0 + sin(phase * 0.65 + float(visible_index) * 1.7) * 7.0
-        var y := 550.0 + float((visible_index % 3) * 4)
+        # Stable slots prevent NPCs from drifting decoratively between snapshots.
+        # Actual movement will be driven by authoritative activity/navigation data.
+        var slot := visible_index % 32
+        var row := int(visible_index / 32)
+        var x := 360.0 + float(slot) * 82.0
+        var y := 540.0 + float(row) * 58.0 + float((slot % 3) * 12)
         var actor: Node2D = _character_nodes[npc_id]
         actor.position = Vector2(x,y)
+        actor.call("set_motion",false)
         if visible_index < 8 or absf(x-float(_state.get("observer_x",500.0))) < 240.0:
             draw_string(ThemeDB.fallback_font,Vector2(x-48,y-145),str(npc.get("name","Citizen")),HORIZONTAL_ALIGNMENT_CENTER,96,12,INK)
         _npc_items.append({"kind":"npc","id":npc_id,"label":str(npc.get("name","Citizen")),"x":x,"y":y-8.0})
         visible_index += 1
+
+func _draw_hover_feedback() -> void:
+    var target: Dictionary = _hovered
+    if target.is_empty():
+        target = _state.get("selected",{})
+    if target.is_empty():
+        return
+    var x := float(target.get("x",_state.get("observer_x",500.0)))
+    var y := float(target.get("y",550.0))
+    if str(target.get("kind","")) == "portal":
+        y = 585.0
+    draw_arc(Vector2(x,y+8.0),30.0,0.0,TAU,32,Color("#f4ead5",0.95),2.0,true)
+    draw_arc(Vector2(x,y+8.0),24.0,0.0,TAU,32,Color("#35483f",0.72),1.2,true)
+    var label := str(target.get("label",""))
+    if not label.is_empty():
+        var label_width := clampf(float(label.length())*8.0+28.0,100.0,240.0)
+        var label_rect := Rect2(x-label_width*0.5,y-48.0,label_width,27.0)
+        draw_rect(label_rect,Color("#26352f",0.92))
+        draw_rect(label_rect.grow(-1.5),Color("#f1e8d5",0.98),false,1.0)
+        draw_string(ThemeDB.fallback_font,Vector2(label_rect.position.x+10.0,label_rect.position.y+18.0),label,HORIZONTAL_ALIGNMENT_CENTER,label_width-20.0,12,Color("#26352f"))
 
 func _draw_selection_prompt() -> void:
     var selected: Dictionary = _state.get("selected",{})
