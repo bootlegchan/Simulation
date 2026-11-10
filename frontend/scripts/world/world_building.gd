@@ -99,7 +99,7 @@ func _draw() -> void:
         draw_rect(Rect2(w*0.5-64,74,128,46),Color("#5a4334"))
         draw_rect(Rect2(w*0.5-58,80,116,34),Color("#d6bd91"))
         draw_string(ThemeDB.fallback_font,Vector2(w*0.5-52,102),"THE TAVERN",HORIZONTAL_ALIGNMENT_CENTER,104,12,Color("#514235"))
-    _draw_facade_details(w,h,style,wall,roof,ink)
+    _draw_facade_details(w,h,roof,ink)
     # Subtle roof seams and facade courses add readable material scale.
     for seam in range(0,5):
         var seam_y := -h*0.40+float(seam)*h*0.075
@@ -115,7 +115,7 @@ func _draw() -> void:
     draw_set_transform(Vector2.ZERO)
 
 
-func _draw_facade_details(w: float,h: float,style: String,wall: Color,roof: Color,ink: Color) -> void:
+func _draw_facade_details(w: float,h: float,roof: Color,ink: Color) -> void:
     # Optional facade treatments are manifest-driven so buildings can share
     # the same renderer without sharing the same architectural identity.
     var facade: Dictionary = definition.get("facade",{})
