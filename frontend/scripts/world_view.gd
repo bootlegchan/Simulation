@@ -12,6 +12,7 @@ const CHARACTER_VISUAL_SCRIPT = preload("res://scripts/characters/character_visu
 const BUILDING_SCRIPT = preload("res://scripts/world/world_building.gd")
 const LIGHTING_SCRIPT = preload("res://scripts/world/world_lighting.gd")
 const PROP_SCRIPT = preload("res://scripts/world/world_prop.gd")
+const TERRAIN_SCRIPT = preload("res://scripts/world/world_terrain.gd")
 const FOREGROUND_SCRIPT = preload("res://scripts/world/world_foreground.gd")
 const HUD_SCRIPT = preload("res://scripts/ui/world_hud.gd")
 
@@ -37,6 +38,7 @@ var _camera_zoom_target := 1.0
 var _hovered: Dictionary = {}
 var _hover_signature := ""
 var _foreground: Node2D
+var _terrain: Node2D
 var _hud: CanvasLayer
 
 func _ready() -> void:
@@ -57,6 +59,9 @@ func _ready() -> void:
     _transition_cover.mouse_filter = Control.MOUSE_FILTER_STOP
     _transition_cover.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     _transition_layer.add_child(_transition_cover)
+    _terrain = Node2D.new()
+    _terrain.set_script(TERRAIN_SCRIPT)
+    add_child(_terrain)
     _lighting = Node2D.new()
     _lighting.set_script(LIGHTING_SCRIPT)
     add_child(_lighting)
@@ -84,6 +89,8 @@ func set_presentation_state(state: Dictionary) -> void:
         _hud.call("configure",_state)
     if _foreground:
         _foreground.call("configure",float(_state.get("world_width",3600.0)))
+    if _terrain:
+        _terrain.call("configure",_state.get("room_manifest",{}),float(_state.get("world_width",3600.0)))
     _sync_character_nodes()
     _sync_building_nodes()
     _sync_prop_nodes()
@@ -242,13 +249,6 @@ func _draw_outdoor(width: float) -> void:
         Vector2(width+200,600),Vector2(-200,600)
     ]),Color("#82927d"))
     draw_set_transform(Vector2.ZERO)
-
-    # Mid-ground terrain is a simple base surface. It carries no building art.
-    draw_rect(Rect2(0,560,width,160),Color("#a99b7b"))
-    draw_rect(Rect2(0,590,width,130),Color("#8e846e"))
-    draw_line(Vector2(0,590),Vector2(width,590),Color("#d3c5a5"),4.0)
-    for stone_x in range(0,int(width),150):
-        draw_line(Vector2(float(stone_x),620),Vector2(float(stone_x+95),620),Color("#a99d86"),2.0)
 
     draw_string(ThemeDB.fallback_font,Vector2(90,95),"OAKWOOD",HORIZONTAL_ALIGNMENT_LEFT,-1,18,Color("#f4eedf"))
 
