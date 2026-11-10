@@ -23,6 +23,11 @@ var _prop_nodes: Dictionary = {}
 var _lighting: Node2D
 var _character_nodes: Dictionary = {}
 var _observer_visual: Node2D
+var _last_observer_x := 500.0
+var _camera_lead := 0.0
+var _camera_initialized := false
+var _camera_snap_pending := false
+var _last_room_id := ""
 
 func _ready() -> void:
     # Sort independent world nodes by their ground contact point so trees,
@@ -42,6 +47,11 @@ func _ready() -> void:
     _observer_visual.call("configure", {"id":"observer","name":"Observer"}, true)
 
 func set_presentation_state(state: Dictionary) -> void:
+    var incoming_room_id := str(state.get("room_id",""))
+    if not _last_room_id.is_empty() and incoming_room_id != _last_room_id:
+        _camera_snap_pending = true
+        _camera_lead = 0.0
+    _last_room_id = incoming_room_id
     _state = state
     _sync_character_nodes()
     _sync_building_nodes()
@@ -56,11 +66,47 @@ func set_presentation_state(state: Dictionary) -> void:
         _camera.limit_bottom = int(WORLD_HEIGHT)
     queue_redraw()
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+    var observer_x := float(_state.get("observer_x",500.0))
     if _camera:
-        _camera.position.x = lerpf(_camera.position.x,float(_state.get("observer_x",500.0)),0.12)
+        _update_camera_follow(observer_x,delta)
     if _observer_visual:
-        _observer_visual.position = Vector2(float(_state.get("observer_x",500.0)),585.0)
+        _observer_visual.position = Vector2(observer_x,585.0)
+    _last_observer_x = observer_x
+
+func _update_camera_follow(observer_x: float, delta: float) -> void:
+    var room_manifest: Dictionary = _state.get("room_manifest",{})
+    var camera_config: Dictionary = room_manifest.get("camera",{})
+    var viewport_width := get_viewport_rect().size.x / maxf(_camera.zoom.x,0.001)
+    var anchor_ratio := clampf(float(camera_config.get("screen_anchor",0.42)),0.30,0.50)
+    var follow_speed := maxf(float(camera_config.get("follow_speed",3.8)),0.1)
+    var lead_distance := maxf(float(camera_config.get("look_ahead_distance",125.0)),0.0)
+    var lead_response := maxf(float(camera_config.get("look_ahead_response",2.8)),0.1)
+    var dead_zone_left := clampf(float(camera_config.get("dead_zone_left",0.34)),0.1,0.48)
+    var dead_zone_right := clampf(float(camera_config.get("dead_zone_right",0.59)),0.52,0.9)
+    var movement_speed := (observer_x-_last_observer_x) / maxf(delta,0.0001)
+    var movement_strength := clampf(absf(movement_speed)/260.0,0.0,1.0)
+    var desired_lead := signf(movement_speed)*lead_distance*movement_strength
+    var lead_weight := 1.0-exp(-lead_response*delta)
+    _camera_lead = lerpf(_camera_lead,desired_lead,lead_weight)
+
+    var screen_x := observer_x-_camera.position.x+viewport_width*0.5
+    var outside_dead_zone := screen_x < viewport_width*dead_zone_left or screen_x > viewport_width*dead_zone_right
+    var anchor_offset := viewport_width*(0.5-anchor_ratio)
+    var desired_x := observer_x+anchor_offset+_camera_lead
+    if not outside_dead_zone and absf(_camera_lead) < 8.0 and not _camera_snap_pending:
+        desired_x = _camera.position.x
+
+    var world_width := float(_state.get("world_width",3600.0))
+    var half_view := viewport_width*0.5
+    desired_x = clampf(desired_x,half_view,maxf(half_view,world_width-half_view))
+    if not _camera_initialized or _camera_snap_pending:
+        _camera.position.x = desired_x
+        _camera_initialized = true
+        _camera_snap_pending = false
+    else:
+        var follow_weight := 1.0-exp(-follow_speed*delta)
+        _camera.position.x = lerpf(_camera.position.x,desired_x,follow_weight)
 
 func _unhandled_input(event: InputEvent) -> void:
     if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:

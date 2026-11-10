@@ -82,3 +82,18 @@ The environment is moving away from a single pre-painted village background. The
 ### Height-aware 2D rendering direction
 
 A future height-map pass should use a per-object height texture or polygon-derived height profile, not a single global height map. The map should encode relative elevation for roofs, walls, eaves, props and character parts. A shader can derive a pseudo-normal from neighbouring height samples and use it with 2D light direction for directional shading, while LightOccluder2D handles cast shadows. Height and occlusion are separate concepts: the height map shades surfaces; occluders determine which light rays are blocked. Keep this optional per material so flat objects remain inexpensive.
+
+ 
+## Three-quarter camera and player-follow movement
+
+The world camera is configured for an elevated three-quarter adventure presentation rather than a fixed side-on or strict isometric view.
+
+- The observer is framed slightly left of centre to reveal more of the world ahead.
+- A soft horizontal dead zone allows small movements without constant camera correction.
+- Directional look-ahead eases toward the direction of travel, then recentres when the observer stops.
+- Exponential delta-time smoothing keeps camera movement consistent across frame rates.
+- Camera framing and follow response can be overridden per room through an optional camera object in the room presentation manifest: screen_anchor, follow_speed, look_ahead_distance, look_ahead_response, dead_zone_left and dead_zone_right.
+- Room changes snap to the new room's spawn framing rather than making the camera sweep across unrelated world coordinates.
+- Existing distant-landform parallax continues to move more slowly than the foreground as the camera travels.
+
+This is a horizontal follow foundation. Vertical tracking, camera rails, room-specific cinematic pans and zoom transitions can be layered in later without coupling camera behaviour to simulation logic.
