@@ -34,8 +34,8 @@ func _ready() -> void:
     # buildings and people can overlap naturally as the camera moves.
     y_sort_enabled = true
     _camera = Camera2D.new()
-    _camera.position_smoothing_enabled = true
-    _camera.position_smoothing_speed = 5.0
+    # Follow smoothing is handled by the custom dead-zone/look-ahead camera rig.
+    _camera.position_smoothing_enabled = false
     add_child(_camera)
     _camera.make_current()
     _lighting = Node2D.new()
