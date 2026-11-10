@@ -315,11 +315,13 @@ func _draw_character(x: float, y: float, clothes: Color, observer: bool) -> void
     var phase := float(Time.get_ticks_msec()) / 260.0 + x * 0.025
     var bob := sin(phase) * 2.2
     var stride := sin(phase * 0.72) * 4.5
-    var skin := Color("#f0c6a1")
+    var character_variant := int(absf(x)) % 5
+    var skin_palette := [Color("#f0c6a1"),Color("#e8b58f"),Color("#d99c78"),Color("#f2cda9"),Color("#c98768")]
+    var skin := skin_palette[character_variant]
     var outline := Color("#4b3c35")
     var hair := Color("#49372f")
     if not observer:
-        var hair_variant := int(absf(x)) % 4
+        var hair_variant := character_variant % 4
         if hair_variant == 1:
             hair = Color("#8a583b")
         elif hair_variant == 2:
@@ -393,10 +395,22 @@ func _draw_character(x: float, y: float, clothes: Color, observer: bool) -> void
     _draw_ellipse(Vector2(x-15,y-97+bob),Vector2(5.0,2.8),Color("#df9180",0.62))
     _draw_ellipse(Vector2(x+15,y-97+bob),Vector2(5.0,2.8),Color("#df9180",0.62))
     draw_circle(Vector2(x,y-101+bob),1.8,Color("#d99c7a"))
-    if int(absf(x)) % 5 == 0:
+    if character_variant == 0:
         draw_arc(Vector2(x,y-94+bob),5.5,0.1,PI-0.1,12,outline,1.8)
-    else:
+    elif character_variant == 1:
         draw_line(Vector2(x-4,y-94+bob),Vector2(x+4,y-94+bob),outline,1.8)
+        draw_arc(Vector2(x,y-92+bob),5.0,0.1,PI-0.1,12,outline,1.8)
+    elif character_variant == 2:
+        draw_circle(Vector2(x-17,y-90+bob),1.5,outline)
+        draw_circle(Vector2(x-12,y-88+bob),1.5,outline)
+        draw_circle(Vector2(x+12,y-88+bob),1.5,outline)
+        draw_circle(Vector2(x+17,y-90+bob),1.5,outline)
+        draw_arc(Vector2(x,y-94+bob),5.5,0.1,PI-0.1,12,outline,1.8)
+    elif character_variant == 3:
+        draw_colored_polygon(PackedVector2Array([Vector2(x-9,y-95+bob),Vector2(x-2,y-91+bob),Vector2(x-8,y-88+bob)]),outline)
+        draw_colored_polygon(PackedVector2Array([Vector2(x+9,y-95+bob),Vector2(x+2,y-91+bob),Vector2(x+8,y-88+bob)]),outline)
+    else:
+        _draw_ellipse(Vector2(x,y-92+bob),Vector2(5.0,4.0),Color("#8e5148"))
     if observer:
         draw_circle(Vector2(x,y-141+bob),5.0,Color("#f2d99d"))
 
