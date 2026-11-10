@@ -562,20 +562,43 @@ func _draw_connection_state() -> void:
         draw_string(ThemeDB.fallback_font,Vector2(camera_x-160,51),error if not error.is_empty() else "CONNECTING TO SIMULATION…",HORIZONTAL_ALIGNMENT_LEFT,320,13,PAPER)
 
 func _draw_simulation_hud() -> void:
-    var status: Dictionary = _state.get("status", {})
+    var status: Dictionary = _state.get("status",{})
     if status.is_empty():
         return
     var camera_x := _camera.position.x if _camera else 640.0
-    var lifecycle := str(status.get("lifecycle_state", "STARTING"))
-    var tick := int(status.get("tick", 0))
-    var day := int(status.get("day", 1))
-    var hour := int(status.get("hour", 0))
-    var population: Dictionary = _state.get("population", {})
-    var clock_text := "%02d:%02d" % [hour, int(tick % 60)]
-    draw_rect(Rect2(camera_x - 610, 24, 210, 54), Color("#f0e5ce", 0.92))
-    draw_rect(Rect2(camera_x - 610, 24, 210, 54), Color("#76634b"), false, 2.0)
-    draw_string(ThemeDB.fallback_font, Vector2(camera_x - 594, 46), "OAKWOOD  ·  DAY %d" % day, HORIZONTAL_ALIGNMENT_LEFT, 190, 12, INK)
-    draw_string(ThemeDB.fallback_font, Vector2(camera_x - 594, 65), "%s   /   TICK %d   /   %d CITIZENS" % [clock_text, tick, int(_state.get("population", {}).get("alive", 0))], HORIZONTAL_ALIGNMENT_LEFT, 190, 14, INK)
-    var state_colour := Color("#52785a") if lifecycle == "RUNNING" else Color("#a36d50")
-    draw_circle(Vector2(camera_x + 580, 48), 5, state_colour)
-    draw_string(ThemeDB.fallback_font, Vector2(camera_x + 594, 53), lifecycle, HORIZONTAL_ALIGNMENT_LEFT, 100, 12, INK)
+    var lifecycle := str(status.get("lifecycle_state","STARTING"))
+    var tick := int(status.get("tick",0))
+    var day := int(status.get("day",1))
+    var hour := int(status.get("hour",0))
+    var minute := tick % 60
+    var season := str(status.get("season","SPRING")).capitalize()
+    var temperature := float(status.get("ambient_temperature_celsius",18.0))
+    var people := int(_state.get("population",{}).get("alive",0))
+    var clock_text := "%02d:%02d" % [hour,minute]
+
+    # The time display is styled as a small village notice plaque, not a HUD bar.
+    draw_rect(Rect2(camera_x-616,22,264,76),Color("#584637",0.96))
+    draw_rect(Rect2(camera_x-610,27,252,66),Color("#e9d9b8"))
+    draw_rect(Rect2(camera_x-604,32,240,56),Color("#f6ecd5"),false,2.0)
+    draw_circle(Vector2(camera_x-582,60),21.0,Color("#a77a51"))
+    draw_circle(Vector2(camera_x-582,60),16.0,Color("#fff2d4"))
+    draw_line(Vector2(camera_x-582,60),Vector2(camera_x-582,49),INK,2.0)
+    draw_line(Vector2(camera_x-582,60),Vector2(camera_x-573,65),INK,2.0)
+    draw_circle(Vector2(camera_x-582,60),2.0,INK)
+    draw_string(ThemeDB.fallback_font,Vector2(camera_x-552,49),"OAKWOOD  ·  DAY %d" % day,HORIZONTAL_ALIGNMENT_LEFT,174,12,INK)
+    draw_string(ThemeDB.fallback_font,Vector2(camera_x-552,70),clock_text+"  ·  "+season,HORIZONTAL_ALIGNMENT_LEFT,174,17,INK)
+    draw_string(ThemeDB.fallback_font,Vector2(camera_x-552,85),"%d neighbours  ·  %.0f°C" % [people,temperature],HORIZONTAL_ALIGNMENT_LEFT,174,10,Color("#80664d"))
+
+    # A tiny hanging status tag gives the running state a physical, diegetic feel.
+    var tag_colour := Color("#6d8a68") if lifecycle == "RUNNING" else Color("#b66b48")
+    draw_colored_polygon(PackedVector2Array([
+        Vector2(camera_x+474,22),Vector2(camera_x+614,22),
+        Vector2(camera_x+604,88),Vector2(camera_x+484,88)
+    ]),Color("#604a39"))
+    draw_colored_polygon(PackedVector2Array([
+        Vector2(camera_x+480,27),Vector2(camera_x+608,27),
+        Vector2(camera_x+600,82),Vector2(camera_x+488,82)
+    ]),tag_colour)
+    draw_circle(Vector2(camera_x+544,39),3.0,Color("#f1dfbf"))
+    draw_string(ThemeDB.fallback_font,Vector2(camera_x+496,61),"VILLAGE",HORIZONTAL_ALIGNMENT_CENTER,96,11,Color("#fff4df"))
+    draw_string(ThemeDB.fallback_font,Vector2(camera_x+496,76),lifecycle,HORIZONTAL_ALIGNMENT_CENTER,96,10,Color("#fff4df"))
