@@ -8,6 +8,8 @@ var _phase := 0.0
 var _moving := false
 var _base_scale := 1.0
 var _facing := 1.0
+var _motion_direction := Vector2.ZERO
+var _view_direction := "front"
 var _blink_clock := 0.0
 var _blink_left := 0.0
 var _next_blink := 3.0
@@ -55,19 +57,31 @@ func _add_part(kind: String,offset: Vector2) -> void:
 
 func set_motion(moving: bool,direction: Vector2 = Vector2.ZERO) -> void:
     _moving = moving
-    if direction.length_squared()>0.0025 and absf(direction.x)>absf(direction.y):
-        _facing = signf(direction.x)
-        scale = Vector2(_base_scale*_facing,_base_scale)
+    if direction.length_squared()>0.0025:
+        _motion_direction = direction.normalized()
+        if absf(direction.x)>absf(direction.y)*0.72:
+            _view_direction = "side"
+            _facing = signf(direction.x)
+            scale = Vector2(_base_scale*_facing,_base_scale)
+        elif direction.y>0.0:
+            _view_direction = "front"
+            scale = Vector2(_base_scale,_base_scale)
+        else:
+            _view_direction = "back"
+            scale = Vector2(_base_scale,_base_scale)
+        for key in _parts:
+            _parts[key].call("set_view_direction",_view_direction)
 
 func _process(delta: float) -> void:
     _phase += delta*(8.5 if _moving else 1.65)
     var bob := sin(_phase*2.0)*(1.7 if _moving else 0.65)
-    var stride := sin(_phase)*5.2 if _moving else 0.0
+    var stride := sin(_phase)*5.2*absf(_motion_direction.x) if _moving else 0.0
+    var depth_stride := sin(_phase)*3.8*absf(_motion_direction.y) if _moving else 0.0
     _parts["body"].position.y = -39.0+bob
     _parts["body"].rotation = sin(_phase*0.5)*0.025 if _moving else sin(_phase*0.45)*0.012
     _parts["arms"].position.y = -39.0+bob
-    _parts["arms"].call("set_stride",stride)
-    _parts["legs"].call("set_stride",stride)
+    _parts["arms"].call("set_stride",stride,depth_stride)
+    _parts["legs"].call("set_stride",stride,depth_stride)
     _parts["head"].position.y = -83.0+bob*0.72
     _parts["head"].rotation = sin(_phase*0.65)*0.018
     _parts["hair"].position.y = -103.0+bob*0.72

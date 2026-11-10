@@ -4,15 +4,23 @@ extends Node2D
 var component_type := ""
 var appearance: Dictionary = {}
 var _stride := 0.0
+var _depth_stride := 0.0
 var _blink := false
+var _view_direction := "front"
 
 func configure(kind: String,data: Dictionary) -> void:
     component_type = kind
     appearance = data.duplicate(true)
     queue_redraw()
 
-func set_stride(value: float) -> void:
+func set_stride(value: float,depth_value: float = 0.0) -> void:
     _stride = value
+    _depth_stride = depth_value
+    queue_redraw()
+
+func set_view_direction(value: String) -> void:
+    if _view_direction == value: return
+    _view_direction = value
     queue_redraw()
 
 func set_blink(value: bool) -> void:
@@ -40,7 +48,7 @@ func _draw_legs(ink: Color) -> void:
     for side in [-1.0,1.0]:
         var swing := _stride*side
         var knee := Vector2(side*8+swing,-1)
-        var foot := Vector2(side*12+swing,7)
+        var foot := Vector2(side*12+swing,7+_depth_stride*side)
         draw_line(Vector2(side*7,-5),knee,ink,10.0)
         draw_line(knee,foot,ink,7.0)
         draw_ellipse(foot+Vector2(-1,1),Vector2(10,5),Color("#59483c"))
@@ -54,14 +62,18 @@ func _draw_body(ink: Color,clothes: Color) -> void:
     draw_colored_polygon(PackedVector2Array([Vector2(-hw+3,-h+4),Vector2(-hw-3,-h+11),Vector2(-hw+4,-11),Vector2(hw-4,-11),Vector2(hw+3,-h+11),Vector2(hw-3,-h+4)]),clothes)
     draw_colored_polygon(PackedVector2Array([Vector2(-7,-h+3),Vector2(0,-h+12),Vector2(7,-h+3)]),Color("#f0e2c8"))
     draw_line(Vector2(0,-h+12),Vector2(0,-12),clothes.darkened(0.22),1.4)
+    # Tailored seams and a small folded collar add readable costume detail at game scale.
+    draw_line(Vector2(-hw+5,-h+15),Vector2(-hw+7,-18),clothes.lightened(0.16),1.1)
+    draw_line(Vector2(hw-5,-h+15),Vector2(hw-7,-18),clothes.darkened(0.16),1.1)
+    draw_colored_polygon(PackedVector2Array([Vector2(-7,-h+3),Vector2(0,-h+12),Vector2(7,-h+3),Vector2(3,-h-1),Vector2(-3,-h-1)]),Color("#f0e2c8"))
     for i in range(3): draw_circle(Vector2(0,-h+19+float(i)*8),1.25,Color("#ead9b8"))
 
 func _draw_arms(ink: Color,skin: Color,clothes: Color) -> void:
     var swing := _stride*0.72
     for side in [-1.0,1.0]:
         var shoulder := Vector2(side*11,-29)
-        var elbow := Vector2(side*16+swing*side,-16)
-        var hand := Vector2(side*15+swing*side*1.35,-5)
+        var elbow := Vector2(side*16+swing*side,-16+_depth_stride*side*0.35)
+        var hand := Vector2(side*15+swing*side*1.35,-5+_depth_stride*side*0.7)
         draw_line(shoulder,elbow,ink,9.0)
         draw_line(shoulder+Vector2(0,1),elbow+Vector2(0,1),clothes,6.5)
         draw_line(elbow,hand,ink,7.0)
@@ -97,9 +109,19 @@ func _draw_hair(ink: Color,hair: Color) -> void:
         for i in range(cap.size()): cap[i]+=Vector2(1.5,1.5)
         draw_colored_polygon(cap,hair)
     draw_line(Vector2(-11,-19),Vector2(-3,-22),hair.lightened(0.22),1.4)
+    draw_arc(Vector2(0,-7),18.0,PI+0.18,TAU-0.18,14,ink,1.2)
 
 func _draw_face(ink: Color,skin: Color,eyes: Color) -> void:
+    if _view_direction == "back":
+        return
     var style := int(appearance.get("face_style",0))
+    if _view_direction == "side":
+        draw_ellipse(Vector2(7,-5),Vector2(2.7,4.2),Color("#fff8e9"))
+        draw_circle(Vector2(8,-4),1.8,eyes)
+        draw_line(Vector2(5,-13),Vector2(11,-12),ink,1.7)
+        draw_line(Vector2(13,1),Vector2(17,4),skin.darkened(0.12),1.4)
+        draw_arc(Vector2(7,10),4.0,0.1,PI-0.2,8,ink,1.4)
+        return
     draw_ellipse(Vector2(-14,9),Vector2(4,2.5),Color("#df9180",0.48))
     if _blink:
         draw_line(Vector2(-11,-5),Vector2(-5,-5),ink,2.0)

@@ -165,3 +165,12 @@ Room objects now have independent, Y-sorted visual nodes through `world_interact
 The controller still decides whether a non-presentation-only object exists from the Python snapshot. Presentation-only objects remain explicitly marked in the manifest. Click targets now accept a manifest-defined `interaction_radius` rather than sharing one fixed radius. Decorative fire motion is visual-only.
 
 Practical lights support optional manifest-driven `flicker` and `flicker_frequency` values. Their brightness modulation is a small deterministic combination of sine waves; it does not change the simulation clock or state. Existing room transitions, navigation, HUD and camera behaviour are unchanged.
+
+
+## Eight-direction character staging and animation polish
+
+The modular actor rig now changes its rendered orientation for front-facing, rear-facing and side-travel movement. Side travel retains horizontal mirroring; depth travel no longer incorrectly leaves the character in a side-on pose. Face details are hidden from the rear and simplified to a single visible eye in profile, while the rear silhouette is carried by the hair layer.
+
+Walking now distinguishes horizontal stride from depth stride. Feet and arms receive a depth offset when the observer moves toward or away from the camera, reducing the impression of skating sideways during depth navigation. Clothing silhouettes also have finer seam and collar accents that remain legible at the current illustrated scale.
+
+Only the observer receives movement direction from the existing waypoint path. NPCs remain idle at stable presentation slots until the authoritative API provides activity/navigation data. No NPC movement or behaviour is fabricated.
