@@ -202,3 +202,10 @@ A follow-up rig refinement aligns headwear with the head and hair pivot, so caps
 The foreground foliage pass now redraws at frame cadence, so its wind motion is actually animated rather than sampled once when the room is configured. Its density, blade height, sway, deterministic offset and colours can be set by an optional room-level foreground manifest object. Foreground rendering is disabled for interiors, preventing outdoor grass and path-edge stones from appearing across indoor floors. The world view passes the active room manifest into the reusable foreground component.
 
 This remains a low-cost presentation layer and does not change navigation, simulation state or object interactions.
+
+
+## Independent animated atmosphere layer
+
+Sky atmosphere, clouds, distant birds, night glows and precipitation now render through a dedicated WorldAtmosphere node rather than the main world-view draw pass. The layer refreshes independently at frame cadence, so weather and sky motion no longer depend on hover changes or snapshot redraw timing. It is disabled for interior rooms, keeping outdoor clouds, stars, rain and fog off indoor scenes. A raised world z-index keeps weather effects above scenery while the screen-space HUD remains in its own CanvasLayer.
+
+The world-view renderer now focuses on scene composition, targets and selection feedback; the atmosphere component owns only camera-world environmental overlays. Python remains authoritative for climate and time values.
