@@ -147,3 +147,12 @@ The first art-direction pass adds a dedicated, data-driven outdoor terrain rende
 - The terrain renderer is a separate world node beneath Y-sorted actors and scenery; it is not a painted background image.
 
 This is an authored proof area, not yet a complete terrain editor or final hand-painted asset library. Building facade depth, detailed character animation and production-quality illustrated sprites remain later passes.
+
+
+## Character animation and independent interior dressing pass
+
+The character rig now uses separate arm, leg, body, head, hair, face and accessory layers. Walk cycles have an alternating stride and arm swing, the observer turns to face horizontal travel, and idle characters breathe subtly and blink. The existing waypoint follower passes its movement direction to the observer rig; this does not create or infer NPC simulation movement.
+
+Interior buildings now render as architectural room shells only. Furniture is defined independently in each room's `furniture` manifest and rendered by the reusable `world_furniture.gd` component. Supported dressing types include desks, tables, counters, chairs, shelving, bread racks, ovens/hearths, barrels, baskets, plants and rugs. Each item is positioned at its ground-contact point and participates in world Y-sorting, allowing actors to pass in front of or behind furniture.
+
+The practical-light cache signature now includes room light definitions, so manifest edits trigger a rebuild even when room title and time remain unchanged. New character and furniture details are presentation-only; Python remains authoritative. JSON and source integration were checked; no Godot runtime test was run.

@@ -67,9 +67,12 @@ func _exit_tree() -> void:
 
 func _process(delta: float) -> void:
     var moving := _path_index < _path.size()
+    var motion_direction := Vector2.ZERO
     if moving:
         var destination := _path[_path_index]
         var offset := destination-_observer_position
+        if offset.length_squared()>0.0025:
+            motion_direction = offset.normalized()
         var step := WALK_SPEED*delta
         if offset.length() <= step:
             _observer_position = destination
@@ -80,7 +83,7 @@ func _process(delta: float) -> void:
         _target_x = _target_position.x
         if _path_index >= _path.size() and not _pending_room_id.is_empty():
             _enter_room(_pending_room_id)
-    world_view.call("set_observer_motion",moving)
+    world_view.call("set_observer_motion",moving,motion_direction)
     world_view.set_presentation_state(_build_view_state())
 
 func _load_manifest() -> void:

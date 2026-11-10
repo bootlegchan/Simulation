@@ -10,6 +10,7 @@ const INK := Color("#283a38")
 const RUST := Color("#b66b48")
 const CHARACTER_VISUAL_SCRIPT = preload("res://scripts/characters/character_visual.gd")
 const BUILDING_SCRIPT = preload("res://scripts/world/world_building.gd")
+const FURNITURE_SCRIPT = preload("res://scripts/world/world_furniture.gd")
 const LIGHTING_SCRIPT = preload("res://scripts/world/world_lighting.gd")
 const PROP_SCRIPT = preload("res://scripts/world/world_prop.gd")
 const TERRAIN_SCRIPT = preload("res://scripts/world/world_terrain.gd")
@@ -22,6 +23,7 @@ var _npc_items: Array[Dictionary] = []
 var _object_items: Array[Dictionary] = []
 var _portal_items: Array[Dictionary] = []
 var _building_nodes: Dictionary = {}
+var _furniture_nodes: Dictionary = {}
 var _prop_nodes: Dictionary = {}
 var _lighting: Node2D
 var _character_nodes: Dictionary = {}
@@ -93,6 +95,7 @@ func set_presentation_state(state: Dictionary) -> void:
         _terrain.call("configure",_state.get("room_manifest",{}),float(_state.get("world_width",3600.0)))
     _sync_character_nodes()
     _sync_building_nodes()
+    _sync_furniture_nodes()
     _sync_prop_nodes()
     if _lighting:
         _lighting.call("configure",_state)
@@ -123,9 +126,9 @@ func _process(delta: float) -> void:
         _camera.zoom = _camera.zoom.lerp(Vector2.ONE * _camera_zoom_target,zoom_weight)
     _last_observer_x = observer_x
 
-func set_observer_motion(moving: bool) -> void:
+func set_observer_motion(moving: bool, direction: Vector2 = Vector2.ZERO) -> void:
     if _observer_visual:
-        _observer_visual.call("set_motion",moving)
+        _observer_visual.call("set_motion",moving,direction)
 
 func begin_room_transition() -> void:
     if is_instance_valid(_transition_tween) and _transition_tween.is_running():
@@ -219,9 +222,7 @@ func _draw() -> void:
     _npc_items.clear()
     _object_items.clear()
     _portal_items.clear()
-    if scene_kind == "interior":
-        _draw_interior(width,str(room_manifest.get("title","Interior")))
-    else:
+    if scene_kind != "interior":
         _draw_outdoor(width)
     _draw_objects(room_manifest)
     _draw_portals(room_manifest)
@@ -320,6 +321,29 @@ func _sync_building_nodes() -> void:
             var old_building: Node2D = _building_nodes[existing_id]
             old_building.queue_free()
             _building_nodes.erase(existing_id)
+
+func _sync_furniture_nodes() -> void:
+    var room_manifest: Dictionary = _state.get("room_manifest",{})
+    var definitions: Array = room_manifest.get("furniture",[])
+    var visible_ids: Dictionary = {}
+    for definition in definitions:
+        var furniture_id := str(definition.get("id",""))
+        if furniture_id.is_empty(): continue
+        visible_ids[furniture_id] = true
+        var item: Node2D
+        if _furniture_nodes.has(furniture_id):
+            item = _furniture_nodes[furniture_id]
+        else:
+            item = Node2D.new()
+            item.set_script(FURNITURE_SCRIPT)
+            add_child(item)
+            _furniture_nodes[furniture_id] = item
+        item.call("configure",definition)
+    for existing_id in _furniture_nodes.keys():
+        if not visible_ids.has(existing_id):
+            var old_item: Node2D = _furniture_nodes[existing_id]
+            old_item.queue_free()
+            _furniture_nodes.erase(existing_id)
 
 func _sync_prop_nodes() -> void:
     var room_manifest: Dictionary = _state.get("room_manifest",{})

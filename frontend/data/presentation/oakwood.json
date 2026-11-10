@@ -433,10 +433,10 @@
         {
           "id": "interior_town_hall_furniture",
           "label": "Town Hall Interior",
-          "x": 500,
-          "y": 180,
-          "width": 980,
-          "height": 120,
+          "x": 0,
+          "y": 150,
+          "width": 1800,
+          "height": 390,
           "style": "interior_civic",
           "wall": "#e8d9bd",
           "roof": "#9b8061"
@@ -463,7 +463,85 @@
         "portal_focus_zoom": 1.1,
         "transition_out_seconds": 0.28,
         "transition_in_seconds": 0.48
-      }
+      },
+      "furniture": [
+        {
+          "id": "mayor_rug",
+          "kind": "rug",
+          "x": 990,
+          "y": 622,
+          "width": 390,
+          "depth": 112,
+          "material": "#8b6551",
+          "accent": "#d7b98a"
+        },
+        {
+          "id": "mayor_desk",
+          "kind": "desk",
+          "x": 1080,
+          "y": 585,
+          "width": 220,
+          "height": 88,
+          "depth": 72,
+          "material": "#79583d",
+          "accent": "#d2b27a"
+        },
+        {
+          "id": "mayor_chair",
+          "kind": "chair",
+          "x": 1090,
+          "y": 552,
+          "width": 62,
+          "height": 94,
+          "depth": 58,
+          "material": "#75513a",
+          "accent": "#c8a879"
+        },
+        {
+          "id": "hall_bookcase_west",
+          "kind": "bookcase",
+          "x": 270,
+          "y": 575,
+          "width": 150,
+          "height": 190,
+          "depth": 54,
+          "material": "#76563c",
+          "accent": "#d4b77e"
+        },
+        {
+          "id": "hall_bookcase_east",
+          "kind": "bookcase",
+          "x": 1510,
+          "y": 575,
+          "width": 150,
+          "height": 190,
+          "depth": 54,
+          "material": "#76563c",
+          "accent": "#d4b77e"
+        },
+        {
+          "id": "hall_waiting_table",
+          "kind": "table",
+          "x": 610,
+          "y": 614,
+          "width": 130,
+          "height": 58,
+          "depth": 48,
+          "material": "#92704e",
+          "accent": "#d7c091"
+        },
+        {
+          "id": "hall_plant",
+          "kind": "plant",
+          "x": 410,
+          "y": 595,
+          "width": 66,
+          "height": 110,
+          "depth": 44,
+          "material": "#a66f50",
+          "accent": "#c18a63"
+        }
+      ]
     },
     "room_shop": {
       "scene_kind": "interior",
@@ -493,10 +571,10 @@
         {
           "id": "interior_shop_furniture",
           "label": "Shop Interior",
-          "x": 500,
-          "y": 180,
-          "width": 980,
-          "height": 120,
+          "x": 0,
+          "y": 150,
+          "width": 1800,
+          "height": 390,
           "style": "interior_shop",
           "wall": "#e8d9bd",
           "roof": "#9b8061"
@@ -523,7 +601,75 @@
         "portal_focus_zoom": 1.1,
         "transition_out_seconds": 0.28,
         "transition_in_seconds": 0.48
-      }
+      },
+      "furniture": [
+        {
+          "id": "shop_counter_main",
+          "kind": "counter",
+          "x": 920,
+          "y": 600,
+          "width": 430,
+          "height": 94,
+          "depth": 76,
+          "material": "#815b3d",
+          "accent": "#d7b77d"
+        },
+        {
+          "id": "shop_shelf_west",
+          "kind": "shelf",
+          "x": 300,
+          "y": 566,
+          "width": 180,
+          "height": 190,
+          "depth": 54,
+          "material": "#79583d",
+          "accent": "#d4b77e"
+        },
+        {
+          "id": "shop_shelf_centre",
+          "kind": "shelf",
+          "x": 680,
+          "y": 566,
+          "width": 180,
+          "height": 190,
+          "depth": 54,
+          "material": "#79583d",
+          "accent": "#d4b77e"
+        },
+        {
+          "id": "shop_bread_rack",
+          "kind": "bread_rack",
+          "x": 1470,
+          "y": 590,
+          "width": 170,
+          "height": 150,
+          "depth": 60,
+          "material": "#936c49",
+          "accent": "#dfc28e"
+        },
+        {
+          "id": "shop_display_table",
+          "kind": "table",
+          "x": 570,
+          "y": 630,
+          "width": 140,
+          "height": 62,
+          "depth": 54,
+          "material": "#a17a50",
+          "accent": "#d9c18d"
+        },
+        {
+          "id": "shop_basket",
+          "kind": "basket",
+          "x": 1270,
+          "y": 635,
+          "width": 64,
+          "height": 48,
+          "depth": 38,
+          "material": "#a9784e",
+          "accent": "#d4b77e"
+        }
+      ]
     },
     "room_bakery": {
       "scene_kind": "interior",
@@ -552,10 +698,10 @@
         {
           "id": "interior_bakery_furniture",
           "label": "Bakery Interior",
-          "x": 500,
-          "y": 180,
-          "width": 980,
-          "height": 120,
+          "x": 0,
+          "y": 150,
+          "width": 1800,
+          "height": 390,
           "style": "interior_bakery",
           "wall": "#e8d9bd",
           "roof": "#9b8061"
@@ -582,7 +728,64 @@
         "portal_focus_zoom": 1.1,
         "transition_out_seconds": 0.28,
         "transition_in_seconds": 0.48
-      }
+      },
+      "furniture": [
+        {
+          "id": "bakery_oven",
+          "kind": "oven",
+          "x": 1390,
+          "y": 610,
+          "width": 250,
+          "height": 190,
+          "depth": 100,
+          "material": "#a85f47",
+          "accent": "#e0b477"
+        },
+        {
+          "id": "bakery_workbench",
+          "kind": "workbench",
+          "x": 720,
+          "y": 610,
+          "width": 340,
+          "height": 84,
+          "depth": 72,
+          "material": "#8a6544",
+          "accent": "#d6b77e"
+        },
+        {
+          "id": "bakery_rack",
+          "kind": "bread_rack",
+          "x": 340,
+          "y": 575,
+          "width": 170,
+          "height": 190,
+          "depth": 60,
+          "material": "#8d6847",
+          "accent": "#d9b97f"
+        },
+        {
+          "id": "bakery_prep_table",
+          "kind": "table",
+          "x": 1050,
+          "y": 632,
+          "width": 150,
+          "height": 62,
+          "depth": 52,
+          "material": "#a47a4e",
+          "accent": "#e0c58e"
+        },
+        {
+          "id": "bakery_flour_basket",
+          "kind": "basket",
+          "x": 570,
+          "y": 636,
+          "width": 70,
+          "height": 55,
+          "depth": 44,
+          "material": "#b38b5c",
+          "accent": "#ead5aa"
+        }
+      ]
     },
     "room_tavern": {
       "scene_kind": "interior",
@@ -617,10 +820,10 @@
         {
           "id": "interior_tavern_furniture",
           "label": "Tavern Interior",
-          "x": 500,
-          "y": 180,
-          "width": 980,
-          "height": 120,
+          "x": 0,
+          "y": 150,
+          "width": 1800,
+          "height": 390,
           "style": "interior_tavern",
           "wall": "#e8d9bd",
           "roof": "#9b8061"
@@ -655,7 +858,96 @@
         "portal_focus_zoom": 1.1,
         "transition_out_seconds": 0.28,
         "transition_in_seconds": 0.48
-      }
+      },
+      "furniture": [
+        {
+          "id": "tavern_bar",
+          "kind": "bar_counter",
+          "x": 1190,
+          "y": 602,
+          "width": 390,
+          "height": 102,
+          "depth": 82,
+          "material": "#684a36",
+          "accent": "#c9a36d"
+        },
+        {
+          "id": "tavern_hearth",
+          "kind": "hearth",
+          "x": 1510,
+          "y": 595,
+          "width": 220,
+          "height": 190,
+          "depth": 90,
+          "material": "#7e6250",
+          "accent": "#e3a45f"
+        },
+        {
+          "id": "tavern_table_west",
+          "kind": "table",
+          "x": 520,
+          "y": 620,
+          "width": 150,
+          "height": 70,
+          "depth": 60,
+          "material": "#805a3c",
+          "accent": "#d0ad75"
+        },
+        {
+          "id": "tavern_chair_west",
+          "kind": "chair",
+          "x": 430,
+          "y": 610,
+          "width": 62,
+          "height": 88,
+          "depth": 52,
+          "material": "#79563b",
+          "accent": "#c49a65"
+        },
+        {
+          "id": "tavern_table_east",
+          "kind": "table",
+          "x": 870,
+          "y": 625,
+          "width": 150,
+          "height": 70,
+          "depth": 60,
+          "material": "#805a3c",
+          "accent": "#d0ad75"
+        },
+        {
+          "id": "tavern_chair_east",
+          "kind": "chair",
+          "x": 1010,
+          "y": 613,
+          "width": 62,
+          "height": 88,
+          "depth": 52,
+          "material": "#79563b",
+          "accent": "#c49a65"
+        },
+        {
+          "id": "tavern_barrels",
+          "kind": "barrel",
+          "x": 300,
+          "y": 622,
+          "width": 70,
+          "height": 100,
+          "depth": 50,
+          "material": "#855c3c",
+          "accent": "#c4a06a"
+        },
+        {
+          "id": "tavern_rug",
+          "kind": "rug",
+          "x": 760,
+          "y": 650,
+          "width": 270,
+          "depth": 90,
+          "material": "#71564b",
+          "accent": "#d4b783"
+        }
+      ]
     }
   }
 }

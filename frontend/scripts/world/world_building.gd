@@ -40,7 +40,7 @@ func _draw() -> void:
     var style := str(definition.get("style","house"))
     draw_set_transform(Vector2(0.0,-h))
     if style.begins_with("interior_"):
-        _draw_interior(w,h,style)
+        _draw_interior(w,h,style,wall,roof)
         draw_set_transform(Vector2.ZERO)
         return
     # Contact shadow and an offset cast shadow anchor the silhouette to the ground.
@@ -113,38 +113,34 @@ func _draw() -> void:
     draw_rect(Rect2(w-10,0,10,h),roof.darkened(0.12))
     draw_set_transform(Vector2.ZERO)
 
-func _draw_interior(w: float,h: float,style: String) -> void:
-    var wood := Color("#76553b")
-    if style == "interior_civic":
-        draw_rect(Rect2(0,0,w,h),Color("#e8d9bd"))
-        draw_rect(Rect2(70,170,480,24),wood)
-        draw_rect(Rect2(100,194,20,130),wood)
-        draw_rect(Rect2(500,194,20,130),wood)
-        draw_rect(Rect2(650,40,220,180),wood)
-        for row in range(3):
-            for col in range(5):
-                draw_rect(Rect2(665+float(col)*40,52+float(row)*52,28,42),Color("#d0b48a"))
-    elif style == "interior_shop":
-        draw_rect(Rect2(0,0,w,h),Color("#e8d9bd"))
-        for row in range(3):
-            draw_rect(Rect2(80,80+float(row)*90,w-160,12),wood)
-            for col in range(12):
-                draw_rect(Rect2(105+float(col)*65,38+float(row)*90,36,42),[Color("#c57d56"),Color("#d4b66f"),Color("#8da28a")][col%3])
-        draw_rect(Rect2(280,270,500,32),wood)
-    elif style == "interior_bakery":
-        draw_rect(Rect2(0,0,w,h),Color("#e8d9bd"))
-        draw_rect(Rect2(650,30,270,260),Color("#b66e4c"))
-        draw_circle(Vector2(785,170),78,Color("#6e4838"))
-        draw_circle(Vector2(785,170),55,Color("#292c2b"))
-        draw_rect(Rect2(160,260,480,28),wood)
-        for i in range(5):
-            draw_circle(Vector2(220+float(i)*80,250),12,Color("#d8a65f"))
-    else:
-        draw_rect(Rect2(0,0,w,h),Color("#d8c9ae"))
-        draw_rect(Rect2(620,40,300,250),wood)
-        draw_rect(Rect2(650,90,240,200),Color("#292c2b"))
-        draw_colored_polygon(PackedVector2Array([Vector2(700,290),Vector2(770,150),Vector2(840,290)]),Color("#e9a25f"))
-        for x in [100.0,380.0]:
-            draw_rect(Rect2(x,240,190,18),wood)
-            draw_rect(Rect2(x+15,258,14,65),wood)
-            draw_rect(Rect2(x+160,258,14,65),wood)
+func _draw_interior(w: float,h: float,style: String,wall: Color,trim: Color) -> void:
+    # Architectural room shell only. Furniture is independently positioned and Y-sorted.
+    var floor_y := h*0.70
+    var floor_colour := Color("#c9b18b")
+    if style == "interior_tavern": floor_colour = Color("#9a795a")
+    elif style == "interior_shop": floor_colour = Color("#d1b98e")
+    elif style == "interior_bakery": floor_colour = Color("#d6bd94")
+    draw_rect(Rect2(0,0,w,floor_y),wall)
+    draw_rect(Rect2(0,floor_y,w,h-floor_y),floor_colour)
+    draw_rect(Rect2(0,floor_y-14,w,14),trim.darkened(0.08))
+    draw_rect(Rect2(0,0,w,18),trim.darkened(0.18))
+    for beam_x in range(0,int(w),240):
+        draw_rect(Rect2(float(beam_x),18,12,floor_y-18),wall.darkened(0.10))
+        draw_line(Vector2(float(beam_x+15),floor_y+8),Vector2(float(beam_x+15),h-5),floor_colour.darkened(0.12),2.0)
+    for window_x in [w*0.18,w*0.52,w*0.82]:
+        draw_rect(Rect2(window_x-52,54,104,118),trim.darkened(0.22))
+        draw_rect(Rect2(window_x-44,62,88,102),Color("#8ea9a2"))
+        draw_rect(Rect2(window_x-38,68,76,90),Color("#d7dfc8"))
+        draw_rect(Rect2(window_x-4,62,8,102),trim)
+        draw_rect(Rect2(window_x-44,108,88,6),trim)
+        draw_rect(Rect2(window_x-58,174,116,8),trim)
+    for panel_x in range(80,int(w)-80,160):
+        draw_rect(Rect2(float(panel_x),floor_y-82,118,64),wall.darkened(0.045),false,1.5)
+    draw_rect(Rect2(28,floor_y-172,92,172),Color("#584638"))
+    draw_rect(Rect2(35,floor_y-165,78,165),Color("#8b6b4c"))
+    draw_rect(Rect2(42,floor_y-156,64,156),Color("#a7855d"))
+    draw_circle(Vector2(99,floor_y-82),3.5,Color("#d7b46f"))
+    for plank in range(1,10):
+        var plank_x := float(plank)*w/10.0
+        draw_line(Vector2(plank_x,floor_y+10),Vector2(plank_x+18,h),floor_colour.darkened(0.10),1.2)
+    draw_line(Vector2(0,h-3),Vector2(w,h-3),floor_colour.lightened(0.12),2.0)

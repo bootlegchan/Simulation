@@ -14,7 +14,7 @@ func configure(state: Dictionary) -> void:
     var status: Dictionary = state.get("status",{})
     var hour := int(status.get("hour",10))
     var room: Dictionary = state.get("room_manifest",{})
-    var signature := "%s:%s:%s" % [hour,str(room.get("scene_kind","outdoor")),str(room.get("title",""))]
+    var signature := "%s:%s:%s:%s" % [hour,str(room.get("scene_kind","outdoor")),str(room.get("title","")),JSON.stringify(room.get("lights",[]))]
     if signature == _last_signature:
         return
     _last_signature = signature
