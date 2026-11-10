@@ -412,10 +412,19 @@ func _draw_selection_prompt() -> void:
     if selected.is_empty():
         return
     var x := float(selected.get("x",_state.get("observer_x",500.0)))
-    var y := float(selected.get("y",500.0))-92.0
-    var prompt := "E  ·  ENTER" if selected.get("kind") == "portal" else ("E  ·  INSPECT" if selected.get("kind") == "object" else "E  ·  MEET")
-    draw_rect(Rect2(x-72,y-25,144,32),Color("#283a38",0.9))
-    draw_string(ThemeDB.fallback_font,Vector2(x-61,y-4),prompt,HORIZONTAL_ALIGNMENT_LEFT,122,12,PAPER)
+    var y := float(selected.get("y",500.0))-112.0
+    var prompt := "E  ·  GO INSIDE" if selected.get("kind") == "portal" else ("E  ·  TAKE A LOOK" if selected.get("kind") == "object" else "E  ·  SAY HELLO")
+    # A little floating paper speech tag instead of a generic game button.
+    draw_colored_polygon(PackedVector2Array([
+        Vector2(x-75,y-30),Vector2(x+75,y-30),Vector2(x+75,y+5),
+        Vector2(x+10,y+5),Vector2(x,y+17),Vector2(x-8,y+5),Vector2(x-75,y+5)
+    ]),Color("#fff4dc"))
+    draw_polyline(PackedVector2Array([
+        Vector2(x-75,y-30),Vector2(x+75,y-30),Vector2(x+75,y+5),
+        Vector2(x+10,y+5),Vector2(x,y+17),Vector2(x-8,y+5),Vector2(x-75,y+5),
+        Vector2(x-75,y-30)
+    ]),Color("#6e5743"),2.0)
+    draw_string(ThemeDB.fallback_font,Vector2(x-65,y-7),prompt,HORIZONTAL_ALIGNMENT_CENTER,130,12,INK)
 
 func _draw_observer() -> void:
     _draw_character(float(_state.get("observer_x",500.0)),585.0,Color("#d1b17d"),true)
@@ -509,21 +518,41 @@ func _draw_inspection() -> void:
     if inspection.is_empty():
         return
     var camera_x := _camera.position.x if _camera else 640.0
-    var panel := Rect2(camera_x-390,110,780,430)
-    draw_rect(panel,Color("#403a32",0.22))
-    draw_rect(Rect2(panel.position+Vector2(0,-5),panel.size),PAPER)
-    draw_rect(Rect2(panel.position+Vector2(18,18),panel.size-Vector2(36,36)),Color("#d5c9b1"),false,2.0)
-    draw_string(ThemeDB.fallback_font,panel.position+Vector2(42,58),str(inspection.get("title","Inspection")),HORIZONTAL_ALIGNMENT_LEFT,680,27,INK)
-    draw_string(ThemeDB.fallback_font,panel.position+Vector2(42,88),str(inspection.get("kind","Record")).to_upper(),HORIZONTAL_ALIGNMENT_LEFT,680,12,RUST)
+    var panel := Rect2(camera_x-390,104,780,452)
+    # Pinned journal page with a folded corner, ink outline and paper grain.
+    draw_rect(Rect2(panel.position+Vector2(8,10),panel.size),Color("#443c34",0.24))
+    draw_rect(panel,Color("#f5ecd7"))
+    draw_rect(panel.grow(-9),Color("#fff8e8"),false,2.0)
+    draw_rect(Rect2(panel.position.x+20,panel.position.y+18,7,panel.size.y-36),Color("#b66b55"))
+    draw_rect(Rect2(panel.position.x+35,panel.position.y+20,4,panel.size.y-40),Color("#d9c9aa"))
+    # Subtle ruled lines make the content feel like a page from a village ledger.
+    for y in range(205,520,28):
+        draw_line(Vector2(panel.position.x+58,float(y)),Vector2(panel.end.x-30,float(y)),Color("#c8bda7",0.42),1.0)
+    # Folded page corner
+    draw_colored_polygon(PackedVector2Array([
+        Vector2(panel.end.x-48,panel.position.y),Vector2(panel.end.x,panel.position.y),
+        Vector2(panel.end.x,panel.position.y+48)
+    ]),Color("#dfd0b3"))
+    draw_line(Vector2(panel.end.x-48,panel.position.y),Vector2(panel.end.x,panel.position.y+48),Color("#9a8468"),1.5)
+    # Title plaque and category stamp
+    draw_rect(Rect2(panel.position.x+58,panel.position.y+24,560,50),Color("#e6d8bb"))
+    draw_string(ThemeDB.fallback_font,panel.position+Vector2(76,57),str(inspection.get("title","Inspection")),HORIZONTAL_ALIGNMENT_LEFT,520,25,INK)
+    draw_string(ThemeDB.fallback_font,panel.position+Vector2(620,54),str(inspection.get("kind","Record")).to_upper(),HORIZONTAL_ALIGNMENT_RIGHT,100,10,RUST)
     var lines: Array = inspection.get("lines",[])
     if lines.is_empty() and inspection.has("data"):
         var data: Dictionary = inspection.get("data",{})
-        lines = ["Occupation: %s" % data.get("occupation","—"),"Home: %s" % data.get("home_location_id","—"),"Work: %s" % data.get("work_location_id","—"),"Wealth: %s gold" % data.get("wealth_gold","—")]
-    var line_y := panel.position.y+135
-    for line in lines.slice(0,12):
-        draw_string(ThemeDB.fallback_font,Vector2(panel.position.x+44,line_y),str(line),HORIZONTAL_ALIGNMENT_LEFT,680,16,INK)
-        line_y += 25
-    draw_string(ThemeDB.fallback_font,Vector2(panel.position.x+44,panel.end.y-28),"E / ESC  ·  CLOSE",HORIZONTAL_ALIGNMENT_LEFT,300,12,RUST)
+        lines = [
+            "Occupation  ·  %s" % data.get("occupation","—"),
+            "Home  ·  %s" % data.get("home_location_id","—"),
+            "Work  ·  %s" % data.get("work_location_id","—"),
+            "Wealth  ·  %s gold" % data.get("wealth_gold","—")
+        ]
+    var line_y := panel.position.y+132
+    for line in lines.slice(0,11):
+        draw_circle(Vector2(panel.position.x+68,line_y-5),3.0,RUST)
+        draw_string(ThemeDB.fallback_font,Vector2(panel.position.x+84,line_y),str(line),HORIZONTAL_ALIGNMENT_LEFT,620,15,INK)
+        line_y += 27
+    draw_string(ThemeDB.fallback_font,Vector2(panel.position.x+60,panel.end.y-24),"PRESS E OR ESC TO CLOSE",HORIZONTAL_ALIGNMENT_LEFT,300,11,RUST)
 
 func _draw_connection_state() -> void:
     if not bool(_state.get("connected",false)):
