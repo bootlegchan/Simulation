@@ -52,6 +52,14 @@ func _draw() -> void:
         Vector2(-24,8),Vector2(0,-h*0.28),Vector2(w*0.5,-h*0.58),
         Vector2(w+24,-h*0.28),Vector2(w+12,12)
     ]),roof)
+    # The right return wall and roof plane establish a consistent three-quarter view.
+    draw_colored_polygon(PackedVector2Array([
+        Vector2(w,0),Vector2(w+34,-h*0.12),Vector2(w+34,h-14),Vector2(w,h)
+    ]),wall.darkened(0.16))
+    draw_colored_polygon(PackedVector2Array([
+        Vector2(w*0.5,-h*0.58),Vector2(w+24,-h*0.28),
+        Vector2(w+58,-h*0.40),Vector2(w*0.5+22,-h*0.70)
+    ]),roof.darkened(0.12))
     draw_rect(Rect2(0,0,w,h),wall)
     draw_rect(Rect2(14,14,w-28,28),wall.lightened(0.12))
     draw_rect(Rect2(24,42,w-48,24),roof.darkened(0.08))
@@ -91,6 +99,14 @@ func _draw() -> void:
         draw_rect(Rect2(w*0.5-64,74,128,46),Color("#5a4334"))
         draw_rect(Rect2(w*0.5-58,80,116,34),Color("#d6bd91"))
         draw_string(ThemeDB.fallback_font,Vector2(w*0.5-52,102),"THE TAVERN",HORIZONTAL_ALIGNMENT_CENTER,104,12,Color("#514235"))
+    # Subtle roof seams and facade courses add readable material scale.
+    for seam in range(0,5):
+        var seam_y := -h*0.40+float(seam)*h*0.075
+        draw_line(Vector2(20,seam_y),Vector2(w*0.5-8,seam_y-h*0.14),roof.lightened(0.12),1.4)
+        draw_line(Vector2(w*0.5+8,seam_y-h*0.14),Vector2(w-12,seam_y),roof.darkened(0.08),1.2)
+    for course in range(1,7):
+        var course_y := float(course)*h/7.0
+        draw_line(Vector2(12,course_y),Vector2(w-12,course_y),wall.darkened(0.07),1.0)
     # Roof eaves and corner timber add depth without baking the building into scenery.
     draw_rect(Rect2(-8,8,w+16,9),roof.darkened(0.12))
     draw_rect(Rect2(0,0,10,h),roof.darkened(0.12))
