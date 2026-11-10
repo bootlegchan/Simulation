@@ -45,7 +45,7 @@ func _assemble() -> void:
     _add_part("arms",Vector2(0,-39))
     _add_part("head",Vector2(0,-83))
     _add_part("hair",Vector2(0,-103))
-    _add_part("headwear",Vector2(0,-103))
+    _add_part("headwear",Vector2(0,-83))
     _add_part("face",Vector2(0,-83))
     _add_part("accessory",Vector2(0,-39))
 
@@ -81,7 +81,9 @@ func _process(delta: float) -> void:
     var depth_stride := sin(_phase)*3.8*absf(_motion_direction.y) if _moving else 0.0
     _parts["body"].position.y = -39.0+bob
     _parts["garment"].position.y = -39.0+bob
+    _parts["accessory"].position.y = -39.0+bob
     _parts["body"].rotation = sin(_phase*0.5)*0.025 if _moving else sin(_phase*0.45)*0.012
+    _parts["garment"].rotation = _parts["body"].rotation
     _parts["arms"].position.y = -39.0+bob
     _parts["arms"].call("set_stride",stride,depth_stride)
     _parts["legs"].call("set_stride",stride,depth_stride)
@@ -89,6 +91,8 @@ func _process(delta: float) -> void:
     _parts["head"].rotation = sin(_phase*0.65)*0.018
     _parts["hair"].position.y = -103.0+bob*0.72
     _parts["hair"].rotation = sin(_phase*0.65+0.5)*0.025
+    _parts["headwear"].position.y = -83.0+bob*0.72
+    _parts["headwear"].rotation = _parts["hair"].rotation*0.35
     _parts["face"].position.y = -83.0+bob*0.72
     _blink_clock += delta
     if _blink_left>0.0:

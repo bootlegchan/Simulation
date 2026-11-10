@@ -190,3 +190,8 @@ All additions are presentation-only. Appearance is generated once during actor c
 Interior room shells now have deeper window treatments with divided glazing, projecting sills and restrained curtain panels. Wall composition includes paired sconces, framed landscape artwork and finer panel trim. Shop and bakery floors use perspective tile joints; tavern and civic interiors retain timber floorboards with cross seams. All detail is rendered inside the reusable building component and follows the existing room style and palette inputs.
 
 Furniture remains independently Y-sorted. These additions are architectural presentation only and do not introduce new room contents or simulation state.
+
+
+## Character layer alignment and motion coherence
+
+A follow-up rig refinement aligns headwear with the head and hair pivot, so caps, brimmed hats and cloth wraps no longer float above the head silhouette. Garment overlays now share the torso's subtle idle/walk rotation, and chest accessories follow the torso bob. These are transform-level corrections to existing independent layers; they do not change generated appearance or simulation data.
