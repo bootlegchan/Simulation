@@ -407,6 +407,20 @@
         ],
         "tuft_spacing": 96,
         "detail_seed": 29
+      },
+      "foreground": {
+        "spacing": 132,
+        "stone_spacing": 248,
+        "height": 36,
+        "sway": 5.2,
+        "seed": 23,
+        "palette": {
+          "grass_dark": "#536d4e",
+          "grass_light": "#6e8759",
+          "flower_cream": "#e8c58b",
+          "flower_rust": "#d88b76",
+          "path_stone": "#d4c4a4"
+        }
       }
     },
     "room_town_hall": {

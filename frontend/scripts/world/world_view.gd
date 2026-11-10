@@ -88,7 +88,7 @@ func set_presentation_state(state: Dictionary) -> void:
     if _hud:
         _hud.call("configure",_state)
     if _foreground:
-        _foreground.call("configure",float(_state.get("world_width",3600.0)))
+        _foreground.call("configure",float(_state.get("world_width",3600.0)),_state.get("room_manifest",{}))
     if _terrain:
         _terrain.call("configure",_state.get("room_manifest",{}),float(_state.get("world_width",3600.0)))
     _sync_character_nodes()

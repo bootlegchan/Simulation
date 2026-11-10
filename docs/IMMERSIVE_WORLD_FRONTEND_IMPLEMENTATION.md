@@ -195,3 +195,10 @@ Furniture remains independently Y-sorted. These additions are architectural pres
 ## Character layer alignment and motion coherence
 
 A follow-up rig refinement aligns headwear with the head and hair pivot, so caps, brimmed hats and cloth wraps no longer float above the head silhouette. Garment overlays now share the torso's subtle idle/walk rotation, and chest accessories follow the torso bob. These are transform-level corrections to existing independent layers; they do not change generated appearance or simulation data.
+
+
+## Room-aware animated foreground dressing
+
+The foreground foliage pass now redraws at frame cadence, so its wind motion is actually animated rather than sampled once when the room is configured. Its density, blade height, sway, deterministic offset and colours can be set by an optional room-level foreground manifest object. Foreground rendering is disabled for interiors, preventing outdoor grass and path-edge stones from appearing across indoor floors. The world view passes the active room manifest into the reusable foreground component.
+
+This remains a low-cost presentation layer and does not change navigation, simulation state or object interactions.
