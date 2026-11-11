@@ -12,7 +12,11 @@ func configure(data: Dictionary,room_theme: Dictionary = {}) -> void:
     definition = data.duplicate(true)
     _room_theme = room_theme.duplicate(true)
     var h := float(definition.get("height",260.0))
-    position = Vector2(float(definition.get("x",0.0)),float(definition.get("y",0.0))+h)
+    var sort_y := float(definition.get("y",0.0))+h
+    # Keep the interior shell just behind actors standing on its front edge.
+    if str(definition.get("style","")).begins_with("interior_"):
+        sort_y -= 1.0
+    position = Vector2(float(definition.get("x",0.0)),sort_y)
     queue_redraw()
     _configure_occluder()
 

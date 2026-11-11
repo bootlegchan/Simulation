@@ -227,3 +227,6 @@ The furniture renderer adds reusable seating, stools, storage cabinets, floor la
 Practical lighting now reads per-room ambient palettes and optional daytime light energy. Window fill and fixture lights remain presentation-only, with position, colour, intensity, radius, shadow setting and flicker parameters supplied by the manifest. Existing room transitions, camera follow, navigation, HUD and Python-owned simulation state are unchanged.
 
 Source-level integration checks and JSON parsing were performed. Godot runtime/game tests were not run, as requested. The procedural character and furniture drawings remain a scalable placeholder asset system rather than final hand-authored sprite art; authored portraits, profession-specific wardrobes and room-specific prop illustration can be layered on this generic foundation later.
+
+
+Interior room shells use a ground-sort anchor one pixel behind the front walking edge. This preserves the shell's visible footprint while ensuring actors at the same floor boundary render in front of the wall/floor shell instead of being hidden by a Y-sort tie.
