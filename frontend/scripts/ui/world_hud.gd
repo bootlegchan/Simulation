@@ -1,5 +1,10 @@
 extends CanvasLayer
-## Camera-independent, minimal screen-space interface.
+## Camera-independent, minimal screen-space interface, styled as cream paper
+## cards with thick brown crayon borders to match the storybook world.
+const INK_TEXT := Color("#5b3a2e")
+const SOFT_TEXT := Color("#8a5f49")
+const GOOD_TEXT := Color("#3f9f47")
+const WARN_TEXT := Color("#e6694b")
 var _room: Label
 var _clock: Label
 var _population: Label
@@ -26,12 +31,12 @@ func _ready() -> void:
     identity.add_child(identity_stack)
     var title := Label.new()
     title.text = "OAKWOOD"
-    title.add_theme_font_size_override("font_size",16)
-    title.add_theme_color_override("font_color",Color("#293a35"))
+    title.add_theme_font_size_override("font_size",19)
+    title.add_theme_color_override("font_color",INK_TEXT)
     identity_stack.add_child(title)
     _room = Label.new()
     _room.add_theme_font_size_override("font_size",11)
-    _room.add_theme_color_override("font_color",Color("#796b58"))
+    _room.add_theme_color_override("font_color",SOFT_TEXT)
     identity_stack.add_child(_room)
 
     var status := _panel()
@@ -46,18 +51,18 @@ func _ready() -> void:
     status.add_child(stack)
     _clock = Label.new()
     _clock.add_theme_font_size_override("font_size",17)
-    _clock.add_theme_color_override("font_color",Color("#293a35"))
+    _clock.add_theme_color_override("font_color",INK_TEXT)
     stack.add_child(_clock)
     var row := HBoxContainer.new()
     row.add_theme_constant_override("separation",12)
     stack.add_child(row)
     _population = Label.new()
     _population.add_theme_font_size_override("font_size",11)
-    _population.add_theme_color_override("font_color",Color("#796b58"))
+    _population.add_theme_color_override("font_color",SOFT_TEXT)
     row.add_child(_population)
     _lifecycle = Label.new()
     _lifecycle.add_theme_font_size_override("font_size",10)
-    _lifecycle.add_theme_color_override("font_color",Color("#58745e"))
+    _lifecycle.add_theme_color_override("font_color",GOOD_TEXT)
     row.add_child(_lifecycle)
 
     _prompt = _panel()
@@ -71,7 +76,7 @@ func _ready() -> void:
     _prompt_text = Label.new()
     _prompt_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     _prompt_text.add_theme_font_size_override("font_size",13)
-    _prompt_text.add_theme_color_override("font_color",Color("#293a35"))
+    _prompt_text.add_theme_color_override("font_color",INK_TEXT)
     _prompt.add_child(_prompt_text)
 
     _inspection = _panel()
@@ -87,19 +92,19 @@ func _ready() -> void:
     _inspection.add_child(details)
     _inspection_title = Label.new()
     _inspection_title.add_theme_font_size_override("font_size",19)
-    _inspection_title.add_theme_color_override("font_color",Color("#293a35"))
+    _inspection_title.add_theme_color_override("font_color",INK_TEXT)
     details.add_child(_inspection_title)
     _inspection_body = Label.new()
     _inspection_body.custom_minimum_size = Vector2(290,220)
     _inspection_body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     _inspection_body.add_theme_font_size_override("font_size",12)
-    _inspection_body.add_theme_color_override("font_color",Color("#665c4d"))
+    _inspection_body.add_theme_color_override("font_color",INK_TEXT)
     details.add_child(_inspection_body)
 
     _connection = Label.new()
     _connection.position = Vector2(26,102)
     _connection.add_theme_font_size_override("font_size",11)
-    _connection.add_theme_color_override("font_color",Color("#9b5b43"))
+    _connection.add_theme_color_override("font_color",WARN_TEXT)
     root.add_child(_connection)
     _make_pass_through(root)
 
@@ -112,10 +117,13 @@ func _make_pass_through(control: Control) -> void:
 func _panel() -> PanelContainer:
     var panel := PanelContainer.new()
     var style := StyleBoxFlat.new()
-    style.bg_color = Color("#f7f1e5",0.94)
-    style.border_color = Color("#d8cbb5")
-    style.set_border_width_all(1)
-    style.set_corner_radius_all(12)
+    style.bg_color = Color("#fff3d2",0.97)
+    style.border_color = Color("#5b3a2e")
+    style.set_border_width_all(4)
+    style.set_corner_radius_all(18)
+    style.shadow_color = Color("#5a3a66",0.28)
+    style.shadow_size = 0
+    style.shadow_offset = Vector2(3,4)
     style.content_margin_left = 14
     style.content_margin_right = 14
     style.content_margin_top = 10

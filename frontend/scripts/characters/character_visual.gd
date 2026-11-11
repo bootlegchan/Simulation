@@ -1,7 +1,16 @@
 extends Node2D
 ## Modular character rig with independent limbs, face, hair and accessories.
+## Proportions lean chibi: a large head group over a short, rounded body.
 
 const PART_SCRIPT = preload("res://scripts/characters/character_part.gd")
+
+# Head parts are drawn at a larger scale than the body for the storybook look.
+const HEAD_SCALE := 1.3
+const BODY_SCALE := 0.88
+const HEAD_Y := -94.0
+const HAIR_Y := HEAD_Y-20.0*HEAD_SCALE
+const BODY_Y := -39.0
+
 var _appearance: Dictionary = {}
 var _parts: Dictionary = {}
 var _phase := 0.0
@@ -19,10 +28,10 @@ func configure(entity: Dictionary, is_observer: bool = false) -> void:
     var seed_value := absi(identity.hash())
     var rng := RandomNumberGenerator.new()
     rng.seed = identity.hash()
-    var skins := ["#f5d0ad","#e9b994","#d9a17e","#c98b6b","#a96f56","#754c3d"]
-    var hairs := ["#302923","#49372f","#72503b","#a06d45","#c1a06d","#4b5555"]
-    var clothes := ["#718b79","#bd8060","#657c99","#c2a16b","#81738e","#d0bca0","#55716f","#a75e4c"]
-    var generated := {"skin":skins[rng.randi_range(0,skins.size()-1)],"hair":hairs[rng.randi_range(0,hairs.size()-1)],"clothes":clothes[rng.randi_range(0,clothes.size()-1)],"eyes":"#302923","head_shape":rng.randi_range(0,3),"body_shape":rng.randi_range(0,3),"hair_style":rng.randi_range(0,5),"face_style":rng.randi_range(0,4),"accessory":rng.randi_range(0,5),"outfit_style":rng.randi_range(0,5),"outfit_accent":clothes[rng.randi_range(0,clothes.size()-1)],"shoes":"#59483c","headwear":rng.randi_range(0,5),"facial_hair":rng.randi_range(0,3),"scale":rng.randf_range(0.88,1.13)}
+    var skins := ["#ffd9b8","#f6c298","#e3a77a","#c98a62","#a86b4a","#7a4a36"]
+    var hairs := ["#3b2a26","#5a3a2c","#8a5330","#c9852f","#e6b84a","#5d6d8a"]
+    var clothes := ["#4fb286","#ff8a5c","#5b9bf0","#ffc233","#a58aef","#fff0d6","#37a8b0","#ee5c5c"]
+    var generated := {"skin":skins[rng.randi_range(0,skins.size()-1)],"hair":hairs[rng.randi_range(0,hairs.size()-1)],"clothes":clothes[rng.randi_range(0,clothes.size()-1)],"eyes":"#3a2a26","head_shape":rng.randi_range(0,3),"body_shape":rng.randi_range(0,3),"hair_style":rng.randi_range(0,5),"face_style":rng.randi_range(0,4),"accessory":rng.randi_range(0,5),"outfit_style":rng.randi_range(0,5),"outfit_accent":clothes[rng.randi_range(0,clothes.size()-1)],"shoes":"#d2643f","headwear":rng.randi_range(0,5),"facial_hair":rng.randi_range(0,3),"scale":rng.randf_range(0.88,1.13)}
     var supplied: Variant = entity.get("appearance",{})
     if supplied is Dictionary:
         for key in supplied:
@@ -40,20 +49,21 @@ func _assemble() -> void:
     _parts.clear()
     _add_part("shadow",Vector2.ZERO)
     _add_part("legs",Vector2(0,-8))
-    _add_part("arm_back",Vector2(0,-39),-1.0)
-    _add_part("body",Vector2(0,-39))
-    _add_part("garment",Vector2(0,-39))
-    _add_part("arm_front",Vector2(0,-39),1.0)
-    _add_part("head",Vector2(0,-83))
-    _add_part("hair",Vector2(0,-103))
-    _add_part("headwear",Vector2(0,-83))
-    _add_part("face",Vector2(0,-83))
-    _add_part("accessory",Vector2(0,-39))
+    _add_part("arm_back",Vector2(0,BODY_Y),-1.0,BODY_SCALE)
+    _add_part("body",Vector2(0,BODY_Y),0.0,BODY_SCALE)
+    _add_part("garment",Vector2(0,BODY_Y),0.0,BODY_SCALE)
+    _add_part("arm_front",Vector2(0,BODY_Y),1.0,BODY_SCALE)
+    _add_part("head",Vector2(0,HEAD_Y),0.0,HEAD_SCALE)
+    _add_part("hair",Vector2(0,HAIR_Y),0.0,HEAD_SCALE)
+    _add_part("headwear",Vector2(0,HEAD_Y),0.0,HEAD_SCALE)
+    _add_part("face",Vector2(0,HEAD_Y),0.0,HEAD_SCALE)
+    _add_part("accessory",Vector2(0,BODY_Y),0.0,BODY_SCALE)
 
-func _add_part(kind: String,offset: Vector2,side: float = 0.0) -> void:
+func _add_part(kind: String,offset: Vector2,side: float = 0.0,part_scale: float = 1.0) -> void:
     var part := Node2D.new()
     part.set_script(PART_SCRIPT)
     part.position = offset
+    part.scale = Vector2(part_scale,part_scale)
     part.call("configure",kind,_appearance,side)
     add_child(part)
     _parts[kind] = part
@@ -80,26 +90,26 @@ func _process(delta: float) -> void:
     var bob := sin(_phase*2.0)*(1.7 if _moving else 0.65)
     var stride := sin(_phase)*5.2*absf(_motion_direction.x) if _moving else 0.0
     var depth_stride := sin(_phase)*3.8*absf(_motion_direction.y) if _moving else 0.0
-    _parts["body"].position.y = -39.0+bob
-    _parts["garment"].position.y = -39.0+bob
-    _parts["accessory"].position.y = -39.0+bob
+    _parts["body"].position.y = BODY_Y+bob
+    _parts["garment"].position.y = BODY_Y+bob
+    _parts["accessory"].position.y = BODY_Y+bob
     _parts["body"].rotation = sin(_phase*0.5)*0.025 if _moving else sin(_phase*0.45)*0.012
     _parts["garment"].rotation = _parts["body"].rotation
-    _parts["arm_back"].position.y = -39.0+bob
-    _parts["arm_front"].position.y = -39.0+bob
+    _parts["arm_back"].position.y = BODY_Y+bob
+    _parts["arm_front"].position.y = BODY_Y+bob
     _parts["arm_back"].call("set_stride",stride,depth_stride)
     _parts["arm_front"].call("set_stride",stride,depth_stride)
     _parts["legs"].call("set_stride",stride,depth_stride)
     var torso_breath := sin(_phase*2.0)*(0.018 if _moving else 0.009)
-    _parts["body"].scale = Vector2(1.0,1.0+torso_breath)
+    _parts["body"].scale = Vector2(BODY_SCALE,BODY_SCALE*(1.0+torso_breath))
     _parts["garment"].scale = _parts["body"].scale
-    _parts["head"].position.y = -83.0+bob*0.72
+    _parts["head"].position.y = HEAD_Y+bob*0.72
     _parts["head"].rotation = sin(_phase*0.65)*0.018
-    _parts["hair"].position.y = -103.0+bob*0.72
+    _parts["hair"].position.y = HAIR_Y+bob*0.72
     _parts["hair"].rotation = sin(_phase*0.65+0.5)*0.025
-    _parts["headwear"].position.y = -83.0+bob*0.72
+    _parts["headwear"].position.y = HEAD_Y+bob*0.72
     _parts["headwear"].rotation = _parts["hair"].rotation*0.35
-    _parts["face"].position.y = -83.0+bob*0.72
+    _parts["face"].position.y = HEAD_Y+bob*0.72
     _blink_clock += delta
     if _blink_left>0.0:
         _blink_left = maxf(_blink_left-delta,0.0)

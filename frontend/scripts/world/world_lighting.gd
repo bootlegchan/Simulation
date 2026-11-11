@@ -1,5 +1,6 @@
 extends Node2D
 ## Room ambient grading and practical point lights; all light placement is presentation data.
+const StorybookStyle = preload("res://scripts/style/storybook_style.gd")
 var _ambient: CanvasModulate
 var _lights: Array[PointLight2D] = []
 var _light_effects: Array[Dictionary] = []
@@ -38,15 +39,12 @@ func configure(state: Dictionary) -> void:
         ambient_key = "ambient_dawn"
     elif hour >= 17:
         ambient_key = "ambient_evening"
-    var fallback := Color("#e4e6d4")
-    if ambient_key == "ambient_night":
-        fallback = Color("#53627d")
-    elif ambient_key == "ambient_dawn":
-        fallback = Color("#f0c2a0")
-    elif hour >= 11 and hour <= 15:
-        fallback = Color("#fff4dc")
+    # Manifest values win; the storybook palette only fills gaps. Either way the
+    # result is graded a little brighter and more saturated for the painted look.
+    var fallback := StorybookStyle.ambient_colour(hour,false)
     var ambient_value: Variant = lighting.get(ambient_key,fallback)
-    _ambient.color = ambient_value if ambient_value is Color else Color(str(ambient_value))
+    var ambient_colour: Color = ambient_value if ambient_value is Color else Color(str(ambient_value))
+    _ambient.color = StorybookStyle.vivid(ambient_colour,0.8)
     if str(room.get("scene_kind","outdoor")) == "interior":
         _ambient.color = _ambient.color.darkened(clampf(float(lighting.get("interior_dim",0.06)),0.0,0.25))
     _rebuild_lights(room,hour)

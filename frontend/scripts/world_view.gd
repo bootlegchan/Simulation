@@ -5,9 +5,12 @@ signal interact_requested
 signal close_requested
 
 const WORLD_HEIGHT := 720.0
-const PAPER := Color("#eee5d2")
-const INK := Color("#283a38")
-const RUST := Color("#b66b48")
+const PAPER := Color("#fff3d2")
+const INK := Color("#5b3a2e")
+const RUST := Color("#e6694b")
+const StorybookStyle = preload("res://scripts/style/storybook_style.gd")
+const ATMOSPHERE_SCRIPT = preload("res://scripts/world/world_atmosphere.gd")
+const PAPER_SHADER = preload("res://shaders/storybook_paper.gdshader")
 const CHARACTER_VISUAL_SCRIPT = preload("res://scripts/characters/character_visual.gd")
 const BUILDING_SCRIPT = preload("res://scripts/world/world_building.gd")
 const FURNITURE_SCRIPT = preload("res://scripts/world/world_furniture.gd")
@@ -44,6 +47,8 @@ var _hover_signature := ""
 var _foreground: Node2D
 var _terrain: Node2D
 var _hud: CanvasLayer
+var _atmosphere: Node2D
+var _post_layer: CanvasLayer
 
 func _ready() -> void:
     # Sort independent world nodes by their ground contact point so trees,
@@ -76,9 +81,25 @@ func _ready() -> void:
     _foreground = Node2D.new()
     _foreground.set_script(FOREGROUND_SCRIPT)
     add_child(_foreground)
+    _atmosphere = Node2D.new()
+    _atmosphere.set_script(ATMOSPHERE_SCRIPT)
+    add_child(_atmosphere)
     _hud = CanvasLayer.new()
     _hud.set_script(HUD_SCRIPT)
     add_child(_hud)
+    # Whole-screen painted-paper finish. It sits above the world (layer 0) but
+    # below the HUD (layer 20) and the room-transition fade (layer 100), and it
+    # must never swallow mouse input.
+    _post_layer = CanvasLayer.new()
+    _post_layer.layer = 10
+    add_child(_post_layer)
+    var paper := ColorRect.new()
+    paper.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    paper.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+    var paper_material := ShaderMaterial.new()
+    paper_material.shader = PAPER_SHADER
+    paper.material = paper_material
+    _post_layer.add_child(paper)
 
 func set_presentation_state(state: Dictionary) -> void:
     var incoming_room_id := str(state.get("room_id",""))
@@ -102,6 +123,8 @@ func set_presentation_state(state: Dictionary) -> void:
     _sync_prop_nodes()
     if _lighting:
         _lighting.call("configure",_state)
+    if _atmosphere:
+        _atmosphere.call("configure",_state)
     var width := float(_state.get("world_width",3600.0))
     if _camera:
         _camera.limit_left = 0
@@ -231,75 +254,65 @@ func _draw() -> void:
     _draw_portals(room_manifest)
     _draw_npcs()
     _draw_hover_feedback()
-    _draw_environment()
+
+func _draw_ridge(ridge: PackedVector2Array,fill: Color,line_colour: Color,line_width: float,seed_value: int,parallax: float) -> void:
+    # One layer of distant hills: filled below, with a hand-drawn crayon ridge line.
+    var camera_x := _camera.position.x if _camera else 0.0
+    draw_set_transform(Vector2(camera_x*parallax,0))
+    var body := PackedVector2Array(ridge)
+    body.append(Vector2(ridge[ridge.size()-1].x,620))
+    body.append(Vector2(ridge[0].x,620))
+    draw_colored_polygon(body,fill)
+    draw_polyline(StorybookStyle.wobble(ridge,seed_value,2.2,false,44.0),line_colour,line_width,true)
+    draw_set_transform(Vector2.ZERO)
 
 func _draw_outdoor(width: float) -> void:
     # The environment is a renderable stage, not a pre-painted village image.
     # Buildings and movable scenery are separate nodes sourced from the manifest.
     var hour := int(_state.get("status",{}).get("hour",10))
-    var sky := _sky_colour(hour)
-    draw_rect(Rect2(0,0,width,WORLD_HEIGHT),sky)
+    var sky_colours := StorybookStyle.sky_colors(hour)
+    draw_rect(Rect2(0,440,width,WORLD_HEIGHT-440),sky_colours[1])
+    draw_polygon(PackedVector2Array([
+        Vector2(0,0),Vector2(width,0),Vector2(width,440),Vector2(0,440)
+    ]),PackedColorArray([sky_colours[0],sky_colours[0],sky_colours[1],sky_colours[1]]))
+
+    # A round, friendly sun by day and a pale moon by night.
     var sun_x := 280.0+float(hour)*125.0
     var sun_y := 115.0+absf(12.0-float(hour))*8.0
-    var sun_colour := Color("#f4d79b") if hour >= 6 and hour < 19 else Color("#d9d9ce")
-    draw_circle(Vector2(sun_x,sun_y),34.0,sun_colour)
+    if hour >= 6 and hour < 19:
+        var centre := Vector2(sun_x,sun_y)
+        draw_circle(centre,82.0,Color(StorybookStyle.SUN,0.14))
+        draw_circle(centre,60.0,Color(StorybookStyle.SUN,0.2))
+        for ray in range(12):
+            var angle := TAU*float(ray)/12.0
+            var direction := Vector2(cos(angle),sin(angle))
+            StorybookStyle.crayon_line(self,centre+direction*50.0,centre+direction*(64.0+float(ray%2)*12.0),Color("#ffb52e"),4.5,ray)
+        StorybookStyle.outlined_circle(self,centre,40.0,StorybookStyle.SUN,Color("#e8902a"),4.0,7,1.0)
+        StorybookStyle.dab(self,centre+Vector2(-12,-12),Vector2(13,9),Color("#fff6b8",0.8))
+    else:
+        var moon := Vector2(sun_x,sun_y)
+        draw_circle(moon,56.0,Color("#fff3b0",0.14))
+        StorybookStyle.outlined_circle(self,moon,32.0,Color("#fff6c9"),Color("#c9b878"),3.4,9,0.9)
+        draw_circle(moon+Vector2(-9,-6),6.0,Color("#eadf9f"))
+        draw_circle(moon+Vector2(10,9),4.0,Color("#eadf9f"))
 
-    # Distant landforms are deliberately abstract and parallax-friendly.
-    draw_set_transform(Vector2(_camera.position.x*0.18 if _camera else 0.0,0))
-    draw_colored_polygon(PackedVector2Array([
+    # Two layers of rolling hills; the far one is paler and moves more slowly.
+    var far_ridge := PackedVector2Array([
+        Vector2(-400,360),Vector2(300,290),Vector2(700,340),Vector2(1150,270),
+        Vector2(1600,330),Vector2(2050,262),Vector2(2500,332),Vector2(2950,280),
+        Vector2(3400,336),Vector2(width+400,300)
+    ])
+    _draw_ridge(far_ridge,Color("#9bdcb8"),Color("#5f9a86",0.8),3.0,21,0.1)
+    var near_ridge := PackedVector2Array([
         Vector2(-200,390),Vector2(260,270),Vector2(520,350),Vector2(830,245),
         Vector2(1120,340),Vector2(1450,260),Vector2(1790,350),Vector2(2130,250),
-        Vector2(2470,350),Vector2(2820,260),Vector2(3200,350),Vector2(width+200,300),
-        Vector2(width+200,600),Vector2(-200,600)
-    ]),Color("#82927d"))
-    draw_set_transform(Vector2.ZERO)
+        Vector2(2470,350),Vector2(2820,260),Vector2(3200,350),Vector2(width+200,300)
+    ])
+    _draw_ridge(near_ridge,Color("#6fcf7a"),StorybookStyle.OUTLINE,4.0,33,0.18)
 
-    draw_string(ThemeDB.fallback_font,Vector2(90,95),"OAKWOOD",HORIZONTAL_ALIGNMENT_LEFT,-1,18,Color("#f4eedf"))
-
-func _draw_interior(width: float,title: String) -> void:
-    # Warm, illustrated interiors with room-specific furniture silhouettes.
-    draw_rect(Rect2(0,0,width,WORLD_HEIGHT),Color("#d8c9ae"))
-    draw_rect(Rect2(0,0,width,515),Color("#e8d9bd"))
-    # Wallpaper panels and timber trim
-    for x in range(28,int(width),84):
-        draw_line(Vector2(float(x),104),Vector2(float(x),486),Color("#d5c2a2",0.32),2.0)
-        draw_circle(Vector2(float(x+28),154),3.0,Color("#bd9b79",0.42))
-        draw_circle(Vector2(float(x+28),234),3.0,Color("#bd9b79",0.42))
-    draw_rect(Rect2(0,82,width,12),Color("#9b8061"))
-    draw_rect(Rect2(0,486,width,30),Color("#b28d68"))
-    # Floorboards with perspective-like seams
-    draw_rect(Rect2(0,516,width,204),Color("#9a7959"))
-    for y in range(540,720,34):
-        draw_line(Vector2(0,float(y)),Vector2(width,float(y)),Color("#71583f",0.55),2.0)
-    for x in range(80,int(width),210):
-        draw_line(Vector2(float(x),518),Vector2(float(x-35),720),Color("#71583f",0.38),2.0)
-    # Soft rug in the centre of the room
-    draw_rect(Rect2(520,570,570,112),Color("#a85f4b"))
-    draw_rect(Rect2(538,583,534,86),Color("#d4a77a"),false,3.0)
-    for x in range(560,1060,42):
-        draw_circle(Vector2(float(x),626),3.0,Color("#8e5748",0.6))
-    # Windows, curtains and sill
-    for x in [110.0,1450.0,2780.0]:
-        draw_rect(Rect2(x-12,118,196,220),Color("#745941"))
-        draw_rect(Rect2(x,130,172,194),Color("#9ab5ad"))
-        draw_rect(Rect2(x+8,138,156,178),Color("#c6d6c3"))
-        draw_rect(Rect2(x+8,230,156,86),Color("#8faeaa"))
-        draw_line(Vector2(x+86,138),Vector2(x+86,316),Color("#745941"),8.0)
-        draw_line(Vector2(x+8,225),Vector2(x+164,225),Color("#745941"),8.0)
-        draw_rect(Rect2(x-25,112,28,235),Color("#b66f58"))
-        draw_rect(Rect2(x+184,112,28,235),Color("#b66f58"))
-        draw_rect(Rect2(x-22,334,222,12),Color("#755b43"))
-    # Ceiling beams and hanging lamps
-    for x in range(120,int(width),620):
-        draw_rect(Rect2(float(x),80,18,410),Color("#9a7958",0.72))
-    draw_line(Vector2(width*0.5,0),Vector2(width*0.5,118),Color("#70573f"),5.0)
-    draw_circle(Vector2(width*0.5,145),30.0,Color("#f2d79a"))
-    draw_circle(Vector2(width*0.5,145),19.0,Color("#fff0c9"))
-    # Room title on a painted wooden plaque
-    draw_rect(Rect2(80,22,420,48),Color("#795d43"))
-    draw_rect(Rect2(86,27,408,38),Color("#ead8b8"))
-    draw_string(ThemeDB.fallback_font,Vector2(104,54),title.to_upper(),HORIZONTAL_ALIGNMENT_LEFT,370,19,INK)
-
+    var title_pos := Vector2(90,95)
+    draw_string_outline(ThemeDB.fallback_font,title_pos,"OAKWOOD",HORIZONTAL_ALIGNMENT_LEFT,-1,24,8,StorybookStyle.OUTLINE)
+    draw_string(ThemeDB.fallback_font,title_pos,"OAKWOOD",HORIZONTAL_ALIGNMENT_LEFT,-1,24,Color("#fff3d2"))
 
 func _sync_building_nodes() -> void:
     var room_manifest: Dictionary = _state.get("room_manifest",{})
@@ -318,7 +331,7 @@ func _sync_building_nodes() -> void:
             building.set_script(BUILDING_SCRIPT)
             add_child(building)
             _building_nodes[building_id] = building
-        building.call("configure",definition)
+        building.call("configure",definition,room_manifest.get("interior",{}))
     for existing_id in _building_nodes.keys():
         if not visible_ids.has(existing_id):
             var old_building: Node2D = _building_nodes[existing_id]
@@ -436,9 +449,17 @@ func _draw_portals(room_manifest: Dictionary) -> void:
         var x := float(portal.get("x",100.0))
         var width := float(portal.get("width",180.0))
         var door_x := float(portal.get("door_x",x+width*0.5))
-        draw_rect(Rect2(door_x-35,465,70,125),Color("#5b4939"))
-        draw_rect(Rect2(door_x-27,473,54,117),Color("#927253"))
-        draw_string(ThemeDB.fallback_font,Vector2(x,445),str(portal.get("label","Exit")),HORIZONTAL_ALIGNMENT_LEFT,width,15,INK)
+        var door_seed := absi(str(portal.get("id","")).hash())%1000
+        StorybookStyle.blob_shadow(self,Vector2(door_x,592),52.0,0.2,0.22)
+        StorybookStyle.outlined_rounded_rect(self,Rect2(door_x-37,463,74,129),30.0,StorybookStyle.WOOD_DEEP,INK,4.0,door_seed,1.0)
+        StorybookStyle.outlined_rounded_rect(self,Rect2(door_x-28,472,56,120),24.0,StorybookStyle.WOOD,INK,2.6,door_seed+1,0.8)
+        StorybookStyle.crayon_line(self,Vector2(door_x,484),Vector2(door_x,588),StorybookStyle.WOOD_DEEP,2.4,door_seed)
+        StorybookStyle.outlined_circle(self,Vector2(door_x+17,533),4.4,StorybookStyle.BLOOM_YELLOW,INK,1.8,door_seed+2,0.2)
+        var portal_label := str(portal.get("label","Exit"))
+        var tag_width := clampf(float(portal_label.length())*8.4+26.0,90.0,width)
+        var tag := Rect2(door_x-tag_width*0.5,424,tag_width,26)
+        StorybookStyle.outlined_rounded_rect(self,tag,9.0,StorybookStyle.CREAM,INK,3.0,door_seed+3,0.6)
+        draw_string(ThemeDB.fallback_font,Vector2(tag.position.x,tag.position.y+18),portal_label,HORIZONTAL_ALIGNMENT_CENTER,tag_width,14,INK)
         _portal_items.append({"kind":"portal","id":str(portal.get("id","")),"label":str(portal.get("label","Exit")),"target_room_id":str(portal.get("target_room_id","")),"x":door_x,"width":width})
 
 func _sync_character_nodes() -> void:
@@ -487,7 +508,11 @@ func _draw_npcs() -> void:
         actor.position = Vector2(x,y)
         actor.call("set_motion",false)
         if visible_index < 8 or absf(x-float(_state.get("observer_x",500.0))) < 240.0:
-            draw_string(ThemeDB.fallback_font,Vector2(x-48,y-145),str(npc.get("name","Citizen")),HORIZONTAL_ALIGNMENT_CENTER,96,12,INK)
+            var npc_name := str(npc.get("name","Citizen"))
+            var name_width := clampf(float(npc_name.length())*7.4+20.0,64.0,140.0)
+            var name_tag := Rect2(x-name_width*0.5,y-168,name_width,22)
+            StorybookStyle.outlined_rounded_rect(self,name_tag,8.0,Color(StorybookStyle.CREAM,0.96),INK,2.4,visible_index,0.5)
+            draw_string(ThemeDB.fallback_font,Vector2(name_tag.position.x,name_tag.position.y+16),npc_name,HORIZONTAL_ALIGNMENT_CENTER,name_width,12,INK)
         _npc_items.append({"kind":"npc","id":npc_id,"label":str(npc.get("name","Citizen")),"x":x,"y":y-8.0})
         visible_index += 1
 
@@ -501,15 +526,15 @@ func _draw_hover_feedback() -> void:
     var y := float(target.get("y",550.0))
     if str(target.get("kind","")) == "portal":
         y = 585.0
-    draw_arc(Vector2(x,y+8.0),30.0,0.0,TAU,32,Color("#f4ead5",0.95),2.0,true)
-    draw_arc(Vector2(x,y+8.0),24.0,0.0,TAU,32,Color("#35483f",0.72),1.2,true)
+    var bounce := sin(float(Time.get_ticks_msec())/180.0)*2.0
+    draw_arc(Vector2(x,y+8.0),32.0+bounce,0.0,TAU,32,INK,6.0,true)
+    draw_arc(Vector2(x,y+8.0),32.0+bounce,0.0,TAU,32,StorybookStyle.SUN,3.2,true)
     var label := str(target.get("label",""))
     if not label.is_empty():
-        var label_width := clampf(float(label.length())*8.0+28.0,100.0,240.0)
-        var label_rect := Rect2(x-label_width*0.5,y-48.0,label_width,27.0)
-        draw_rect(label_rect,Color("#26352f",0.92))
-        draw_rect(label_rect.grow(-1.5),Color("#f1e8d5",0.98),false,1.0)
-        draw_string(ThemeDB.fallback_font,Vector2(label_rect.position.x+10.0,label_rect.position.y+18.0),label,HORIZONTAL_ALIGNMENT_CENTER,label_width-20.0,12,Color("#26352f"))
+        var label_width := clampf(float(label.length())*8.4+30.0,100.0,260.0)
+        var label_rect := Rect2(x-label_width*0.5,y-52.0,label_width,29.0)
+        StorybookStyle.outlined_rounded_rect(self,label_rect,10.0,StorybookStyle.CREAM,INK,3.2,label.length(),0.6)
+        draw_string(ThemeDB.fallback_font,Vector2(label_rect.position.x+10.0,label_rect.position.y+20.0),label,HORIZONTAL_ALIGNMENT_CENTER,label_width-20.0,13,INK)
 
 func _draw_selection_prompt() -> void:
     var selected: Dictionary = _state.get("selected",{})
@@ -529,91 +554,6 @@ func _draw_selection_prompt() -> void:
         Vector2(x-75,y-30)
     ]),Color("#6e5743"),2.0)
     draw_string(ThemeDB.fallback_font,Vector2(x-65,y-7),prompt,HORIZONTAL_ALIGNMENT_CENTER,130,12,INK)
-
-func _draw_foreground(width: float) -> void:
-    # Foreground grasses and flowers create a layered illustrated stage.
-    var t := float(Time.get_ticks_msec()) / 1000.0
-    for i in range(0,int(width),145):
-        var x := float(i)
-        var sway := sin(t*1.4+x*0.03)*5.0
-        draw_line(Vector2(x,590),Vector2(x-8+sway,560),Color("#536d4e"),3.0)
-        draw_line(Vector2(x+5,592),Vector2(x+15+sway,566),Color("#6e8759"),3.0)
-        if i % 435 == 0:
-            draw_circle(Vector2(x-8+sway,557),5.0,Color("#e8c58b"))
-            draw_circle(Vector2(x-14+sway,562),4.0,Color("#d88b76"))
-            draw_circle(Vector2(x-2+sway,562),4.0,Color("#f1dfb6"))
-    # Scattered stepping stones and tiny tufts along the lane edge
-    for i in range(0,int(width),260):
-        var x := float(i)+float((i/260)%2)*70.0
-        _draw_ellipse(Vector2(x,676),Vector2(30,7),Color("#d4c4a4",0.72))
-        _draw_ellipse(Vector2(x-4,674),Vector2(17,3),Color("#eee0c4",0.58))
-
-func _draw_environment() -> void:
-    var climate: Dictionary = _state.get("climate",{})
-    var precipitation := str(climate.get("precipitation","CLEAR")).to_upper()
-    var hour := int(_state.get("status",{}).get("hour",10))
-    var width := float(_state.get("world_width",3600.0))
-    var t := float(Time.get_ticks_msec()) / 1000.0
-
-    # Time-of-day lighting is handled by WorldLighting/CanvasModulate. This pass
-    # is reserved for atmosphere that belongs in front of the world geometry.
-    if hour < 5 or hour >= 21:
-        draw_rect(Rect2(0,0,width,WORLD_HEIGHT),Color("#17273c",0.12))
-        for i in range(22):
-            var sx := float((i*173+41)%int(maxf(width,1.0)))
-            var sy := float((i*83+29)%310)
-            draw_circle(Vector2(sx,sy),1.4,Color("#fff0c4",0.72))
-        for i in range(12):
-            var fx := float((i*277+int(t*16.0))%int(maxf(width,1.0)))
-            var fy := 460.0+sin(t*1.7+float(i))*42.0
-            draw_circle(Vector2(fx,fy),3.0,Color("#f4d98a",0.8))
-            draw_circle(Vector2(fx,fy),7.0,Color("#f4d98a",0.14))
-    elif hour < 8 or hour >= 17:
-        draw_rect(Rect2(0,0,width,WORLD_HEIGHT),Color("#d98f72",0.06))
-    elif hour >= 11 and hour <= 15:
-        draw_rect(Rect2(0,0,width,WORLD_HEIGHT),Color("#fff1c9",0.02))
-
-    # Slow drifting clouds and distant birds add gentle life to quiet scenes.
-    for i in range(4):
-        var cx := fposmod(float(i)*890.0+t*13.0,width+220.0)-110.0
-        var cy := 110.0+float((i*43)%90)
-        var cloud := Color("#fff8e8",0.34) if precipitation == "CLEAR" else Color("#d7ded8",0.28)
-        _draw_ellipse(Vector2(cx,cy),Vector2(54,15),cloud)
-        _draw_ellipse(Vector2(cx+34,cy-8),Vector2(38,18),cloud)
-        _draw_ellipse(Vector2(cx+67,cy),Vector2(47,13),cloud)
-    for i in range(5):
-        var bx := fposmod(float(i)*710.0+t*27.0,width+80.0)-40.0
-        var by := 190.0+sin(t*1.3+float(i))*16.0
-        draw_arc(Vector2(bx,by),9.0,PI+0.25,TAU-0.25,8,Color("#46554d",0.58),1.8)
-        draw_arc(Vector2(bx+15,by),9.0,PI+0.25,TAU-0.25,8,Color("#46554d",0.58),1.8)
-
-    if precipitation in ["CLOUDY","OVERCAST"]:
-        var cloud_tint := Color("#63727a",0.10) if precipitation == "CLOUDY" else Color("#4f5c65",0.20)
-        draw_rect(Rect2(0,0,width,WORLD_HEIGHT),cloud_tint)
-    if precipitation in ["RAIN","SLEET","SNOW","BLIZZARD"]:
-        for i in range(120):
-            var x := float((i*137+int(Time.get_ticks_msec()/22))%int(maxf(width,1.0)))
-            var y := float((i*71+int(Time.get_ticks_msec()/13))%560)
-            if precipitation == "SNOW" or precipitation == "BLIZZARD":
-                draw_circle(Vector2(x,y),1.8,Color("#f1f3e8",0.78))
-            else:
-                draw_line(Vector2(x,y),Vector2(x-8,y+22),Color("#c5d4df",0.48),1.5)
-    if precipitation == "FOG":
-        draw_rect(Rect2(0,280,width,440),Color("#d8e0d9",0.30))
-        for i in range(5):
-            var fog_y := 360.0+float(i)*62.0+sin(t+float(i))*10.0
-            draw_rect(Rect2(0,fog_y,width,34),Color("#e8e8dc",0.13))
-
-func _sky_colour(hour: int) -> Color:
-    if hour < 5 or hour >= 21:
-        return Color("#27374b")
-    if hour < 8:
-        return Color("#c58e78")
-    if hour < 17:
-        return Color("#a9c1bd")
-    if hour < 20:
-        return Color("#cf9877")
-    return Color("#48566a")
 
 func _draw_inspection() -> void:
     var inspection: Dictionary = _state.get("inspection",{})
