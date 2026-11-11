@@ -3,12 +3,14 @@ extends Node2D
 ## Position, footprint, palette and silhouette come from the presentation manifest.
 
 var definition: Dictionary = {}
+var _room_theme: Dictionary = {}
 var _occluder: LightOccluder2D
 
-func configure(data: Dictionary) -> void:
-    if definition == data:
+func configure(data: Dictionary,room_theme: Dictionary = {}) -> void:
+    if definition == data and _room_theme == room_theme:
         return
     definition = data.duplicate(true)
+    _room_theme = room_theme.duplicate(true)
     var h := float(definition.get("height",260.0))
     position = Vector2(float(definition.get("x",0.0)),float(definition.get("y",0.0))+h)
     queue_redraw()
@@ -40,7 +42,7 @@ func _draw() -> void:
     var style := str(definition.get("style","house"))
     draw_set_transform(Vector2(0.0,-h))
     if style.begins_with("interior_"):
-        _draw_interior(w,h,style,wall,roof)
+        _draw_interior(w,h,style,wall,roof,_room_theme)
         draw_set_transform(Vector2.ZERO)
         return
     # Contact shadow and an offset cast shadow anchor the silhouette to the ground.
@@ -159,64 +161,86 @@ func _draw_facade_details(w: float,h: float,roof: Color,ink: Color) -> void:
         draw_rect(Rect2(sign_x+3,sign_y+3,sign_width-6,22),sign_fill)
         draw_string(ThemeDB.fallback_font,Vector2(sign_x+6,sign_y+21),sign_text.to_upper(),HORIZONTAL_ALIGNMENT_CENTER,sign_width-12,11,ink)
 
-func _draw_interior(w: float,h: float,style: String,wall: Color,trim: Color) -> void:
-    # Architectural room shell only. Furniture is independently positioned and Y-sorted.
+func _theme_color(theme: Dictionary,key: String,fallback: Color) -> Color:
+    var value: Variant = theme.get(key,fallback)
+    if value is Color:
+        return value
+    return Color(str(value))
+
+func _draw_interior(w: float,h: float,style: String,wall: Color,trim: Color,theme: Dictionary) -> void:
     var floor_y := h*0.70
-    var floor_colour := Color("#c9b18b")
-    if style == "interior_tavern": floor_colour = Color("#9a795a")
-    elif style == "interior_shop": floor_colour = Color("#d1b98e")
-    elif style == "interior_bakery": floor_colour = Color("#d6bd94")
-    draw_rect(Rect2(0,0,w,floor_y),wall)
+    var wall_colour := _theme_color(theme,"wall_color",wall)
+    var floor_colour := _theme_color(theme,"floor_color",Color("#c9b18b"))
+    var trim_colour := _theme_color(theme,"trim_color",trim)
+    if style == "interior_tavern" and not theme.has("floor_color"):
+        floor_colour = Color("#9a795a")
+    elif style == "interior_shop" and not theme.has("floor_color"):
+        floor_colour = Color("#d1b98e")
+    elif style == "interior_bakery" and not theme.has("floor_color"):
+        floor_colour = Color("#d6bd94")
+    var window_frame := _theme_color(theme,"window_frame_color",trim_colour.darkened(0.22))
+    var window_glass := _theme_color(theme,"window_glass_color",Color("#9ab5ad"))
+    var curtain := _theme_color(theme,"curtain_color",Color("#eee2ca"))
+    var sconce := _theme_color(theme,"sconce_color",Color("#d6b47a"))
+    var art_primary := _theme_color(theme,"art_primary_color",Color("#71836c"))
+    var art_secondary := _theme_color(theme,"art_secondary_color",Color("#d6c39f"))
+    var door := _theme_color(theme,"door_color",Color("#584638"))
+    draw_rect(Rect2(0,0,w,floor_y),wall_colour)
     draw_rect(Rect2(0,floor_y,w,h-floor_y),floor_colour)
-    draw_rect(Rect2(0,floor_y-14,w,14),trim.darkened(0.08))
-    draw_rect(Rect2(0,0,w,18),trim.darkened(0.18))
+    draw_rect(Rect2(0,floor_y-14,w,14),trim_colour.darkened(0.08))
+    draw_rect(Rect2(0,0,w,18),trim_colour.darkened(0.18))
+    var wall_detail := str(theme.get("wall_detail","panel"))
     for beam_x in range(0,int(w),240):
-        draw_rect(Rect2(float(beam_x),18,12,floor_y-18),wall.darkened(0.10))
-        draw_line(Vector2(float(beam_x+15),floor_y+8),Vector2(float(beam_x+15),h-5),floor_colour.darkened(0.12),2.0)
-    for window_x in [w*0.18,w*0.52,w*0.82]:
-        draw_rect(Rect2(window_x-52,54,104,118),trim.darkened(0.22))
-        draw_rect(Rect2(window_x-44,62,88,102),Color("#8ea9a2"))
-        draw_rect(Rect2(window_x-38,68,76,90),Color("#d7dfc8"))
-        # Recessed glazing, divided panes and a projecting sill create real depth.
-        draw_rect(Rect2(window_x-35,72,70,82),Color("#b9c9b6"))
-        draw_rect(Rect2(window_x-4,62,8,102),trim)
-        draw_rect(Rect2(window_x-44,108,88,6),trim)
-        draw_rect(Rect2(window_x-58,174,116,8),trim.lightened(0.12))
-        draw_rect(Rect2(window_x-62,182,124,4),trim.darkened(0.18))
-        # Soft curtain panels are tucked inside the window frame.
-        draw_colored_polygon(PackedVector2Array([Vector2(window_x-39,68),Vector2(window_x-27,72),Vector2(window_x-28,154),Vector2(window_x-39,160)]),Color("#eee2ca",0.88))
-        draw_colored_polygon(PackedVector2Array([Vector2(window_x+39,68),Vector2(window_x+27,72),Vector2(window_x+28,154),Vector2(window_x+39,160)]),Color("#eee2ca",0.88))
-        draw_line(Vector2(window_x-30,78),Vector2(window_x-31,150),Color("#c4b69c",0.7),1.2)
-        draw_line(Vector2(window_x+30,78),Vector2(window_x+31,150),Color("#c4b69c",0.7),1.2)
-    for panel_x in range(80,int(w)-80,160):
-        draw_rect(Rect2(float(panel_x),floor_y-82,118,64),wall.darkened(0.045),false,1.5)
-        draw_line(Vector2(float(panel_x+8),floor_y-74),Vector2(float(panel_x+110),floor_y-74),wall.lightened(0.08),1.0)
-    # Wall sconces and framed prints give the long interior walls a human scale.
+        draw_rect(Rect2(float(beam_x),18,12,floor_y-18),wall_colour.darkened(0.10))
+        if wall_detail == "panel":
+            draw_line(Vector2(float(beam_x+15),floor_y+8),Vector2(float(beam_x+15),h-5),floor_colour.darkened(0.12),1.2)
+    var window_positions: Array = theme.get("window_positions",[0.18,0.52,0.82])
+    for ratio in window_positions:
+        var wx := clampf(float(ratio),0.08,0.92)*w
+        draw_rect(Rect2(wx-52,54,104,118),window_frame.darkened(0.22))
+        draw_rect(Rect2(wx-44,62,88,102),window_glass.darkened(0.08))
+        draw_rect(Rect2(wx-38,68,76,90),window_glass.lightened(0.16))
+        draw_rect(Rect2(wx-35,72,70,82),window_glass)
+        draw_rect(Rect2(wx-4,62,8,102),window_frame)
+        draw_rect(Rect2(wx-44,108,88,6),window_frame)
+        draw_rect(Rect2(wx-58,174,116,8),trim_colour.lightened(0.12))
+        draw_rect(Rect2(wx-62,182,124,4),trim_colour.darkened(0.18))
+        draw_colored_polygon(PackedVector2Array([Vector2(wx-39,68),Vector2(wx-27,72),Vector2(wx-28,154),Vector2(wx-39,160)]),curtain)
+        draw_colored_polygon(PackedVector2Array([Vector2(wx+39,68),Vector2(wx+27,72),Vector2(wx+28,154),Vector2(wx+39,160)]),curtain)
+        draw_line(Vector2(wx-30,78),Vector2(wx-31,150),curtain.darkened(0.16),1.2)
+        draw_line(Vector2(wx+30,78),Vector2(wx+31,150),curtain.darkened(0.16),1.2)
+    var panel_spacing := maxi(int(theme.get("panel_spacing",160)),80)
+    for panel_x in range(80,int(w)-80,panel_spacing):
+        draw_rect(Rect2(float(panel_x),floor_y-82,float(panel_spacing)-42,64),wall_colour.darkened(0.045),false,1.5)
+        draw_line(Vector2(float(panel_x+8),floor_y-74),Vector2(float(panel_x)+float(panel_spacing)-42,floor_y-74),wall_colour.lightened(0.08),1.0)
     for sconce_x in [w*0.34,w*0.68]:
-        draw_rect(Rect2(sconce_x-5,floor_y-142,10,22),trim.darkened(0.2))
-        draw_colored_polygon(PackedVector2Array([Vector2(sconce_x-12,floor_y-145),Vector2(sconce_x,floor_y-166),Vector2(sconce_x+12,floor_y-145)]),Color("#d6b47a"))
-        draw_circle(Vector2(sconce_x,floor_y-143),13.0,Color("#f4d69b",0.10))
+        draw_rect(Rect2(sconce_x-5,floor_y-142,10,22),trim_colour.darkened(0.2))
+        draw_colored_polygon(PackedVector2Array([Vector2(sconce_x-12,floor_y-145),Vector2(sconce_x,floor_y-166),Vector2(sconce_x+12,floor_y-145)]),sconce)
+        draw_circle(Vector2(sconce_x,floor_y-143),13.0,Color(sconce.r,sconce.g,sconce.b,0.10))
     for picture_x in [w*0.27,w*0.75]:
-        draw_rect(Rect2(picture_x-25,floor_y-132,50,42),trim.darkened(0.18))
-        draw_rect(Rect2(picture_x-20,floor_y-127,40,32),Color("#d6c39f"))
-        draw_colored_polygon(PackedVector2Array([Vector2(picture_x-16,floor_y-101),Vector2(picture_x-4,floor_y-119),Vector2(picture_x+4,floor_y-108),Vector2(picture_x+15,floor_y-122),Vector2(picture_x+17,floor_y-101)]),Color("#71836c"))
-    draw_rect(Rect2(28,floor_y-172,92,172),Color("#584638"))
-    draw_rect(Rect2(35,floor_y-165,78,165),Color("#8b6b4c"))
-    draw_rect(Rect2(42,floor_y-156,64,156),Color("#a7855d"))
-    draw_circle(Vector2(99,floor_y-82),3.5,Color("#d7b46f"))
-    if style == "interior_shop" or style == "interior_bakery":
-        # Perspective tile joints converge subtly toward the back wall.
+        draw_rect(Rect2(picture_x-25,floor_y-132,50,42),trim_colour.darkened(0.18))
+        draw_rect(Rect2(picture_x-20,floor_y-127,40,32),art_secondary)
+        draw_colored_polygon(PackedVector2Array([Vector2(picture_x-16,floor_y-101),Vector2(picture_x-4,floor_y-119),Vector2(picture_x+4,floor_y-108),Vector2(picture_x+15,floor_y-122),Vector2(picture_x+17,floor_y-101)]),art_primary)
+    draw_rect(Rect2(28,floor_y-172,92,172),door.darkened(0.08))
+    draw_rect(Rect2(35,floor_y-165,78,165),door)
+    draw_rect(Rect2(42,floor_y-156,64,156),door.lightened(0.12))
+    var hardware := _theme_color(theme,"hardware_color",Color("#d7b46f"))
+    draw_circle(Vector2(99,floor_y-82),3.5,hardware)
+    var floor_material := str(theme.get("floor_material",""))
+    if floor_material.is_empty():
+        floor_material = "tile" if style == "interior_shop" or style == "interior_bakery" else "plank"
+    if floor_material == "tile" or floor_material == "stone":
         for tile in range(1,9):
-            var tile_x := float(tile)*w/9.0
-            draw_line(Vector2(tile_x,floor_y+2),Vector2(w*0.5+(tile_x-w*0.5)*1.7,h),floor_colour.darkened(0.12),1.0)
+            var tx := float(tile)*w/9.0
+            draw_line(Vector2(tx,floor_y+2),Vector2(w*0.5+(tx-w*0.5)*1.7,h),floor_colour.darkened(0.12),1.0)
         for row in range(1,5):
-            var tile_y := floor_y+float(row)*(h-floor_y)/5.0
-            draw_line(Vector2(0,tile_y),Vector2(w,tile_y),floor_colour.darkened(0.10),1.0)
+            var ty := floor_y+float(row)*(h-floor_y)/5.0
+            draw_line(Vector2(0,ty),Vector2(w,ty),floor_colour.darkened(0.10),1.0)
     else:
         for plank in range(1,10):
-            var plank_x := float(plank)*w/10.0
-            draw_line(Vector2(plank_x,floor_y+10),Vector2(plank_x+18,h),floor_colour.darkened(0.10),1.2)
+            var px := float(plank)*w/10.0
+            draw_line(Vector2(px,floor_y+10),Vector2(px+18,h),floor_colour.darkened(0.10),1.2)
         for seam in range(1,6):
-            var seam_y := floor_y+float(seam)*(h-floor_y)/6.0
-            draw_line(Vector2(0,seam_y),Vector2(w,seam_y),floor_colour.darkened(0.08),0.9)
+            var sy := floor_y+float(seam)*(h-floor_y)/6.0
+            draw_line(Vector2(0,sy),Vector2(w,sy),floor_colour.darkened(0.08),0.9)
     draw_line(Vector2(0,h-3),Vector2(w,h-3),floor_colour.lightened(0.12),2.0)

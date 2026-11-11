@@ -214,3 +214,16 @@ The world-view renderer now focuses on scene composition, targets and selection 
 ## Manifest-driven exterior facade detailing
 
 Exterior buildings now support an optional `facade` object interpreted by the shared building renderer. The Oakwood civic hall, general store, bakery and tavern each use a different combination of corner stones, shutters, flower boxes, roof crest and sign treatment. Colours, sign copy and dimensions are presentation data in `oakwood.json`; no building-specific drawing scripts or simulation attributes were added. Buildings without a facade object retain the existing base treatment. Source integration and manifest JSON parsing were checked; no Godot runtime test was run.
+
+
+## Character readability and fully integrated interior presentation
+
+The observer rig now receives the existing waypoint direction through the world-view interface, fixing the movement callback signature so animation can distinguish horizontal and depth travel. The modular rig separates the far and near arm layers around the torso, gives the legs alternating lift and clearer shoe silhouettes, and adds a restrained breathing response shared by the garment. NPCs remain stationary at their existing stable presentation slots unless Python supplies movement data; no activities or positions are fabricated.
+
+Interior presentation now consumes the room manifest's `furniture`, `objects`, `interior` and `lighting` sections through reusable nodes. Furniture and environmental objects are persistent, independently configured children of the Y-sorted world, so their ground-contact points determine whether the observer passes in front or behind. The former object drawing routine now only constructs interaction/picking records; `world_interactable.gd` owns the visual, while the existing Python snapshot still determines whether non-presentation-only objects exist. Manifest interaction radii are used by target picking.
+
+The furniture renderer adds reusable seating, stools, storage cabinets, floor lamps and coat stands alongside the existing tables, shelves, ovens, hearths, plants, baskets, barrels and rugs. Wood grain, upholstery, woven rug insets, cabinet hardware and shelf contents are drawn from material/accent/secondary colour fields. The four interior rooms now have distinct wall, window, floor and trim palettes; the room theme is shared with the architectural shell rather than duplicated in per-room drawing code.
+
+Practical lighting now reads per-room ambient palettes and optional daytime light energy. Window fill and fixture lights remain presentation-only, with position, colour, intensity, radius, shadow setting and flicker parameters supplied by the manifest. Existing room transitions, camera follow, navigation, HUD and Python-owned simulation state are unchanged.
+
+Source-level integration checks and JSON parsing were performed. Godot runtime/game tests were not run, as requested. The procedural character and furniture drawings remain a scalable placeholder asset system rather than final hand-authored sprite art; authored portraits, profession-specific wardrobes and room-specific prop illustration can be layered on this generic foundation later.

@@ -15,6 +15,8 @@ const PROP_SCRIPT = preload("res://scripts/world/world_prop.gd")
 const TERRAIN_SCRIPT = preload("res://scripts/world/world_terrain.gd")
 const FOREGROUND_SCRIPT = preload("res://scripts/world/world_foreground.gd")
 const ATMOSPHERE_SCRIPT = preload("res://scripts/world/world_atmosphere.gd")
+const FURNITURE_SCRIPT = preload("res://scripts/world/world_furniture.gd")
+const INTERACTABLE_SCRIPT = preload("res://scripts/world/world_interactable.gd")
 const HUD_SCRIPT = preload("res://scripts/ui/world_hud.gd")
 
 var _state: Dictionary = {}
@@ -24,6 +26,8 @@ var _object_items: Array[Dictionary] = []
 var _portal_items: Array[Dictionary] = []
 var _building_nodes: Dictionary = {}
 var _prop_nodes: Dictionary = {}
+var _furniture_nodes: Dictionary = {}
+var _interactable_nodes: Dictionary = {}
 var _lighting: Node2D
 var _character_nodes: Dictionary = {}
 var _observer_visual: Node2D
@@ -100,6 +104,8 @@ func set_presentation_state(state: Dictionary) -> void:
     if _terrain:
         _terrain.call("configure",_state.get("room_manifest",{}),float(_state.get("world_width",3600.0)))
     _sync_character_nodes()
+    _sync_furniture_nodes()
+    _sync_interactable_nodes()
     _sync_building_nodes()
     _sync_prop_nodes()
     if _lighting:
@@ -131,9 +137,9 @@ func _process(delta: float) -> void:
         _camera.zoom = _camera.zoom.lerp(Vector2.ONE * _camera_zoom_target,zoom_weight)
     _last_observer_x = observer_x
 
-func set_observer_motion(moving: bool) -> void:
+func set_observer_motion(moving: bool,direction: Vector2 = Vector2.ZERO) -> void:
     if _observer_visual:
-        _observer_visual.call("set_motion",moving)
+        _observer_visual.call("set_motion",moving,direction)
 
 func begin_room_transition() -> void:
     if is_instance_valid(_transition_tween) and _transition_tween.is_running():
@@ -213,7 +219,8 @@ func pick_target(position: Vector2) -> Dictionary:
         if absf(position.x-float(portal.get("x",0.0))) < float(portal.get("width",120.0))*0.5 and position.y > 260.0:
             return portal
     for item in _object_items:
-        if position.distance_to(Vector2(float(item.get("x",0.0)),float(item.get("y",500.0)))) < 65.0:
+        var radius := float(item.get("interaction_radius",65.0))
+        if position.distance_to(Vector2(float(item.get("x",0.0)),float(item.get("y",500.0)))) < radius:
             return item
     for actor in _npc_items:
         if position.distance_to(Vector2(float(actor.get("x",0.0)),float(actor.get("y",520.0)))) < 45.0:
@@ -228,7 +235,7 @@ func _draw() -> void:
     _object_items.clear()
     _portal_items.clear()
     if scene_kind == "interior":
-        _draw_interior(width,str(room_manifest.get("title","Interior")))
+        _draw_interior(width,room_manifest.get("interior",{}))
     else:
         _draw_outdoor(width)
     _draw_objects(room_manifest)
@@ -259,50 +266,101 @@ func _draw_outdoor(width: float) -> void:
 
     draw_string(ThemeDB.fallback_font,Vector2(90,95),"OAKWOOD",HORIZONTAL_ALIGNMENT_LEFT,-1,18,Color("#f4eedf"))
 
-func _draw_interior(width: float,title: String) -> void:
-    # Warm, illustrated interiors with room-specific furniture silhouettes.
-    draw_rect(Rect2(0,0,width,WORLD_HEIGHT),Color("#d8c9ae"))
-    draw_rect(Rect2(0,0,width,515),Color("#e8d9bd"))
-    # Wallpaper panels and timber trim
-    for x in range(28,int(width),84):
-        draw_line(Vector2(float(x),104),Vector2(float(x),486),Color("#d5c2a2",0.32),2.0)
-        draw_circle(Vector2(float(x+28),154),3.0,Color("#bd9b79",0.42))
-        draw_circle(Vector2(float(x+28),234),3.0,Color("#bd9b79",0.42))
-    draw_rect(Rect2(0,82,width,12),Color("#9b8061"))
-    draw_rect(Rect2(0,486,width,30),Color("#b28d68"))
-    # Floorboards with perspective-like seams
-    draw_rect(Rect2(0,516,width,204),Color("#9a7959"))
-    for y in range(540,720,34):
-        draw_line(Vector2(0,float(y)),Vector2(width,float(y)),Color("#71583f",0.55),2.0)
-    for x in range(80,int(width),210):
-        draw_line(Vector2(float(x),518),Vector2(float(x-35),720),Color("#71583f",0.38),2.0)
-    # Soft rug in the centre of the room
-    draw_rect(Rect2(520,570,570,112),Color("#a85f4b"))
-    draw_rect(Rect2(538,583,534,86),Color("#d4a77a"),false,3.0)
-    for x in range(560,1060,42):
-        draw_circle(Vector2(float(x),626),3.0,Color("#8e5748",0.6))
-    # Windows, curtains and sill
-    for x in [110.0,1450.0,2780.0]:
-        draw_rect(Rect2(x-12,118,196,220),Color("#745941"))
-        draw_rect(Rect2(x,130,172,194),Color("#9ab5ad"))
-        draw_rect(Rect2(x+8,138,156,178),Color("#c6d6c3"))
-        draw_rect(Rect2(x+8,230,156,86),Color("#8faeaa"))
-        draw_line(Vector2(x+86,138),Vector2(x+86,316),Color("#745941"),8.0)
-        draw_line(Vector2(x+8,225),Vector2(x+164,225),Color("#745941"),8.0)
-        draw_rect(Rect2(x-25,112,28,235),Color("#b66f58"))
-        draw_rect(Rect2(x+184,112,28,235),Color("#b66f58"))
-        draw_rect(Rect2(x-22,334,222,12),Color("#755b43"))
-    # Ceiling beams and hanging lamps
-    for x in range(120,int(width),620):
-        draw_rect(Rect2(float(x),80,18,410),Color("#9a7958",0.72))
-    draw_line(Vector2(width*0.5,0),Vector2(width*0.5,118),Color("#70573f"),5.0)
-    draw_circle(Vector2(width*0.5,145),30.0,Color("#f2d79a"))
-    draw_circle(Vector2(width*0.5,145),19.0,Color("#fff0c9"))
-    # Room title on a painted wooden plaque
-    draw_rect(Rect2(80,22,420,48),Color("#795d43"))
-    draw_rect(Rect2(86,27,408,38),Color("#ead8b8"))
-    draw_string(ThemeDB.fallback_font,Vector2(104,54),title.to_upper(),HORIZONTAL_ALIGNMENT_LEFT,370,19,INK)
+func _draw_interior(width: float,theme: Dictionary) -> void:
+    # Quiet material stage; the room shell, furniture and points of interest
+    # are independent nodes layered above this backdrop.
+    var backdrop := Color(str(theme.get("backdrop_color","#d8c9ae")))
+    var wall := Color(str(theme.get("wall_color","#e8d9bd")))
+    var floor := Color(str(theme.get("floor_color","#9a7959")))
+    var trim := Color(str(theme.get("trim_color","#b28d68")))
+    var floor_y := clampf(float(theme.get("floor_y",516.0)),420.0,640.0)
+    draw_rect(Rect2(0,0,width,WORLD_HEIGHT),backdrop)
+    draw_rect(Rect2(0,0,width,floor_y),wall)
+    draw_rect(Rect2(0,floor_y,width,WORLD_HEIGHT-floor_y),floor)
+    draw_rect(Rect2(0,floor_y-22.0,width,22.0),trim.darkened(0.08))
+    draw_rect(Rect2(0,floor_y-22.0,width,4.0),trim.lightened(0.12))
+    var wall_pattern := str(theme.get("wall_pattern","panel"))
+    var spacing := maxi(int(theme.get("panel_spacing",160)),80)
+    if wall_pattern == "panel":
+        for x in range(32,int(width),spacing):
+            draw_rect(Rect2(float(x),112.0,float(spacing)-24.0,floor_y-148.0),wall.darkened(0.025),false,1.2)
+            draw_line(Vector2(float(x)+8.0,122.0),Vector2(float(x)+float(spacing)-32.0,122.0),wall.lightened(0.08),1.0)
+    elif wall_pattern == "plaster":
+        for x in range(48,int(width),spacing):
+            draw_line(Vector2(float(x),142.0),Vector2(float(x)+24.0,142.0),wall.darkened(0.045),1.0)
+            draw_line(Vector2(float(x)+42.0,270.0),Vector2(float(x)+72.0,270.0),wall.darkened(0.04),1.0)
+    var floor_material := str(theme.get("floor_material","plank"))
+    if floor_material == "tile" or floor_material == "stone":
+        for row in range(1,6):
+            var tile_y := floor_y+(WORLD_HEIGHT-floor_y)*float(row)/6.0
+            draw_line(Vector2(0,tile_y),Vector2(width,tile_y),floor.darkened(0.12),1.2)
+        for column in range(1,13):
+            var ratio := float(column)/13.0
+            var bottom_x := width*ratio
+            var top_x := width*0.5+(bottom_x-width*0.5)*0.48
+            draw_line(Vector2(top_x,floor_y),Vector2(bottom_x,WORLD_HEIGHT),floor.darkened(0.12),1.0)
+    else:
+        for y in range(int(floor_y)+24,int(WORLD_HEIGHT),30):
+            draw_line(Vector2(0,float(y)),Vector2(width,float(y)),floor.darkened(0.15),1.2)
+        for x in range(70,int(width),210):
+            draw_line(Vector2(float(x),floor_y+2.0),Vector2(float(x-34),WORLD_HEIGHT),floor.darkened(0.12),1.1)
+    draw_line(Vector2(0,WORLD_HEIGHT-3.0),Vector2(width,WORLD_HEIGHT-3.0),floor.lightened(0.14),2.0)
 
+func _sync_furniture_nodes() -> void:
+    var room_manifest: Dictionary = _state.get("room_manifest",{})
+    var definitions: Array = room_manifest.get("furniture",[])
+    var visible_ids: Dictionary = {}
+    for definition in definitions:
+        var item_id := str(definition.get("id",""))
+        if item_id.is_empty():
+            continue
+        visible_ids[item_id] = true
+        var item: Node2D
+        if _furniture_nodes.has(item_id):
+            item = _furniture_nodes[item_id]
+        else:
+            item = Node2D.new()
+            item.set_script(FURNITURE_SCRIPT)
+            add_child(item)
+            _furniture_nodes[item_id] = item
+        item.call("configure",definition)
+    for old_id in _furniture_nodes.keys():
+        if not visible_ids.has(old_id):
+            var old_item: Node2D = _furniture_nodes[old_id]
+            old_item.queue_free()
+            _furniture_nodes.erase(old_id)
+
+func _sync_interactable_nodes() -> void:
+    var room_manifest: Dictionary = _state.get("room_manifest",{})
+    var definitions: Array = room_manifest.get("objects",[])
+    var actual_by_id: Dictionary = {}
+    var actual_objects: Array = _state.get("objects",[])
+    for actual in actual_objects:
+        actual_by_id[str(actual.get("id",""))] = actual
+    var status: Dictionary = _state.get("status",{})
+    var visible_ids: Dictionary = {}
+    for definition in definitions:
+        var item_id := str(definition.get("id",""))
+        if item_id.is_empty():
+            continue
+        var actual: Dictionary = actual_by_id.get(item_id,{})
+        if actual.is_empty() and not bool(definition.get("presentation_only",false)):
+            continue
+        visible_ids[item_id] = true
+        var item: Node2D
+        if _interactable_nodes.has(item_id):
+            item = _interactable_nodes[item_id]
+        else:
+            item = Node2D.new()
+            item.set_script(INTERACTABLE_SCRIPT)
+            add_child(item)
+            _interactable_nodes[item_id] = item
+        item.call("configure",definition,actual,status)
+    for old_id in _interactable_nodes.keys():
+        if not visible_ids.has(old_id):
+            var old_item: Node2D = _interactable_nodes[old_id]
+            old_item.queue_free()
+            _interactable_nodes.erase(old_id)
 
 func _sync_building_nodes() -> void:
     var room_manifest: Dictionary = _state.get("room_manifest",{})
@@ -321,7 +379,7 @@ func _sync_building_nodes() -> void:
             building.set_script(BUILDING_SCRIPT)
             add_child(building)
             _building_nodes[building_id] = building
-        building.call("configure",definition)
+        building.call("configure",definition,room_manifest.get("interior",{}))
     for existing_id in _building_nodes.keys():
         if not visible_ids.has(existing_id):
             var old_building: Node2D = _building_nodes[existing_id]
@@ -353,44 +411,30 @@ func _sync_prop_nodes() -> void:
             _prop_nodes.erase(existing_id)
 
 func _draw_objects(room_manifest: Dictionary) -> void:
+    # Reusable Y-sorted WorldInteractable nodes own the object illustration.
+    # This pass preserves the existing labels and creates picking records only.
     var definitions: Array = room_manifest.get("objects",[])
     var actual_objects: Array = _state.get("objects",[])
     for definition in definitions:
         var object_id := str(definition.get("id",""))
         var actual := {}
-        for item in actual_objects:
-            if str(item.get("id","")) == object_id:
-                actual = item
+        for candidate in actual_objects:
+            if str(candidate.get("id","")) == object_id:
+                actual = candidate
                 break
         if actual.is_empty() and not bool(definition.get("presentation_only",false)):
             continue
         var x := float(definition.get("x",600.0))
-        var y := 500.0
+        var y := float(definition.get("y",500.0))
         var kind := str(definition.get("kind","inspect"))
-        if kind == "noticeboard":
-            draw_rect(Rect2(x-32,y-135,64,118),Color("#72533a"))
-            draw_rect(Rect2(x-24,y-127,48,102),Color("#e8dfc7"))
-            draw_line(Vector2(x-14,y-105),Vector2(x+14,y-105),RUST,3.0)
-            draw_line(Vector2(x-14,y-85),Vector2(x+14,y-85),RUST,3.0)
-            draw_rect(Rect2(x-7,y-18,14,55),Color("#70553c"))
-        elif kind == "ledger":
-            draw_rect(Rect2(x-65,y-80,130,75),Color("#70513a"))
-            draw_rect(Rect2(x-32,y-113,64,48),Color("#e6ddc8"))
-            draw_line(Vector2(x-20,y-98),Vector2(x+20,y-98),INK,2.0)
-        elif kind == "clock":
-            draw_circle(Vector2(x,y-70),38,Color("#e7dec8"))
-            draw_circle(Vector2(x,y-70),31,Color("#6c5a43"),false,3.0)
-            draw_line(Vector2(x,y-70),Vector2(x,y-91),INK,3.0)
-            draw_line(Vector2(x,y-70),Vector2(x+18,y-58),INK,3.0)
-            draw_rect(Rect2(x-6,y-18,12,50),Color("#70553c"))
-        elif kind == "shop":
-            draw_rect(Rect2(x-75,y-80,150,65),Color("#785b42"))
-            draw_rect(Rect2(x-65,y-70,130,14),Color("#d4b98d"))
-        else:
-            draw_rect(Rect2(x-55,y-65,110,50),Color("#886e51"))
-            draw_rect(Rect2(x-42,y-55,84,30),Color("#c5a47a"))
-        _object_items.append({"kind":"object","interaction":kind,"id":object_id,"label":str(definition.get("label",actual.get("name",object_id))),"x":x,"y":y-60.0})
-        draw_string(ThemeDB.fallback_font,Vector2(x-90,y+55),str(definition.get("label","")),HORIZONTAL_ALIGNMENT_LEFT,180,13,INK)
+        var label := str(definition.get("label",actual.get("name",object_id)))
+        _object_items.append({
+            "kind":"object","interaction":kind,"id":object_id,"label":label,
+            "x":x,"y":y-60.0,
+            "interaction_radius":maxf(float(definition.get("interaction_radius",65.0)),20.0)
+        })
+        if not label.is_empty():
+            draw_string(ThemeDB.fallback_font,Vector2(x-90.0,y+55.0),label,HORIZONTAL_ALIGNMENT_LEFT,180.0,13,INK)
 
 func _draw_portals(room_manifest: Dictionary) -> void:
     for portal in room_manifest.get("portals",[]):

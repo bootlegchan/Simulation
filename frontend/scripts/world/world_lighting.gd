@@ -1,7 +1,5 @@
 extends Node2D
-## Time-of-day ambient grading and practical point lights.
-## Buildings contribute occluder polygons; this node owns the light sources.
-
+## Room ambient grading and practical point lights; all light placement is presentation data.
 var _ambient: CanvasModulate
 var _lights: Array[PointLight2D] = []
 var _light_effects: Array[Dictionary] = []
@@ -28,20 +26,29 @@ func configure(state: Dictionary) -> void:
     var status: Dictionary = state.get("status",{})
     var hour := int(status.get("hour",10))
     var room: Dictionary = state.get("room_manifest",{})
-    var signature := "%s:%s:%s:%s" % [hour,str(room.get("scene_kind","outdoor")),str(room.get("title","")),JSON.stringify(room.get("lights",[]))]
+    var lighting: Dictionary = room.get("lighting",{})
+    var signature := "%s:%s:%s:%s:%s" % [hour,str(room.get("scene_kind","outdoor")),str(room.get("title","")),JSON.stringify(room.get("lights",[])),JSON.stringify(lighting)]
     if signature == _last_signature:
         return
     _last_signature = signature
+    var ambient_key := "ambient_day"
     if hour < 5 or hour >= 21:
-        _ambient.color = Color("#53627d")
-    elif hour < 8 or hour >= 17:
-        _ambient.color = Color("#f0c2a0")
+        ambient_key = "ambient_night"
+    elif hour < 8:
+        ambient_key = "ambient_dawn"
+    elif hour >= 17:
+        ambient_key = "ambient_evening"
+    var fallback := Color("#e4e6d4")
+    if ambient_key == "ambient_night":
+        fallback = Color("#53627d")
+    elif ambient_key == "ambient_dawn":
+        fallback = Color("#f0c2a0")
     elif hour >= 11 and hour <= 15:
-        _ambient.color = Color("#fff4dc")
-    else:
-        _ambient.color = Color("#e4e6d4")
+        fallback = Color("#fff4dc")
+    var ambient_value: Variant = lighting.get(ambient_key,fallback)
+    _ambient.color = ambient_value if ambient_value is Color else Color(str(ambient_value))
     if str(room.get("scene_kind","outdoor")) == "interior":
-        _ambient.color = _ambient.color.darkened(0.08)
+        _ambient.color = _ambient.color.darkened(clampf(float(lighting.get("interior_dim",0.06)),0.0,0.25))
     _rebuild_lights(room,hour)
 
 func _rebuild_lights(room: Dictionary,hour: int) -> void:
@@ -55,21 +62,17 @@ func _rebuild_lights(room: Dictionary,hour: int) -> void:
         var light := PointLight2D.new()
         light.position = Vector2(float(definition.get("x",0.0)),float(definition.get("y",300.0)))
         light.color = Color(str(definition.get("color","#f2c77e")))
-        var base_energy := float(definition.get("energy",0.7)) if is_night or bool(definition.get("always_on",false)) else 0.0
-        light.energy = base_energy
+        var base_energy := float(definition.get("night_energy",definition.get("energy",0.7))) if is_night else float(definition.get("day_energy",0.0))
+        if bool(definition.get("always_on",false)):
+            base_energy = float(definition.get("energy",base_energy))
+        light.energy = maxf(base_energy,0.0)
         light.texture = _make_light_texture()
-        light.texture_scale = float(definition.get("radius",3.0))
-        light.shadow_enabled = true
+        light.texture_scale = clampf(float(definition.get("radius",3.0)),0.4,5.0)
+        light.shadow_enabled = bool(definition.get("shadow_enabled",true))
         light.shadow_filter = PointLight2D.SHADOW_FILTER_PCF5
         add_child(light)
         _lights.append(light)
-        _light_effects.append({
-            "node":light,
-            "base_energy":base_energy,
-            "flicker":clampf(float(definition.get("flicker",0.0)),0.0,0.18),
-            "frequency":maxf(float(definition.get("flicker_frequency",3.0)),0.1),
-            "phase":float(abs(str(definition.get("id","")).hash())%1000)*0.01
-        })
+        _light_effects.append({"node":light,"base_energy":base_energy,"flicker":clampf(float(definition.get("flicker",0.0)),0.0,0.18),"frequency":maxf(float(definition.get("flicker_frequency",3.0)),0.1),"phase":float(abs(str(definition.get("id","")).hash())%1000)*0.01})
 
 func _make_light_texture() -> Texture2D:
     var gradient := Gradient.new()

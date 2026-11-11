@@ -7,9 +7,11 @@ var _stride := 0.0
 var _depth_stride := 0.0
 var _blink := false
 var _view_direction := "front"
+var component_side := 0.0
 
-func configure(kind: String,data: Dictionary) -> void:
+func configure(kind: String,data: Dictionary,side: float = 0.0) -> void:
     component_type = kind
+    component_side = side
     appearance = data.duplicate(true)
     queue_redraw()
 
@@ -37,9 +39,10 @@ func _draw() -> void:
     match component_type:
         "shadow": draw_ellipse(Vector2.ZERO,Vector2(21,5),Color("#3e382f",0.22))
         "legs": _draw_legs(ink)
+        "arm_back": _draw_arm(ink,skin.darkened(0.10),clothes.darkened(0.13),component_side)
         "body": _draw_body(ink,clothes)
         "garment": _draw_garment(ink,clothes)
-        "arms": _draw_arms(ink,skin,clothes)
+        "arm_front": _draw_arm(ink,skin,clothes,component_side)
         "head": _draw_head(ink,skin)
         "hair": _draw_hair(ink,hair)
         "headwear": _draw_headwear()
@@ -47,14 +50,29 @@ func _draw() -> void:
         "accessory": _draw_accessory()
 
 func _draw_legs(ink: Color) -> void:
+    var shoe_colour := Color(str(appearance.get("shoes","#59483c")))
     for side in [-1.0,1.0]:
         var swing := _stride*side
-        var knee := Vector2(side*8+swing,-1)
-        var foot := Vector2(side*12+swing,7+_depth_stride*side)
+        var lift := maxf(swing,0.0)*0.46+maxf(_depth_stride*side,0.0)*0.34
+        var knee := Vector2(side*8+swing,-1.0-lift*0.55)
+        var foot := Vector2(side*12+swing,7.0+_depth_stride*side-lift)
         draw_line(Vector2(side*7,-5),knee,ink,10.0)
         draw_line(knee,foot,ink,7.0)
-        draw_ellipse(foot+Vector2(-1,1),Vector2(10,5),Color("#59483c"))
-        draw_line(foot+Vector2(-4,-1),foot+Vector2(3,-1),Color("#c7b69c"),1.4)
+        draw_ellipse(foot+Vector2(-1,1),Vector2(10,5),shoe_colour.darkened(0.08))
+        draw_line(foot+Vector2(-5,-1),foot+Vector2(4,-1),shoe_colour.lightened(0.22),1.4)
+        draw_line(foot+Vector2(-5,3),foot+Vector2(4,3),shoe_colour.darkened(0.24),1.0)
+
+func _draw_arm(ink: Color,skin: Color,clothes: Color,side: float) -> void:
+    var swing := -_stride*0.72*side
+    var depth_swing := _depth_stride*side
+    var shoulder := Vector2(side*11.0,-29.0)
+    var elbow := Vector2(side*16.0+swing*0.55,-17.0-depth_swing*0.25)
+    var hand := Vector2(side*14.0+swing,-5.0-depth_swing*0.65)
+    draw_line(shoulder,elbow,ink,9.0)
+    draw_line(shoulder+Vector2(0,1),elbow+Vector2(0,1),clothes,6.5)
+    draw_line(elbow,hand,ink,7.0)
+    draw_line(elbow,hand-Vector2(0,1),skin,4.5)
+    draw_circle(hand,3.8,skin)
 
 func _draw_body(ink: Color,clothes: Color) -> void:
     var shape := clampi(int(appearance.get("body_shape",0)),0,3)
